@@ -9,7 +9,6 @@ import RocketIcon from "@mui/icons-material/Rocket";
 import CardGiftcardIcon from "@mui/icons-material/CardGiftcard";
 import CheckroomIcon from "@mui/icons-material/Checkroom";
 import ShoppingBagIcon from "@mui/icons-material/ShoppingBag";
-import WavesIcon from "@mui/icons-material/Waves";
 import LunchDiningIcon from "@mui/icons-material/LunchDining";
 import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 import CelebrationIcon from "@mui/icons-material/Celebration";

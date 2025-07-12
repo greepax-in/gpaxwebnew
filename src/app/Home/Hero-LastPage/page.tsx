@@ -1,8 +1,6 @@
 'use client';
 import { Box, Typography, Button } from "@mui/material";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useTheme, useMediaQuery } from '@mui/material';
-import { useEffect, useState } from "react";
+
 
 export default function Home() {
 

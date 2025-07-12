@@ -6,8 +6,7 @@ import Typography from "@mui/material/Typography";
 import { motion } from "framer-motion";
 import MainMenu from "./MainMenu";
 
-import { useMediaQuery } from "@mui/material";
-import { useTheme } from "@mui/material/styles";
+
 import WhatsappIcon from '@mui/icons-material/WhatsApp';
 
 const MotionA = motion("a");
