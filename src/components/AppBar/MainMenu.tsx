@@ -105,7 +105,7 @@ export default function MainMenu() {
         <MegaMenu
           open={!!openMenu}
           menuType={openMenu as "Paper Bags" | "Paper Boxes" | "Paper Covers"}
-          anchorEl={null}
+          // anchorEl={null}
         />
       </Box>
     </ClickAwayListener>

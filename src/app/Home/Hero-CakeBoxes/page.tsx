@@ -31,7 +31,7 @@ export default function HeroCakeBoxes() {
     );
 
     // Opacity effect for the title (fade out when scrolling ends)
-    const titleOpacityTransform = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
+    // const titleOpacityTransform = useTransform(scrollYProgress, [0.8, 1], [1, 0]);
 
     const sectionHeight = "150vh"; // Adjust height to ensure no overlap
 

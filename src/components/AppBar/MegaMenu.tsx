@@ -179,7 +179,7 @@ const paperBoxesMenuSections: MegaMenuSection[][] = [
 
 type MegaMenuProps = {
   open: boolean;
-  anchorEl?: HTMLElement | null;
+  // anchorEl?: HTMLElement | null;
   menuType: "Paper Bags" | "Paper Boxes" | "Paper Covers";
 };
 
@@ -196,7 +196,7 @@ const getMenuSections = (menuType: MegaMenuProps["menuType"]) => {
   }
 };
 
-export default function MegaMenu({ open, anchorEl, menuType }: MegaMenuProps) {
+export default function MegaMenu({ open, menuType }: MegaMenuProps) {
   if (!open) return null;
 
   const sectionGroups = getMenuSections(menuType);
