@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import { motion } from "framer-motion";
-// Ensure MegaMenu.tsx exists in the same folder, or update the path below if needed
 import MegaMenu from "./MegaMenu";
 import ClickAwayListener from "@mui/material/ClickAwayListener";
 
@@ -28,7 +27,6 @@ export default function MainMenu() {
       <Box
         sx={{
           width: "100%",
-          // background: "#f5f5f5",
           minHeight: "64px",
           display: "flex",
           justifyContent: "center",
@@ -46,7 +44,7 @@ export default function MainMenu() {
             sx={{
               display: "flex",
               gap: 1.2,
-              background: "#39b54a",
+              background: "#1B5E20", // Dark green to match AppBar
               borderRadius: "50px",
               padding: "0.3rem 0.8rem",
               boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
@@ -58,25 +56,24 @@ export default function MainMenu() {
                 whileHover={{ scale: 1.08 }}
                 whileTap={{ scale: 0.96 }}
                 transition={{ type: "spring", stiffness: 300 }}
-                layout // enables smooth layout animation
+                layout
               >
                 <Button
                   sx={{
-                    color: openMenu === item ? "#2e8c3a" : "#fff",
+                    color: openMenu === item ? "#1B5E20" : "#E8F5E9",
                     fontSize: "1rem",
                     fontWeight: "bold",
                     padding: "0.3rem 1rem",
                     borderRadius: "50px",
-                    background: openMenu === item ? "#fff" : "transparent",
+                    background: openMenu === item ? "#FFFFFF" : "transparent",
                     boxShadow:
-                      openMenu === item ? "0 0 0 4px #39b54a55" : "none",
+                      openMenu === item ? "0 0 0 3px #A5D6A7" : "none",
                     textTransform: "none",
                     position: "relative",
-                    transition:
-                      "background 0.3s, box-shadow 0.3s, color 0.3s",
+                    transition: "all 0.3s ease",
                     "&:hover": {
-                      background: openMenu === item ? "#fff" : "#2e8c3a",
-                      color: openMenu === item ? "#2e8c3a" : "#fff",
+                      background: openMenu === item ? "#FFFFFF" : "#2E7D32",
+                      color: openMenu === item ? "#1B5E20" : "#FFFFFF",
                     },
                   }}
                   onClick={() => handleMenuClick(item)}
@@ -92,7 +89,7 @@ export default function MainMenu() {
                         width: "100%",
                         height: "100%",
                         borderRadius: "50px",
-                        background: "#fff",
+                        background: "#FFFFFF",
                         zIndex: -1,
                       }}
                     />
@@ -102,10 +99,10 @@ export default function MainMenu() {
             ))}
           </Box>
         </MotionDiv>
+
         <MegaMenu
           open={!!openMenu}
           menuType={openMenu as "Paper Bags" | "Paper Boxes" | "Paper Covers"}
-          // anchorEl={null}
         />
       </Box>
     </ClickAwayListener>

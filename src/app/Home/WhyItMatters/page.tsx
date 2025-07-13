@@ -1,0 +1,131 @@
+'use client';
+
+import { Box, Typography, Grid } from '@mui/material';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
+
+const stats = [
+  {
+    icon: '/images/home/whyitmatters/plastic-cover.svg', // Replace with real icon
+    title: 'Only 9% of plastic waste is recycled',
+    description: 'The rest ends up in landfills, oceans, and our food chains.',
+  },
+  {
+    icon: '/images/home/whyitmatters/turtles.svg',
+    title: '100,000+ marine animals die each year',
+    description: 'Plastic pollution is choking our oceans.',
+  },
+  {
+    icon: '/images/home/whyitmatters/rain.svg',
+    title: 'Sudden rains and floods are rising',
+    description: 'Climate changes are becoming more frequent in India.',
+  },
+];
+
+export default function WhyItMatters() {
+  return (
+    <Box
+      sx={{
+        position: 'relative',
+        py: { xs: 8, md: 10 },
+        px: { xs: 2, md: 6 },
+        backgroundImage: 'url(/images/home/whyitmatters/cleannature.png)', // your scenic background
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        zIndex: 1,
+        overflow: 'hidden',
+      }}
+    >
+      {/* Overlay to enhance readability */}
+      <Box
+        sx={{
+          position: 'absolute',
+          inset: 0,
+          backgroundColor: 'rgba(255,255,255,0.7)',
+          zIndex: 2,
+        }}
+      />
+
+      {/* Content */}
+      <Box sx={{ position: 'relative', zIndex: 3, textAlign: 'center' }}>
+        {/* Title */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Typography
+            variant="h4"
+            fontWeight={700}
+            color="#2e7d32"
+            sx={{ mb: 6 }}
+          >
+            Every Child Deserves a World with Clean Air, Water, and Soil
+          </Typography>
+        </motion.div>
+
+        {/* Statistics */}
+        <Grid container spacing={4} justifyContent="center">
+          {stats.map((item, i) => (
+            <Grid size={{ xs: 12 }} md={4} key={i}>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: i * 0.2 }}
+              >
+                <Box
+                  sx={{
+                    textAlign: 'center',
+                    px: 2,
+                    maxWidth: 300,
+                    mx: 'auto',
+                  }}
+                >
+                  <Image
+                    src={item.icon}
+                    alt={item.title}
+                    width={64}
+                    height={64}
+                    style={{ marginBottom: '1rem' }}
+                  />
+                  <Typography
+                    variant="h6"
+                    fontWeight={600}
+                    color="text.primary"
+                    sx={{ mb: 1 }}
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    sx={{ fontSize: '1rem' }}
+                  >
+                    {item.description}
+                  </Typography>
+                </Box>
+              </motion.div>
+            </Grid>
+          ))}
+        </Grid>
+
+        {/* Closing Quote */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.8 }}
+          style={{ marginTop: '3rem' }}
+        >
+          <Typography
+            variant="subtitle1"
+            fontStyle="italic"
+            color="text.primary"
+            sx={{ fontSize: '1.1rem', fontWeight: 700, maxWidth: '600px', mx: 'auto' }}
+          >
+            We can’t undo the damage, but we can make better choices now.
+          </Typography>
+        </motion.div>
+      </Box>
+    </Box>
+  );
+}
