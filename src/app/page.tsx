@@ -1,5 +1,5 @@
 
-import HeroSection from '../../src/app/Home/HeroSection/page';
+// import HeroSection from '../../src/app/Home/HeroSection/page';
 import AppBar from "@/components/AppBar/AppBar";
 import MainHero from '../../src/app/Home/MainHero/page';
 import WhyItMatters from './Home/WhyItMatters/page';
