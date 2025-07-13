@@ -1,7 +1,8 @@
 'use client';
 
 import { Box, useMediaQuery } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
@@ -68,9 +69,9 @@ export default function HeroSection() {
               <Image
                 src={images[index]}
                 alt={`Slide ${index}`}
-                layout="fill" // Ensures the image fills the container
-                objectFit="cover" // Makes the image cover the entire card
+                fill // Next.js 13+ uses 'fill' prop instead of 'layout="fill"'
                 style={{
+                  objectFit: 'cover', // Next.js 13+ uses style for objectFit
                   borderRadius: 16,
                   boxShadow: '0 4px 24px #0002',
                 }}

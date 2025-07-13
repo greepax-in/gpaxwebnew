@@ -1,6 +1,7 @@
 'use client';
 
-import { Box, Typography, Grid } from '@mui/material';
+import { Box, Typography } from '@mui/material';
+import Grid from '@mui/material/Grid';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 
@@ -67,7 +68,7 @@ export default function WhyItMatters() {
         {/* Statistics */}
         <Grid container spacing={4} justifyContent="center">
           {stats.map((item, i) => (
-            <Grid size={{ xs: 12 }} md={4} key={i}>
+            <Grid size={{ xs: 8, md: 4 }} key={i}>
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
