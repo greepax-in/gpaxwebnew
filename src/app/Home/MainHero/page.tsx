@@ -37,7 +37,7 @@ export default function HeroSection() {
         px: 4,
         py: 8,
         background: '#f4f1ec',
-        mt: { md: 16 }, // Add margin-top for desktop to place below AppBar
+        // mt: { md: 0 }, // Add margin-top for desktop to place below AppBar
       }}
     >
       {/* Left: Animated Image */}
