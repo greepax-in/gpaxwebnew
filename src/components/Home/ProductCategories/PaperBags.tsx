@@ -73,8 +73,8 @@ const variantColors: Record<
 type SectionKey = 'Paper Bags' | 'Paper Boxes' | 'Paper Covers';
 
 type PaperBagsCategoryProps = {
-  sectionRefs: Record<SectionKey, React.RefObject<HTMLDivElement | null>>;
-  topSentinelRef: React.RefObject<HTMLDivElement | null>; // ✅ Added for scroll-up detection
+  sectionRefs: Record<'Paper Bags', React.RefObject<HTMLDivElement | null>>;
+  topSentinelRef?: React.RefObject<HTMLDivElement | null>; // ✅ Made optional
 };
 // export default function PaperBagsCategory({
 //   sectionRefs,

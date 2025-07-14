@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 import AppBar from '@/components/AppBar/AppBar';
 import MiniMenu from '@/components/AppBar/MiniMenu';
 import MainHero from '../../src/app/Home/MainHero/page';
-import WhyItMatters from './Home/WhyItMatters/page';
+import WhyItMatters from '@/components/Home/whyitmatters/page';
 import Footer from '@/components/Home/Footer/Footer';
 import Footer2 from './Home/Footer2/page';
 import PaperBagsCategory from '@/components/Home/ProductCategories/PaperBags';
@@ -22,29 +22,36 @@ export default function Page() {
 
   const [activeSection, setActiveSection] = useState<string | null>(null);
   const [lastY, setLastY] = useState<number>(0);
-  const [inWhyItMatters, setInWhyItMatters] = useState(false);
-  const [inFooter, setInFooter] = useState(false);
 
   const lastKnownSection = useRef<string | null>(null);
 
-  const whyItMattersRef = useRef<HTMLDivElement | null>(null);
-  const footerRef = useRef<HTMLDivElement | null>(null);
-  const topSentinelRef = useRef<HTMLDivElement | null>(null);
-  const endSentinelRef = useRef<HTMLDivElement | null>(null);
+  const footerRef = useRef<HTMLDivElement>(null);
+  const topSentinelRef = useRef<HTMLDivElement>(null);
+  const endSentinelRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs: Record<'Paper Bags' | 'Paper Boxes' | 'Paper Covers' | 'Footer', React.RefObject<HTMLDivElement | null>> = {
+  const sectionRefs: Record<
+    'WhyItMatters' | 'Paper Bags' | 'Paper Boxes' | 'Paper Covers' | 'Footer',
+    React.RefObject<HTMLDivElement | null>
+  > = {
+    'WhyItMatters': useRef<HTMLDivElement>(null),
     'Paper Bags': useRef<HTMLDivElement>(null),
     'Paper Boxes': useRef<HTMLDivElement>(null),
     'Paper Covers': useRef<HTMLDivElement>(null),
-    'Footer': footerRef,
+    'Footer': useRef<HTMLDivElement>(null),
   };
 
-  const showMiniMenu = Boolean(activeSection) && !inWhyItMatters && !inFooter;
-  const showAppBar = !showMiniMenu && (!activeSection || inFooter || inWhyItMatters);
+  const showMiniMenu =
+    Boolean(activeSection) &&
+    activeSection !== 'Footer' &&
+    activeSection !== 'WhyItMatters';
+
+  const showAppBar = !showMiniMenu;
 
   useEffect(() => {
-    console.log(`🔀 showMiniMenu: ${showMiniMenu} | showAppBar: ${showAppBar} | inFooter: ${inFooter} | inWhyItMatters: ${inWhyItMatters} | activeSection: ${activeSection}`);
-  }, [showMiniMenu, showAppBar, inFooter, inWhyItMatters, activeSection]);
+    console.log(
+      `🔀 showMiniMenu: ${showMiniMenu} | showAppBar: ${showAppBar} | activeSection: ${activeSection}`
+    );
+  }, [showMiniMenu, showAppBar, activeSection]);
 
   // Section observer
   useEffect(() => {
@@ -63,7 +70,9 @@ export default function Page() {
             const section = (entry.target as HTMLElement).dataset.section!;
             const y = (entry.target as HTMLElement).getBoundingClientRect().top;
             const ratio = entry.intersectionRatio;
-            console.log(`📦 ${section}: isIntersecting=${entry.isIntersecting} ratio=${ratio.toFixed(3)}, y=${y.toFixed(1)}`);
+            console.log(
+              `📦 ${section}: isIntersecting=${entry.isIntersecting} ratio=${ratio.toFixed(3)}, y=${y.toFixed(1)}`
+            );
             return { section, y, ratio };
           });
 
@@ -72,9 +81,11 @@ export default function Page() {
         let nextSection: string | null = null;
 
         if (scrollDown) {
-          nextSection = visible.sort((a, b) => b.ratio - a.ratio)[0]?.section ?? lastKnownSection.current;
+          nextSection =
+            visible.sort((a, b) => b.ratio - a.ratio)[0]?.section ??
+            lastKnownSection.current;
         } else {
-          const aboveFold = visible.filter(v => v.y < window.innerHeight * 0.5);
+          const aboveFold = visible.filter((v) => v.y < window.innerHeight * 0.5);
           nextSection =
             aboveFold.sort((a, b) => a.y - b.y)[0]?.section ??
             visible.sort((a, b) => b.ratio - a.ratio)[0]?.section ??
@@ -105,51 +116,7 @@ export default function Page() {
     return () => observer.disconnect();
   }, [isMobile, activeSection]);
 
-  // WhyItMatters observer
-  useEffect(() => {
-    if (!isMobile) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInWhyItMatters(entry.isIntersecting);
-        console.log(`🎯 WhyItMatters isIntersecting: ${entry.isIntersecting}`);
-      },
-      {
-        threshold: 0.3,
-        rootMargin: '-0% 0px -60% 0px',
-      }
-    );
-
-    if (whyItMattersRef.current) observer.observe(whyItMattersRef.current);
-    return () => observer.disconnect();
-  }, [isMobile]);
-
-  // Footer observer (adjusted to delay detection)
-  useEffect(() => {
-    if (!isMobile || !footerRef.current) return;
-
-    const node = footerRef.current;
-    console.log('👣 Observing footer:', node);
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setInFooter(entry.isIntersecting);
-        console.log(`🦶 Footer isIntersecting: ${entry.isIntersecting}`);
-      },
-      {
-        threshold: 0.9, //good so
-        rootMargin: '0px 0px -30% 0px',
-      }
-    );
-
-    observer.observe(node);
-    console.log('👀 Observing footer:', node);
-
-    return () => {
-      if (node) observer.unobserve(node);
-    };
-  }, [isMobile, footerRef.current]);
-
-  // Sentinel reset
+  // Sentinel observer (top & bottom)
   useEffect(() => {
     if (!isMobile) return;
 
@@ -214,21 +181,25 @@ export default function Page() {
           transition={{ duration: 0.3, ease: 'easeOut' }}
           sx={{ position: 'absolute', width: '100%', zIndex: 1301 }}
         >
-          <MiniMenu isMobile={isMobile} showMenuBar={showMiniMenu} activeSection={activeSection} />
+          <MiniMenu
+            isMobile={isMobile}
+            showMenuBar={showMiniMenu}
+            activeSection={activeSection}
+          />
         </MotionBox>
       </Box>
 
-      {/* Content */}
+      {/* Page Content */}
       <Box sx={{ mt: '64px' }}>
         <div ref={topSentinelRef} style={{ height: '1px' }} />
 
         <MainHero />
-        <WhyItMatters />
-        <PaperBagsCategory sectionRefs={sectionRefs} topSentinelRef={topSentinelRef} />
+        <WhyItMatters sectionRefs={sectionRefs} />
+        <PaperBagsCategory sectionRefs={sectionRefs} />
         <PaperBoxesCategory sectionRefs={sectionRefs} />
         <PaperCoversCategory sectionRefs={sectionRefs} />
 
-        <div ref={whyItMattersRef} style={{ height: '1px' }} />
+        <div ref={endSentinelRef} style={{ height: '1px' }} />
         <Footer ref={footerRef} />
         <div ref={endSentinelRef} style={{ height: '1px' }} />
         <Footer2 />
