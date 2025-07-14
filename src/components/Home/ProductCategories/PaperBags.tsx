@@ -1,245 +1,242 @@
-    'use client';
-    import {
-    Box,
-    Typography,
-    Stack,
-    Button,
-    useMediaQuery,
-    Container,
-    } from '@mui/material';
-    import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-    import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-    import { motion } from 'framer-motion';
-    import { useTheme } from '@mui/material/styles';
+'use client';
+import {
+  Box,
+  Typography,
+  Stack,
+  Button,
+  useMediaQuery,
+  Container,
+} from '@mui/material';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { motion } from 'framer-motion';
+import { useTheme } from '@mui/material/styles';
 
-    const MotionBox = motion(Box);
+const MotionBox = motion(Box);
 
-    const products = [
-    {
-        image: '/images/productcategories/paperbags/1.svg',
-        name: 'Food Delivery Paper Bags',
-        description: 'Sturdy paper bags designed for safe and convenient food delivery.',
-        industry: 'Food Delivery, Restaurants & Cafes',
-        variants: ['Plain', 'Single Color', 'Multicolor'],
-    },
-    {
-        image: '/images/productcategories/paperbags/7.svg',
-        name: 'Bakery Paper Bags',
-        description: 'Elegant bakery bags perfect for breads, pastries, and baked goods.',
-        industry: 'Bakery & Confectionery',
-        variants: ['Plain', 'Single Color'],
-    },
-    {
-        image: '/images/productcategories/paperbags/13.svg',
-        name: 'Gift Paper Bags',
-        description: 'Attractive gift bags suitable for retail, events, and gifting purposes.',
-        industry: 'Retail, Birthdays & Events',
-        variants: ['Plain', 'Single Color', 'Multicolor'],
-    },
-    ];
+const products = [
+  {
+    image: '/images/productcategories/paperbags/1.svg',
+    name: 'Food Delivery Paper Bags',
+    description: 'Sturdy paper bags designed for safe and convenient food delivery.',
+    industry: 'Food Delivery, Restaurants & Cafes',
+    variants: ['Plain', 'Single Color', 'Multicolor'],
+  },
+  {
+    image: '/images/productcategories/paperbags/7.svg',
+    name: 'Bakery Paper Bags',
+    description: 'Elegant bakery bags perfect for breads, pastries, and baked goods.',
+    industry: 'Bakery & Confectionery',
+    variants: ['Plain', 'Single Color'],
+  },
+  {
+    image: '/images/productcategories/paperbags/13.svg',
+    name: 'Gift Paper Bags',
+    description: 'Attractive gift bags suitable for retail, events, and gifting purposes.',
+    industry: 'Retail, Birthdays & Events',
+    variants: ['Plain', 'Single Color', 'Multicolor'],
+  },
+];
 
-    type VariantType = 'Plain' | 'Single Color' | 'Multicolor';
+type VariantType = 'Plain' | 'Single Color' | 'Multicolor';
 
+const variantColors: Record<
+  VariantType,
+  {
+    variant: 'outlined' | 'contained';
+    color?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    hoverBackgroundColor?: string;
+    background?: string;
+    hoverOpacity?: number;
+  }
+> = {
+  Plain: {
+    variant: 'outlined',
+    color: 'text.primary',
+    borderColor: 'primary.main',
+  },
+  'Single Color': {
+    variant: 'contained',
+    backgroundColor: 'primary.main',
+    hoverBackgroundColor: 'primary.dark',
+  },
+  Multicolor: {
+    variant: 'contained',
+    background: 'linear-gradient(90deg, #2196F3, #9C27B0, #FF5722, #FFEB3B)',
+    color: 'white',
+    hoverOpacity: 0.9,
+  },
+};
 
-    const variantColors: Record<
-    VariantType,
-    {
-        variant: 'outlined' | 'contained';
-        color?: string;
-        borderColor?: string;
-        backgroundColor?: string;
-        hoverBackgroundColor?: string;
-        background?: string;
-        hoverOpacity?: number;
-    }
-    > = {
-    Plain: {
-        variant: 'outlined',
-        color: 'text.primary',
-        borderColor: 'primary.main',
-    },
-    'Single Color': {
-        variant: 'contained',
-        backgroundColor: 'primary.main',
-        hoverBackgroundColor: 'primary.dark',
-    },
-    Multicolor: {
-        variant: 'contained',
-        background: 'linear-gradient(90deg, #2196F3, #9C27B0, #FF5722, #FFEB3B)',
-        color: 'white',
-        hoverOpacity: 0.9,
-    },
-    };
+type SectionKey = 'Paper Bags' | 'Paper Boxes' | 'Paper Covers';
 
-    type SectionKey = 'Paper Bags' | 'Paper Boxes' | 'Paper Covers';
+type PaperBagsCategoryProps = {
+  sectionRefs: Record<SectionKey, React.RefObject<HTMLDivElement | null>>;
+  topSentinelRef: React.RefObject<HTMLDivElement | null>; // ✅ Added for scroll-up detection
+};
+// export default function PaperBagsCategory({
+//   sectionRefs,
+//   topSentinelRef,
+// }: PaperBagsCategoryProps) {
 
-    type PaperBagsCategoryProps = {
-    sectionRefs: Record<SectionKey, React.RefObject<HTMLDivElement | null>>;
-    };
+export default function PaperBagsCategory({
+  sectionRefs,
+  topSentinelRef,
+}: PaperBagsCategoryProps) {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
+  return (
+    <>
+      {/* ✅ Sentinel above Paper Bags section */}
+      <div  style={{ height: '1px' }} />
 
-    export default function PaperBagsCategory({ sectionRefs }: PaperBagsCategoryProps) {
-    const theme = useTheme();
-    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-
-    return (
-        <Box
+      <Box
         ref={sectionRefs['Paper Bags']}
         data-section="Paper Bags"
         sx={{
-            minHeight: '100vh',
-            py: 6,
-            backgroundColor: '#dee0feff',
+          minHeight: '100vh',
+          py: 6,
+          backgroundColor: '#dee0feff',
         }}
-        >
+      >
         <Container maxWidth="xl">
-            {/* Section Heading (optional) */}
-            <Typography
+          <Typography
             variant="h2"
             fontWeight={700}
             textAlign="center"
             mb={4}
             sx={{ fontSize: { xs: '2rem', sm: '2.2rem' } }}
-            >
+          >
             Paper Bags
-            </Typography>
+          </Typography>
 
-            {/* Product Cards */}
-            <Stack
+          <Stack
             direction="row"
             spacing={{ xs: 0, md: 3 }}
             justifyContent="center"
             alignItems="stretch"
             flexWrap="wrap"
-            >
-            {products.map((product, index) => (
+          >
+            {products.map((product, index) => {
+              return (
                 <Box
-                key={index}
-                sx={{
+                  key={index}
+                  sx={{
                     width: { xs: '100%', sm: 320, md: 480 },
                     mb: { xs: 1, md: 4 },
                     mt: { xs: 8, md: 0 },
-                }}
+                  }}
                 >
-                <MotionBox
+                  <MotionBox
                     custom={index}
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true, amount: 0.3 }}
                     variants={{
-                    hidden: { opacity: 0, y: 50 },
-                    visible: { opacity: 1, y: 0 },
+                      hidden: { opacity: 0, y: 50 },
+                      visible: { opacity: 1, y: 0 },
                     }}
                     whileHover={!isMobile ? { scale: 1.05 } : {}}
                     sx={{
-                    minHeight: { xs: 'auto', md: 480 },
-                    width: '100%',
-                    p: 3,
-                    mb: { xs: 1, md: 0 },
-                    borderRadius: 4,
-                    backgroundColor: '#fff',
-                    textAlign: 'center',
-                    boxShadow: 6,
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'space-between',
+                      minHeight: { xs: 'auto', md: 480 },
+                      width: '100%',
+                      p: 3,
+                      mb: { xs: 1, md: 0 },
+                      borderRadius: 4,
+                      backgroundColor: '#fff',
+                      textAlign: 'center',
+                      boxShadow: 6,
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
                     }}
-                >
+                  >
                     <Box
-                    component="img"
-                    src={product.image}
-                    alt={product.name}
-                    loading="lazy"
-                    sx={{
+                      component="img"
+                      src={product.image}
+                      alt={product.name}
+                      loading="lazy"
+                      sx={{
                         width: '100%',
                         height: '200px',
                         objectFit: 'contain',
                         mb: 2,
-                    }}
+                      }}
                     />
                     <Typography variant={isMobile ? 'h5' : 'h4'} fontWeight={600} mb={1}>
-                    {product.name}
+                      {product.name}
                     </Typography>
-                    <Typography
-                    variant="body2"
-                    mb={2}
-                    color="text.secondary"
-                    sx={{ fontSize: { xs: '0.75rem', sm: '1rem' } }}
-                    >
-                    {product.description}
+                    <Typography variant="body2" mb={2} color="text.secondary">
+                      {product.description}
                     </Typography>
-                    <Typography
-                    variant="body2"
-                    mb={2}
-                    color="text.secondary"
-                    sx={{ fontSize: { xs: '0.70rem', sm: '1rem' } }}
-                    >
-                    <Box component="span" fontWeight="bold">
-                        Industry:
-                    </Box>{' '}
-                    {product.industry}
+                    <Typography variant="body2" mb={2} color="text.secondary">
+                      <Box component="span" fontWeight="bold">Industry:</Box> {product.industry}
                     </Typography>
 
                     <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
-                    {product.variants.map((variant) => {
+                      {product.variants.map((variant) => {
                         const style = variantColors[variant as VariantType];
                         return (
-                        <Button
+                          <Button
                             key={variant}
                             variant={style.variant}
                             size="small"
                             sx={{
-                            textTransform: 'none',
-                            borderRadius: '20px',
-                            px: 2,
-                            fontWeight: 500,
-                            color: style.color,
-                            borderColor: style.borderColor,
-                            background: style.background,
-                            backgroundColor: style.backgroundColor,
-                            '&:hover': {
+                              textTransform: 'none',
+                              borderRadius: '20px',
+                              px: 2,
+                              fontWeight: 500,
+                              color: style.color,
+                              borderColor: style.borderColor,
+                              background: style.background,
+                              backgroundColor: style.backgroundColor,
+                              '&:hover': {
                                 backgroundColor: style.hoverBackgroundColor,
                                 opacity: style.hoverOpacity,
-                            },
+                              },
                             }}
-                        >
+                          >
                             {variant}
-                        </Button>
+                          </Button>
                         );
-                    })}
+                      })}
                     </Stack>
 
                     <Stack
-                    direction={isMobile ? 'row' : 'column'}
-                    spacing={1}
-                    justifyContent="center"
-                    alignItems="center"
+                      direction={isMobile ? 'row' : 'column'}
+                      spacing={1}
+                      justifyContent="center"
+                      alignItems="center"
                     >
-                    <Button variant="outlined" fullWidth={!isMobile} size="medium" startIcon={<InfoOutlinedIcon />}>
+                      <Button variant="outlined" fullWidth={!isMobile} size="medium" startIcon={<InfoOutlinedIcon />}>
                         {isMobile ? 'Details' : 'View Product Details'}
-                    </Button>
-                    <Button
+                      </Button>
+                      <Button
                         variant="contained"
                         fullWidth={!isMobile}
                         size="medium"
                         startIcon={<WhatsAppIcon />}
                         sx={{ backgroundColor: '#25D366', '&:hover': { backgroundColor: '#1ebe5c' } }}
-                    >
+                      >
                         {isMobile ? 'WhatsApp' : 'Chat via WhatsApp'}
-                    </Button>
+                      </Button>
                     </Stack>
-                </MotionBox>
+                  </MotionBox>
                 </Box>
-            ))}
-            </Stack>
+              );
+            })}
+          </Stack>
 
-            {/* Footer CTA */}
-            <Box textAlign="center" mt={5}>
+          <Box textAlign="center" mt={5}>
             <Button variant="contained" size="large">
-                Explore Paper Bags
+              Explore Paper Bags
             </Button>
-            </Box>
+          </Box>
         </Container>
-        </Box>
-    );
-    }
+      </Box>
+    </>
+  );
+}

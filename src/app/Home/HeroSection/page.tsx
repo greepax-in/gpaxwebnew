@@ -1,8 +1,8 @@
 'use client';
 import HeroPaperBag from '../Hero-PaperBag/page';
 import HeroPaperCovers from '../Hero-PaperCovers/page';
-import HeroCakeBoxes from '../Hero-CakeBoxes/page';
-import LastSection from '../Hero-LastPage/page';
+import HeroCakeBoxes from '../Footer/page';
+import LastSection from '../Footer2/page';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
