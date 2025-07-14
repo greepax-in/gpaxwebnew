@@ -40,14 +40,14 @@ const products = [
 
 type VariantType = 'Plain' | 'Single Color' | 'Multicolor';
 
-const variantColors: Record<VariantType, { 
-    variant: 'outlined' | 'contained'; 
-    color?: string; 
-    borderColor?: string; 
-    backgroundColor?: string; 
-    hoverBackgroundColor?: string; 
-    background?: string; 
-    hoverOpacity?: number; 
+const variantColors: Record<VariantType, {
+    variant: 'outlined' | 'contained';
+    color?: string;
+    borderColor?: string;
+    backgroundColor?: string;
+    hoverBackgroundColor?: string;
+    background?: string;
+    hoverOpacity?: number;
 }> = {
     Plain: {
         variant: 'outlined',
@@ -101,20 +101,23 @@ export default function PaperBagSection() {
                     </Typography>
                 </Box>
 
-                {/* Cards */}
+                {/* Product Cards */}
                 <Stack
                     direction="row"
-                    spacing={{ xs: 0, md: 4 }}
+                    spacing={{ xs: 0, md: 3 }}
                     justifyContent="center"
                     alignItems="stretch"
                     flexWrap="wrap"
                 >
                     {products.map((product, index) => (
-                        <Box key={index} sx={{
-                            width: { xs: '100%', sm: 320, md: 450 },
-                            mb: { xs: 8, md: 0 },
-                            mt: { xs: 8, md: 0 },
-                        }}>
+                        <Box
+                            key={index}
+                            sx={{
+                                width: { xs: '100%', sm: 320, md: 400 },
+                                mb: { xs: 8, md: 4 },
+                                mt: { xs: 16, md: 0 },
+                            }}
+                        >
                             <MotionBox
                                 custom={index}
                                 initial="hidden"
@@ -126,17 +129,16 @@ export default function PaperBagSection() {
                                 }}
                                 whileHover={!isMobile ? { scale: 1.05 } : {}}
                                 sx={{
-                                    width: { xs: '100%', sm: 320, md: 450 },
+                                    minHeight: { xs: 'auto', md: 300 },
+                                    width: '100%',
                                     p: 3,
                                     borderRadius: 4,
                                     backgroundColor: '#fff',
-                                    textAlign: 'center',
+                                    textAlign: 'left',
                                     boxShadow: 6,
-                                    height: { xs: 'auto', md: '70vh' },
                                     display: 'flex',
                                     flexDirection: 'column',
                                     justifyContent: 'space-between',
-                                    mt: { xs: 1, md: 0}
                                 }}
                             >
                                 <Box
@@ -146,7 +148,7 @@ export default function PaperBagSection() {
                                     loading="lazy"
                                     sx={{
                                         width: '100%',
-                                        height: '400px',
+                                        height: '100px',
                                         objectFit: 'contain',
                                         mb: 2,
                                     }}
@@ -162,9 +164,7 @@ export default function PaperBagSection() {
                                     variant="body2"
                                     mb={2}
                                     color="text.secondary"
-                                    sx={{
-                                        fontSize: { xs: '0.75rem', sm: '1rem' },
-                                    }}
+                                    sx={{ fontSize: { xs: '0.75rem', sm: '1rem' } }}
                                 >
                                     {product.description}
                                 </Typography>
@@ -172,14 +172,11 @@ export default function PaperBagSection() {
                                     variant="body2"
                                     mb={2}
                                     color="text.secondary"
-                                    sx={{
-                                        fontSize: { xs: '0.70rem', sm: '1rem' },
-                                    }}
+                                    sx={{ fontSize: { xs: '0.70rem', sm: '1rem' } }}
                                 >
                                     <Box component="span" fontWeight="bold">Industry:</Box> {product.industry}
                                 </Typography>
 
-                                {/* Variants */}
                                 <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
                                     {product.variants.map((variant) => {
                                         const style = variantColors[variant as VariantType];
@@ -196,11 +193,11 @@ export default function PaperBagSection() {
                                                     color: style.color,
                                                     borderColor: style.borderColor,
                                                     background: style.background,
+                                                    backgroundColor: style.backgroundColor,
                                                     '&:hover': {
                                                         backgroundColor: style.hoverBackgroundColor,
                                                         opacity: style.hoverOpacity,
                                                     },
-                                                    mb: 1,
                                                 }}
                                             >
                                                 {variant}
@@ -209,7 +206,6 @@ export default function PaperBagSection() {
                                     })}
                                 </Stack>
 
-                                {/* CTA Buttons */}
                                 <Stack
                                     direction={isMobile ? "row" : "column"}
                                     spacing={1}
@@ -242,10 +238,10 @@ export default function PaperBagSection() {
                     ))}
                 </Stack>
 
-                {/* Explore More */}
+                {/* Footer CTA */}
                 <Box textAlign="center" mt={5}>
                     <Button variant="contained" size="large">
-                        Explore Paper Bags
+                        Explore Paper Bags333
                     </Button>
                 </Box>
             </Container>
