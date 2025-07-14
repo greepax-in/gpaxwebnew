@@ -1,6 +1,6 @@
 // components/SubcategoryCard.tsx
 "use client";
-import { Box, Typography, Paper } from "@mui/material";
+import { Typography, Paper } from "@mui/material";
 import { motion } from "framer-motion";
 import Icon from "@mui/material/Icon";
 
