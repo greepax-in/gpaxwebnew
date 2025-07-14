@@ -29,13 +29,18 @@ export default function Page() {
   const topSentinelRef = useRef<HTMLDivElement>(null);
   const endSentinelRef = useRef<HTMLDivElement>(null);
 
+  const whyItMattersRef = useRef<HTMLDivElement>(null);
+  const paperBagsRef = useRef<HTMLDivElement>(null);
+  const paperBoxesRef = useRef<HTMLDivElement>(null);
+  const paperCoversRef = useRef<HTMLDivElement>(null);
+
   const sectionRefs = useMemo(
     () => ({
-      'WhyItMatters': useRef<HTMLDivElement>(null),
-      'Paper Bags': useRef<HTMLDivElement>(null),
-      'Paper Boxes': useRef<HTMLDivElement>(null),
-      'Paper Covers': useRef<HTMLDivElement>(null),
-      'Footer': useRef<HTMLDivElement>(null),
+      'WhyItMatters': whyItMattersRef,
+      'Paper Bags': paperBagsRef,
+      'Paper Boxes': paperBoxesRef,
+      'Paper Covers': paperCoversRef,
+      'Footer': footerRef,
     }),
     []
   );
