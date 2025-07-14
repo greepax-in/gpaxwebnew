@@ -76,19 +76,20 @@ export default function PaperBagSection() {
             sx={{
                 minHeight: '100vh',
                 py: 6,
-                backgroundColor: '#f9f9f9',
+                backgroundColor: '#dee0feff',
             }}
         >
             <Container maxWidth="xl">
                 {/* Sticky Header */}
                 <Box
                     sx={{
-                        position: 'sticky',
-                        top: 0,
+                        position: isMobile ? 'sticky' : 'static',
+                        top: isMobile ? 0 : 'auto',
                         backgroundColor: '#f9f9f9',
-                        zIndex: 10,
+                        zIndex: 1200, // higher than MiniMenu (which was at 1301), but low enough to layer logically
                         pt: 2,
                         pb: 1,
+                        borderBottom: isMobile ? '1px solid #ddd' : 'none',
                     }}
                 >
                     <Typography
@@ -96,6 +97,9 @@ export default function PaperBagSection() {
                         fontWeight={700}
                         textAlign="center"
                         mb={4}
+                        sx={{
+                            fontSize: { xs: '2rem', sm: '2rem', md: '2.5rem' },
+                        }}
                     >
                         Paper Bags
                     </Typography>
@@ -132,7 +136,7 @@ export default function PaperBagSection() {
                                     minHeight: { xs: 'auto', md: 480 },
                                     width: '100%',
                                     p: 3,
-                                    mb: { xs: 1, md: 0 }, // ✅ Add this here!
+                                    mb: { xs: 1, md: 0 },
                                     borderRadius: 4,
                                     backgroundColor: '#fff',
                                     textAlign: 'center',
