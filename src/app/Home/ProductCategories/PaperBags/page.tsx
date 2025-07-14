@@ -40,7 +40,15 @@ const products = [
 
 type VariantType = 'Plain' | 'Single Color' | 'Multicolor';
 
-const variantColors: Record<VariantType, any> = {
+const variantColors: Record<VariantType, { 
+    variant: 'outlined' | 'contained'; 
+    color?: string; 
+    borderColor?: string; 
+    backgroundColor?: string; 
+    hoverBackgroundColor?: string; 
+    background?: string; 
+    hoverOpacity?: number; 
+}> = {
     Plain: {
         variant: 'outlined',
         color: 'text.primary',
