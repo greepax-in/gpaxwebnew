@@ -70,11 +70,11 @@ const variantColors: Record<
   },
 };
 
-type SectionKey = 'Paper Bags' | 'Paper Boxes' | 'Paper Covers';
+// type SectionKey = 'Paper Bags' | 'Paper Boxes' | 'Paper Covers';
 
 type PaperBagsCategoryProps = {
   sectionRefs: Record<'Paper Bags', React.RefObject<HTMLDivElement | null>>;
-  topSentinelRef?: React.RefObject<HTMLDivElement | null>; // ✅ Made optional
+  // topSentinelRef?: React.RefObject<HTMLDivElement | null>; // ✅ Made optional
 };
 // export default function PaperBagsCategory({
 //   sectionRefs,
@@ -82,8 +82,7 @@ type PaperBagsCategoryProps = {
 // }: PaperBagsCategoryProps) {
 
 export default function PaperBagsCategory({
-  sectionRefs,
-  topSentinelRef,
+  sectionRefs
 }: PaperBagsCategoryProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));

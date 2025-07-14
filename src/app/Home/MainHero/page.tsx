@@ -25,7 +25,7 @@ export default function HeroSection() {
   useEffect(() => {
     const id = setInterval(() => setIndex((i) => (i + 1) % images.length), 3000);
     return () => clearInterval(id);
-  }, []);
+  }, [images.length]);
 
   return (
     <Box

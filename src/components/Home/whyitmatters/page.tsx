@@ -4,7 +4,7 @@ import { Box, Typography } from '@mui/material';
 import Grid from '@mui/material/Grid';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { RefObject } from 'react';
+// import { RefObject } from 'react';
 
 type WhyItMattersProps = {
   sectionRefs: Record<'WhyItMatters', React.RefObject<HTMLDivElement | null>>;

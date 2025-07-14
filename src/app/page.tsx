@@ -114,7 +114,7 @@ export default function Page() {
 
     elements.forEach((el) => observer.observe(el));
     return () => observer.disconnect();
-  }, [isMobile, activeSection]);
+  }, [isMobile, activeSection, lastY, sectionRefs]);
 
   // Sentinel observer (top & bottom)
   useEffect(() => {
