@@ -84,14 +84,14 @@ type AdditionalMenuBarProps = {
   isMobile: boolean;
   showMenuBar: boolean;
   compact?: boolean;
-  fixedTop?: boolean;
+  // fixedTop?: boolean;
 };
 
 const MiniMenu: React.FC<AdditionalMenuBarProps> = ({
   isMobile,
   showMenuBar,
   compact = false,
-  fixedTop = true,
+  // fixedTop = true,
 }) => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
   const [anchorEl, setAnchorEl] = useState<HTMLElement | null>(null);
