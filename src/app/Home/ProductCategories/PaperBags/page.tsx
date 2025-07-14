@@ -38,7 +38,9 @@ const products = [
     },
 ];
 
-const variantColors = {
+type VariantType = 'Plain' | 'Single Color' | 'Multicolor';
+
+const variantColors: Record<VariantType, any> = {
     Plain: {
         variant: 'outlined',
         color: 'text.primary',
@@ -101,11 +103,9 @@ export default function PaperBagSection() {
                 >
                     {products.map((product, index) => (
                         <Box key={index} sx={{
-
                             width: { xs: '100%', sm: 320, md: 450 },
-                            mb: { xs: 8, md: 0 }, // mobile spacing only
-                            mt: { xs: 8, md: 0 }, // desktop spacing
-
+                            mb: { xs: 8, md: 0 },
+                            mt: { xs: 8, md: 0 },
                         }}>
                             <MotionBox
                                 custom={index}
@@ -127,9 +127,8 @@ export default function PaperBagSection() {
                                     height: { xs: 'auto', md: '70vh' },
                                     display: 'flex',
                                     flexDirection: 'column',
-                                    // desktop spacing
                                     justifyContent: 'space-between',
-                                    mt: { xs: 1, md: 0 }, // increased margin top for mobile
+                                    mt: { xs: 1, md: 0}
                                 }}
                             >
                                 <Box
@@ -141,16 +140,13 @@ export default function PaperBagSection() {
                                         width: '100%',
                                         height: '400px',
                                         objectFit: 'contain',
-                                        mb: { xs: '0', sm: '0' },
-                                   
+                                        mb: 2,
                                     }}
                                 />
                                 <Typography
                                     variant={isMobile ? "h5" : "h4"}
-
                                     fontWeight={600}
                                     mb={1}
-
                                 >
                                     {product.name}
                                 </Typography>
@@ -175,10 +171,10 @@ export default function PaperBagSection() {
                                     <Box component="span" fontWeight="bold">Industry:</Box> {product.industry}
                                 </Typography>
 
-                                {/* Variant Buttons */}
-                                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2, flexWrap: 'wrap' }}>
+                                {/* Variants */}
+                                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
                                     {product.variants.map((variant) => {
-                                        const style = variantColors[variant];
+                                        const style = variantColors[variant as VariantType];
                                         return (
                                             <Button
                                                 key={variant}
