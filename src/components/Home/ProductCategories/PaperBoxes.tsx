@@ -1,4 +1,5 @@
 'use client';
+import {useState} from 'react';
 import {
   Box,
   Typography,
@@ -16,26 +17,19 @@ const MotionBox = motion(Box);
 
 const products = [
   {
-    image: '/images/productcategories/paperbags/1.svg',
+    image: '/images/productcategories/paperboxes/18.svg',
     name: 'Food Delivery Paper Bags',
     description: 'Sturdy paper bags designed for safe and convenient food delivery.',
     industry: 'Food Delivery, Restaurants & Cafes',
     variants: ['Plain', 'Single Color', 'Multicolor'],
   },
   {
-    image: '/images/productcategories/paperbags/7.svg',
+    image: '/images/productcategories/paperboxes/burger-boxes.svg',
     name: 'Bakery Paper Bags',
     description: 'Elegant bakery bags perfect for breads, pastries, and baked goods.',
     industry: 'Bakery & Confectionery',
     variants: ['Plain', 'Single Color'],
-  },
-  {
-    image: '/images/productcategories/paperbags/13.svg',
-    name: 'Gift Paper Bags',
-    description: 'Attractive gift bags suitable for retail, events, and gifting purposes.',
-    industry: 'Retail, Birthdays & Events',
-    variants: ['Plain', 'Single Color', 'Multicolor'],
-  },
+  }
 ];
 
 type VariantType = 'Plain' | 'Single Color' | 'Multicolor';
@@ -70,24 +64,25 @@ const variantColors: Record<
   },
 };
 
-type ProductCategoriesProps = {
-  sectionRefs: {
-    [key: string]: React.RefObject<HTMLDivElement | null>;
-  };
+type SectionKey = 'Paper Bags' | 'Paper Boxes' | 'Paper Covers';
+
+type PaperBoxCategoriesProps = {
+  sectionRefs: Record<SectionKey, React.RefObject<HTMLDivElement | null>>;
 };
 
-export default function ProductCategories({ sectionRefs }: ProductCategoriesProps) {
+
+export default function PaperBoxesCategory({ sectionRefs }: PaperBoxCategoriesProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Box
-      ref={sectionRefs['Paper Bags']}
-      data-section="Paper Bags"
+      ref={sectionRefs['Paper Boxes'] }
+      data-section="Paper Boxes"
       sx={{
         minHeight: '100vh',
         py: 6,
-        backgroundColor: '#dee0feff',
+        backgroundColor: '#fcfab2ff',
       }}
     >
       <Container maxWidth="xl">
@@ -99,7 +94,7 @@ export default function ProductCategories({ sectionRefs }: ProductCategoriesProp
           mb={4}
           sx={{ fontSize: { xs: '2rem', sm: '2.2rem' } }}
         >
-          Paper Bags
+          Paper Boxes
         </Typography>
 
         {/* Product Cards */}
@@ -234,7 +229,7 @@ export default function ProductCategories({ sectionRefs }: ProductCategoriesProp
         {/* Footer CTA */}
         <Box textAlign="center" mt={5}>
           <Button variant="contained" size="large">
-            Explore Paper Bags
+            Explore Paper Boxes
           </Button>
         </Box>
       </Container>

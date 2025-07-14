@@ -40,6 +40,7 @@ const products = [
 
 type VariantType = 'Plain' | 'Single Color' | 'Multicolor';
 
+
 const variantColors: Record<
   VariantType,
   {
@@ -70,24 +71,25 @@ const variantColors: Record<
   },
 };
 
-type ProductCategoriesProps = {
-  sectionRefs: {
-    [key: string]: React.RefObject<HTMLDivElement | null>;
-  };
+type SectionKey = 'Paper Bags' | 'Paper Boxes' | 'Paper Covers';
+
+type PaperCoversCategoryProps = {
+  sectionRefs: Record<SectionKey, React.RefObject<HTMLDivElement | null>>;
 };
 
-export default function ProductCategories({ sectionRefs }: ProductCategoriesProps) {
+
+export default function PaperCoversCategory({ sectionRefs }: PaperCoversCategoryProps) {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
   return (
     <Box
-      ref={sectionRefs['Paper Bags']}
-      data-section="Paper Bags"
+      ref={sectionRefs['Paper Covers'] }
+      data-section="Paper Covers"
       sx={{
         minHeight: '100vh',
         py: 6,
-        backgroundColor: '#dee0feff',
+        backgroundColor: '#aaf5f1ff',
       }}
     >
       <Container maxWidth="xl">
@@ -99,7 +101,7 @@ export default function ProductCategories({ sectionRefs }: ProductCategoriesProp
           mb={4}
           sx={{ fontSize: { xs: '2rem', sm: '2.2rem' } }}
         >
-          Paper Bags
+          Paper Covers
         </Typography>
 
         {/* Product Cards */}
@@ -234,7 +236,7 @@ export default function ProductCategories({ sectionRefs }: ProductCategoriesProp
         {/* Footer CTA */}
         <Box textAlign="center" mt={5}>
           <Button variant="contained" size="large">
-            Explore Paper Bags
+            Explore Paper Covers
           </Button>
         </Box>
       </Container>
