@@ -64,132 +64,181 @@ export default function PaperBagSection() {
     return (
         <Box
             sx={{
-                height: '100vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
+                minHeight: '100vh',
                 py: 6,
                 backgroundColor: '#f9f9f9',
             }}
         >
             <Container maxWidth="xl">
-                <Typography
-                    variant="h2"
-                    fontWeight={700}
-                    textAlign="center"
-                    mb={6}
+                {/* Sticky Header */}
+                <Box
+                    sx={{
+                        position: 'sticky',
+                        top: 0,
+                        backgroundColor: '#f9f9f9',
+                        zIndex: 10,
+                        pt: 2,
+                        pb: 1,
+                    }}
                 >
-                    Paper Bags
-                </Typography>
+                    <Typography
+                        variant="h2"
+                        fontWeight={700}
+                        textAlign="center"
+                        mb={4}
+                    >
+                        Paper Bags
+                    </Typography>
+                </Box>
 
+                {/* Cards */}
                 <Stack
                     direction="row"
-                    spacing={{ xs: 2, md: 4 }}
+                    spacing={{ xs: 0, md: 4 }}
                     justifyContent="center"
                     alignItems="stretch"
                     flexWrap="wrap"
                 >
                     {products.map((product, index) => (
-                        <MotionBox
-                            key={index}
-                            custom={index}
-                            initial="hidden"
-                            whileInView="visible"
-                            viewport={{ once: true, amount: 0.3 }}
-                            variants={{
-                                hidden: { opacity: 0, y: 50 },
-                                visible: { opacity: 1, y: 0 },
-                            }}
-                            whileHover={!isMobile ? { scale: 1.05 } : {}}
-                            sx={{
-                                width: { xs: '100%', sm: 320, md: 450 },
-                                p: 3,
-                                borderRadius: 4,
-                                backgroundColor: '#fff',
-                                textAlign: 'center',
-                                boxShadow: 6,
-                                height: { xs: 'auto', md: '70vh' },
-                                display: 'flex',
-                                flexDirection: 'column',
-                                justifyContent: 'space-between',
-                            }}
-                        >
-                            <Box
-                                component="img"
-                                src={product.image}
-                                alt={product.name}
-                                sx={{
-                                    width: '100%',
-                                    height: '400px',
-                                    objectFit: 'contain',
-                                    mb: 2,
+                        <Box key={index} sx={{
+
+                            width: { xs: '100%', sm: 320, md: 450 },
+                            mb: { xs: 8, md: 0 }, // mobile spacing only
+                            mt: { xs: 8, md: 0 }, // desktop spacing
+
+                        }}>
+                            <MotionBox
+                                custom={index}
+                                initial="hidden"
+                                whileInView="visible"
+                                viewport={{ once: true, amount: 0.3 }}
+                                variants={{
+                                    hidden: { opacity: 0, y: 50 },
+                                    visible: { opacity: 1, y: 0 },
                                 }}
-                            />
-                            <Typography variant="h4" fontWeight={600} mb={1}>
-                                {product.name}
-                            </Typography>
-                            <Typography variant="body1" mb={3} color="text.secondary">
-                                {product.description}
-                            </Typography>
-                            <Typography variant="body1" mb={3} color="text.secondary">
-                                <Box component="span" fontWeight="bold">Industry:</Box> {product.industry}
-                            </Typography>
-
-                            <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2 }}>
-                                {product.variants.map((variant) => {
-                                    const variantStyle = variantColors[variant];
-                                    return (
-                                        <Button
-                                            key={variant}
-                                            variant={variantStyle.variant}
-                                            size="small"
-                                            sx={{
-                                                textTransform: 'none',
-                                                borderRadius: '20px',
-                                                px: 2,
-                                                fontWeight: 500,
-                                                color: variantStyle.color,
-                                                borderColor: variantStyle.borderColor,
-                                                background: variantStyle.background,
-                                                '&:hover': {
-                                                    backgroundColor: variantStyle.hoverBackgroundColor,
-                                                    opacity: variantStyle.hoverOpacity,
-                                                },
-                                            }}
-                                        >
-                                            {variant}
-                                        </Button>
-                                    );
-                                })}
-                            </Stack>
-
-                            <Stack spacing={1}>
-                                <Button
-                                    variant="outlined"
-                                    fullWidth
-                                    size="medium"
-                                    startIcon={<InfoOutlinedIcon />}
-                                >
-                                    View Details
-                                </Button>
-                                <Button
-                                    variant="contained"
-                                    fullWidth
-                                    size="medium"
-                                    color="success"
-                                    startIcon={<WhatsAppIcon />}
+                                whileHover={!isMobile ? { scale: 1.05 } : {}}
+                                sx={{
+                                    width: { xs: '100%', sm: 320, md: 450 },
+                                    p: 3,
+                                    borderRadius: 4,
+                                    backgroundColor: '#fff',
+                                    textAlign: 'center',
+                                    boxShadow: 6,
+                                    height: { xs: 'auto', md: '70vh' },
+                                    display: 'flex',
+                                    flexDirection: 'column',
+                                    // desktop spacing
+                                    justifyContent: 'space-between',
+                                    mt: { xs: 1, md: 0 }, // increased margin top for mobile
+                                }}
+                            >
+                                <Box
+                                    component="img"
+                                    src={product.image}
+                                    alt={product.name}
+                                    loading="lazy"
                                     sx={{
-                                        backgroundColor: '#25D366',
-                                        '&:hover': { backgroundColor: '#1ebe5c' },
+                                        width: '100%',
+                                        height: '400px',
+                                        objectFit: 'contain',
+                                        mb: { xs: '0', sm: '0' },
+                                   
+                                    }}
+                                />
+                                <Typography
+                                    variant={isMobile ? "h5" : "h4"}
+
+                                    fontWeight={600}
+                                    mb={1}
+
+                                >
+                                    {product.name}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    mb={2}
+                                    color="text.secondary"
+                                    sx={{
+                                        fontSize: { xs: '0.75rem', sm: '1rem' },
                                     }}
                                 >
-                                    Chat on WhatsApp
-                                </Button>
-                            </Stack>
-                        </MotionBox>
+                                    {product.description}
+                                </Typography>
+                                <Typography
+                                    variant="body2"
+                                    mb={2}
+                                    color="text.secondary"
+                                    sx={{
+                                        fontSize: { xs: '0.70rem', sm: '1rem' },
+                                    }}
+                                >
+                                    <Box component="span" fontWeight="bold">Industry:</Box> {product.industry}
+                                </Typography>
+
+                                {/* Variant Buttons */}
+                                <Stack direction="row" spacing={1} justifyContent="center" sx={{ mb: 2, flexWrap: 'wrap' }}>
+                                    {product.variants.map((variant) => {
+                                        const style = variantColors[variant];
+                                        return (
+                                            <Button
+                                                key={variant}
+                                                variant={style.variant}
+                                                size="small"
+                                                sx={{
+                                                    textTransform: 'none',
+                                                    borderRadius: '20px',
+                                                    px: 2,
+                                                    fontWeight: 500,
+                                                    color: style.color,
+                                                    borderColor: style.borderColor,
+                                                    background: style.background,
+                                                    '&:hover': {
+                                                        backgroundColor: style.hoverBackgroundColor,
+                                                        opacity: style.hoverOpacity,
+                                                    },
+                                                    mb: 1,
+                                                }}
+                                            >
+                                                {variant}
+                                            </Button>
+                                        );
+                                    })}
+                                </Stack>
+
+                                {/* CTA Buttons */}
+                                <Stack
+                                    direction={isMobile ? "row" : "column"}
+                                    spacing={1}
+                                    justifyContent="center"
+                                    alignItems="center"
+                                >
+                                    <Button
+                                        variant="outlined"
+                                        fullWidth={!isMobile}
+                                        size="medium"
+                                        startIcon={<InfoOutlinedIcon />}
+                                    >
+                                        {isMobile ? "Details" : "View Product Details"}
+                                    </Button>
+                                    <Button
+                                        variant="contained"
+                                        fullWidth={!isMobile}
+                                        size="medium"
+                                        startIcon={<WhatsAppIcon />}
+                                        sx={{
+                                            backgroundColor: '#25D366',
+                                            '&:hover': { backgroundColor: '#1ebe5c' },
+                                        }}
+                                    >
+                                        {isMobile ? "WhatsApp" : "Chat via WhatsApp"}
+                                    </Button>
+                                </Stack>
+                            </MotionBox>
+                        </Box>
                     ))}
                 </Stack>
 
+                {/* Explore More */}
                 <Box textAlign="center" mt={5}>
                     <Button variant="contained" size="large">
                         Explore Paper Bags

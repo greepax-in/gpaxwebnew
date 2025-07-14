@@ -9,7 +9,7 @@ import ProductCategories from './Home/ProductCategories/page';
 export default function Page() {
   return (
     <main>
-      {/* <AppBar /> */}
+      <AppBar />
       <MainHero />
       <WhyItMatters />
       <ProductCategories />
