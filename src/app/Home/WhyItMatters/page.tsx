@@ -19,7 +19,7 @@ const stats = [
   {
     icon: '/images/home/whyitmatters/rain.svg',
     title: 'Sudden rains and floods are rising',
-    description: 'Climate changes are becoming more frequent in India?.',
+    description: 'Climate changes are becoming more frequent in India.',
   },
 ];
 
