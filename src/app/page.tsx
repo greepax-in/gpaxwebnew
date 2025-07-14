@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, useMemo } from 'react';
 import { useMediaQuery, useTheme, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
@@ -29,16 +29,16 @@ export default function Page() {
   const topSentinelRef = useRef<HTMLDivElement>(null);
   const endSentinelRef = useRef<HTMLDivElement>(null);
 
-  const sectionRefs: Record<
-    'WhyItMatters' | 'Paper Bags' | 'Paper Boxes' | 'Paper Covers' | 'Footer',
-    React.RefObject<HTMLDivElement | null>
-  > = {
-    'WhyItMatters': useRef<HTMLDivElement>(null),
-    'Paper Bags': useRef<HTMLDivElement>(null),
-    'Paper Boxes': useRef<HTMLDivElement>(null),
-    'Paper Covers': useRef<HTMLDivElement>(null),
-    'Footer': useRef<HTMLDivElement>(null),
-  };
+  const sectionRefs = useMemo(
+    () => ({
+      'WhyItMatters': useRef<HTMLDivElement>(null),
+      'Paper Bags': useRef<HTMLDivElement>(null),
+      'Paper Boxes': useRef<HTMLDivElement>(null),
+      'Paper Covers': useRef<HTMLDivElement>(null),
+      'Footer': useRef<HTMLDivElement>(null),
+    }),
+    []
+  );
 
   const showMiniMenu =
     Boolean(activeSection) &&
