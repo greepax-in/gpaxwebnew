@@ -5,7 +5,7 @@ import PaperBagsPage from '../app/Home/ProductCategories/PaperBags/page';
 export default function Page() {
   return (
     <>
-      {/* <AppBar /> */}
+      <AppBar />
       <MainHero />
       <PaperBagsPage />
     </>
