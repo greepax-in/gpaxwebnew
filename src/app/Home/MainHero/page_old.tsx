@@ -1,6 +1,8 @@
 'use client';
 
 import { Box, useMediaQuery } from '@mui/material';
+import { AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
@@ -36,6 +38,7 @@ export default function HeroSection() {
         px: 4,
         py: 8,
         background: '#f4f1ec',
+        // mt: { md: 0 }, // Add margin-top for desktop to place below AppBar
       }}
     >
       {/* Left: Animated Image */}
@@ -50,30 +53,31 @@ export default function HeroSection() {
         <Box
           sx={{
             position: 'relative',
-            width: isMobile ? 300 : 400,
-            height: isMobile ? 350 : 500,
+            width: isMobile ? 300 : 400, // Adjust width for mobile
+            height: isMobile ? 350 : 500, // Adjust height for mobile
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              width: '100%',
-              height: '100%',
-              opacity: 1,
-              transition: 'opacity 0.8s',
-            }}
-          >
-            <Image
-              src={images[index]}
-              alt={`Slide ${index}`}
-              fill
-              style={{
-                objectFit: 'cover',
-                borderRadius: 16,
-                boxShadow: '0 4px 24px #0002',
-              }}
-            />
-          </div>
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={images[index]}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 1.1 }}
+              transition={{ duration: 0.8 }}
+              style={{ position: 'absolute', width: '100%', height: '100%' }}
+            >
+              <Image
+                src={images[index]}
+                alt={`Slide ${index}`}
+                fill // Next.js 13+ uses 'fill' prop instead of 'layout="fill"'
+                style={{
+                  objectFit: 'cover', // Next.js 13+ uses style for objectFit
+                  borderRadius: 16,
+                  boxShadow: '0 4px 24px #0002',
+                }}
+              />
+            </motion.div>
+          </AnimatePresence>
         </Box>
       </Box>
 
@@ -82,25 +86,29 @@ export default function HeroSection() {
         sx={{
           flex: 1,
           mt: { xs: 6, md: 0 },
-          textAlign: isMobile ? 'center' : 'left',
-          transform: isMobile ? 'none' : 'translateX(-10%)',
+          textAlign: isMobile ? 'center' : 'left', // Center text for mobile
+          transform: isMobile ? 'none' : 'translateX(-10%)', // Remove translation for mobile
         }}
       >
-        <h1
+        <motion.h1
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.2, duration: 0.6 }}
           style={{
-            fontSize: isMobile ? '1.8rem' : '2.5rem',
+            fontSize: isMobile ? '1.8rem' : '2.5rem', // Responsive font size
             color: '#2e7d32',
             fontWeight: 700,
-            margin: 0,
-            marginBottom: '1rem',
           }}
         >
           Sustainable Paper Packaging. Made for the Planet.
-        </h1>
+        </motion.h1>
 
-        <p
+        <motion.p
+          initial={{ y: 30, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ delay: 0.5, duration: 0.6 }}
           style={{
-            fontSize: isMobile ? '1rem' : '1.25rem',
+            fontSize: isMobile ? '1rem' : '1.25rem', // Responsive font size
             marginTop: '1rem',
             color: '#444',
           }}
@@ -108,12 +116,27 @@ export default function HeroSection() {
           Every bag you choose is one less plastic choking our rivers and oceans.
           <br />
           <strong>Join the movement. Go paper. Go GreenPax.</strong>
-        </p>
+        </motion.p>
 
-        <div style={{ marginTop: '2rem' }}>
-          <div style={{ display: 'inline-block', position: 'relative' }}>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8, duration: 0.5 }}
+          style={{ marginTop: '2rem' }}
+        >
+          <motion.div
+            whileHover="hover"
+            initial="rest"
+            animate="rest"
+            style={{ display: 'inline-block', position: 'relative' }}
+          >
             {/* Ripple Background */}
-            <div
+            <motion.div
+              variants={{
+                rest: { scale: 0, opacity: 0 },
+                hover: { scale: 1.8, opacity: 0.15 },
+              }}
+              transition={{ duration: 0.6, ease: 'easeOut' }}
               style={{
                 position: 'absolute',
                 top: '50%',
@@ -124,13 +147,16 @@ export default function HeroSection() {
                 borderRadius: '50%',
                 transform: 'translate(-50%, -50%)',
                 zIndex: 1,
-                opacity: 0.15,
-                pointerEvents: 'none',
               }}
             />
 
             {/* Button */}
-            <button
+            <motion.button
+              variants={{
+                rest: { scale: 1 },
+                hover: { scale: 1.05 },
+              }}
+              transition={{ type: 'spring', stiffness: 300 }}
               style={{
                 backgroundColor: '#2e7d32',
                 color: '#fff',
@@ -142,15 +168,12 @@ export default function HeroSection() {
                 cursor: 'pointer',
                 position: 'relative',
                 zIndex: 2,
-                transition: 'transform 0.2s',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
             >
               Explore Products
-            </button>
-          </div>
-        </div>
+            </motion.button>
+          </motion.div>
+        </motion.div>
       </Box>
     </Box>
   );
