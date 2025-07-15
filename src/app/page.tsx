@@ -6,15 +6,20 @@ import AppBar from '../components/AppBar/AppBar';
 import PaperBagsPage from '../app/Home/ProductCategories/PaperBags/page';
 import { useMediaQuery } from '@mui/material';
 
+// Type for beforeinstallprompt event
+type BeforeInstallPromptEvent = Event & {
+  prompt: () => Promise<void>;
+};
+
 export default function Page() {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const [deferredPrompt, setDeferredPrompt] = useState(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showInstallPrompt, setShowInstallPrompt] = useState(false);
 
   useEffect(() => {
-    const handler = (e: any) => {
+    const handler = (e: Event) => {
       e.preventDefault();
-      setDeferredPrompt(e);
+      setDeferredPrompt(e as BeforeInstallPromptEvent);
       setShowInstallPrompt(true);
     };
     window.addEventListener("beforeinstallprompt", handler);
@@ -24,7 +29,6 @@ export default function Page() {
 
   const handleInstallClick = async () => {
     if (deferredPrompt) {
-      // @ts-ignore
       deferredPrompt.prompt();
       setShowInstallPrompt(false);
     }
