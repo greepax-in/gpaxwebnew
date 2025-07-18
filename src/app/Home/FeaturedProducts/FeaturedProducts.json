@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Food Delivery Paper Bags",
+    "image": "/images/home/productcategories/paperbags/1.svg",
+    "waText": "Chat Now",
+    "price": "10",
+    "variants": ["Plain", "Single Color", "Multi Color"],
+    "pageLink": "/products/food-delivery-paper-bags"
+  },
+  {
+    "name": "Printed Medical Paper Covers",
+    "image": "/images/home/productcategories/paperbags/7.svg",
+    "waText": "Order Now",
+    "price": "12",
+    "variants": ["Plain", "Single Color", "Multi Color"],
+    "pageLink": "/products/printed-medical-paper-covers"
+  },
+  {
+    "name": "Promotion Paper Bags",
+    "image": "/images/home/productcategories/paperbags/13.svg",
+    "waText": "Order Now",
+    "price": "15",
+    "variants": ["Plain", "Single Color", "Multi Color"],
+    "pageLink": "/products/promotion-paper-bags"
+  },
+    {
+    "name": "Promotion Paper Bags",
+    "image": "/images/home/productcategories/paperbags/13.svg",
+    "waText": "Order Now",
+    "price": "15",
+    "variants": ["Plain", "Single Color", "Multi Color"],
+    "pageLink": "/products/promotion-paper-bags"
+  }
+]

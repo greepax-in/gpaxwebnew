@@ -1,157 +1,88 @@
 'use client';
 
-import { Box, useMediaQuery } from '@mui/material';
-import Image from 'next/image';
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { Box } from '@mui/material';
+import Slide1 from './slide1';
+import Slide2 from './slide2';
+import Slide3 from './slide3';
+import { AnimatePresence, motion } from 'framer-motion';
 
-export default function HeroSection() {
-  const images = [
-    '/images/home/hero/printed-multi-color.svg',
-    '/images/home/hero/kraft-printed-paper-bag.svg',
-    '/images/home/hero/kraft-cake-boxes.svg',
-    '/images/home/hero/bakery-paper-covers.svg',
-    '/images/home/hero/grocery-paper-covers.svg',
-    '/images/home/hero/medical-paper-covers.svg',
-    '/images/home/hero/burger-boxes.svg',
-    '/images/home/hero/bakery-paper-covers-small.svg',
-  ];
-  const [index, setIndex] = useState(0);
+const slides = [<Slide1 />, <Slide2 />,  <Slide3 />];
 
-  // Check if the screen size is mobile
-  const isMobile = useMediaQuery('(max-width:600px)');
+const MainHeroPage: React.FC = () => {
+  const [active, setActive] = useState(0);
+  const [direction, setDirection] = useState(0);
 
   useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % images.length), 3000);
-    return () => clearInterval(id);
-  }, [images.length]);
+    const isSlide2 = active === 1;
+    const duration = isSlide2 ? 9000 : 4000;
+
+    const timer = setTimeout(() => {
+      setDirection(1);
+      setActive((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, duration);
+
+    return () => clearTimeout(timer);
+  }, [active]);
+
+  const variants = {
+    enter: (dir: number) => ({
+      x: dir > 0 ? 600 : -600,
+      opacity: 0,
+      position: 'absolute',
+    }),
+    center: {
+      x: 0,
+      opacity: 1,
+      position: 'relative',
+    },
+    exit: (dir: number) => ({
+      x: dir < 0 ? 600 : -600,
+      opacity: 0,
+      position: 'absolute',
+    }),
+  };
 
   return (
     <Box
       sx={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        flexDirection: { xs: 'column', md: 'row' },
-        px: 4,
-        py: 8,
-        background: '#f4f1ec',
+        height: { xs: '25vh', sm: '100vh' },
+        width: '100vw',
+        overflow: 'hidden',
+        position: 'relative',
+        backgroundColor: '#fff', // ✅ Fix iOS black flicker
       }}
     >
-      {/* Left: Animated Image */}
       <Box
         sx={{
-          flex: 1,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
+          width: '100vw',
+          height: { xs: '25vh', sm: '100vh' },
+          overflow: 'hidden',
+          position: 'relative',
+          backgroundColor: '#fff', // ✅ Ensure consistency
         }}
       >
-        <Box
-          sx={{
-            position: 'relative',
-            width: isMobile ? 300 : 400,
-            height: isMobile ? 350 : 500,
-          }}
-        >
-          <div
+        <AnimatePresence custom={direction} initial={false} mode="wait">
+          <motion.div
+            key={active}
+            custom={direction}
+            variants={variants}
+            initial="enter"
+            animate="center"
+            exit="exit"
+            transition={{ type: 'spring', stiffness: 400, damping: 40 }}
             style={{
-              position: 'absolute',
-              width: '100%',
+              width: '100vw',
               height: '100%',
-              opacity: 1,
-              transition: 'opacity 0.8s',
+              backgroundColor: '#fff', // ✅ Each slide motion container has bg
             }}
           >
-            <Image
-              src={images[index]}
-              alt={`Slide ${index}`}
-              fill
-              style={{
-                objectFit: 'cover',
-                borderRadius: 16,
-                boxShadow: '0 4px 24px #0002',
-              }}
-            />
-          </div>
-        </Box>
-      </Box>
-
-      {/* Right: Text */}
-      <Box
-        sx={{
-          flex: 1,
-          mt: { xs: 6, md: 0 },
-          textAlign: isMobile ? 'center' : 'left',
-          transform: isMobile ? 'none' : 'translateX(-10%)',
-        }}
-      >
-        <h1
-          style={{
-            fontSize: isMobile ? '1.8rem' : '2.5rem',
-            color: '#2e7d32',
-            fontWeight: 700,
-            margin: 0,
-            marginBottom: '1rem',
-          }}
-        >
-          Sustainable Paper Packaging. Made for the Planet.
-        </h1>
-
-        <p
-          style={{
-            fontSize: isMobile ? '1rem' : '1.25rem',
-            marginTop: '1rem',
-            color: '#444',
-          }}
-        >
-          Every bag you choose is one less plastic choking our rivers and oceans.
-          <br />
-          <strong>Join the movement. Go paper. Go GreenPax.</strong>
-        </p>
-
-        <div style={{ marginTop: '2rem' }}>
-          <div style={{ display: 'inline-block', position: 'relative' }}>
-            {/* Ripple Background */}
-            <div
-              style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                width: 80,
-                height: 80,
-                backgroundColor: '#a7c49d',
-                borderRadius: '50%',
-                transform: 'translate(-50%, -50%)',
-                zIndex: 1,
-                opacity: 0.15,
-                pointerEvents: 'none',
-              }}
-            />
-
-            {/* Button */}
-            <button
-              style={{
-                backgroundColor: '#2e7d32',
-                color: '#fff',
-                border: 'none',
-                borderRadius: 8,
-                padding: isMobile ? '0.75rem 1.5rem' : '1rem 2rem',
-                fontSize: isMobile ? '0.9rem' : '1rem',
-                fontWeight: 500,
-                cursor: 'pointer',
-                position: 'relative',
-                zIndex: 2,
-                transition: 'transform 0.2s',
-              }}
-              onMouseEnter={(e) => (e.currentTarget.style.transform = 'scale(1.05)')}
-              onMouseLeave={(e) => (e.currentTarget.style.transform = 'scale(1)')}
-            >
-              Explore Products
-            </button>
-          </div>
-        </div>
+            {slides[active]}
+          </motion.div>
+        </AnimatePresence>
       </Box>
     </Box>
   );
-}
+};
+
+export default MainHeroPage;

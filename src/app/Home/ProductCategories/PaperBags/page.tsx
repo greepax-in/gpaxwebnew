@@ -1,91 +1,49 @@
-import React from "react";
-import { Box } from "@mui/material";
+'use client';
 
-const products = [
-    {
-        name: "Food Delivery Paper Bags",
-        image: "/images/food-delivery-paper-bags.jpg",
-    },
-    {
-        name: "Cake Box Paper Bags",
-        image: "/images/cake-box-paper-bags.jpg",
-    },
-    {
-        name: "Promotion Paper Bags",
-        image: "/images/promotion-paper-bags.jpg",
-    },
-    {
-        name: "Gift Paper Bags",
-        image: "/images/gift-paper-bags.jpg",
-    },
-    {
-        name: "Garment Paper Bags",
-        image: "/images/garment-paper-bags.jpg",
-    },
-    {
-        name: "Custom Paper Bags",
-        image: "/images/custom-paper-bags.jpg",
-    },
-];
+import React from "react";
+import { Box, Typography, useMediaQuery } from "@mui/material";
+import ProductCard from "@components/Home/ProductCategories/ProductCard";
+import products from "./products.json";
 
 export default function PaperBagsPage() {
-    return (
-        <Box
-            sx={{
-                minHeight: 100,
-                display: "grid",
-                gridTemplateColumns: {
-                    xs: "1fr",
-                    sm: "repeat(2, 1fr)",
-                    md: "repeat(3, 1fr)",
-                },
-                gap: 3,
-                p: 3,
-                maxWidth: 1200,
-                margin: "0 auto",
-                background: "#f7f7f7",
-            }}
-        >
-            {products.map((product) => (
-                <Box
-                    key={product.name}
-                    sx={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        background: "#fff",
-                        borderRadius: 2,
-                        boxShadow: 4,
-                        p: 2.5,
-                        minHeight: 270, // Increased by 50% from 180
-                        justifyContent: "center",
-                    }}
-                >
-                    <Box
-                        component="img"
-                        src={product.image}
-                        alt={product.name}
-                        sx={{
-                            width: 100,
-                            height: 100,
-                            objectFit: "cover",
-                            borderRadius: 1.5,
-                            mb: 1.5,
-                            boxShadow: 2,
-                        }}
-                    />
-                    <Box
-                        component="span"
-                        sx={{
-                            fontWeight: 500,
-                            fontSize: "1rem",
-                            textAlign: "center",
-                        }}
-                    >
-                        {product.name}
-                    </Box>
-                </Box>
-            ))}
-        </Box>
-    );
+  const isMobile = useMediaQuery('(max-width:600px)');
+
+  return (
+    <>
+
+      <Box
+        sx={{
+          // minHeight removed to allow proper flex scroll
+          display: "grid",
+          gridTemplateColumns: {
+            xs: "repeat(2, 1fr)", // 2 cols on mobile
+            sm: "repeat(2, 1fr)",
+            md: "repeat(3, 1fr)",
+            lg: "repeat(3, 1fr)",
+            xl: "repeat(4, 1fr)",
+          },
+          gap: 2,
+          p: 2,
+          maxWidth: 1500,
+          margin: "0 auto",
+          background: "#fdd7d7ff",
+          pt: { xs: "1rem", sm: "3rem", md: "3rem", lg: "3rem" }, // ✅ reduced top padding on mobile
+          overflow: "visible",
+        }}
+      >
+        {products.map((product) => (
+          <Box key={product.name} sx={{ width: '100%' }}>
+            <ProductCard
+              name={product.name}
+              image={product.image}
+              waText={product.waText}
+              price={product.price}
+              variants={product.variants}
+              link={product.pageLink}
+            />
+          </Box>
+        ))}
+      </Box>
+    </>
+  );
 }
