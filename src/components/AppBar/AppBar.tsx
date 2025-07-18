@@ -98,6 +98,7 @@ export default function AppBar() {
               justifyContent: isMobile ? 'flex-end' : 'initial',
             }}
           >
+
             {/* WhatsApp */}
             <MotionA
               href="https://wa.me/919999999999"
@@ -109,21 +110,50 @@ export default function AppBar() {
                 justifyContent: 'center',
                 backgroundColor: '#25D366',
                 color: '#fff',
-                borderRadius: '50%',
-                width: isMobile ? 36 : 'auto',
-                height: isMobile ? 36 : 'auto',
-                padding: isMobile ? 0 : '0.5rem 1.2rem',
-                fontWeight: 'bold',
+                borderRadius: 9999,
+                minWidth: isMobile ? 28 : 70,
+                height: isMobile ? 28 : 32,
+                padding: isMobile ? '0 4px' : '0.2rem 0.7rem',
+                fontWeight: 600,
                 textDecoration: 'none',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
-                gap: isMobile ? 0 : 8,
+                gap: 4,
+                fontSize: isMobile ? 11 : 13,
+                transition: 'background 0.2s, box-shadow 0.2s',
+                border: 'none',
+                outline: 'none',
+                cursor: 'pointer',
+                position: 'relative',
+                overflow: 'visible',
               }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{
+                scale: 1.12,
+                boxShadow: [
+                  '0 2px 8px rgba(0,0,0,0.12)',
+                  '0 0 0 0 #25D36644',
+                  '0 0 0 12px #25D36633',
+                  '0 2px 8px rgba(0,0,0,0.12)'
+                ],
+                filter: [
+                  'brightness(1)',
+                  'brightness(1.18)',
+                  'brightness(0.92)',
+                  'brightness(1)'
+                ],
+                transition: {
+                  duration: 0.7,
+                  repeat: 1,
+                  repeatType: 'reverse',
+                  ease: 'easeInOut',
+                  times: [0, 0.3, 0.7, 1]
+                }
+              }}
+              whileTap={{ scale: 0.97 }}
             >
-              <WhatsappIcon style={{ fontSize: isMobile ? 22 : 24 }} />
-              {!isMobile && <span>WhatsApp</span>}
+              <WhatsappIcon style={{ fontSize: isMobile ? 14 : 16, marginRight: isMobile ? 0 : 4 }} />
+              {!isMobile && <span style={{ fontWeight: 600, letterSpacing: 0.2 }}>WhatsApp</span>}
             </MotionA>
+
 
             {/* Call */}
             <MotionA
@@ -134,20 +164,48 @@ export default function AppBar() {
                 justifyContent: 'center',
                 backgroundColor: '#FF6F00',
                 color: '#fff',
-                borderRadius: '50%',
-                width: isMobile ? 36 : 'auto',
-                height: isMobile ? 36 : 'auto',
-                padding: isMobile ? 0 : '0.5rem 1.2rem',
-                fontWeight: 'bold',
+                borderRadius: 9999,
+                minWidth: isMobile ? 28 : 56,
+                height: isMobile ? 28 : 32,
+                padding: isMobile ? '0 4px' : '0.2rem 0.7rem',
+                fontWeight: 600,
                 textDecoration: 'none',
                 boxShadow: '0 2px 8px rgba(0,0,0,0.12)',
-                gap: isMobile ? 0 : 8,
+                gap: 4,
+                fontSize: isMobile ? 11 : 13,
+                transition: 'background 0.2s, box-shadow 0.2s',
+                border: 'none',
+                outline: 'none',
+                cursor: 'pointer',
+                position: 'relative',
+                overflow: 'visible',
               }}
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{
+                scale: 1.12,
+                boxShadow: [
+                  '0 2px 8px rgba(0,0,0,0.12)',
+                  '0 0 0 0 #FF6F0044',
+                  '0 0 0 12px #FF6F0033',
+                  '0 2px 8px rgba(0,0,0,0.12)'
+                ],
+                filter: [
+                  'brightness(1)',
+                  'brightness(1.18)',
+                  'brightness(0.92)',
+                  'brightness(1)'
+                ],
+                transition: {
+                  duration: 0.7,
+                  repeat: 1,
+                  repeatType: 'reverse',
+                  ease: 'easeInOut',
+                  times: [0, 0.3, 0.7, 1]
+                }
+              }}
+              whileTap={{ scale: 0.97 }}
             >
-              <PhoneIcon style={{ fontSize: isMobile ? 22 : 24 }} />
-              {!isMobile && <span>Call</span>}
+              <PhoneIcon style={{ fontSize: isMobile ? 14 : 16, marginRight: isMobile ? 0 : 4 }} />
+              {!isMobile && <span style={{ fontWeight: 600, letterSpacing: 0.2 }}>Call</span>}
             </MotionA>
 
             {/* Mobile: Menu Button */}
