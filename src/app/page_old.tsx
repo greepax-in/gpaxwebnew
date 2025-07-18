@@ -5,14 +5,14 @@ import { useMediaQuery, useTheme, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
 import AppBar from '@/components/AppBar/AppBar';
-import MiniMenu from '@/components/AppBar/MiniMenu';
+// import MiniMenu from '@/components/AppBar/MiniMenu';
 import MainHero from '../../src/app/Home/MainHero/page';
 import WhyItMatters from '@/components/Home/whyitmatters/page';
 import Footer from '@/components/Home/Footer/Footer';
 import Footer2 from './Home/Footer2/page';
 import PaperBagsCategory from '@/components/Home/ProductCategories/PaperBags';
-import PaperBoxesCategory from '@/components/Home/ProductCategories/PaperBoxes';
-import PaperCoversCategory from '@/components/Home/ProductCategories/PaperCovers';
+// import PaperBoxesCategory from '@/components/Home/ProductCategories/PaperBoxes';
+// import PaperCoversCategory from '@/components/Home/ProductCategories/PaperCovers';
 
 const MotionBox = motion(Box);
 
@@ -186,11 +186,11 @@ export default function Page() {
           transition={{ duration: 0.3, ease: 'easeOut' }}
           sx={{ position: 'absolute', width: '100%', zIndex: 1301 }}
         >
-          <MiniMenu
-            isMobile={isMobile}
-            showMenuBar={showMiniMenu}
+          {/* <MiniMenu
+            // isMobile={isMobile}
+            // showMenuBar={showMiniMenu}
             activeSection={activeSection}
-          />
+          /> */}
         </MotionBox>
       </Box>
 
@@ -201,8 +201,8 @@ export default function Page() {
         <MainHero />
         <WhyItMatters sectionRefs={sectionRefs} />
         <PaperBagsCategory sectionRefs={sectionRefs} />
-        <PaperBoxesCategory sectionRefs={sectionRefs} />
-        <PaperCoversCategory sectionRefs={sectionRefs} />
+        {/* <PaperBoxesCategory sectionRefs={sectionRefs} />
+        <PaperCoversCategory sectionRefs={sectionRefs} /> */}
 
         <div ref={endSentinelRef} style={{ height: '1px' }} />
         <Footer ref={footerRef} />

@@ -1,12 +1,12 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, useMediaQuery } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import FeaturedProductCard from '@components/Home/FeaturedProducts/FeaturedProductCard';
 import products from './FeaturedProducts.json';
 
 export default function FeaturedProducts() {
-  const isMobile = useMediaQuery('(max-width:600px)');
+  // const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
     <Box
@@ -70,7 +70,7 @@ export default function FeaturedProducts() {
             <FeaturedProductCard
               name={product.name}
               image={product.image}
-              waText={product.waText}
+              // waText={product.waText}
               price={product.price}
               link={product.pageLink}
               variants={product.variants}

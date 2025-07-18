@@ -7,7 +7,11 @@ import Slide2 from './slide2';
 import Slide3 from './slide3';
 import { AnimatePresence, motion } from 'framer-motion';
 
-const slides = [<Slide1 />, <Slide2 />,  <Slide3 />];
+const slides = [
+  <Slide1 key="slide1" />,
+  <Slide2 key="slide2" />,
+  <Slide3 key="slide3" />,
+];
 
 const MainHeroPage: React.FC = () => {
   const [active, setActive] = useState(0);

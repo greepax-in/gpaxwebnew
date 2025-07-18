@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Button, Typography, useMediaQuery, Tooltip } from '@mui/material';
+import { Box, Typography, useMediaQuery, Tooltip } from '@mui/material';
 import { motion } from 'framer-motion';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import Head from 'next/head';

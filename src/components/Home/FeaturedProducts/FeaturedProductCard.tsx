@@ -15,7 +15,7 @@ import { motion } from 'framer-motion';
 export type ProductCardProps = {
   name: string;
   image: string;
-  waText?: string;
+  // waText?: string;
   price?: string;
   link?: string;
   variants?: string | string[];
@@ -24,7 +24,7 @@ export type ProductCardProps = {
 export default function ProductCard({
   name,
   image,
-  waText,
+  // waText,
   price,
   link,
   variants,

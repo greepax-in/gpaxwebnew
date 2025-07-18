@@ -1,12 +1,12 @@
 'use client';
 
 import React from "react";
-import { Box, Typography, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import ProductCard from "@components/Home/ProductCategories/ProductCard";
 import products from "./products.json";
 
 export default function PaperBagsPage() {
-  const isMobile = useMediaQuery('(max-width:600px)');
+  // const isMobile = useMediaQuery('(max-width:600px)');
 
   return (
     <>
