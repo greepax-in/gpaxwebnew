@@ -14,7 +14,7 @@ export default function FeaturedProducts() {
         width: '100vw',
         minHeight: { xs: '20vh', md: '70vh' }, // 🔧 Fix: allow space for cards
         height: 'auto',
-        background: '#f5f5f7',
+        background: '#f7e3c6ff',
         py: { xs: 4, sm: 6 },
       }}
     >

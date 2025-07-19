@@ -1,5 +1,3 @@
-
-
 'use client';
 
 import React, { useState } from 'react';
@@ -39,13 +37,14 @@ export default function AppBar() {
           left: '50%',
           transform: 'translateX(-50%)',
           zIndex: 1400,
+          display: 'flex',
           backgroundColor: '#113B2E',
           width: isMobile ? '100%' : { xs: '90%', md: '92%' },
           maxWidth: '1200px',
           borderRadius: isMobile ? '0px' : '64px',
           boxShadow: '0 8px 16px rgba(0,0,0,0.12)',
-          px: 2,
-          py: 1.2,
+          px: 1,
+          py: isMobile ? 0.6 : 1, // Reduced padding-y to decrease height
         }}
       >
         <Box

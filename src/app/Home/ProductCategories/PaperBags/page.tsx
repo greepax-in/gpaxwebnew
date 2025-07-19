@@ -15,7 +15,7 @@ export default function PaperBagsPage() {
       textAlign: isMobile ? "left" : "center",
       mt: { xs: -0.1, sm: 4 },
       mb: { xs: -0.1, sm: 4 },
-     backgroundColor: "#8ec0f9ff",
+     backgroundColor: "#e2ffffff",
       }}
     >
       <Box
@@ -47,7 +47,7 @@ export default function PaperBagsPage() {
           p: 2,
           maxWidth: 1500,
           margin: "0 auto",
-          background: "#8ec0f9ff",
+          background: "#e2ffffff",
           pt: { xs: "1rem", sm: "3rem", md: "3rem", lg: "3rem" }, // ✅ reduced top padding on mobile
           overflow: "visible",
         }}
