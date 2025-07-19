@@ -24,7 +24,7 @@ export default function FeaturedProducts() {
           px: { xs: 2, sm: 3 },
           maxWidth: 1500,
           margin: '0 auto',
-          mt: { xs: 2, sm: 2 },
+          mt: { xs: -4, sm: 2 },
           mb: { xs: 0, sm: 2 },
         }}
       >

@@ -1,15 +1,36 @@
 'use client';
 
 import React from "react";
-import { Box } from "@mui/material";
+import { Box, useMediaQuery } from "@mui/material";
 import ProductCard from "@components/Home/ProductCategories/ProductCard";
 import products from "./products.json";
 
 export default function PaperBagsPage() {
-  // const isMobile = useMediaQuery('(max-width:600px)');
+  const isMobile = useMediaQuery('(max-width:899.95px)');
 
   return (
     <>
+    <Box
+      sx={{
+      textAlign: isMobile ? "left" : "center",
+      mt: { xs: -0.1, sm: 4 },
+      mb: { xs: -0.1, sm: 4 },
+     backgroundColor: "#8ec0f9ff",
+      }}
+    >
+      <Box
+      component={isMobile ? "span" : "h2"}
+      sx={{
+        fontWeight: "bold",
+        fontSize: isMobile ? "clamp(0.5rem, 4vw, 2.5rem)" : "2.5rem",
+        color: "#1a237e",
+        fontFamily: "inherit",
+        m: 0,
+      }}
+      >
+      Paper Bags
+      </Box>
+    </Box>
 
       <Box
         sx={{
@@ -26,7 +47,7 @@ export default function PaperBagsPage() {
           p: 2,
           maxWidth: 1500,
           margin: "0 auto",
-          background: "#fdd7d7ff",
+          background: "#8ec0f9ff",
           pt: { xs: "1rem", sm: "3rem", md: "3rem", lg: "3rem" }, // ✅ reduced top padding on mobile
           overflow: "visible",
         }}
