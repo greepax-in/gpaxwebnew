@@ -28,13 +28,12 @@ const LazadaStyleMenu: React.FC = () => {
 				variant="h6"
 				sx={{
 					textAlign: 'center',
-					fontSize: '1rem',
+					fontSize: { xs: '1rem', md: '4rem' },
 					fontWeight: 'bold',
 					color: '#0b0701ff',
-          backgroundColor: '#a3daf8ff',
-		  					borderTopLeftRadius: 16,
+					backgroundColor: '#a3daf8ff',
+					borderTopLeftRadius: 16,
 					borderTopRightRadius: 16,
-        //   textRendering: 'optimizeLegibility',
 					mb: 2,
 					mt: -2,
 				}}
@@ -44,18 +43,17 @@ const LazadaStyleMenu: React.FC = () => {
 			<Box
 				component="nav"
 				sx={{
-					// position: 'sticky',
-					top: '56px', // Height of your mobile AppBar
-					zIndex: 1200, // Ensure it's above other elements
+					top: '56px',
+					zIndex: 1200,
 					px: 1,
 					pt: 1,
 					pb: 1.5,
-					background: 'linear-gradient(to bottom, #a3daf8ff 55%, #e2ffffff 100%)',
+					background: 'linear-gradient(to bottom, #a3daf8ff 35%, #d5eefbff 75%)',
 					overflowX: 'auto',
 					whiteSpace: 'nowrap',
 					display: 'flex',
 					alignItems: 'center',
-					gap: 5, // Increased gap between product categories
+					gap: 5,
 					justifyContent: 'center',
 					mt: -3,
 				}}
@@ -77,17 +75,17 @@ const LazadaStyleMenu: React.FC = () => {
 					>
 						<Box
 							sx={{
-								width: 72,
-								height: 72,
+								width: { xs: 72, md: 150 },
+								height: { xs: 72, md: 150 },
 								borderRadius: '50%',
 								backgroundColor: '#fff',
 								border:
 									selectedIndex === index
-										? '2px solid #030ff4ff'
+										? '3px solid #030ff4ff'
 										: '2px solid transparent',
 								boxShadow:
 									selectedIndex === index
-										? '0 0 0 3px rgba(76, 175, 80, 0.3)'
+										? '0 0 0 3px rgba(175, 76, 175, 0.3)'
 										: '0 2px 8px rgba(0,0,0,0.08)',
 								display: 'flex',
 								alignItems: 'center',
@@ -103,8 +101,8 @@ const LazadaStyleMenu: React.FC = () => {
 								alt={item.label}
 								loading="lazy"
 								sx={{
-									width: 48,
-									height: 48,
+									width: { xs: 48, md: 90 },
+									height: { xs: 48, md: 90 },
 									objectFit: 'contain',
 									fontWeight: 700,
 								}}
@@ -115,12 +113,11 @@ const LazadaStyleMenu: React.FC = () => {
 							sx={{
 								fontSize: '0.8rem',
 								color: selectedIndex === index ? '#030ff4ff' : '#333',
-								// fontWeight: selectedIndex === index ? '700' : 'normal',
 								fontWeight: 'bold',
-								maxWidth: 100, // Increased maxWidth to allow more space for text
-								whiteSpace: 'normal', // Allow text wrapping
+								maxWidth: 100,
+								whiteSpace: 'normal',
 								overflow: 'hidden',
-								textAlign: 'center', // Ensure text is centered
+								textAlign: 'center',
 								textOverflow: 'ellipsis',
 							}}
 						>

@@ -18,19 +18,19 @@ const HomePage: React.FC = () => {
         // paddingTop: '56px', // Compensates for fixed AppBar height
       }}
     >
-      {/* AppBar is fixed */}
+
       <AppBar />
 
-      {/* Hero Section */}
+
       <Box sx={{ mt: isMobile ? 7 : 8 }}>
         <HeroSection />
       </Box>
-   <FeaturedProducts />
-      {/* 👇 Move MiniMenu right after HeroSection so it can stick early */}
-      {isMobile && <MiniMenu />}
+      <FeaturedProducts />
 
-      {/* Featured Products & other content */}
-   
+      <MiniMenu />
+
+
+
       <PaperBags />
     </main>
   );

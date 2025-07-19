@@ -13,22 +13,22 @@ export default function PaperBagsPage() {
     <Box
       sx={{
       textAlign: isMobile ? "left" : "center",
-      mt: { xs: -0.1, sm: 4 },
-      mb: { xs: -0.1, sm: 4 },
-     backgroundColor: "#e2ffffff",
+      mt: { xs: -0.1, sm: 0},
+      mb: { xs: -0.1, sm: 0 },
+     backgroundColor: "#d5eefbff",
       }}
     >
       <Box
-      component={isMobile ? "span" : "h2"}
-      sx={{
-        fontWeight: "bold",
-        fontSize: isMobile ? "clamp(0.5rem, 4vw, 2.5rem)" : "2.5rem",
-        color: "#1a237e",
-        fontFamily: "inherit",
-        m: 0,
-      }}
+        component={isMobile ? "span" : "h2"}
+        sx={{
+          fontWeight: "bold",
+          fontSize: isMobile ? "clamp(0.5rem, 4vw, 2.5rem)" : "4rem",
+          color: "#1a237e",
+          fontFamily: "inherit",
+          mt: isMobile ? 0 : 0, // Increased margin top
+        }}
       >
-      Paper Bags
+        Paper Bags
       </Box>
     </Box>
 
@@ -47,7 +47,7 @@ export default function PaperBagsPage() {
           p: 2,
           maxWidth: 1500,
           margin: "0 auto",
-          background: "#e2ffffff",
+          background: "#d5eefbff",
           pt: { xs: "1rem", sm: "3rem", md: "3rem", lg: "3rem" }, // ✅ reduced top padding on mobile
           overflow: "visible",
         }}
