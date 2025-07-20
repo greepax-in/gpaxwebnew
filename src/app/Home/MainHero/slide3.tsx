@@ -45,17 +45,16 @@ export default function Slide3() {
     <Box
       sx={{
         width: '100vw',
-        height: { xs: '25vh', sm: '100vh' },
-        mt: 0,
+        height: '100%',
+        // mt: { xs: '56px', sm: '64px' },
         px: { xs: 1, sm: 4 },
         py: 0,
         display: 'flex',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: isMobile ? 'flex-start' : 'center',
+        backgroundColor: '#fff',
         overflow: 'hidden',
-        position: 'relative',
-        backgroundColor: '#fff', // ✅ fixes iOS black bg issue
       }}
     >
       {/* Title */}
@@ -63,113 +62,119 @@ export default function Slide3() {
         variant="h6"
         sx={{
           fontWeight: 700,
-          fontSize: { xs: '0.95rem', sm: '2.4rem' },
+          fontSize: { xs: '0.9rem', sm: '2rem' },
           color: '#1976d2',
-          mb: isMobile ? 0.5 : 3,
+          mt: { xs: 0.4, sm: 2 },
+          mb: { xs: 0.2, sm: 3 },
           textAlign: 'center',
         }}
       >
-        Choose Your Print Variant
+        Plain, Printed or Full Color – We've Got You Covered.
       </Typography>
 
       {isMobile ? (
         <>
-          {/* ✅ MOBILE VERSION: 3 column images and chips */}
+          {/* ✅ MOBILE */}
           <Box
             sx={{
-              width: '100%',
               display: 'flex',
-              justifyContent: 'space-between',
+              justifyContent: 'space-around',
               alignItems: 'flex-start',
-              px: 0.5,
-              gap: 0.3,
-              backgroundColor: '#fff', // ✅ white bg on iOS
+              width: '100%',
+              flexGrow: 1,
+              // mt: 0.4,
             }}
           >
             {variants.map((v, i) => (
               <Box
                 key={i}
                 sx={{
-                  flex: 1,
-                  textAlign: 'center',
+                  width: '30%',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  mt: -0.8
                 }}
               >
                 <img
                   src={v.img}
                   alt={v.title}
                   style={{
-                    width: 'auto',
-                    height: 'clamp(70px, 24vw, 90px)',
+                    width: '100%',
+                    height: 'calc(30vh * 0.55)',
                     objectFit: 'contain',
-                    marginBottom: 8,
+                    marginBottom: 6,
+                    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.2)', // Added shadow for mobile images
                   }}
                 />
-                <Chip
-                  label={
-                    <Box
-                      sx={{
-                        lineHeight: 1,
-                        fontSize: '0.70rem',
-                        whiteSpace: 'normal',
-                        textAlign: 'center',
-                        color: '#fff',
-                        px: 0.5,
-                       
-                        fontWeight: 700,
-                      }}
-                    >
-                      {v.title}
-                    </Box>
-                  }
-                  sx={{
-                    height: 'auto',
-                    py: 0.5,
-                    px: 1,
-                    fontSize: '0.65rem',
-                    minHeight: 28,
-                    backgroundColor: i === 2 ? 'transparent' : v.color,
-                    ...(i === 2 && {
-                      background:
-                        'linear-gradient(135deg, #1976d2 30%, #ff9800 60%, #43a047 40%)',
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }} // Fade from bottom
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                >
+                  <Chip
+                    label={
+                      <Box
+                        sx={{
+                          lineHeight: 1,
+                          fontSize: '0.6rem',
+                          whiteSpace: 'normal',
+                          textAlign: 'center',
+                          color: '#fff',
+                          fontWeight: 700,
+                          overflow: 'hidden',
+                          display: '-webkit-box',
+                          WebkitLineClamp: 2, // Allow up to 2 lines
+                          WebkitBoxOrient: 'vertical',
+                          // mb: 0.2,
+                        }}
+                      >
+                        {v.title}
+                      </Box>
+                    }
+                    sx={{
+                      height: 25, // Increased height for better text visibility
+                      fontSize: '0.8rem',
+                      px: 0.4,
                       color: '#fff',
-                    }),
-                  }}
-                />
+                      backgroundColor: i === 2 ? 'transparent' : v.color,
+                      ...(i === 2 && {
+                        background:
+                          'linear-gradient(135deg, #1976d2 30%, #ff9800 60%, #43a047 40%)',
+                        color: '#fff',
+                      }),
+                    }}
+                  />
+                </motion.div>
               </Box>
             ))}
           </Box>
 
-          {/* CTA Button */}
+          {/* CTA */}
           <Box
             sx={{
-              mt: 0.2,
-              width: '100%',
+              // mt: 0.5,
+              // mb: 0.4,
               display: 'flex',
               justifyContent: 'center',
-              backgroundColor: '#fff',
+              width: '100%',
             }}
           >
             <Button
               variant="contained"
-              color="success"
-              size="small"
               sx={{
-                fontSize: '0.75rem',
-                px: 3,
-                py: 0.6,
-                borderRadius: 2,
-                textTransform: 'none',
-                boxShadow: 2,
-              }}
-              onClick={() => {
-                window.location.href = 'https://wa.me/916309655384';
+                fontWeight: 600,
+                fontSize: '0.7rem',
+                // px: 4,
+                py: 0,
+                lineHeight: 3,
+                backgroundColor: '#7a04d4ff',
+                color: '#fff',
+                borderRadius: 1,
+                width: '60%',
+                minHeight: 'unset',
               }}
             >
-              Get Quote
+              Make Your Brand Unique
             </Button>
           </Box>
         </>
@@ -240,6 +245,7 @@ export default function Slide3() {
                       height: '300px',
                       objectFit: 'contain',
                       marginBottom: 12,
+                      marginTop: '10%',
                     }}
                     whileHover={{ scale: 1.12, rotate: 2 }}
                     whileTap={{ scale: 0.95, rotate: -2 }}

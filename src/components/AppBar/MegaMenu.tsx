@@ -90,7 +90,7 @@ const paperBagsMenuSections: MegaMenuSection[][] = [
   [
     {
       icon: <RestaurantIcon sx={{ color: "#f9a825", mr: 1 }} />,
-      title: "Food Delivery",
+      title: "Food Delivery Paper Bags",
       items: [
         "Kraft Plain Food Delivery Paper Bags",
         "Kraft Printed Food Delivery Paper Bags",

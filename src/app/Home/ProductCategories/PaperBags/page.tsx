@@ -3,7 +3,9 @@
 import React from "react";
 import { Box, useMediaQuery } from "@mui/material";
 import ProductCard from "@components/Home/ProductCategories/ProductCard";
-import products from "./products.json";
+import products from "../../../../data/products.json"; // Adjust the path as necessary
+
+const paperBagProducts = products.filter(product => product.category === 'Paper Bags');
 
 export default function PaperBagsPage() {
   const isMobile = useMediaQuery('(max-width:899.95px)');
@@ -52,13 +54,15 @@ export default function PaperBagsPage() {
           overflow: "visible",
         }}
       >
-        {products.map((product) => (
+        {paperBagProducts.map((product) => (
           <Box key={product.name} sx={{ width: '100%' }}>
             <ProductCard
               name={product.name}
               image={product.image}
-              waText={product.waText}
-              price={product.price}
+              
+              offeredPrice={product.offeredPrice !== null ? product.offeredPrice : undefined} // Added offeredPrice prop
+              sellingPrice={product.sellingPrice !== null ? product.sellingPrice : undefined} // Added sellingPrice prop
+       
               variants={product.variants}
               link={product.pageLink}
             />

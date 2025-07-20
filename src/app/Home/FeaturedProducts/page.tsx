@@ -3,7 +3,12 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import FeaturedProductCard from '@components/Home/FeaturedProducts/FeaturedProductCard';
-import products from './FeaturedProducts.json';
+// import products from './FeaturedProducts.json';
+import featuredProducts from '../../../data/products.json';
+
+const filteredProducts = featuredProducts.filter(
+  (product) => product.featuredProduct === 'yes'
+);
 
 export default function FeaturedProducts() {
   // const isMobile = useMediaQuery('(max-width:600px)');
@@ -65,13 +70,13 @@ export default function FeaturedProducts() {
           overflow: 'visible',
         }}
       >
-        {products.map((product) => (
+        {filteredProducts.map((product) => (
           <Box key={product.name} sx={{ width: '100%' }}>
             <FeaturedProductCard
               name={product.name}
               image={product.image}
-              // waText={product.waText}
-              price={product.price}
+              offeredPrice={product.offeredPrice !== null ? product.offeredPrice : undefined} // Added offeredPrice prop
+              sellingPrice={product.sellingPrice !== null ? product.sellingPrice : undefined} // Added sellingPrice prop
               link={product.pageLink}
               variants={product.variants}
             />

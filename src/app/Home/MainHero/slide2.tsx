@@ -1,4 +1,5 @@
 'use client';
+
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Button, useMediaQuery } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
@@ -32,67 +33,59 @@ export default function HeroSlide() {
     <Box
       sx={{
         width: '100vw',
-        height: { xs: '25vh', sm: '100vh' },
+        mt: { xs: '56px', sm: '64px' },
+        height: '100%',
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
-        backgroundColor: '#fff', // ✅ force white background
-        color: '#000',           // ✅ prevent iOS auto white text
+        backgroundColor: '#fff',
+        color: '#000',
+        py: { xs: 1, sm: 0 },
+        px: { xs: 2, sm: 6 },
       }}
     >
-      {/* Animated Words */}
+      {/* Left Side: Animated Words */}
       <Box
         sx={{
           flex: 1,
           display: 'flex',
           alignItems: 'center',
-          justifyContent: isMobile ? 'center' : 'flex-end',
-          px: { xs: 1, sm: 4, md: 6 },
-          py: { xs: 2, sm: 0 },
+          justifyContent: 'center',
+          pb: { xs: 0.5, sm: 0 },
+          mt: { xs: '-20%', sm: 0 },
         }}
       >
-        <Box
-          sx={{
-            position: 'relative',
-            display: 'flex',
-            justifyContent: isMobile ? 'center' : 'flex-end',
-            alignItems: 'center',
-            width: '100%',
-          }}
-        >
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={index}
-              initial={{ y: 40, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              exit={{ y: -40, opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              style={{
-                display: 'flex',
-                gap: '16px',
-                justifyContent: isMobile ? 'center' : 'flex-end',
-                backgroundColor: '#fff', // ✅ prevent black flash
-              }}
-            >
-              {currentWords.map((word, i) => (
-                <Typography
-                  key={i}
-                  variant="h2"
-                  sx={{
-                    fontWeight: 900,
-                    fontSize: { xs: '3rem', sm: '4.5rem', md: '5.5rem' },
-                    color: word.color,
-                    whiteSpace: 'nowrap',
-                  }}
-                >
-                  {word.text}
-                </Typography>
-              ))}
-            </motion.div>
-          </AnimatePresence>
-        </Box>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -30, opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              display: 'flex',
+              gap: '12px',
+              justifyContent: isMobile ? 'center' : 'right', // Center for mobile, right for desktop
+              alignItems: 'center',
+            }}
+          >
+            {currentWords.map((word, i) => (
+              <Typography
+                key={i}
+                sx={{
+                  fontWeight: 800,
+                  fontSize: { xs: '3.5rem', sm: '5rem' },
+                  color: word.color,
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {word.text}
+              </Typography>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </Box>
 
-      {/* Static Right Side Content */}
+      {/* Right Side */}
       <Box
         sx={{
           flex: 1,
@@ -100,44 +93,85 @@ export default function HeroSlide() {
           flexDirection: 'column',
           justifyContent: 'center',
           alignItems: isMobile ? 'center' : 'flex-start',
-          px: { xs: 2, sm: 4, md: 6 },
           textAlign: isMobile ? 'center' : 'left',
+          gap: isMobile ? 0 : 1.5,
         }}
       >
+        {/* Title */}
         <Typography
-          variant="h5"
           sx={{
             fontWeight: 700,
-            fontSize: { xs: '1.2rem', sm: '2.5rem', md: '3.5rem' },
+            fontSize: { xs: '0.95rem', sm: '2rem', md: '2.8rem' },
             color: '#1976d2',
-            mb: 1,
+            mt: { xs: '-20%', sm: 0 }, // Moved title up by 20% for mobile
           }}
         >
-          Multi Language Designs
+          We Print in Hindi, Tamil, Telugu, Kannada & More.
         </Typography>
+
+        {/* Subtitle and badge for Desktop */}
         {!isMobile && (
-          <Typography
-            variant="body1"
-            sx={{
-              fontWeight: 400,
-              fontSize: { xs: '0.9rem', sm: '1.2rem', md: '1.5rem' },
-              color: '#555',
-              mb: 2,
-            }}
-          >
-            Brand with your own language
-          </Typography>
+          <>
+            <Typography
+              sx={{
+                fontWeight: 400,
+                fontSize: '1.2rem',
+                color: '#555',
+              }}
+            >
+              Build deeper connections with regional language packaging.
+            </Typography>
+
+            <Box
+              sx={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                backgroundColor: '#f5f5f5',
+                borderRadius: '8px',
+                px: 2,
+                py: 0.5,
+                fontSize: '0.9rem',
+                color: '#444',
+                fontWeight: 500,
+              }}
+            >
+              🇮🇳 India’s Regional Languages Supported
+            </Box>
+          </>
         )}
+
+        {/* Icon Row */}
+        <Box
+          sx={{
+            display: 'flex',
+            gap: 1,
+            fontSize: { xs: '0.75rem', sm: '1.4rem' },
+            justifyContent: 'center',
+          }}
+        >
+          <span>A</span>
+          <span>आ</span>
+          <span>అ</span>
+          <span>அ</span>
+        </Box>
+
+        {/* CTA Button */}
         <Button
           variant="contained"
           sx={{
             fontWeight: 600,
-            fontSize: '0.9rem',
-            px: 3,
-            py: 1,
+            fontSize: { xs: '0.75rem', sm: '1rem' },
+            backgroundColor: '#f57c00',
+            color: '#fff',
+            px: 2,
+            py: 0.6,
+            mt: isMobile ? 0.5 : 2,
+            '&:hover': {
+              backgroundColor: '#ef6c00',
+            },
           }}
         >
-          CHAT WITH US
+          Go Desi with Your Design
         </Button>
       </Box>
     </Box>

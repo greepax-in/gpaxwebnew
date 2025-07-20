@@ -4,13 +4,15 @@ import React from 'react';
 import { Box, Typography, useMediaQuery, Tooltip } from '@mui/material';
 import { motion } from 'framer-motion';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import Head from 'next/head';
+// import Head from 'next/head';
 
 export type ProductCardProps = {
   name: string;
   image: string;
   waText?: string;
-  price?: string;
+  // price?: string;
+  offeredPrice?: number; // Added offeredPrice prop
+  sellingPrice?: number; // Added sellingPrice prop
   variants?: string[];
   link?: string;
 };
@@ -19,25 +21,15 @@ export default function ProductCard({
   name,
   image,
   waText,
-  price,
+  // price,
+  offeredPrice, // Added offeredPrice prop
+  sellingPrice, // Added sellingPrice prop
   variants,
   link,
 }: ProductCardProps) {
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  const jsonLd = {
-    '@context': 'https://schema.org/',
-    '@type': 'Product',
-    name,
-    image,
-    description: variants?.join(', ') || '',
-    offers: {
-      '@type': 'Offer',
-      priceCurrency: 'INR',
-      price: price?.replace(/[^\d.]/g, '') || '0',
-      availability: 'https://schema.org/InStock',
-    },
-  };
+
 
   const motionVariants = {
     hidden: { opacity: 0, y: 30 },
@@ -94,9 +86,19 @@ export default function ProductCard({
             </Typography>
           )}
           <Box display="flex" alignItems="center" gap={1} mt={1}>
-            {price && (
-              <Typography fontWeight={600} color="#2e7d32" fontSize="1rem">
-                {price}
+            {offeredPrice && (
+              <Typography fontWeight={700} color="#2e7d32" fontSize="1rem">
+                ₹{offeredPrice}
+              </Typography>
+            )}
+            {sellingPrice && (
+              <Typography
+                fontWeight={700}
+                color="#666"
+                fontSize="1rem"
+                sx={{ textDecoration: 'line-through' }}
+              >
+                ₹{sellingPrice}
               </Typography>
             )}
             {waText && link && (
@@ -114,12 +116,7 @@ export default function ProductCard({
             )}
           </Box>
         </Box>
-        <Head>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
-        </Head>
+
       </motion.div>
     );
   }
@@ -188,9 +185,19 @@ export default function ProductCard({
             </Typography>
           )}
           <Box display="flex" alignItems="center" gap={1} mt={1}>
-            {price && (
+            {offeredPrice && (
               <Typography fontWeight={700} color="#2e7d32" fontSize="1rem">
-                {price}
+                ₹{offeredPrice}
+              </Typography>
+            )}
+            {sellingPrice && (
+              <Typography
+                fontWeight={700}
+                color="#666"
+                fontSize="1rem"
+                sx={{ textDecoration: 'line-through' }}
+              >
+                ₹{sellingPrice}
               </Typography>
             )}
             {waText && link && (
@@ -208,12 +215,7 @@ export default function ProductCard({
             )}
           </Box>
         </Box>
-        <Head>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
-        </Head>
+     
       </motion.div>
     </Box>
   );

@@ -14,8 +14,8 @@ import { motion } from 'framer-motion';
 export type ProductCardProps = {
   name: string;
   image: string;
-  // waText?: string;
-  price?: string;
+  offeredPrice?: number; // Changed offeredPrice type to number
+  sellingPrice?: number; // Changed sellingPrice type to number
   link?: string;
   variants?: string | string[];
 };
@@ -23,8 +23,8 @@ export type ProductCardProps = {
 export default function ProductCard({
   name,
   image,
-  // waText,
-  price,
+  offeredPrice, // Changed offeredPrice type to number
+  sellingPrice, // Changed sellingPrice type to number
   link,
   variants,
 }: ProductCardProps) {
@@ -149,7 +149,7 @@ export default function ProductCard({
                 // marginTop: '0.5rem', // Adjusted margin-top for better spacing
               }}
             >
-              {price && (
+              {offeredPrice && (
                 <Box
                   sx={{
                     display: 'flex',
@@ -175,7 +175,10 @@ export default function ProductCard({
                       alignItems: 'center',
                     }}
                   >
-                    ₹{price}
+                    ₹{offeredPrice}{' '}
+                    <Typography component="span" sx={{ textDecoration: 'line-through', marginLeft: '0.5rem' }}>
+                      (₹{sellingPrice})
+                    </Typography>
                   </Box>
 
                   {link && (
@@ -258,6 +261,9 @@ export default function ProductCard({
               Chat with us
             </Button>
           )}
+
+     
+       
         </Box>
       </motion.div>
     </Box>
