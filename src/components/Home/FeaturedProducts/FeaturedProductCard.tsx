@@ -7,9 +7,18 @@ import {
   IconButton,
   Button,
   useMediaQuery,
+  Chip,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { motion } from 'framer-motion';
+import PrintVariants from '../../../app/PrintVariants.json';
+
+type PrintVariant = {
+  name: string;
+  backgroundColor: string;
+};
+
+const typedPrintVariants = PrintVariants.variants as PrintVariant[];
 
 export type ProductCardProps = {
   name: string;
@@ -224,18 +233,45 @@ export default function ProductCard({
 
           {/* Variants (desktop only) */}
           {!isMobile && variants && (
-            <Typography
-              sx={{
-                fontSize: '1.04rem',
-                color: '#616161',
-                textAlign: 'center',
-                width: '100%',
-                lineHeight: 1.4,
-                mb: 1.3,
-              }}
-            >
-              Variants: {Array.isArray(variants) ? variants.join(', ') : variants}
-            </Typography>
+            <>
+              <Typography
+                sx={{
+                  fontSize: '1.04rem',
+                  color: '#616161',
+                  textAlign: 'center',
+                  width: '100%',
+                  lineHeight: 1.4,
+                  mb: 1.3,
+                }}
+              >
+                Variants: {Array.isArray(variants) ? variants.join(', ') : variants}
+              </Typography>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  gap: 1,
+                  mt: 1.5,
+                }}
+              >
+                {Array.isArray(variants) &&
+                  variants.slice(0, 3).map((variant, index) => (
+                    <Chip
+                      key={index}
+                      label={variant}
+                      sx={{
+                        fontSize: '0.9rem',
+                        fontWeight: 600,
+                        background: typedPrintVariants.find((pv) => pv.name.trim().toLowerCase() === variant.trim().toLowerCase())?.backgroundColor || '#1976d2',
+                        color: '#fff',
+                        px: 1.5,
+                        py: 0.5,
+                      }}
+                    />
+                  ))}
+              </Box>
+            </>
           )}
 
           {/* WhatsApp Button (desktop only) */}

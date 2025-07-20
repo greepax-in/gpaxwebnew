@@ -6,6 +6,7 @@ import FeaturedProductCard from '@components/Home/FeaturedProducts/FeaturedProdu
 // import products from './FeaturedProducts.json';
 import featuredProducts from '../../../data/products.json';
 
+
 const filteredProducts = featuredProducts.filter(
   (product) => product.featuredProduct === 'yes'
 );

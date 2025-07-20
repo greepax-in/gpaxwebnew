@@ -1,0 +1,16 @@
+{
+    "variants": [
+        {
+            "name": "Plain",
+            "backgroundColor": "#d1d0d1ff"
+        },
+        {
+            "name": "Single Color",
+            "backgroundColor": "#ff9800"
+        },
+        {
+            "name": "Multi Color",
+            "backgroundColor": "linear-gradient(135deg, #1976d2 30%, #ff9800 60%, #43a047 40%)"
+        }
+    ]
+}

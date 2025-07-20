@@ -17,8 +17,8 @@ import Slide3 from './slide3';
 // const HERO_OFFSET_DESKTOP = APPBAR_HEIGHT_DESKTOP + DESKTOP_TOP_OFFSET;
 
 const slides = [
-  <Slide1 key="slide1" />,
-  <Slide2 key="slide2" />,
+  // <Slide1 key="slide1" />,
+  // <Slide2 key="slide2" />,
   <Slide3 key="slide3" />,
 ];
 
@@ -60,7 +60,7 @@ const MainHeroPage: React.FC = () => {
         width: '100vw',
         height: {
           xs: `30vh`, // ✅ Cap total mobile hero height at 40% viewport
-          sm: `100vh`,
+          sm: `95vh`,
         },
         mt: {
           xs: `-12px`,

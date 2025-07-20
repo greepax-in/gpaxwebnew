@@ -13,27 +13,26 @@ import { motion } from 'framer-motion';
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import PaletteIcon from '@mui/icons-material/Palette';
 import PrintIcon from '@mui/icons-material/Print';
+import PrintVariants from '../../PrintVariants.json'; // Assuming you have a JSON file with the variants
 
-const variants = [
+const ProductVariants = [
   {
-    title: 'Plain Print',
+    title: 'Plain',
     desc: 'Minimalistic and elegant look for all-purpose packaging.',
     img: '/images/home/hero/bakery-paper-covers.svg',
-    color: '#a6a3a3ff',
+
     icon: <FormatColorFillIcon fontSize="small" />,
   },
   {
-    title: 'Single Color Print',
+    title: 'Single Color',
     desc: 'Perfect for brand recognition with one-tone precision.',
     img: '/images/home/hero/color-paper-bags.svg',
-    color: '#1976d2',
     icon: <PaletteIcon fontSize="small" />,
   },
   {
-    title: 'Multi Color Print',
+    title: 'Multi Color',
     desc: 'Vibrant visuals for high impact presentation.',
     img: '/images/home/hero/printed-multi-color.svg',
-    color: '#f3e5f5',
     icon: <PrintIcon fontSize="small" />,
   },
 ];
@@ -85,7 +84,7 @@ export default function Slide3() {
               // mt: 0.4,
             }}
           >
-            {variants.map((v, i) => (
+            {ProductVariants.map((v, i) => (
               <Box
                 key={i}
                 sx={{
@@ -136,12 +135,8 @@ export default function Slide3() {
                       fontSize: '0.8rem',
                       px: 0.4,
                       color: '#fff',
-                      backgroundColor: i === 2 ? 'transparent' : v.color,
-                      ...(i === 2 && {
-                        background:
-                          'linear-gradient(135deg, #1976d2 30%, #ff9800 60%, #43a047 40%)',
-                        color: '#fff',
-                      }),
+                      background:
+                        PrintVariants.variants.find((pv: { name: string; backgroundColor: string }) => pv.name.trim().toLowerCase() === v.title.trim().toLowerCase())?.backgroundColor || '#1976d2',
                     }}
                   />
                 </motion.div>
@@ -167,7 +162,7 @@ export default function Slide3() {
                 // px: 4,
                 py: 0,
                 lineHeight: 3,
-                backgroundColor: '#7a04d4ff',
+                backgroundColor: '#d1d0d1ff',
                 color: '#fff',
                 borderRadius: 1,
                 width: '60%',
@@ -190,7 +185,7 @@ export default function Slide3() {
             justifyContent: 'center',
           }}
         >
-          {variants.map((v, i) => (
+          {ProductVariants.map((v, i) => (
             <motion.a
               key={i}
               href={`/products/${v.title.toLowerCase().replace(/ /g, '-')}`}
@@ -231,55 +226,52 @@ export default function Slide3() {
               >
                 <CardContent
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    p: 0,
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  p: 0,
                   }}
                 >
                   <motion.img
-                    src={v.img}
-                    alt={v.title}
-                    style={{
-                      width: '250px',
-                      height: '300px',
-                      objectFit: 'contain',
-                      marginBottom: 12,
-                      marginTop: '10%',
-                    }}
-                    whileHover={{ scale: 1.12, rotate: 2 }}
-                    whileTap={{ scale: 0.95, rotate: -2 }}
-                    transition={{ type: 'spring', stiffness: 300, damping: 18 }}
+                  src={v.img}
+                  alt={v.title}
+                  style={{
+                    width: '250px',
+                    height: '300px',
+                    objectFit: 'contain',
+                    marginBottom: 12,
+                    marginTop: '10%',
+                  }}
+                  whileHover={{ scale: 1.12, rotate: 2 }}
+                  whileTap={{ scale: 0.95, rotate: -2 }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 18 }}
                   />
-                  <Chip
-                    icon={v.icon}
-                    label={v.title}
-                    sx={{
-                      fontWeight: 600,
-                      fontSize: '0.95rem',
-                      boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
-                      ...(i === 1
-                        ? { backgroundColor: '#ff9800', color: '#222' }
-                        : i === 2
-                        ? {
-                            background:
-                              'linear-gradient(135deg, #1976d2 30%, #ff9800 60%, #43a047 40%)',
-                            backgroundColor: 'transparent',
-                            color: '#fff',
-                          }
-                        : { backgroundColor: '#ffffff99', color: '#222' }),
-                    }}
-                  />
+            <Chip
+            icon={v.icon}
+            label={v.title}
+            sx={{
+              fontWeight: 700,
+              fontSize: '0.95rem',
+              boxShadow: '0 4px 16px rgba(0,0,0,0.2)',
+              color: '#000',
+              background:
+                PrintVariants.variants.find(
+                  (pv: { name: string; backgroundColor: string }) =>
+                    pv.name.trim().toLowerCase() === v.title.trim().toLowerCase()
+                )?.backgroundColor || '#1976d2',
+            }}
+            />
                   <Typography
-                    variant="body2"
-                    sx={{
-                      mt: 1,
-                      textAlign: 'center',
-                      fontSize: '0.9rem',
-                      color: '#11010199',
-                    }}
+                  variant="body2"
+                  sx={{
+                    mt: 1,
+                    textAlign: 'center',
+                    fontSize: '0.9rem',
+                    color: '#000',
+                    fontWeight: 700,
+                  }}
                   >
-                    {v.desc}
+                  {v.desc}
                   </Typography>
                 </CardContent>
               </Card>

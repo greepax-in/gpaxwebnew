@@ -5,7 +5,8 @@ import HeroSection from '../app/Home/MainHero/page';
 import MiniMenu from '@components/AppBar/MiniMenu';
 import FeaturedProducts from '../app/Home/FeaturedProducts/page';
 import PaperBags from '../app/Home/ProductCategories/PaperBags/page';
-import {  Box } from '@mui/material';
+import PaperCovers from '../app/Home/ProductCategories/PaperCovers/page'; 
+import { Box } from '@mui/material';
 
 const HomePage: React.FC = () => {
   // const isMobile = useMediaQuery('(max-width:600px)');
@@ -21,13 +22,13 @@ const HomePage: React.FC = () => {
 
       <AppBar />
 
-<Box
-  sx={{
-    mt: { xs: '56px', sm: '80px' }, // Match your AppBar height
-  }}
->
-  <HeroSection />
-</Box>
+      <Box
+        sx={{
+          mt: { xs: '56px', sm: '80px' }, // Match your AppBar height
+        }}
+      >
+        <HeroSection />
+      </Box>
       <FeaturedProducts />
 
       <MiniMenu />
@@ -35,6 +36,7 @@ const HomePage: React.FC = () => {
 
 
       <PaperBags />
+      <PaperCovers />
     </main>
   );
 };
