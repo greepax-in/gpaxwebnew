@@ -2,11 +2,11 @@
     "variants": [
         {
             "name": "Plain",
-            "backgroundColor": "#d1d0d1ff"
+            "backgroundColor": "#C1C1C1"
         },
         {
             "name": "Single Color",
-            "backgroundColor": "#ff9800"
+            "backgroundColor": "#FFA500"
         },
         {
             "name": "Multi Color",

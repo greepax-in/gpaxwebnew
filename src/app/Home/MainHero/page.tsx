@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Box, useMediaQuery } from '@mui/material';
+import { Box } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import Slide1 from './slide1';
@@ -17,15 +17,15 @@ import Slide3 from './slide3';
 // const HERO_OFFSET_DESKTOP = APPBAR_HEIGHT_DESKTOP + DESKTOP_TOP_OFFSET;
 
 const slides = [
-  // <Slide1 key="slide1" />,
-  // <Slide2 key="slide2" />,
+  <Slide1 key="slide1" />,
+  <Slide2 key="slide2" />,
   <Slide3 key="slide3" />,
 ];
 
 const MainHeroPage: React.FC = () => {
   const [active, setActive] = useState(0);
   const [direction, setDirection] = useState(0);
-  const isMobile = useMediaQuery('(max-width:600px)');
+  // const isMobile = useMediaQuery('(max-width:600px)');
 
   useEffect(() => {
     const duration = active === 1 ? 9000 : active === 2 ? 4400 : 4000;
@@ -80,7 +80,7 @@ const MainHeroPage: React.FC = () => {
           initial="enter"
           animate="center"
           exit="exit"
-          transition={{ type: 'spring', stiffness: 400, damping: 40 }}
+          transition={{ type: 'tween', duration: 0.8, ease: 'easeInOut' }} // Smooth transition
           style={{
             width: '100%',
             height: '100%',
@@ -90,6 +90,9 @@ const MainHeroPage: React.FC = () => {
           {slides[active]}
         </motion.div>
       </AnimatePresence>
+      
+        
+      
     </Box>
   );
 };

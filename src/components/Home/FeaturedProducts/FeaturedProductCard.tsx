@@ -4,27 +4,23 @@ import React from 'react';
 import {
   Box,
   Typography,
-  IconButton,
-  Button,
   useMediaQuery,
   Chip,
 } from '@mui/material';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { motion } from 'framer-motion';
 import PrintVariants from '../../../app/PrintVariants.json';
 
-type PrintVariant = {
+const typedPrintVariants = PrintVariants.variants as {
   name: string;
   backgroundColor: string;
-};
-
-const typedPrintVariants = PrintVariants.variants as PrintVariant[];
+}[];
 
 export type ProductCardProps = {
   name: string;
   image: string;
-  offeredPrice?: number; // Changed offeredPrice type to number
-  sellingPrice?: number; // Changed sellingPrice type to number
+  desc: string;
+  offeredPrice?: number;
+  sellingPrice?: number;
   link?: string;
   variants?: string | string[];
 };
@@ -32,8 +28,9 @@ export type ProductCardProps = {
 export default function ProductCard({
   name,
   image,
-  offeredPrice, // Changed offeredPrice type to number
-  sellingPrice, // Changed sellingPrice type to number
+  desc,
+  offeredPrice,
+  sellingPrice,
   link,
   variants,
 }: ProductCardProps) {
@@ -58,6 +55,13 @@ export default function ProductCard({
         custom={0}
         transition={{ type: 'spring', stiffness: 300, damping: 20 }}
         style={{ width: '100%' }}
+        onClick={() => link && window.open(link, '_blank')}
+        tabIndex={0} // Make the card tabbable
+        onKeyDown={(e) => {
+          if (e.key === 'Enter' && link) {
+            window.open(link, '_blank');
+          }
+        }}
       >
         <Box
           sx={{
@@ -70,20 +74,20 @@ export default function ProductCard({
             flexDirection: 'column',
             alignItems: 'center',
             justifyContent: 'flex-start',
-            minHeight: isMobile ? 90 : 450,
-            position: 'relative',
-            width: '100%',
-            mb: isMobile ? -0.5 : 0, // Reduced margin-bottom to decrease space between rows of product cards
+            minHeight: isMobile ? 108 : 450,
+            maxHeight: isMobile ? 108 : 450,
+            width: isMobile ? '100%' : 320, // Increased width for mobile
+            mb: isMobile ? -1 : 0,
           }}
         >
-          {/* Image with price tag */}
+          {/* Image with floating price tag */}
           <Box
             sx={{
               position: 'relative',
               width: isMobile ? 60 : 182,
-              height: isMobile ? 60 : 242, // another 10% increase for desktop
-              mt:0.5,
-              mb: 0.5, // Adjusted margin-bottom to move the product image down by 5%
+              height: isMobile ? 60 : 242,
+              mt: 0.5,
+              mb: 0.5,
             }}
           >
             <motion.div
@@ -106,133 +110,69 @@ export default function ProductCard({
                   width: '100%',
                   height: '100%',
                   maxWidth: isMobile ? 60 : 220,
-                  maxHeight: isMobile ? 60 : 284, // another 10% increase for desktop
+                  maxHeight: isMobile ? 60 : 284,
                   objectFit: 'contain',
                   borderRadius: 1,
                   display: 'block',
                 }}
               />
             </motion.div>
-          </Box>
 
-          {/* Name and WhatsApp Icon (mobile only) */}
-          {isMobile && (
-            <Box
-              sx={{
-                display: 'grid',
-                gridTemplateColumns: '1fr', // Single column layout
-                alignItems: 'center',
-                // gap: 0.5, // Reduced gap for closer spacing
-                mt: 0.1,
-                width: '100%',
-              }}
-            >
-              <Typography
-                fontWeight={700} // Keep bold
-                fontSize={isMobile ? '0.7rem' : '1rem'} // Reduced font size
-                lineHeight={1.3}
-                sx={{
-                  textAlign: 'center',
-                  color: '#212121',
-                  mb: 0.7,
-                  whiteSpace: 'normal', // Allow wrapping
-                  wordBreak: 'break-word',
-                }}
-              >
-                {name}
-              </Typography>
-            </Box>
-          )}
-
-          {/* Name and Price (mobile only) */}
-          {isMobile && (
-            <Box
-              sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'flex-start',
-                // gap: 0.5, // Reduced gap for closer spacing
-                width: '100%',
-                position: 'relative',
-                // mt: 0.5,-004
-                // marginTop: '0.5rem', // Adjusted margin-top for better spacing
-              }}
-            >
-              {offeredPrice && (
+            {/* Floating price tag (desktop and mobile) */}
+            {offeredPrice && (
                 <Box
                   sx={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    alignItems: 'center',
-                    justifyContent: 'space-between', // Move WhatsApp icon towards the right
-                    width: '100%',
-                    marginTop: '0rem',
+                  position: 'absolute',
+                  top: 4,
+                  right: isMobile ? -55 : 4,
+                  background: 'linear-gradient(#f99f02fc)',
+                  color: '#00000eff',
+                  px: 1.2,
+                  py: 0.4,
+                  borderRadius: '12px',
+                  fontWeight: 'bold',
+                  fontSize: isMobile ? '0.8rem' : '1.5rem',
+                  zIndex: 2,
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.2)',
                   }}
                 >
-                  <Box
+                  ₹{offeredPrice}
+                  {sellingPrice && (
+                  <Typography
+                    component="span"
                     sx={{
-                      background: 'linear-gradient(90deg, #bc4d02ff, #f9d9bfff)',
-                      color: '#fff',
-                      px: 1.5,
-                      py: 0.5,
-                      fontSize: '1rem',
-                      fontWeight: 700,
-                      borderRadius: '0 4px 4px 0',
-                      height: '2rem', // Ensure consistent height
-                      width: '60%', // Increased width to 60% of the card
-                      display: 'flex',
-                      alignItems: 'center',
+                    ml: 0.7,
+                    textDecoration: 'line-through',
+                    fontSize: isMobile ? '0.8rem' : '0.7rem',
+                      fontWeight: 'bold',
+                    color: '#f9f9fcff',
                     }}
                   >
-                    ₹{offeredPrice}{' '}
-                    <Typography component="span" sx={{ textDecoration: 'line-through', marginLeft: '0.5rem' }}>
-                      (₹{sellingPrice})
-                    </Typography>
-                  </Box>
-
-                  {link && (
-                    <IconButton
-                      href={link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      sx={{
-                        background: '#25D366', // WhatsApp green color
-                        color: '#fff',
-                        borderRadius: '50%',
-                        height: '1.5rem', // Reduced height
-                        width: '1.5rem', // Reduced width
-                        '&:hover': {
-                          backgroundColor: '#1DA851',
-                        },
-                      }}
-                    >
-                      <WhatsAppIcon sx={{ fontSize: '1rem' }} /> {/* Reduced icon size */}
-                    </IconButton>
+                    ₹{sellingPrice}
+                  </Typography>
                   )}
                 </Box>
-              )}
-            </Box>
-          )}
+            )}
+          </Box>
 
-          {/* Name (desktop) */}
+          {/* Product Name */}
+          <Typography
+            fontWeight={700}
+            fontSize={isMobile ? '0.7rem' : '1.17rem'}
+            lineHeight={1.3}
+            sx={{
+              textAlign: 'center',
+              color: '#212121',
+              mb: 0.7,
+              whiteSpace: 'break-spaces',
+              px: 1,
+            }}
+          >
+            {name}
+          </Typography>
+
+          {/* Description and Variants (desktop only) */}
           {!isMobile && (
-            <Typography
-              fontWeight={700}
-              fontSize={isMobile ? '0.6rem' : '1.17rem'}
-              lineHeight={1.3}
-              sx={{
-                textAlign: 'center',
-                color: '#212121',
-                mb: 0.7,
-                whiteSpace: 'break-spaces',
-              }}
-            >
-              {name}
-            </Typography>
-          )}
-
-          {/* Variants (desktop only) */}
-          {!isMobile && variants && (
             <>
               <Typography
                 sx={{
@@ -242,9 +182,14 @@ export default function ProductCard({
                   width: '100%',
                   lineHeight: 1.4,
                   mb: 1.3,
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  px: 2,
                 }}
               >
-                Variants: {Array.isArray(variants) ? variants.join(', ') : variants}
+                {desc.length > 100 ? `${desc.substring(0, 97)}...` : desc}
               </Typography>
 
               <Box
@@ -263,9 +208,12 @@ export default function ProductCard({
                       sx={{
                         fontSize: '0.9rem',
                         fontWeight: 600,
-                        background: typedPrintVariants.find((pv) => pv.name.trim().toLowerCase() === variant.trim().toLowerCase())?.backgroundColor || '#1976d2',
+                        background:
+                          typedPrintVariants.find(
+                            (pv) => pv.name.trim().toLowerCase() === variant.trim().toLowerCase()
+                          )?.backgroundColor || '#1976d2',
                         color: '#fff',
-                        px: 1.5,
+                        px: 1,
                         py: 0.5,
                       }}
                     />
@@ -273,33 +221,6 @@ export default function ProductCard({
               </Box>
             </>
           )}
-
-          {/* WhatsApp Button (desktop only) */}
-          {!isMobile && link && (
-            <Button
-              variant="outlined"
-              size="medium"
-              href={link}
-              target="_blank"
-              rel="noopener noreferrer"
-              startIcon={<WhatsAppIcon />}
-              sx={{
-                textTransform: 'none',
-                fontSize: '0.975rem',
-                color: '#25D366',
-                borderColor: '#25D366',
-                '&:hover': {
-                  backgroundColor: '#e8f5e9',
-                  borderColor: '#25D366',
-                },
-              }}
-            >
-              Chat with us
-            </Button>
-          )}
-
-     
-       
         </Box>
       </motion.div>
     </Box>

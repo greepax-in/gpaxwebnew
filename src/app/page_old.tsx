@@ -10,7 +10,7 @@ import MainHero from '../../src/app/Home/MainHero/page';
 import WhyItMatters from '@/components/Home/whyitmatters/page';
 import Footer from '@/components/Home/Footer/Footer';
 import Footer2 from './Home/Footer2/page';
-import PaperBagsCategory from '@/components/Home/ProductCategories/PaperBags';
+// import PaperBagsCategory from '@/components/Home/ProductCategories/PaperBags';
 // import PaperBoxesCategory from '@/components/Home/ProductCategories/PaperBoxes';
 // import PaperCoversCategory from '@/components/Home/ProductCategories/PaperCovers';
 
@@ -200,7 +200,7 @@ export default function Page() {
 
         <MainHero />
         <WhyItMatters sectionRefs={sectionRefs} />
-        <PaperBagsCategory sectionRefs={sectionRefs} />
+        {/* <PaperBagsCategory sectionRefs={sectionRefs} /> */}
         {/* <PaperBoxesCategory sectionRefs={sectionRefs} />
         <PaperCoversCategory sectionRefs={sectionRefs} /> */}
 

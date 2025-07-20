@@ -48,12 +48,12 @@ const LazadaStyleMenu: React.FC = () => {
 					px: 1,
 					pt: 1,
 					pb: 1.5,
-					background: 'linear-gradient(to bottom, #a3daf8ff 35%, #d5eefbff 75%)',
+					background: 'linear-gradient(to bottom, #a3daf8ff 35%, #fdf3e6 75%)',
 					overflowX: 'auto',
 					whiteSpace: 'nowrap',
 					display: 'flex',
 					alignItems: 'center',
-					gap: 5,
+					gap: { xs: 5, md: 20 }, // Increased gap for desktop
 					justifyContent: 'center',
 					mt: -3,
 				}}
@@ -111,7 +111,7 @@ const LazadaStyleMenu: React.FC = () => {
 						<Typography
 							variant="caption"
 							sx={{
-								fontSize: '0.8rem',
+								fontSize: { xs: '0.8rem', md: '1.2rem' }, // Increased font size for desktop
 								color: selectedIndex === index ? '#030ff4ff' : '#333',
 								fontWeight: 'bold',
 								maxWidth: 100,

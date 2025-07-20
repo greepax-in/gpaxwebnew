@@ -9,7 +9,8 @@
     "variants": ["Plain", "Single Color", "Multi Color"],
     "featuredProduct": "yes",
     "offeredPrice": 9,
-    "sellingPrice": 10
+    "sellingPrice": 10,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Cake Box Paper Bags",
@@ -18,10 +19,11 @@
     "industry": "Bakeries, Patisseries, Dessert Shops",
     "image": "/images/products/paperbags/7.svg",
     "pageLink": "/products/cake-box-paper-bags",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": ["Plain", "Single Color"],
     "featuredProduct": "no",
     "offeredPrice": 11,
-    "sellingPrice": 12
+    "sellingPrice": 12,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Promotion Paper Bags",
@@ -30,10 +32,11 @@
     "industry": "Events, Exhibitions, Retail Promotions",
     "image": "/images/products/paperbags/13.svg",
     "pageLink": "/products/promotion-paper-bags",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": ["Single Color", "Multi Color"],
     "featuredProduct": "yes",
     "offeredPrice": 14,
-    "sellingPrice": 15
+    "sellingPrice": 15,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Gift Paper Bags",
@@ -45,7 +48,8 @@
     "variants": ["Plain", "Single Color", "Multi Color"],
     "featuredProduct": "no",
     "offeredPrice": 17,
-    "sellingPrice": 18
+    "sellingPrice": 18,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Garment Paper Bags",
@@ -57,7 +61,8 @@
     "variants": ["Plain", "Single Color", "Multi Color"],
     "featuredProduct": "no",
     "offeredPrice": 19,
-    "sellingPrice": 20
+    "sellingPrice": 20,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Medical Paper Covers",
@@ -66,10 +71,11 @@
     "industry": "Healthcare, Hospitals, Medical Stores",
     "image": "/images/products/papercovers/62.svg",
     "pageLink": "/products/medical-paper-covers",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": ["Plain", "Single Color"],
     "featuredProduct": "yes",
     "offeredPrice": 6,
-    "sellingPrice": 7
+    "sellingPrice": 7,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Bakery Paper Covers",
@@ -81,7 +87,8 @@
     "variants": ["Plain", "Single Color", "Multi Color"],
     "featuredProduct": "no",
     "offeredPrice": 6,
-    "sellingPrice": 7
+    "sellingPrice": 7,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Grocery Paper Covers",
@@ -90,10 +97,11 @@
     "industry": "Supermarkets, Grocery Stores, Organic Shops",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/grocery-paper-covers",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": ["Plain", "Single Color"],
     "featuredProduct": "no",
     "offeredPrice": 5,
-    "sellingPrice": 6
+    "sellingPrice": 6,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Vegetable Paper Covers",
@@ -102,10 +110,11 @@
     "industry": "Farmers Markets, Vegetable Vendors",
     "image": "/images/products/papercovers/62.svg",
     "pageLink": "/products/vegetable-paper-covers",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": ["Plain", "Single Color"],
     "featuredProduct": "no",
     "offeredPrice": 5,
-    "sellingPrice": 6
+    "sellingPrice": 6,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Textile Paper Covers",
@@ -114,10 +123,11 @@
     "industry": "Textile Mills, Fabric Stores, Tailors",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/textile-paper-covers",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": ["Plain", "Single Color"],
     "featuredProduct": "no",
     "offeredPrice": 8,
-    "sellingPrice": 9
+    "sellingPrice": 9,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Laundry Paper Covers",
@@ -126,10 +136,11 @@
     "industry": "Laundry Services, Dry Cleaners, Hotels",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/laundry-paper-covers",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": ["Plain", "Single Color"],
     "featuredProduct": "no",
     "offeredPrice": 8,
-    "sellingPrice": 9
+    "sellingPrice": 9,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Cake Boxes",
@@ -141,7 +152,8 @@
     "variants": ["Plain", "Single Color", "Multi Color"],
     "featuredProduct": "yes",
     "offeredPrice": 15,
-    "sellingPrice": 17
+    "sellingPrice": 17,
+    "papervariant": ["Kraft", "White"]
   },
   {
     "name": "Burger Boxes",
@@ -153,6 +165,20 @@
     "variants": ["Plain", "Single Color", "Multi Color"],
     "featuredProduct": "no",
     "offeredPrice": 12,
-    "sellingPrice": 14
+    "sellingPrice": 14,
+    "papervariant": ["Kraft", "White"]
+  },
+    {
+    "name": "Custom Paper Bags",
+    "category": "Paper Bags",
+    "description": "Compact and sturdy boxes to serve burgers hot and mess-free.",
+    "industry": "QSRs, Food Trucks, Restaurants",
+    "image": "/images/products/paperboxes/burger-boxes.svg",
+    "pageLink": "/products/burger-boxes",
+    "variants": ["Plain", "Single Color", "Multi Color"],
+    "featuredProduct": "no",
+    "offeredPrice": 12,
+    "sellingPrice": 14,
+    "papervariant": ["Kraft", "White"]
   }
 ]

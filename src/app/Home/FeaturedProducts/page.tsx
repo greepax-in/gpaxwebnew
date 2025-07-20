@@ -3,31 +3,28 @@
 import React from 'react';
 import { Box, Typography } from '@mui/material';
 import FeaturedProductCard from '@components/Home/FeaturedProducts/FeaturedProductCard';
-// import products from './FeaturedProducts.json';
 import featuredProducts from '../../../data/products.json';
-
 
 const filteredProducts = featuredProducts.filter(
   (product) => product.featuredProduct === 'yes'
 );
 
 export default function FeaturedProducts() {
-  // const isMobile = useMediaQuery('(max-width:600px)');
-
   return (
     <Box
       sx={{
-        width: '100vw',
-        minHeight: { xs: '20vh', md: '70vh' }, // 🔧 Fix: allow space for cards
-        height: 'auto',
-        background: '#f7e3c6ff',
+        width: '100%',
+        // minHeight: { xs: '20vh', md: '70vh' },
+        // height: 'auto',
+        background: '#fef6e4',
+        px: { xs: 2, sm: 3 },
+        mx: 'auto',
         py: { xs: 4, sm: 6 },
       }}
     >
       {/* Heading */}
       <Box
         sx={{
-          px: { xs: 2, sm: 3 },
           maxWidth: 1500,
           margin: '0 auto',
           mt: { xs: -4, sm: 2 },
@@ -38,7 +35,8 @@ export default function FeaturedProducts() {
           align="left"
           sx={{
             fontWeight: 700,
-            fontSize: { xs: '1rem', sm: '1.6rem' },
+            fontSize: { xs: '1rem', sm: '4rem' },
+            textAlign: { xs: 'left', sm: 'center' },
             color: '#000',
             WebkitFontSmoothing: 'antialiased',
             MozOsxFontSmoothing: 'grayscale',
@@ -46,7 +44,7 @@ export default function FeaturedProducts() {
             textRendering: 'optimizeLegibility',
           }}
         >
-          Featured Products
+          Popular Products
         </Typography>
       </Box>
 
@@ -57,27 +55,30 @@ export default function FeaturedProducts() {
           gridTemplateColumns: {
             xs: 'repeat(2, 1fr)',
             sm: 'repeat(2, 1fr)',
-            md: 'repeat(4, 1fr)',
-            lg: 'repeat(4, 1fr)',
+            md: 'repeat(auto-fit, minmax(280px, 1fr))',
           },
           gap: 2,
           px: { xs: 2, sm: 3 },
-          pb: { xs: 0, sm: 2, md: 4 }, // reduce bottom padding for mobile
+          pb: { xs: 0, sm: 2, md: 4 },
           pt: 0,
           backgroundColor: 'transparent',
           boxSizing: 'border-box',
-          maxWidth: 1500,
+          maxWidth: '1440px',
           margin: '0 auto',
-          overflow: 'visible',
         }}
       >
         {filteredProducts.map((product) => (
-          <Box key={product.name} sx={{ width: '100%' }}>
+          <Box key={product.name} sx={{ width: '100%', maxWidth: 320, mx: 'auto' }}>
             <FeaturedProductCard
               name={product.name}
               image={product.image}
-              offeredPrice={product.offeredPrice !== null ? product.offeredPrice : undefined} // Added offeredPrice prop
-              sellingPrice={product.sellingPrice !== null ? product.sellingPrice : undefined} // Added sellingPrice prop
+              desc={product.description}
+              offeredPrice={
+                product.offeredPrice !== null ? product.offeredPrice : undefined
+              }
+              sellingPrice={
+                product.sellingPrice !== null ? product.sellingPrice : undefined
+              }
               link={product.pageLink}
               variants={product.variants}
             />

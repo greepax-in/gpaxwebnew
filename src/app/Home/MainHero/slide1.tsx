@@ -86,8 +86,9 @@ export default function Slide1() {
               fontSize: 'clamp(0.75rem, 2vw, 1rem)',
               color: '#006d9fff',
               fontWeight: 400,
-              margin: '0.3rem 0 0.6rem',
-              paddingInline: 4,
+              // margin: '1rem 0 2rem',
+              marginTop: '3.3rem',
+              paddingInline: 6,
               lineHeight: 1.3,
             }}
           >
@@ -123,7 +124,7 @@ export default function Slide1() {
             fontSize: 'clamp(0.8rem, 2vw, 1.2rem)',
             cursor: 'pointer',
             boxShadow: '0 2px 6px rgba(0, 0, 0, 0.3)',
-            mt: isDesktop ? 3 : 1,
+            mt: isDesktop ? 4 : 1,
             transition: 'all 0.3s ease',
             '&:hover': {
               backgroundColor: '#388e3c',

@@ -63,12 +63,12 @@ export default function Slide3() {
           fontWeight: 700,
           fontSize: { xs: '0.9rem', sm: '2rem' },
           color: '#1976d2',
-          mt: { xs: 0.4, sm: 2 },
+          mt: { xs: 0.6, sm: 2 },
           mb: { xs: 0.2, sm: 3 },
           textAlign: 'center',
         }}
       >
-        Plain, Printed or Full Color – We've Got You Covered.
+        Plain, Printed or Full Color – We&#39;ve Got You Covered.
       </Typography>
 
       {isMobile ? (
@@ -110,35 +110,45 @@ export default function Slide3() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, ease: 'easeOut' }}
                 >
-                  <Chip
-                    label={
-                      <Box
-                        sx={{
-                          lineHeight: 1,
-                          fontSize: '0.6rem',
-                          whiteSpace: 'normal',
-                          textAlign: 'center',
-                          color: '#fff',
-                          fontWeight: 700,
-                          overflow: 'hidden',
-                          display: '-webkit-box',
-                          WebkitLineClamp: 2, // Allow up to 2 lines
-                          WebkitBoxOrient: 'vertical',
-                          // mb: 0.2,
-                        }}
-                      >
-                        {v.title}
-                      </Box>
-                    }
-                    sx={{
-                      height: 25, // Increased height for better text visibility
-                      fontSize: '0.8rem',
-                      px: 0.4,
-                      color: '#fff',
-                      background:
-                        PrintVariants.variants.find((pv: { name: string; backgroundColor: string }) => pv.name.trim().toLowerCase() === v.title.trim().toLowerCase())?.backgroundColor || '#1976d2',
-                    }}
-                  />
+                  <motion.div
+                    initial={{ opacity: 0, scaleX: 0 }} // Slit animation
+                    animate={{ opacity: 1, scaleX: 1 }}
+                    transition={{ duration: 0.6, ease: 'easeOut' }}
+                  >
+                    <Chip
+                      label={
+                        <Box
+                          sx={{
+                            lineHeight: 1,
+                            fontSize: '0.6rem',
+                            whiteSpace: 'normal',
+                            textAlign: 'center',
+                            color: '#fff',
+                            fontWeight: 700,
+                            overflow: 'hidden',
+                            display: '-webkit-box',
+                            WebkitLineClamp: 2, // Allow up to 2 lines
+                            WebkitBoxOrient: 'vertical',
+                            // mb: 0.2,
+                          }}
+                        >
+                          {v.title}
+                        </Box>
+                      }
+                      sx={{
+                        height: 25, // Increased height for better text visibility
+                        fontSize: '0.8rem',
+                        px: 0.4,
+                        color: '#fff',
+                        background:
+                          PrintVariants.variants.find(
+                            (pv: { name: string; backgroundColor: string }) =>
+                              pv.name.trim().toLowerCase() ===
+                              v.title.trim().toLowerCase()
+                          )?.backgroundColor || '#1976d2',
+                      }}
+                    />
+                  </motion.div>
                 </motion.div>
               </Box>
             ))}
@@ -162,7 +172,7 @@ export default function Slide3() {
                 // px: 4,
                 py: 0,
                 lineHeight: 3,
-                backgroundColor: '#d1d0d1ff',
+                backgroundColor: '#1e0163ff',
                 color: '#fff',
                 borderRadius: 1,
                 width: '60%',
