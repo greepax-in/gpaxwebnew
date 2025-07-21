@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Box, Typography, Chip, useMediaQuery } from '@mui/material';
+import { off } from 'process';
 
 type ProductCardProps = {
   name: string;
@@ -37,8 +38,8 @@ export default function ProductCard({
     >
       <Box
         sx={{
-          width: isMobile ? '45vw' : 285, // ~60% of viewport width on mobile
-          height: isMobile ? 'auto' : 570,
+          width: isMobile ? '45vw' : 285,
+          height: isMobile ? 'auto' : 600,
           borderRadius: 2,
           display: 'flex',
           flexDirection: 'column',
@@ -46,7 +47,7 @@ export default function ProductCard({
           overflow: 'hidden',
           bgcolor: '#fff',
           boxShadow: 1,
-          mx: isMobile ? 'auto' : 1, // Centered on mobile, spaced on desktop
+          mx: isMobile ? 'auto' : 1,
           mb: isMobile ? 2 : 0,
           transition: '0.3s',
           '&:hover': {
@@ -130,22 +131,36 @@ export default function ProductCard({
 
         {/* Price */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, px: 1, py: 1 }}>
-          {offeredPrice && (
-            <Typography sx={{ color: 'green', fontWeight: 600 }}>
-              ₹{sellingPrice}
-            </Typography>
-          )}
-          {sellingPrice && (
-            <Typography
-              sx={{
+          <Chip
+            label={
+              sellingPrice ? (
+          <>
+            ₹{offeredPrice}{' '}
+            <span
+              style={{
                 textDecoration: 'line-through',
-                color: '#777',
-                fontSize: '0.85rem',
+                color: '#000',
+                fontSize: isMobile ? '0.8rem' : '1.4rem',
+                marginLeft: 4,
               }}
             >
-              ₹{offeredPrice}
-            </Typography>
-          )}
+              ₹{sellingPrice}
+            </span>
+          </>
+              ) : `₹${offeredPrice}`
+            }
+            sx={{
+              fontWeight: 600,
+              fontSize: isMobile ? '1rem' : '1.8rem',
+              height: 32,
+              px: 0,
+              background: 'linear-gradient(135deg, #0f9d58, #1e88e5)',
+              color: '#fff',
+              borderRadius: '999px',
+              boxShadow: '0 2px 4px rgba(0,0,0,0.15)',
+              alignItems: 'center'
+            }}
+          />
         </Box>
       </Box>
     </a>

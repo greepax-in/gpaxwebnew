@@ -12,6 +12,8 @@ import MobileHero from '../app/Home/MobileHero/page';
 import FeaturedProducts from '../app/Home/FeaturedProducts/page';
 import Products from '../app/Home/Products/page';
 import Footer from '../app/Home/Footer/page';
+import BackToTopButton from '@/components/Common/BacktoTopButton';
+
 
 const HomePage: React.FC = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -27,6 +29,7 @@ const HomePage: React.FC = () => {
         <Products />
         <Footer />
       </Box>
+        <BackToTopButton />
     </main>
   );
 };
