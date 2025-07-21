@@ -152,7 +152,7 @@ export default function ProductCard({
               </Typography>
               {paperVariants.map((variant, i) => {
                 const lower = variant.toLowerCase();
-                let sx: any = {
+                let sx: Record<string, string | number> = {
                   px: 1.2,
                   py: 0.4,
                   fontSize: '0.7rem',
