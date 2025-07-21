@@ -13,7 +13,6 @@ export type ProductCardProps = {
   paperVariants?: string[];
   link?: string;
   desc?: string;
-  tagText?: string;
 };
 
 export default function ProductCard({
@@ -25,7 +24,6 @@ export default function ProductCard({
   paperVariants,
   link,
   desc,
-  tagText,
 }: ProductCardProps) {
   const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -195,7 +193,7 @@ export default function ProductCard({
               {printVariants.map((variant, i) => {
                 const variantLower = variant.toLowerCase();
                 let label = variant;
-                let styleProps: any = {
+                const styleProps: Record<string, string | number> = {
                   px: 1.2,
                   py: 0.4,
                   fontSize: '0.7rem',

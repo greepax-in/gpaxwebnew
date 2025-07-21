@@ -6,9 +6,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 // import { RefObject } from 'react';
 
-type WhyItMattersProps = {
-  sectionRefs: Record<'WhyItMatters', React.RefObject<HTMLDivElement | null>>;
-};
 
 const stats = [
   {
