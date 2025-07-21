@@ -28,9 +28,9 @@ const stats = [
   },
 ];
 
-export default function WhyItMatters({ sectionRefs }: WhyItMattersProps) {
+export default function WhyItMatters() {
   return (
-    <div ref={sectionRefs.WhyItMatters}>
+    <div >
       <Box
         sx={{
           position: 'relative',

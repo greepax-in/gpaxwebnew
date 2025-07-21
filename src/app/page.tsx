@@ -11,9 +11,13 @@ import MobileHero from '../app/Home/MobileHero/page';
 
 import FeaturedProducts from '../app/Home/FeaturedProducts/page';
 import Products from '../app/Home/Products/page';
+import WhyItMatters from '../components/Home/whyitmatters/page';
 import Footer from '../app/Home/Footer/page';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
 
+const sectionRefs = {
+  WhyItMatters: React.createRef<HTMLDivElement>(),
+};
 
 const HomePage: React.FC = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
@@ -27,9 +31,10 @@ const HomePage: React.FC = () => {
         {isMobile ? <MobileHero /> : <HeroSection />}
         <FeaturedProducts />
         <Products />
+        {!isMobile && <WhyItMatters />}
         <Footer />
       </Box>
-        <BackToTopButton />
+      <BackToTopButton />
     </main>
   );
 };

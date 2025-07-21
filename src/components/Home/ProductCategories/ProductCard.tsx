@@ -1,10 +1,10 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, Chip, useMediaQuery } from '@mui/material';
-import { off } from 'process';
+import { Box, Typography, useMediaQuery } from '@mui/material';
+import { motion } from 'framer-motion';
 
-type ProductCardProps = {
+export type ProductCardProps = {
   name: string;
   image: string;
   offeredPrice?: number;
@@ -13,7 +13,7 @@ type ProductCardProps = {
   paperVariants?: string[];
   link?: string;
   desc?: string;
-  variants?: string[];
+  tagText?: string;
 };
 
 export default function ProductCard({
@@ -25,7 +25,7 @@ export default function ProductCard({
   paperVariants,
   link,
   desc,
-  variants,
+  tagText,
 }: ProductCardProps) {
   const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -38,211 +38,245 @@ export default function ProductCard({
     >
       <Box
         sx={{
-          width: isMobile ? '45vw' : 285,
+          width: isMobile ? '45vw' : 300,
           height: isMobile ? 'auto' : 600,
           borderRadius: 2,
-          display: 'flex',
-          flexDirection: 'column',
-          justifyContent: 'space-between',
           overflow: 'hidden',
           bgcolor: '#fff',
           boxShadow: 1,
-          mx: isMobile ? 'auto' : 1,
-          mb: isMobile ? 2 : 0,
-          transition: '0.3s',
+          mx: 'auto',
+          mb: 2,
+          transition: 'all 0.3s ease-in-out',
           '&:hover': {
-            boxShadow: 4,
-            transform: 'scale(1.015)',
+            boxShadow: 6,
+            transform: 'scale(1.02)',
           },
         }}
       >
-        {/* Product Image */}
-        <Box
-          component="img"
-          src={image}
-          alt={name}
-          sx={{
-            width: '100%',
-            height: isMobile ? 'auto' : 380,
-            objectFit: 'cover',
-            display: 'block',
-          }}
-        />
-
-        {/* Product Name */}
-        <Typography
-          noWrap
-          sx={{
-            fontWeight: 600,
-            fontSize: isMobile ? '0.85rem' : '1.4rem',
-            px: 1,
-            pt: 1,
-            color: '#111',
-            mb: isMobile ? 1 : 2, // Added margin bottom for both mobile and desktop
-          }}
-        >
-          {name}
-        </Typography>
-        {!isMobile && desc && (
-          <Typography
-            sx={{
-              fontWeight: 400,
-              fontSize: '1rem',
-              px: 1,
-              pt: 0.5,
-              color: '#444',
-              display: '-webkit-box',
-              WebkitLineClamp: 2, // Limit to 2 lines
-              WebkitBoxOrient: 'vertical',
-              overflow: 'hidden',
-              textOverflow: 'ellipsis',
-            }}
-          >
-            {desc}
-          </Typography>
-        )}
-
-        {/* Paper Type & Print Variants */}
-{!isMobile && (
-  <Box sx={{ px: 1, pt: 1 }}>
-    {/* Paper Type */}
-    {paperVariants && paperVariants.length > 0 && (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 0.5 }}>
-        <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
-          📄 Paper:
-        </Typography>
-        {paperVariants.map((variant, i) => {
-          const lower = variant.toLowerCase();
-          let sx: any = {
-            display: 'inline-flex',
-            alignItems: 'center',
-            px: 1.2,
-            py: 0.4,
-            fontSize: '0.7rem',
-            fontWeight: 600,
-            borderRadius: 99,
-            whiteSpace: 'nowrap',
-          };
-
-          if (lower === 'kraft') {
-            sx = {
-              ...sx,
-              backgroundColor: '#a47148', // Kraft brown
-              color: '#fff',
-            };
-          } else if (lower === 'white') {
-            sx = {
-              ...sx,
-              backgroundColor: '#fff',
-              color: '#333',
-              border: '1px solid #ccc',
-            };
-          }
-
-          return (
-            <Box key={i} sx={sx}>
-              {variant}
-            </Box>
-          );
-        })}
-      </Box>
-    )}
-
-    {/* Print Variants */}
-    {printVariants && printVariants.length > 0 && (
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-        <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
-          🎨 Print:
-        </Typography>
-        {printVariants.map((variant, i) => {
-          const variantLower = variant.toLowerCase();
-          let label = variant;
-          let styleProps: any = {
-            display: 'inline-flex',
-            alignItems: 'center',
-            px: 1.2,
-            py: 0.4,
-            fontSize: '0.7rem',
-            fontWeight: 600,
-            borderRadius: 99,
-            color: '#fff',
-            whiteSpace: 'nowrap',
-            boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
-          };
-
-          if (variantLower === 'plain') {
-            label = 'Plain';
-            styleProps.backgroundColor = '#b4b5b4';
-          } else if (variantLower === 'single color') {
-            label = '1-Color';
-            styleProps.backgroundColor = '#5f02b0';
-          } else if (variantLower === 'multi color') {
-            label = 'MultiColor';
-            styleProps.background = 'linear-gradient(135deg, #5f02b0, #f3a42f)';
-            styleProps.border = '1px solid rgba(255,255,255,0.1)';
-            styleProps.boxShadow = 'inset 0 0 4px rgba(255,255,255,0.2)';
-          }
-
-          return (
-            <Box key={i} sx={styleProps}>
-              {label}
-            </Box>
-          );
-        })}
-      </Box>
-    )}
-  </Box>
-)}
-
-
-        {/* Price */}
-        <Box
-          sx={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            px: isMobile ? 1 : 2,
-            pt: isMobile ? 0.5 : 1,
-          }}
-        >
-          <Box
-            sx={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              py: isMobile ? 0.3 : 0.4,
-              px: isMobile ? 1 : 2,
-              background: isMobile
-                ? 'linear-gradient(135deg, #43cea2, #185a9d)'
-                : 'linear-gradient(135deg, #0f9d58, #1e88e5)',
-              color: '#fff',
-              borderTopLeftRadius: isMobile ? '12px' : '999px',
-              borderBottomLeftRadius: isMobile ? '6px' : '999px',
-              borderTopRightRadius: isMobile ? '6px' : '6px',
-              borderBottomRightRadius: isMobile ? '6px' : '6px',
-              fontWeight: 600,
-              fontSize: isMobile ? '1.3rem' : '1.5rem',
-              boxShadow: '0 1px 3px rgba(0,0,0,0.15)',
-              maxWidth: 'fit-content',
-            }}
-          >
-            ₹{offeredPrice}
-            {sellingPrice && (
-              <span
-                style={{
-                  marginLeft: 5,
-                  textDecoration: 'line-through',
-                  fontSize: isMobile ? '1.1rem' : '1.5rem',
-                  color: isMobile ? 'rgba(255,255,255,0.7)' : 'rgba(255,255,255,0.85)',
-                  fontWeight: isMobile ? 500 : 400,
+        {/* --- mobile image full view --- */}
+        {isMobile ? (
+          <>
+            <Box
+              component="img"
+              src={image}
+              alt={name}
+              sx={{
+                width: '100%',
+                height: 'auto',
+                display: 'block',
+                objectFit: 'contain',
+              }}
+            />
+            <Box sx={{ px: 1.5, py: 1 }}>
+              <Typography
+                sx={{
+                  fontWeight: 700,
+                  fontSize: '0.7rem',
+                  color: '#222',
+                  overflow: 'hidden',
+                  display: '-webkit-box',
+                  WebkitLineClamp: 2,
+                  WebkitBoxOrient: 'vertical',
+                  textOverflow: 'ellipsis',
                 }}
               >
-                ₹{sellingPrice}
-              </span>
-            )}
+                {name}
+              </Typography>
+            </Box>
+          </>
+        ) : (
+          <motion.div
+            initial={{ opacity: 0, scale: 1 }}
+            animate={{ opacity: 1 }}
+            whileHover={{
+              scale: 1.06,
+              filter: 'brightness(1.05)',
+              boxShadow: '0 8px 20px rgba(0, 0, 0, 0.25)',
+            }}
+            transition={{
+              type: 'spring',
+              stiffness: 250,
+              damping: 22,
+            }}
+          >
+            <Box
+              component="img"
+              src={image}
+              alt={name}
+              sx={{
+                width: '100%',
+                height: 360,
+                objectFit: 'cover',
+                display: 'block',
+              }}
+            />
+          </motion.div>
+        )}
+
+        {/* --- bottom section --- */}
+        <Box sx={{ px: 2, pt: isMobile ? 1.5 : 2 }}>
+          {!isMobile && (
+            <Typography
+              noWrap
+              sx={{
+                fontWeight: 700,
+                fontSize: '1.4rem',
+                color: '#222',
+                mb: 1,
+              }}
+            >
+              {name}
+            </Typography>
+          )}
+
+          {!isMobile && desc && (
+            <Typography
+              sx={{
+                fontSize: '0.9rem',
+                color: '#555',
+                mb: 2,
+                lineHeight: 1.4,
+                display: '-webkit-box',
+                WebkitLineClamp: 2,
+                WebkitBoxOrient: 'vertical',
+                overflow: 'hidden',
+              }}
+            >
+              {desc}
+            </Typography>
+          )}
+
+          {/* Paper Variants (desktop only) */}
+          {!isMobile && paperVariants && paperVariants.length > 0 && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+              <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
+                📄 Paper:
+              </Typography>
+              {paperVariants.map((variant, i) => {
+                const lower = variant.toLowerCase();
+                let sx: any = {
+                  px: 1.2,
+                  py: 0.4,
+                  fontSize: '0.7rem',
+                  fontWeight: 600,
+                  borderRadius: 99,
+                };
+
+                if (lower === 'kraft') {
+                  sx = {
+                    ...sx,
+                    backgroundColor: '#a47148',
+                    color: '#fff',
+                  };
+                } else if (lower === 'white') {
+                  sx = {
+                    ...sx,
+                    backgroundColor: '#fff',
+                    color: '#333',
+                    border: '1px solid #ccc',
+                  };
+                }
+
+                return (
+                  <Box key={i} sx={sx}>
+                    {variant}
+                  </Box>
+                );
+              })}
+            </Box>
+          )}
+
+          {/* Print Variants (desktop only) */}
+          {!isMobile && printVariants && printVariants.length > 0 && (
+            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+              <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
+                🎨 Print:
+              </Typography>
+              {printVariants.map((variant, i) => {
+                const variantLower = variant.toLowerCase();
+                let label = variant;
+                let styleProps: any = {
+                  px: 1.2,
+                  py: 0.4,
+                  fontSize: '0.7rem',
+                  fontWeight: 600,
+                  borderRadius: 99,
+                  color: '#fff',
+                  whiteSpace: 'nowrap',
+                };
+
+                if (variantLower === 'plain') {
+                  label = 'Plain';
+                  styleProps.backgroundColor = '#b4b5b4';
+                } else if (variantLower === 'single color') {
+                  label = '1-Color';
+                  styleProps.backgroundColor = '#5f02b0';
+                } else if (variantLower === 'multi color') {
+                  label = 'MultiColor';
+                  styleProps.background = 'linear-gradient(135deg, #5f02b0, #f3a42f)';
+                }
+
+                return (
+                  <Box key={i} sx={styleProps}>
+                    {label}
+                  </Box>
+                );
+              })}
+            </Box>
+          )}
+
+          {/* Pricing */}
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              mt: 'auto',
+              mb: 2,
+            }}
+          >
+            <Box
+              sx={{
+                px: 2,
+                py: 0.6,
+                background: 'linear-gradient(135deg, #0f9d58, #1e88e5)',
+                color: '#fff',
+                borderRadius: '20px',
+                fontWeight: 700,
+                fontSize: isMobile ? '1rem' : '1.2rem',
+                display: 'inline-flex',
+                alignItems: 'center',
+              }}
+            >
+              <Typography
+                component="span"
+                sx={{
+                  fontSize: isMobile ? '0.5rem' : '0.6rem',
+                  fontWeight: 400,
+                  mr: 0.5,
+                  opacity: 0.85,
+                }}
+              >
+                from
+              </Typography>
+              ₹{offeredPrice}
+              {sellingPrice && (
+                <Typography
+                  component="span"
+                  sx={{
+                    ml: 1,
+                    textDecoration: 'line-through',
+                    fontSize: isMobile ? '0.75rem' : '1rem',
+                    color: 'rgba(255,255,255,0.85)',
+                    fontWeight: 400,
+                  }}
+                >
+                  ₹{sellingPrice}
+                </Typography>
+              )}
+            </Box>
           </Box>
         </Box>
-
-
       </Box>
     </a>
   );
