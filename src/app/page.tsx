@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, useMediaQuery } from '@mui/material';
 
 import DeskMenu from '@/components/AppBar/DeskMenu';
@@ -15,12 +15,16 @@ import WhyItMatters from '../components/Home/whyitmatters/page';
 import Footer from '../app/Home/Footer/page';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
 
-const sectionRefs = {
-  WhyItMatters: React.createRef<HTMLDivElement>(),
-};
-
 const HomePage: React.FC = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const isMobile = useMediaQuery('(max-width:600px)');
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Avoid rendering until client-side hydration completes
+  if (!isMounted) return null;
 
   return (
     <main style={{ position: 'relative', overflow: 'visible' }}>
