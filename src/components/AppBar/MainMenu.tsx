@@ -9,7 +9,7 @@ import ClickAwayListener from "@mui/material/ClickAwayListener";
 const MotionDiv = motion.div;
 const MotionButtonDiv = motion.div;
 
-const menuItems = ["Paper Bags", "Paper Boxes", "Paper Covers"];
+const menuItems = ["Paper Bags",  "Paper Covers", "Paper Boxes"];
 
 export default function MainMenu() {
   const [openMenu, setOpenMenu] = useState<string | null>(null);
