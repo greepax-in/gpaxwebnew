@@ -21,6 +21,9 @@ type ProductType = {
   link?: string;
   desc?: string;
   category: string;
+  description?: string; // Added description property
+  printvariants?: string[];
+  papervariant?: string[];
 };
 
 export default function ProductGridSection() {
@@ -160,8 +163,8 @@ export default function ProductGridSection() {
               sm: 'normal',
             },
             gap: {
-              xs: '-1px 6px',
-              sm: '20px',
+              xs: '6px', // Fixed gap for mobile
+              sm: '20px', // Gap for desktop
             },
             px: { xs: 0.5, sm: 2 },
           }}
@@ -171,12 +174,12 @@ export default function ProductGridSection() {
               <ProductCard
                 name={product.name}
                 image={product.image}
-                desc={product.desc}
+                desc={product.description} // Correctly mapped description to desc
                 offeredPrice={product.offeredPrice ?? undefined}
                 sellingPrice={product.sellingPrice ?? undefined}
-                link={product.link}
-                printVariants={product.printVariants}
-                paperVariants={product.paperVariants}
+                link={product.link} // Correctly mapped pageLink to link
+                printVariants={product.printvariants} // Correctly mapped printvariants
+                paperVariants={product.papervariant} // Correctly mapped papervariant
               />
             </Box>
           ))}

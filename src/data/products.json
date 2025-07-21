@@ -27,7 +27,7 @@
     "industry": "Bakeries, Patisseries, Dessert Shops",
     "image": "/images/products/paperbags/7.svg",
     "pageLink": "/products/cake-box-paper-bags",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color"
     ],
@@ -35,8 +35,7 @@
     "offeredPrice": 11,
     "sellingPrice": 12,
     "papervariant": [
-      "Kraft",
-      "White"
+      "Kraft"
     ],
     "tagtext": "Hot"
   },
@@ -47,7 +46,7 @@
     "industry": "Events, Exhibitions, Retail Promotions",
     "image": "/images/products/paperbags/13.svg",
     "pageLink": "/products/promotion-paper-bags",
-    "variants": [
+    "printvariants": [
       "Single Color",
       "Multi Color"
     ],
@@ -67,7 +66,7 @@
     "industry": "Retail, Gifting, Lifestyle Stores",
     "image": "/images/products/paperbags/file.svg",
     "pageLink": "/products/gift-paper-bags",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color",
       "Multi Color"
@@ -88,7 +87,7 @@
     "industry": "Apparel, Fashion Boutiques, Showrooms",
     "image": "/images/products/paperbags/kraft-paper-bag.svg",
     "pageLink": "/products/garment-paper-bags",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color",
       "Multi Color"
@@ -109,7 +108,7 @@
     "industry": "Healthcare, Hospitals, Medical Stores",
     "image": "/images/products/papercovers/62.svg",
     "pageLink": "/products/medical-paper-covers",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color"
     ],
@@ -117,8 +116,8 @@
     "offeredPrice": 6,
     "sellingPrice": 7,
     "papervariant": [
-      "Kraft",
-      "White"
+      "Kraft"
+  
     ],
     "tagtext": "Popular"
   },
@@ -129,17 +128,15 @@
     "industry": "Bakeries, Cafes, Street Food Vendors",
     "image": "/images/products/papercovers/6.svg",
     "pageLink": "/products/bakery-paper-covers",
-    "variants": [
+    "printvariants": [
       "Plain",
-      "Single Color",
-      "Multi Color"
+      "Single Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 6,
     "sellingPrice": 7,
     "papervariant": [
-      "Kraft",
-      "White"
+      "Kraft"
     ],
     "tagtext": "New"
   },
@@ -150,7 +147,7 @@
     "industry": "Supermarkets, Grocery Stores, Organic Shops",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/grocery-paper-covers",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color"
     ],
@@ -158,8 +155,7 @@
     "offeredPrice": 5,
     "sellingPrice": 6,
     "papervariant": [
-      "Kraft",
-      "White"
+      "Kraft"
     ],
     "tagtext": "Hot"
   },
@@ -170,7 +166,7 @@
     "industry": "Farmers Markets, Vegetable Vendors",
     "image": "/images/products/papercovers/62.svg",
     "pageLink": "/products/vegetable-paper-covers",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color"
     ],
@@ -178,8 +174,7 @@
     "offeredPrice": 5,
     "sellingPrice": 6,
     "papervariant": [
-      "Kraft",
-      "White"
+      "Kraft"
     ],
     "tagtext": "Popular"
   },
@@ -190,7 +185,7 @@
     "industry": "Textile Mills, Fabric Stores, Tailors",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/textile-paper-covers",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color"
     ],
@@ -198,8 +193,7 @@
     "offeredPrice": 8,
     "sellingPrice": 9,
     "papervariant": [
-      "Kraft",
-      "White"
+      "Kraft"
     ],
     "tagtext": "Popular"
   },
@@ -210,7 +204,7 @@
     "industry": "Laundry Services, Dry Cleaners, Hotels",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/laundry-paper-covers",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color"
     ],
@@ -218,8 +212,7 @@
     "offeredPrice": 8,
     "sellingPrice": 9,
     "papervariant": [
-      "Kraft",
-      "White"
+      "Kraft"
     ],
     "tagtext": "New"
   },
@@ -230,18 +223,14 @@
     "industry": "Bakeries, Cake Shops, Dessert Cafes",
     "image": "/images/products/paperboxes/kraft-cake-boxes.svg",
     "pageLink": "/products/cake-boxes",
-    "variants": [
-      "Plain",
-      "Single Color",
-      "Multi Color"
+    "printvariants": [
+      "Plain"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 15,
     "sellingPrice": 17,
     "papervariant": [
-      "Kraft",
-      "White"
-    ],
+      "Kraft"    ],
     "tagtext": "Hot"
   },
   {
@@ -251,7 +240,7 @@
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/products/paperboxes/burger-boxes.svg",
     "pageLink": "/products/burger-boxes",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color",
       "Multi Color"
@@ -272,7 +261,7 @@
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/products/paperboxes/burger-boxes.svg",
     "pageLink": "/products/burger-boxes",
-    "variants": [
+    "printvariants": [
       "Plain",
       "Single Color",
       "Multi Color"
