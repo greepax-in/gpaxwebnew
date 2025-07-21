@@ -1,51 +1,32 @@
 'use client';
+
 import React from 'react';
-import AppBar from '@components/AppBar/AppBar';
+import { Box, useMediaQuery } from '@mui/material';
+
+import DeskMenu from '@/components/AppBar/DeskMenu';
+// import MobileMenu from '@/components/AppBar/MobileMenu';
+
 import HeroSection from '../app/Home/MainHero/page';
-import MiniMenu from '@components/AppBar/MiniMenu';
+import MobileHero from '../app/Home/MobileHero/page';
+
 import FeaturedProducts from '../app/Home/FeaturedProducts/page';
-import PaperBags from '../app/Home/ProductCategories/PaperBags/page';
-import PaperCovers from '../app/Home/ProductCategories/PaperCovers/page'; 
-import PaperBoxes from '../app/Home/ProductCategories/PaperBoxes/page';
-import { Box } from '@mui/material';
+import Products from '../app/Home/Products/page';
+import Footer from '../app/Home/Footer/page';
 
 const HomePage: React.FC = () => {
+  const isMobile = useMediaQuery('(max-width:600px)');
+
   return (
-    <main
-      style={{
-        position: 'relative',
-        overflow: 'visible',
-      }}
-    >
-      <AppBar />
+    <main style={{ position: 'relative', overflow: 'visible' }}>
+      <DeskMenu />
+      {/* <MobileMenu /> */}
 
-      {/* Hero Section */}
       <Box mt={{ xs: '56px', sm: '80px' }}>
-        <HeroSection />
-      </Box>
-
-      {/* Featured Products */}
-    
+        {isMobile ? <MobileHero /> : <HeroSection />}
         <FeaturedProducts />
-    
-
-      {/* MiniMenu */}
-    
-        <MiniMenu />
-    
-
-      {/* Product Categories */}
-    
-        <PaperBags />
-    
-
-    
-        <PaperCovers />
-    
-
-    
-        <PaperBoxes />
-    
+        <Products />
+        <Footer />
+      </Box>
     </main>
   );
 };

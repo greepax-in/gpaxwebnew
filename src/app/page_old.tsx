@@ -4,12 +4,12 @@ import { useEffect, useState, useRef, useMemo } from 'react';
 import { useMediaQuery, useTheme, Box } from '@mui/material';
 import { motion } from 'framer-motion';
 
-import AppBar from '@/components/AppBar/AppBar';
+import AppBar from '@/components/AppBar/DeskMenu';
 // import MiniMenu from '@/components/AppBar/MiniMenu';
 import MainHero from '../../src/app/Home/MainHero/page';
 import WhyItMatters from '@/components/Home/whyitmatters/page';
 import Footer from '@/components/Home/Footer/Footer';
-import Footer2 from './Home/Footer2/page';
+import Footer2 from './Home/Footer/page';
 // import PaperBagsCategory from '@/components/Home/ProductCategories/PaperBags';
 // import PaperBoxesCategory from '@/components/Home/ProductCategories/PaperBoxes';
 // import PaperCoversCategory from '@/components/Home/ProductCategories/PaperCovers';

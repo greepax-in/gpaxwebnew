@@ -1,222 +1,132 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, useMediaQuery, Tooltip } from '@mui/material';
-import { motion } from 'framer-motion';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-// import Head from 'next/head';
+import { Box, Typography, Chip, useMediaQuery } from '@mui/material';
 
-export type ProductCardProps = {
+type ProductCardProps = {
   name: string;
   image: string;
-  waText?: string;
-  // price?: string;
-  offeredPrice?: number; // Added offeredPrice prop
-  sellingPrice?: number; // Added sellingPrice prop
-  variants?: string[];
+  offeredPrice?: number;
+  sellingPrice?: number;
+  printVariants?: string[];
+  paperVariants?: string[];
   link?: string;
+  desc?: string;
 };
 
 export default function ProductCard({
   name,
   image,
-  waText,
-  // price,
-  offeredPrice, // Added offeredPrice prop
-  sellingPrice, // Added sellingPrice prop
-  variants,
+  offeredPrice,
+  sellingPrice,
+  printVariants,
+  paperVariants,
   link,
+  desc,
 }: ProductCardProps) {
   const isMobile = useMediaQuery('(max-width:600px)');
 
-
-
-  const motionVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: (i: number) => ({
-      opacity: 1,
-      y: 0,
-      transition: { delay: i * 0.1 },
-    }),
-  };
-
-  if (isMobile) {
-    return (
-      <motion.div
-        variants={motionVariants}
-        initial="hidden"
-        animate="visible"
-        custom={0}
-        style={{ width: '100%' }}
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      style={{ textDecoration: 'none' }}
+    >
+      <Box
+        sx={{
+          width: isMobile ? '45vw' : 285, // ~60% of viewport width on mobile
+          height: isMobile ? 'auto' : 490,
+          borderRadius: 2,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'space-between',
+          overflow: 'hidden',
+          bgcolor: '#fff',
+          boxShadow: 1,
+          mx: isMobile ? 'auto' : 1, // Centered on mobile, spaced on desktop
+          mb: isMobile ? 2 : 0,
+          transition: '0.3s',
+          '&:hover': {
+            boxShadow: 4,
+            transform: 'scale(1.015)',
+          },
+        }}
       >
+        {/* Product Image */}
         <Box
+          component="img"
+          src={image}
+          alt={name}
           sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            background: '#fff',
             width: '100%',
-            boxShadow: 2,
-            p: 2,
-            minHeight: 280,
-            justifyContent: 'center',
-            borderRadius: 2,
-            position: 'relative',
+            height: isMobile ? 'auto' : 380,
+            objectFit: 'cover',
+            display: 'block',
+          }}
+        />
+
+        {/* Product Name */}
+        <Typography
+          noWrap
+          sx={{
+            fontWeight: 600,
+            fontSize: isMobile ? '0.85rem' : '1.4rem',
+            px: 1,
+            pt: 1,
+            color: '#111',
           }}
         >
-          <Box
-            component="img"
-            src={image}
-            alt={name}
+          {name}
+        </Typography>
+        {!isMobile && desc && (
+          <Typography
+            noWrap
             sx={{
-              width: 120,
-              height: 120,
-              objectFit: 'contain',
-              borderRadius: 2,
-              mb: 1.5,
-              boxShadow: 2,
+              fontWeight: 400,
+              fontSize: '1rem',
+              px: 1,
+              pt: 0.5,
+              color: '#444',
             }}
-          />
-          <Typography fontWeight={600} fontSize="1.05rem" align="center">
-            {name}
+          >
+            {desc}
           </Typography>
-          {Array.isArray(variants) && variants.length > 0 && (
-            <Typography fontSize="0.9rem" color="#666" mt={0.5} textAlign="center">
-              {variants.join(', ')}
-            </Typography>
-          )}
-          <Box display="flex" alignItems="center" gap={1} mt={1}>
-            {offeredPrice && (
-              <Typography fontWeight={700} color="#2e7d32" fontSize="1rem">
-                ₹{offeredPrice}
-              </Typography>
-            )}
-            {sellingPrice && (
-              <Typography
-                fontWeight={700}
-                color="#666"
-                fontSize="1rem"
-                sx={{ textDecoration: 'line-through' }}
-              >
-                ₹{sellingPrice}
-              </Typography>
-            )}
-            {waText && link && (
-              <Tooltip title="Chat on WhatsApp">
-                <Box
-                  component="a"
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ color: '#25D366' }}
-                >
-                  <WhatsAppIcon fontSize="medium" />
-                </Box>
-              </Tooltip>
-            )}
-          </Box>
+        )}
+
+
+        {/* Variants */}
+        <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, px: 1, pt: 0.5 }}>
+          {[...(printVariants ?? []), ...(paperVariants ?? [])].map((variant, i) => (
+            <Chip
+              key={i}
+              label={variant}
+              size="small"
+              sx={{ fontSize: '0.65rem', height: 20 }}
+            />
+          ))}
         </Box>
 
-      </motion.div>
-    );
-  }
-
-  return (
-    <Box sx={{ width: '100%', overflow: 'visible' }}>
-      <motion.div
-        whileHover={{ scale: 1.04 }}
-        initial="hidden"
-        animate="visible"
-        variants={motionVariants}
-        custom={0}
-        transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-        style={{ width: '100%' }}
-      >
-        <Box
-          sx={{
-            transformOrigin: 'center',
-            willChange: 'transform',
-            background: '#fff',
-            borderRadius: 2,
-            p: 2.5,
-            minHeight: 340,
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            boxShadow: 3,
-            transition: 'box-shadow 0.3s ease-in-out',
-            position: 'relative',
-            '&:hover': {
-              boxShadow: 6,
-            },
-          }}
-        >
-          <Box
-            component="img"
-            src={image}
-            alt={name}
-            sx={{
-              width: 140,
-              height: 140,
-              objectFit: 'contain',
-              borderRadius: 2,
-              mb: 2,
-            }}
-          />
-          <Typography fontWeight={700} fontSize="1.2rem" align="center">
-            {name}
-          </Typography>
-          {Array.isArray(variants) && variants.length > 0 && (
+        {/* Price */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, px: 1, py: 1 }}>
+          {offeredPrice && (
+            <Typography sx={{ color: 'green', fontWeight: 600 }}>
+              ₹{offeredPrice}
+            </Typography>
+          )}
+          {sellingPrice && (
             <Typography
-              fontSize="1rem"
-              color="#666"
-              mt={0.5}
-              textAlign="center"
               sx={{
-                maxWidth: '90%',
-                whiteSpace: 'nowrap',
-                overflow: 'hidden',
-                textOverflow: 'ellipsis',
+                textDecoration: 'line-through',
+                color: '#777',
+                fontSize: '0.85rem',
               }}
             >
-              {variants.join(', ')}
+              ₹{sellingPrice}
             </Typography>
           )}
-          <Box display="flex" alignItems="center" gap={1} mt={1}>
-            {offeredPrice && (
-              <Typography fontWeight={700} color="#2e7d32" fontSize="1rem">
-                ₹{offeredPrice}
-              </Typography>
-            )}
-            {sellingPrice && (
-              <Typography
-                fontWeight={700}
-                color="#666"
-                fontSize="1rem"
-                sx={{ textDecoration: 'line-through' }}
-              >
-                ₹{sellingPrice}
-              </Typography>
-            )}
-            {waText && link && (
-              <Tooltip title="Chat on WhatsApp">
-                <Box
-                  component="a"
-                  href={link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ color: '#25D366' }}
-                >
-                  <WhatsAppIcon fontSize="medium" />
-                </Box>
-              </Tooltip>
-            )}
-          </Box>
         </Box>
-     
-      </motion.div>
-    </Box>
+      </Box>
+    </a>
   );
 }

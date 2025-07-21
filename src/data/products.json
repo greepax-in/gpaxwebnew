@@ -2,67 +2,105 @@
   {
     "name": "Food Delivery Paper Bags",
     "category": "Paper Bags",
-    "description": "Engineered for the food delivery revolution—our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
+    "description": "Engineered for the food delivery revolution\u2014our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
     "industry": "Food Delivery, Restaurants, Cloud Kitchens",
     "image": "/images/products/paperbags/1.svg",
     "pageLink": "/products/food-delivery-paper-bags",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "printvariants": [
+      "Plain",
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "yes",
     "offeredPrice": 9,
     "sellingPrice": 10,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New"
   },
   {
     "name": "Cake Box Paper Bags",
     "category": "Paper Bags",
-    "description": "Crafted for celebration—our cake box paper bags are strong, elegant, and made to carry sweetness with care.",
+    "description": "Crafted for celebration\u2014our cake box paper bags are strong, elegant, and made to carry sweetness with care.",
     "industry": "Bakeries, Patisseries, Dessert Shops",
     "image": "/images/products/paperbags/7.svg",
     "pageLink": "/products/cake-box-paper-bags",
-    "variants": ["Plain", "Single Color"],
+    "variants": [
+      "Plain",
+      "Single Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 11,
     "sellingPrice": 12,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "Hot"
   },
   {
     "name": "Promotion Paper Bags",
     "category": "Paper Bags",
-    "description": "Turn every giveaway into a brand experience—these customizable paper bags elevate your promotional efforts with professional flair.",
+    "description": "Turn every giveaway into a brand experience\u2014these customizable paper bags elevate your promotional efforts with professional flair.",
     "industry": "Events, Exhibitions, Retail Promotions",
     "image": "/images/products/paperbags/13.svg",
     "pageLink": "/products/promotion-paper-bags",
-    "variants": ["Single Color", "Multi Color"],
+    "variants": [
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "yes",
     "offeredPrice": 14,
     "sellingPrice": 15,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New"
   },
   {
     "name": "Gift Paper Bags",
     "category": "Paper Bags",
-    "description": "Add charm to every gift—our premium paper bags are designed to impress with their sleek look and sturdy feel.",
+    "description": "Add charm to every gift\u2014our premium paper bags are designed to impress with their sleek look and sturdy feel.",
     "industry": "Retail, Gifting, Lifestyle Stores",
     "image": "/images/products/paperbags/file.svg",
     "pageLink": "/products/gift-paper-bags",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": [
+      "Plain",
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 17,
     "sellingPrice": 18,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "Hot"
   },
   {
     "name": "Garment Paper Bags",
     "category": "Paper Bags",
-    "description": "Designed for fashion retailers—our spacious garment paper bags combine style, strength, and sustainability in every fold.",
+    "description": "Designed for fashion retailers\u2014our spacious garment paper bags combine style, strength, and sustainability in every fold.",
     "industry": "Apparel, Fashion Boutiques, Showrooms",
     "image": "/images/products/paperbags/kraft-paper-bag.svg",
     "pageLink": "/products/garment-paper-bags",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": [
+      "Plain",
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 19,
     "sellingPrice": 20,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New"
   },
   {
     "name": "Medical Paper Covers",
@@ -71,11 +109,18 @@
     "industry": "Healthcare, Hospitals, Medical Stores",
     "image": "/images/products/papercovers/62.svg",
     "pageLink": "/products/medical-paper-covers",
-    "variants": ["Plain", "Single Color"],
+    "variants": [
+      "Plain",
+      "Single Color"
+    ],
     "featuredProduct": "yes",
     "offeredPrice": 6,
     "sellingPrice": 7,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "Popular"
   },
   {
     "name": "Bakery Paper Covers",
@@ -84,11 +129,19 @@
     "industry": "Bakeries, Cafes, Street Food Vendors",
     "image": "/images/products/papercovers/6.svg",
     "pageLink": "/products/bakery-paper-covers",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": [
+      "Plain",
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 6,
     "sellingPrice": 7,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New"
   },
   {
     "name": "Grocery Paper Covers",
@@ -97,11 +150,18 @@
     "industry": "Supermarkets, Grocery Stores, Organic Shops",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/grocery-paper-covers",
-    "variants": ["Plain", "Single Color"],
+    "variants": [
+      "Plain",
+      "Single Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 5,
     "sellingPrice": 6,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "Hot"
   },
   {
     "name": "Vegetable Paper Covers",
@@ -110,11 +170,18 @@
     "industry": "Farmers Markets, Vegetable Vendors",
     "image": "/images/products/papercovers/62.svg",
     "pageLink": "/products/vegetable-paper-covers",
-    "variants": ["Plain", "Single Color"],
+    "variants": [
+      "Plain",
+      "Single Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 5,
     "sellingPrice": 6,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "Popular"
   },
   {
     "name": "Textile Paper Covers",
@@ -123,11 +190,18 @@
     "industry": "Textile Mills, Fabric Stores, Tailors",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/textile-paper-covers",
-    "variants": ["Plain", "Single Color"],
+    "variants": [
+      "Plain",
+      "Single Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 8,
     "sellingPrice": 9,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "Popular"
   },
   {
     "name": "Laundry Paper Covers",
@@ -136,11 +210,18 @@
     "industry": "Laundry Services, Dry Cleaners, Hotels",
     "image": "/images/products/papercovers/10.svg",
     "pageLink": "/products/laundry-paper-covers",
-    "variants": ["Plain", "Single Color"],
-    "featuredProduct": "no",
+    "variants": [
+      "Plain",
+      "Single Color"
+    ],
+    "featuredProduct": "yes",
     "offeredPrice": 8,
     "sellingPrice": 9,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New"
   },
   {
     "name": "Cake Boxes",
@@ -149,11 +230,19 @@
     "industry": "Bakeries, Cake Shops, Dessert Cafes",
     "image": "/images/products/paperboxes/kraft-cake-boxes.svg",
     "pageLink": "/products/cake-boxes",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": [
+      "Plain",
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "yes",
     "offeredPrice": 15,
     "sellingPrice": 17,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "Hot"
   },
   {
     "name": "Burger Boxes",
@@ -162,23 +251,39 @@
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/products/paperboxes/burger-boxes.svg",
     "pageLink": "/products/burger-boxes",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": [
+      "Plain",
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 12,
     "sellingPrice": 14,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New"
   },
-    {
+  {
     "name": "Custom Paper Bags",
     "category": "Paper Bags",
     "description": "Compact and sturdy boxes to serve burgers hot and mess-free.",
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/products/paperboxes/burger-boxes.svg",
     "pageLink": "/products/burger-boxes",
-    "variants": ["Plain", "Single Color", "Multi Color"],
+    "variants": [
+      "Plain",
+      "Single Color",
+      "Multi Color"
+    ],
     "featuredProduct": "no",
     "offeredPrice": 12,
     "sellingPrice": 14,
-    "papervariant": ["Kraft", "White"]
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New"
   }
 ]
