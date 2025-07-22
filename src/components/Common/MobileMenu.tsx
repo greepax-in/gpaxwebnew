@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Button, useMediaQuery } from '@mui/material';
+import { Box, useMediaQuery } from '@mui/material';
 import { usePathname } from 'next/navigation';
 import { motion } from 'framer-motion';
 import HomeIcon from '@mui/icons-material/Home';

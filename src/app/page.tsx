@@ -24,22 +24,23 @@ const HomePage: React.FC = () => {
     setIsMounted(true);
 
     // Listen for the beforeinstallprompt event
-    window.addEventListener('beforeinstallprompt', (e) => {
-      e.preventDefault(); // Prevent the default prompt
-      setDeferredPrompt(e); // Save the event for later use
-    });
+    const handleBeforeInstallPrompt = (event: Event) => {
+      event.preventDefault(); // Prevent the default prompt
+      setDeferredPrompt(event); // Save the event for later use
+    };
+
+    window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
 
     return () => {
-      window.removeEventListener('beforeinstallprompt', (e) => {
-        setDeferredPrompt(null);
-      });
+      window.removeEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
     };
   }, []);
 
   const handleInstallClick = () => {
     if (deferredPrompt) {
-      (deferredPrompt as any).prompt(); // Show the install prompt
-      (deferredPrompt as any).userChoice.then((choiceResult: any) => {
+      const promptEvent = deferredPrompt as BeforeInstallPromptEvent;
+      promptEvent.prompt(); // Show the install prompt
+      promptEvent.userChoice.then((choiceResult) => {
         if (choiceResult.outcome === 'accepted') {
           console.log('User accepted the install prompt');
         } else {
@@ -91,3 +92,8 @@ const HomePage: React.FC = () => {
 };
 
 export default HomePage;
+
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => void;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}

@@ -11,7 +11,7 @@ interface MiniMenuProps {
   style?: React.CSSProperties;
 }
 
-const MotionBox = motion(Box);
+// const MotionBox = motion(Box);
 
 const MiniMenu: React.FC<MiniMenuProps> = ({ items, onItemClick, selectedItem, style }) => {
   return (
