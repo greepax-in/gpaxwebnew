@@ -3,9 +3,7 @@
 import React, { useState, useEffect } from "react";
 import { Box, Typography } from "@mui/material";
 import { motion, AnimatePresence } from "framer-motion";
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
-import PaletteIcon from '@mui/icons-material/Palette';
-import PrintIcon from '@mui/icons-material/Print';
+
 
 const subTexts = [
     "All Indian Language designs",
