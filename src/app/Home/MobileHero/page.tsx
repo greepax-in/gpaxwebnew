@@ -23,22 +23,22 @@ const MobileHero: React.FC = () => {
     return (
         <section
             style={{
-                marginTop: "0px", // Ensure no extra space
+                marginTop: "0px",
                 height: "15vh",
                 display: "flex",
                 flexDirection: "column",
-                justifyContent: "center", // Vertically center
-                alignItems: "flex-start", // Horizontally left
-                background: "linear-gradient(65deg, #187c52ff 55%, #89fad6 85%)",
-                textAlign: "left",
+                justifyContent: "center",
+                alignItems: "flex-start",
                 padding: "30px",
+                background: "linear-gradient(120deg, #1B5E20 0%, #A5D6A7 100%)", // Updated green blend
+                textAlign: "left",
             }}
         >
             <Typography
                 variant="h5"
                 style={{
                     fontWeight: 700,
-                    color: "#fff",
+                    color: "#ffffff",
                 }}
             >
                 <motion.div

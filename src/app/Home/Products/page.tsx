@@ -36,7 +36,7 @@ export default function ProductGridSection() {
 
   const categoryBackgrounds: Record<string, string> = {
     'Paper Bags': '#f8ecd8',     // Cream - eco feel
-    'Paper Covers': '#f3f4f6',   // Light Gray - clean/neutral
+    'Paper Covers': '#E3F2E1',   // Light Gray - clean/neutral
     'Paper Boxes': '#e8f5e9',    // Soft Green - bakery/fresh
   };
 

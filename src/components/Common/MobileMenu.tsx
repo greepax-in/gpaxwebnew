@@ -11,10 +11,10 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const navItems = [
-  { label: 'Home', icon: <HomeIcon />, href: '/' },
-  { label: 'Paper Bags', icon: <LocalMallIcon />, href: '/products/paper-bags' },
-  { label: 'Paper Covers', icon: <LayersIcon />, href: '/products/paper-covers' },
-  { label: 'Paper Boxes', icon: <InventoryIcon />, href: '/products/paper-boxes' },
+  { label: 'Home', icon: <HomeIcon fontSize="small" />, href: '/' },
+  { label: 'Paper Bags', icon: <LocalMallIcon fontSize="small" />, href: '/products/paper-bags' },
+  { label: 'Paper Covers', icon: <LayersIcon fontSize="small" />, href: '/products/paper-covers' },
+  { label: 'Paper Boxes', icon: <InventoryIcon fontSize="small" />, href: '/products/paper-boxes' },
 ];
 
 export default function MobileMenu() {
@@ -43,7 +43,7 @@ export default function MobileMenu() {
           justifyContent: 'space-around',
           alignItems: 'center',
           px: 1,
-          py: 1,
+          py: 0.5,
           zIndex: 1400,
         }}
       >
@@ -53,49 +53,60 @@ export default function MobileMenu() {
             <motion.a
               key={item.label}
               href={item.href}
-              whileTap={{ scale: 0.9 }}
+              whileTap={{ scale: 0.92 }}
               style={{ textDecoration: 'none' }}
             >
-              <Button
+              <Box
                 sx={{
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
-                  color: isActive ? '#FFD700' : '#ffffff',
-                  fontSize: '0.75rem',
-                  textTransform: 'none',
-                  minWidth: 'auto',
-                  transition: 'color 0.3s',
+                  justifyContent: 'center',
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: '12px',
+                  backgroundColor: isActive ? '#A5D6A7' : 'transparent',
+                  color: isActive ? '#1B5E20' : '#ffffff',
+                  fontSize: '0.7rem',
+                  fontWeight: 500,
+                  minWidth: 50,
+                  transition: 'all 0.3s ease-in-out',
                 }}
               >
                 {item.icon}
                 {item.label}
-              </Button>
+              </Box>
             </motion.a>
           );
         })}
 
         {/* WhatsApp Button */}
         <motion.a
-          href="https://wa.me/919999999999" // Replace with your number
+          href="https://wa.me/919999999999"
           target="_blank"
           rel="noopener noreferrer"
-          whileTap={{ scale: 0.9 }}
+          whileTap={{ scale: 0.92 }}
+          style={{ textDecoration: 'none' }}
         >
-          <Button
+          <Box
             sx={{
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
+              justifyContent: 'center',
+              px: 1,
+              py: 0.5,
+              borderRadius: '12px',
               color: '#25D366',
-              fontSize: '0.75rem',
-              textTransform: 'none',
-              minWidth: 'auto',
+              fontSize: '0.7rem',
+              fontWeight: 500,
+              minWidth: 50,
+              transition: 'all 0.3s ease-in-out',
             }}
           >
-            <WhatsAppIcon />
+            <WhatsAppIcon fontSize="small" />
             Chat
-          </Button>
+          </Box>
         </motion.a>
       </Box>
     </motion.div>

@@ -17,11 +17,38 @@ import BackToTopButton from '@/components/Common/BacktoTopButton';
 
 const HomePage: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
+  const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
   const isMobile = useMediaQuery('(max-width:600px)');
 
   useEffect(() => {
     setIsMounted(true);
+
+    // Listen for the beforeinstallprompt event
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault(); // Prevent the default prompt
+      setDeferredPrompt(e); // Save the event for later use
+    });
+
+    return () => {
+      window.removeEventListener('beforeinstallprompt', (e) => {
+        setDeferredPrompt(null);
+      });
+    };
   }, []);
+
+  const handleInstallClick = () => {
+    if (deferredPrompt) {
+      (deferredPrompt as any).prompt(); // Show the install prompt
+      (deferredPrompt as any).userChoice.then((choiceResult: any) => {
+        if (choiceResult.outcome === 'accepted') {
+          console.log('User accepted the install prompt');
+        } else {
+          console.log('User dismissed the install prompt');
+        }
+        setDeferredPrompt(null); // Clear the saved prompt
+      });
+    }
+  };
 
   // Avoid rendering until client-side hydration completes
   if (!isMounted) return null;
@@ -31,7 +58,6 @@ const HomePage: React.FC = () => {
       {!isMobile && <DeskMenu />}
       {isMobile && <MobileMenu />}
 
-
       {isMobile ? <MobileHero /> : <HeroSection />}
       <FeaturedProducts />
       <Products />
@@ -39,6 +65,27 @@ const HomePage: React.FC = () => {
       <Footer />
 
       <BackToTopButton />
+
+      {/* Install Prompt Button */}
+      {deferredPrompt && (
+        <button
+          onClick={handleInstallClick}
+          style={{
+            position: 'fixed',
+            bottom: '20px',
+            right: '20px',
+            padding: '10px 20px',
+            backgroundColor: '#1B5E20',
+            color: '#FFFFFF',
+            border: 'none',
+            borderRadius: '5px',
+            cursor: 'pointer',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
+          }}
+        >
+          Install App
+        </button>
+      )}
     </main>
   );
 };
