@@ -19,6 +19,8 @@ const MiniMenu: React.FC<MiniMenuProps> = ({ items, onItemClick, selectedItem, s
         borderRadius: "50px",
         padding: "0.3rem 0.8rem",
         boxShadow: "0 2px 12px rgba(0,0,0,0.08)",
+        position: "relative",
+        top: "-10%", // Moved up by 10%
         ...style,
       }}
     >

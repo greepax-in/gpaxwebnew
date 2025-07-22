@@ -26,8 +26,10 @@ export default function FeaturedProducts() {
       sx={{
         width: '100%',
         backgroundColor: '#fef6e4',
-        px: { xs: 2, sm: 3 },
-        py: { xs: 3, sm: 4 },
+        height: '23vh',
+        px: { xs: 1, sm: 3 },
+        py: { xs: 2, sm: 4 },
+        mb: { xs: 0, sm: 3 },
       }}
     >
       {/* Heading */}
@@ -35,7 +37,7 @@ export default function FeaturedProducts() {
         sx={{
           maxWidth: 1500,
           margin: '0 auto',
-          mb: { xs: 2, sm: 3 },
+          mb: { xs: 0, sm: 3 },
         }}
       >
         <Typography
@@ -44,6 +46,9 @@ export default function FeaturedProducts() {
             fontSize: { xs: '1.2rem', sm: '2.5rem' },
             color: '#000',
             textAlign: { xs: 'left', sm: 'center' },
+            mt: { xs: -2, sm: 3 },
+            mb: { xs: 0.5, sm: 3 },
+                  //  mb: { xs: 1, sm: 3 },
           }}
         >
           Popular Products

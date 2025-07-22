@@ -69,7 +69,7 @@ export default function ProductGridSection() {
           flexDirection: 'column',
           alignItems: 'center',
           minHeight: filtered.length > 2 ? '100vh' : 'auto',
-          pt: 2,
+          pt: 1,
           pb: 4,
           px: 1,
         }}
@@ -78,7 +78,7 @@ export default function ProductGridSection() {
         <Box
           sx={{
             position: 'sticky',
-            top: isMobile ? 20 : 25,
+            top: isMobile ? 0 : 25,
             zIndex: 20,
             width: '100%',
             maxWidth: { xs: 360, sm: 600 },
