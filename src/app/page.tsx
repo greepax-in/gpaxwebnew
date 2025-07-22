@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Box, useMediaQuery } from '@mui/material';
+import { useMediaQuery } from '@mui/material';
 
 import DeskMenu from '@/components/AppBar/DeskMenu';
-// import MobileMenu from '@/components/AppBar/MobileMenu';
+import MobileMenu from '@/components/Common/MobileMenu';
 
 import HeroSection from '../app/Home/MainHero/page';
 import MobileHero from '../app/Home/MobileHero/page';
@@ -28,16 +28,16 @@ const HomePage: React.FC = () => {
 
   return (
     <main style={{ position: 'relative', overflow: 'visible' }}>
-      <DeskMenu />
-      {/* <MobileMenu /> */}
+      {!isMobile && <DeskMenu />}
+      {isMobile && <MobileMenu />}
 
-      <Box mt={{ xs: '56px', sm: '80px' }}>
-        {isMobile ? <MobileHero /> : <HeroSection />}
-        <FeaturedProducts />
-        <Products />
-        {!isMobile && <WhyItMatters />}
-        <Footer />
-      </Box>
+
+      {isMobile ? <MobileHero /> : <HeroSection />}
+      <FeaturedProducts />
+      <Products />
+      {!isMobile && <WhyItMatters />}
+      <Footer />
+
       <BackToTopButton />
     </main>
   );

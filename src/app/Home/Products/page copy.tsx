@@ -1,15 +1,16 @@
 'use client';
 
-import React, { useState } from 'react';
-import ProductCard from '@components/Home/ProductCategories/ProductCard';
+import React, { useState } from "react";
+import ProductCard from "@components/Home/ProductCategories/ProductCard";
 import {
   Box,
-  Button,
   Typography,
+  ToggleButton,
+  ToggleButtonGroup,
   useMediaQuery,
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import products from '../../../data/products.json';
+import products from "../../../data/products.json";
 
 type ProductType = {
   name: string;
@@ -30,10 +31,20 @@ export default function ProductGridSection() {
   const [selectedCategory, setSelectedCategory] = useState('Paper Bags');
   const isMobile = useMediaQuery('(max-width:600px)');
 
+  const handleChange = (
+    event: React.MouseEvent<HTMLElement>,
+    newCategory: string | null
+  ) => {
+    if (newCategory !== null) {
+      setSelectedCategory(newCategory);
+    }
+  };
+
   const filtered = products.filter(
     (product: ProductType) => product.category === selectedCategory
   );
 
+  // Modern, mobile-friendly, globally-used color scheme
   const categoryBackgrounds: Record<string, string> = {
     'Paper Bags': '#f8ecd8',     // Cream - eco feel
     'Paper Covers': '#f3f4f6',   // Light Gray - clean/neutral
@@ -41,30 +52,14 @@ export default function ProductGridSection() {
   };
 
   return (
-    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
-      {/* Smooth Background Transition */}
-      <motion.div
-        key={selectedCategory}
-        initial={false}
-        animate={{
-          backgroundColor: categoryBackgrounds[selectedCategory] || '#ffffff',
-        }}
-        transition={{ duration: 0.5, ease: 'easeInOut' }}
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 0,
-        }}
-      />
-
-      {/* Foreground Content */}
+    <motion.div
+      key={selectedCategory}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 0.3 }}
+    >
       <Box
         sx={{
-          position: 'relative',
-          zIndex: 1,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -72,60 +67,82 @@ export default function ProductGridSection() {
           pt: 2,
           pb: 4,
           px: 1,
+          background: categoryBackgrounds[selectedCategory] || '#fff',
+          transition: 'background 0.3s ease-in-out',
         }}
       >
-        {/* Toggle Buttons */}
+        {/* Toggle Group */}
         <Box
           sx={{
             position: 'sticky',
-            top: isMobile ? 20 : 25,
+            top: isMobile ? 56 : 72,
             zIndex: 20,
             width: '100%',
-            maxWidth: { xs: 360, sm: 600 },
-            backgroundColor: '#1B5E20',
-            px: { xs: 1, sm: 2 },
-            py: { xs: 0.5, sm: 1 },
-            borderRadius: '50px',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
-            display: 'flex',
-            justifyContent: 'space-around',
-            alignItems: 'center',
+            maxWidth: { xs: 420, sm: 600 },
+            backgroundColor: 'transparent',
+            px: 1,
+            pb: 2,
           }}
         >
-          {['Paper Bags', 'Paper Covers', 'Paper Boxes'].map((category) => (
-            <motion.div
-              key={category}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-            >
-              <Button
-                onClick={() => setSelectedCategory(category)}
+          <ToggleButtonGroup
+            value={selectedCategory}
+            exclusive
+            onChange={handleChange}
+            fullWidth
+            sx={{
+              borderRadius: 999,
+              backgroundColor: '#f5f5f7',
+              p: { xs: '3px', sm: '6px' },
+              height: { xs: 'auto', sm: 64 },
+              mx: 'auto',
+              boxShadow: 'inset 0 0 4px rgba(0, 0, 0, 0.06)',
+              transition: 'all 0.3s ease',
+            }}
+          >
+            {['Paper Bags', 'Paper Covers', 'Paper Boxes'].map((category) => (
+              <ToggleButton
+                key={category}
+                value={category}
                 sx={{
-                  color: selectedCategory === category ? '#1B5E20' : '#E8F5E9',
-                  fontSize: { xs: '0.85rem', sm: '1rem' },
-                  fontWeight: 'bold',
-                  padding: { xs: '0.2rem 0.6rem', sm: '0.3rem 0.8rem' },
-                  borderRadius: '50px',
-                  background:
-                    selectedCategory === category ? '#FFFFFF' : 'transparent',
+                  flex: 1,
+                  borderRadius: 999,
+                  py: { xs: 1, sm: 1.6 },
+                  px: { xs: 2, sm: 3 },
+                  fontSize: { xs: '0.78rem', sm: '1rem' },
+                  fontWeight: 600,
                   textTransform: 'none',
+                  lineHeight: 1.2,
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                   whiteSpace: 'nowrap',
-                  transition: 'all 0.3s ease',
+                  color: selectedCategory === category ? '#fff' : '#1a1a1a',
+                  backgroundColor: selectedCategory === category ? '#1976d2' : 'transparent',
+                  boxShadow: selectedCategory === category
+                    ? '0 2px 6px rgba(0,0,0,0.12)'
+                    : 'none',
+                  '&.Mui-selected': {
+                    backgroundColor: '#1976d2 !important',
+                    color: '#fff !important',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.12) !important',
+                  },
+                  '&.Mui-selected:hover': {
+                    backgroundColor: '#1565c0 !important',
+                  },
                   '&:hover': {
-                    background:
-                      selectedCategory === category ? '#FFFFFF' : '#2E7D32',
-                    color:
-                      selectedCategory === category ? '#1B5E20' : '#FFFFFF',
+                    backgroundColor: selectedCategory === category
+                      ? '#1565c0'
+                      : '#ececec',
                   },
                 }}
               >
                 {category}
-              </Button>
-            </motion.div>
-          ))}
+              </ToggleButton>
+            ))}
+          </ToggleButtonGroup>
         </Box>
 
-        {/* Heading */}
+        {/* Category Heading */}
         <Typography
           variant="h6"
           sx={{
@@ -142,7 +159,7 @@ export default function ProductGridSection() {
           {selectedCategory}
         </Typography>
 
-        {/* Product Grid */}
+        {/* Grid */}
         {filtered.length === 0 ? (
           <Typography>No products found in {selectedCategory}</Typography>
         ) : (
@@ -185,6 +202,6 @@ export default function ProductGridSection() {
           </Box>
         )}
       </Box>
-    </Box>
+    </motion.div>
   );
 }

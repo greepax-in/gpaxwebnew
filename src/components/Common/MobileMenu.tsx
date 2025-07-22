@@ -1,0 +1,103 @@
+'use client';
+
+import React from 'react';
+import { Box, Button, useMediaQuery } from '@mui/material';
+import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
+import HomeIcon from '@mui/icons-material/Home';
+import LocalMallIcon from '@mui/icons-material/LocalMall';
+import LayersIcon from '@mui/icons-material/Layers';
+import InventoryIcon from '@mui/icons-material/Inventory';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+
+const navItems = [
+  { label: 'Home', icon: <HomeIcon />, href: '/' },
+  { label: 'Paper Bags', icon: <LocalMallIcon />, href: '/products/paper-bags' },
+  { label: 'Paper Covers', icon: <LayersIcon />, href: '/products/paper-covers' },
+  { label: 'Paper Boxes', icon: <InventoryIcon />, href: '/products/paper-boxes' },
+];
+
+export default function MobileMenu() {
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const pathname = usePathname();
+
+  if (!isMobile) return null;
+
+  return (
+    <motion.div
+      initial={{ y: 100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+    >
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: 0,
+          left: 0,
+          width: '100%',
+          background: '#1B5E20',
+          borderTopLeftRadius: '16px',
+          borderTopRightRadius: '16px',
+          boxShadow: '0 -2px 12px rgba(0,0,0,0.2)',
+          display: 'flex',
+          justifyContent: 'space-around',
+          alignItems: 'center',
+          px: 1,
+          py: 1,
+          zIndex: 1400,
+        }}
+      >
+        {navItems.map((item) => {
+          const isActive = pathname === item.href;
+          return (
+            <motion.a
+              key={item.label}
+              href={item.href}
+              whileTap={{ scale: 0.9 }}
+              style={{ textDecoration: 'none' }}
+            >
+              <Button
+                sx={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  alignItems: 'center',
+                  color: isActive ? '#FFD700' : '#ffffff',
+                  fontSize: '0.75rem',
+                  textTransform: 'none',
+                  minWidth: 'auto',
+                  transition: 'color 0.3s',
+                }}
+              >
+                {item.icon}
+                {item.label}
+              </Button>
+            </motion.a>
+          );
+        })}
+
+        {/* WhatsApp Button */}
+        <motion.a
+          href="https://wa.me/919999999999" // Replace with your number
+          target="_blank"
+          rel="noopener noreferrer"
+          whileTap={{ scale: 0.9 }}
+        >
+          <Button
+            sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              color: '#25D366',
+              fontSize: '0.75rem',
+              textTransform: 'none',
+              minWidth: 'auto',
+            }}
+          >
+            <WhatsAppIcon />
+            Chat
+          </Button>
+        </motion.a>
+      </Box>
+    </motion.div>
+  );
+}

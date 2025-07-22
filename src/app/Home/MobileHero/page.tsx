@@ -23,7 +23,7 @@ const MobileHero: React.FC = () => {
     return (
         <section
             style={{
-                marginTop: "-10px", // Ensure no extra space
+                marginTop: "0px", // Ensure no extra space
                 height: "15vh",
                 display: "flex",
                 flexDirection: "column",
