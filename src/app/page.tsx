@@ -2,31 +2,37 @@
 
 import React, { useEffect, useState } from 'react';
 import { useMediaQuery } from '@mui/material';
+import { AnimatePresence } from 'framer-motion';
 
 import DeskMenu from '@/components/AppBar/DeskMenu';
 import MobileMenu from '@/components/Common/MobileMenu';
+import PWAPrompt from '@/components/Common/PWAInstall';
 
 import HeroSection from '../app/Home/MainHero/page';
 import MobileHero from '../app/Home/MobileHero/page';
-
 import FeaturedProducts from '../app/Home/FeaturedProducts/page';
 import Products from '../app/Home/Products/page';
 import WhyItMatters from '../components/Home/whyitmatters/page';
 import Footer from '../app/Home/Footer/page';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
 
+interface BeforeInstallPromptEvent extends Event {
+  prompt: () => void;
+  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
+}
+
 const HomePage: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const [deferredPrompt, setDeferredPrompt] = useState<Event | null>(null);
+  const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
+  const [showPopup, setShowPopup] = useState(true);
   const isMobile = useMediaQuery('(max-width:600px)');
 
   useEffect(() => {
     setIsMounted(true);
 
-    // Listen for the beforeinstallprompt event
     const handleBeforeInstallPrompt = (event: Event) => {
-      event.preventDefault(); // Prevent the default prompt
-      setDeferredPrompt(event); // Save the event for later use
+      event.preventDefault();
+      setDeferredPrompt(event as BeforeInstallPromptEvent);
     };
 
     window.addEventListener('beforeinstallprompt', handleBeforeInstallPrompt);
@@ -38,20 +44,19 @@ const HomePage: React.FC = () => {
 
   const handleInstallClick = () => {
     if (deferredPrompt) {
-      const promptEvent = deferredPrompt as BeforeInstallPromptEvent;
-      promptEvent.prompt(); // Show the install prompt
-      promptEvent.userChoice.then((choiceResult) => {
-        if (choiceResult.outcome === 'accepted') {
-          console.log('User accepted the install prompt');
-        } else {
-          console.log('User dismissed the install prompt');
-        }
-        setDeferredPrompt(null); // Clear the saved prompt
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        console.log('PWA install choice:', choiceResult.outcome);
+        setDeferredPrompt(null);
+        setShowPopup(false);
       });
     }
   };
 
-  // Avoid rendering until client-side hydration completes
+  const handleClosePopup = () => {
+    setShowPopup(false);
+  };
+
   if (!isMounted) return null;
 
   return (
@@ -64,36 +69,16 @@ const HomePage: React.FC = () => {
       <Products />
       {!isMobile && <WhyItMatters />}
       <Footer />
-
       <BackToTopButton />
 
-      {/* Install Prompt Button */}
-      {deferredPrompt && (
-        <button
-          onClick={handleInstallClick}
-          style={{
-            position: 'fixed',
-            bottom: '20px',
-            right: '20px',
-            padding: '10px 20px',
-            backgroundColor: '#1B5E20',
-            color: '#FFFFFF',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            boxShadow: '0 4px 8px rgba(0,0,0,0.2)',
-          }}
-        >
-          Install App
-        </button>
-      )}
+      {/* ✅ Animated PWA Prompt */}
+      <AnimatePresence>
+        {showPopup && deferredPrompt && isMobile && (
+          <PWAPrompt onInstall={handleInstallClick} onClose={handleClosePopup} />
+        )}
+      </AnimatePresence>
     </main>
   );
 };
 
 export default HomePage;
-
-interface BeforeInstallPromptEvent extends Event {
-  prompt: () => void;
-  userChoice: Promise<{ outcome: 'accepted' | 'dismissed' }>;
-}

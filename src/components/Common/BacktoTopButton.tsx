@@ -32,7 +32,7 @@ const BackToTopButton = () => {
           transition={{ duration: 0.3 }}
           style={{
             position: 'fixed',
-            bottom: isMobile ? 16 : 32,
+            bottom: isMobile ? 80 : 32, // Adjusted for mobile to display above bottom nav bar
             right: isMobile ? 16 : 32, // Adjusted to always be on the right side bottom
             zIndex: 1300,
           }}
