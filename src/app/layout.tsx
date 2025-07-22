@@ -31,7 +31,7 @@ export default function RootLayout({
       <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#2e7d32" />
-        <link rel="icon" href="/icons/icon-192x192.png" />
+        <link rel="icon" href="/images/greenpax-logo.svg" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {isDesktop && <AppBar />}      {/* ✅ Render AppBar only on desktop */}

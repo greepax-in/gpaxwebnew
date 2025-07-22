@@ -7,11 +7,11 @@ import { AnimatePresence } from 'framer-motion';
 import DeskMenu from '@/components/AppBar/DeskMenu';
 import MobileMenu from '@/components/Common/MobileMenu';
 import PWAPrompt from '@/components/Common/PWAInstall';
-
 import HeroSection from '../components/Home/MainHero/page';
 import MobileHero from '../components/Home/MobileHero/page';
 import FeaturedProducts from '@/components/Home/FeaturedProducts/page';
 import Products from '@/components/Home/Products/page';
+import MultilanguageCTA from '@/components/Home/CTA/MutliLanguageCTA';
 import WhyItMatters from '@/components/Home/whyitmatters/page';
 import Footer from '@/components/Home/Footer/Footer';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
@@ -67,6 +67,7 @@ const HomePage: React.FC = () => {
       {isMobile ? <MobileHero /> : <HeroSection />}
       <FeaturedProducts />
       <Products />
+      <MultilanguageCTA />
       {!isMobile && <WhyItMatters />}
       <Footer />
       <BackToTopButton />
