@@ -10,9 +10,9 @@ import {
 } from '@mui/material';
 import { motion, AnimatePresence, Variants  } from 'framer-motion';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
-import PaletteIcon from '@mui/icons-material/Palette';
-import PrintIcon from '@mui/icons-material/Print';
+// import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
+// import PaletteIcon from '@mui/icons-material/Palette';
+// import PrintIcon from '@mui/icons-material/Print';
 
 const chipEntry: Variants = {
   hidden: { opacity: 0, y: 20 },
