@@ -184,6 +184,28 @@ export default function ProductGridSection() {
             ))}
           </Box>
         )}
+
+        {/* Dynamic Explore All Button */}
+        <Button
+          sx={{
+            mt: 4,
+            padding: '0.5rem 1.5rem',
+            backgroundColor: '#1B5E20',
+            color: '#FFFFFF',
+            fontSize: '1rem',
+            fontWeight: 'bold',
+            borderRadius: '50px',
+            boxShadow: '0 4px 8px rgba(0,0,0,0.15)',
+            textTransform: 'none',
+            transition: 'all 0.3s ease',
+            '&:hover': {
+              backgroundColor: '#2E7D32',
+            },
+          }}
+          onClick={() => console.log(`Explore All ${selectedCategory}`)}
+        >
+          {`Explore All ${selectedCategory}`}
+        </Button>
       </Box>
     </Box>
   );

@@ -26,7 +26,7 @@ export default function FeaturedProducts() {
       sx={{
       width: '100%',
       backgroundColor: '#fef6e4',
-      height: { xs: '22vh', sm: '45vh' }, // Separate desktop and mobile height
+      height: { xs: '24vh', sm: '45vh' }, // Separate desktop and mobile height
       px: { xs: 1, sm: 3 },
       py: { xs: 2, sm: 4 },
       // mb: { xs: 0, sm: 0 },
