@@ -13,7 +13,7 @@ import { motion } from 'framer-motion';
 import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
 import PaletteIcon from '@mui/icons-material/Palette';
 import PrintIcon from '@mui/icons-material/Print';
-import PrintVariants from '../../PrintVariants.json'; // Assuming you have a JSON file with the variants
+import PrintVariants from '../../../app/PrintVariants.json'; // Assuming you have a JSON file with the variants
 
 const ProductVariants = [
   {

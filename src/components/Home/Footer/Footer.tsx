@@ -9,7 +9,7 @@ const Footer = forwardRef<HTMLDivElement>((_, ref) => {
       ref={ref}
       style={{
         width: '100%',
-        height: '100vh',
+        height: '20vh',
         background: '#f5f5f5',
         padding: '1.5rem 0',
         textAlign: 'center',

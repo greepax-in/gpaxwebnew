@@ -28,7 +28,7 @@ export default function FeaturedProducts() {
       sx={{
         width: '100%',
         backgroundColor: '#fef6e4',
-        height: { xs: '24vh', sm: '45vh' },
+        height: { xs: '24vh', sm: '50vh' },
         px: { xs: 1, sm: 3 },
         py: { xs: 2, sm: 4 },
       }}

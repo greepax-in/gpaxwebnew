@@ -8,12 +8,12 @@ import DeskMenu from '@/components/AppBar/DeskMenu';
 import MobileMenu from '@/components/Common/MobileMenu';
 import PWAPrompt from '@/components/Common/PWAInstall';
 
-import HeroSection from '../app/Home/MainHero/page';
-import MobileHero from '../app/Home/MobileHero/page';
-import FeaturedProducts from '../app/Home/FeaturedProducts/page';
-import Products from '../app/Home/Products/page';
-import WhyItMatters from '../components/Home/whyitmatters/page';
-import Footer from '../app/Home/Footer/page';
+import HeroSection from '../components/Home/MainHero/page';
+import MobileHero from '../components/Home/MobileHero/page';
+import FeaturedProducts from '@/components/Home/FeaturedProducts/page';
+import Products from '@/components/Home/Products/page';
+import WhyItMatters from '@/components/Home/whyitmatters/page';
+import Footer from '@/components/Home/Footer/Footer';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
 
 interface BeforeInstallPromptEvent extends Event {
