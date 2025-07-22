@@ -241,7 +241,7 @@ export default function ProductCard({
                 color: '#fff',
                 borderRadius: '20px',
                 fontWeight: 700,
-                fontSize: isMobile ? '1rem' : '1.2rem',
+                fontSize: isMobile ? '1.2rem' : '1.2rem',
                 display: 'inline-flex',
                 alignItems: 'center',
               }}
@@ -264,7 +264,7 @@ export default function ProductCard({
                   sx={{
                     ml: 1,
                     textDecoration: 'line-through',
-                    fontSize: isMobile ? '0.75rem' : '1rem',
+                    fontSize: isMobile ? '0.8rem' : '1rem',
                     color: 'rgba(255,255,255,0.85)',
                     fontWeight: 400,
                   }}
