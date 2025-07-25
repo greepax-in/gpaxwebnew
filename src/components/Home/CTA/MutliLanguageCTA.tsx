@@ -6,45 +6,63 @@ import {
   Typography,
   Button,
   Chip,
+  Stack,
   useMediaQuery,
 } from '@mui/material';
-import { motion, AnimatePresence, Variants  } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-// import FormatColorFillIcon from '@mui/icons-material/FormatColorFill';
-// import PaletteIcon from '@mui/icons-material/Palette';
-// import PrintIcon from '@mui/icons-material/Print';
-
-const chipEntry: Variants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: (i = 1) => ({
-    opacity: 1,
-    y: 0,
-    transition: {
-      delay: i * 0.15,
-      duration: 0.4,
-      ease: 'easeOut',
-    },
-  }),
-};
 
 const phrases = [
-  'GreenPax speaks every Indian language – through print.',
-  'भारत की हर भाषा में डिज़ाइन – ग्रीनपैक्स से',
-  'எல்லா இந்திய மொழிகளிலும் பிரிண்ட் செய்வோம்',
-  'ప్రతి భారతీయ భాషలో ముద్రణ అందించేది గ్రీన్‌ప్యాక్స్',
-  'সব ভারতীয় ভাষায় ছাপা সম্ভব – গ্রীনপ্যাক্স নিয়ে',
+  'తెలుగు',
+  'हिंदी',
+  'বাঙ্গালী',
+  'தமிழ்',
+  'ಕನ್ನಡ',
+  'മലയാളം',
+  'ગુજરાતી',
 ];
 
-
+const printVariants = [
+  { label: 'Plain', icon: '📄' },
+  { label: 'Single Color', icon: '🎨' },
+  { label: 'Multi Color', icon: '🌈' },
+];
 
 const MultilanguageCTA = () => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const [currentPhraseIndex, setCurrentPhraseIndex] = useState(0);
+  const [animatedWords, setAnimatedWords] = useState<
+    { phrase: string; id: number; top: number; left: number }[]
+  >([]);
+
+  const getRandomPosition = () => ({
+    top: Math.random() * 20 + 20,
+    left: Math.random() * 70 + 20,
+  });
+
+  const getTwoUniquePhrases = () => {
+    const shuffled = [...phrases].sort(() => 0.5 - Math.random());
+    return [shuffled[0], shuffled[1]];
+  };
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentPhraseIndex((prev) => (prev + 1) % phrases.length);
-    }, 3000);
+    const updateWords = () => {
+      const [first, second] = getTwoUniquePhrases();
+      setAnimatedWords([
+        {
+          phrase: first,
+          id: Date.now(),
+          ...getRandomPosition(),
+        },
+        {
+          phrase: second,
+          id: Date.now() + 1,
+          ...getRandomPosition(),
+        },
+      ]);
+    };
+
+    updateWords();
+    const interval = setInterval(updateWords, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -52,122 +70,116 @@ const MultilanguageCTA = () => {
     <Box
       sx={{
         width: '100%',
-        minHeight: { xs: '300px', sm: '40vh' },
-        background: '#fef6e4',
+        minHeight: { xs: '200px', sm: '45vh' },
+        position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
         px: 2,
-        py: 3,
-        gap: 2,
+        py: 4,
+        gap: 1,
+        background: 'radial-gradient(circle, #e7f5ff 60%, #d4eaff 100%)',
       }}
     >
-      {/* Animated Language Text */}
-      <Box sx={{ height: '2rem' }}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={phrases[currentPhraseIndex]}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                fontWeight: 700,
-                fontSize: { xs: '1.3rem', sm: '2rem' },
-                color: '#1976d2',
-                textAlign: 'center',
+      {/* Floating Words Layer */}
+      <Box
+        sx={{
+          position: 'absolute',
+        //   top: isMobile ? 10 : 20,
+          left: 0,
+          width: '100%',
+          height: '100%',
+          zIndex: 0,
+          pointerEvents: 'none',
+        }}
+      >
+        <AnimatePresence>
+          {animatedWords.map(({ phrase, top, left, id }) => (
+            <motion.div
+              key={id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 0.5, y: -20 }}
+              exit={{ opacity: 0, y: -40 }}
+              transition={{ duration: 2 }}
+              style={{
+                position: 'absolute',
+                top: `${top}%`,
+                left: `${left}%`,
+                transform: 'translate(-50%, -50%)',
               }}
             >
-              {phrases[currentPhraseIndex]}
-            </Typography>
-          </motion.div>
+              <Typography
+                variant="h3"
+                sx={{
+                  fontWeight: 600,
+                  fontSize: { xs: '1.5rem', sm: '2.5rem' },
+                  color: '#b919d2ff',
+                  opacity: 0.5,
+                  textShadow: '0px 0px 6px rgba(25, 118, 210, 0.3)',
+                  userSelect: 'none',
+                  whiteSpace: 'nowrap',
+                }}
+              >
+                {phrase}
+              </Typography>
+            </motion.div>
+          ))}
         </AnimatePresence>
       </Box>
 
-      {/* Inline Chips as Subtitle with Entry + Hover Animation */}
-      <Box
+      {/* Heading */}
+      <Typography
+        variant="h6"
         sx={{
-          display: 'flex',
-          gap: 1.5,
-          mt: { xs: '2rem', sm: '2rem' },
-          justifyContent: 'center',
-          alignItems: 'center',
-          flexWrap: 'wrap',
+          fontWeight: 700,
+          fontSize: { xs: '1rem', sm: '2rem' },
+          textAlign: 'center',
+          color: '#0d47a1',
+          zIndex: 1,
         }}
       >
-        <Typography
-          variant="body2"
-          sx={{
-            color: '#333',
-            fontWeight: 500,
-            fontSize: { xs: '0.9rem', sm: '0.95rem' },
-          }}
-        >
-          Choose from
-        </Typography>
+        Choose from multiple Indian languages
+      </Typography>
 
-        {[{
-          label: 'Plain',
-        //   icon: <FormatColorFillIcon fontSize="small" />,
-          sx: { backgroundColor: '#795548' }
-        }, {
-          label: 'Single Color',
-        //   icon: <PaletteIcon fontSize="small" />,
-          sx: { backgroundColor: '#3f51b5' }
-        }, {
-          label: 'Multi Color',
-        //   icon: <PrintIcon fontSize="small" />,
-          sx: {
-            background: 'linear-gradient(45deg, #3f51b5, #ff4081)',
-            boxShadow: '0 0 6px rgba(0,0,0,0.1)',
-            border: '1px solid rgba(255,255,255,0.4)'
-          }
-        }].map((chip, i) => (
-          <motion.div
-            key={chip.label}
-            variants={chipEntry}
-            initial="hidden"
-            animate="visible"
-            custom={i}
-            whileHover={{ scale: 1.1 }}
-          >
-            <Chip
-            //   icon={chip.icon}
-              label={chip.label}
-              sx={{
-                ...chip.sx,
-                color: '#fff',
-                fontWeight: 600,
-                fontSize: '0.95rem',
-              }}
-            />
-          </motion.div>
+      {/* WhatsApp Button */}
+
+
+      {/* Print Variant Chips */}
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        // flexWrap="wrap"
+        sx={{ zIndex: 1 }}
+      >
+        {printVariants.map((variant) => (
+          <Chip
+            key={variant.label}
+            label={`${variant.icon} ${variant.label}`}
+            sx={{
+              fontSize: { xs: '0.75rem', sm: '0.9rem' },
+              px: 1,
+              py: 1,
+              fontWeight: 700,
+              backgroundColor: '#0890f1ff',
+              color: '#f7f8f9ff',
+              borderRadius: '20px',
+            }}
+          />
         ))}
+      </Stack>
 
-        <Typography
-          variant="body2"
-          sx={{
-            color: '#333',
-            fontWeight: 500,
-            fontSize: { xs: '0.9rem', sm: '0.95rem' },
-          }}
-        >
-          printing – now in multiple Indian languages.
-        </Typography>
-      </Box>
-
-      {/* WhatsApp CTA */}
-      <motion.div
+    <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
+        style={{ zIndex: 1
+            // top: isMobile ? '10px' : '20px',
+         }}
       >
         <Button
           variant="contained"
@@ -180,6 +192,7 @@ const MultilanguageCTA = () => {
             fontWeight: 600,
             borderRadius: 2,
             fontSize: { xs: '0.8rem', sm: '1rem' },
+            top: isMobile ? '20px' : '20px',
             px: 4,
             py: 1.2,
             '&:hover': { backgroundColor: '#1ebe5d' },

@@ -13,8 +13,9 @@ import FeaturedProducts from '@/components/Home/FeaturedProducts/page';
 import Products from '@/components/Home/Products/page';
 import MultilanguageCTA from '@/components/Home/CTA/MutliLanguageCTA';
 import WhyItMatters from '@/components/Home/whyitmatters/page';
-import Footer from '@/components/Home/Footer/Footer';
+import Footer from '@/components/Home/Footer/page';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
+import CustomerLogoSection from '@/components/Home/CustomerLogoSection/page'; 
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => void;
@@ -69,6 +70,7 @@ const HomePage: React.FC = () => {
       <Products />
       <MultilanguageCTA />
       {!isMobile && <WhyItMatters />}
+      <CustomerLogoSection />
       <Footer />
       <BackToTopButton />
 
