@@ -7,7 +7,7 @@ import {
   Button,
   Chip,
   Stack,
-  useMediaQuery,
+
 } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
