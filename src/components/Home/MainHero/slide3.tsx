@@ -67,7 +67,7 @@ export default function Slide3() {
           textAlign: 'center',
         }}
       >
-        Plain, Printed or Full Color – We've Got You Covered.
+        Plain, Printed or Full Color – We&apos;ve Got You Covered.
       </Typography>
 
       {/* ✅ Desktop */}
