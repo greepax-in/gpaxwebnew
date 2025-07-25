@@ -5,8 +5,8 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from "@mui/material";
 import MobileMenu from "@/components/Common/MobileMenu";
+import Footer from "@/components/Common/Footer/page"; // ✅ Import Footer
 
-// Dynamically import AppBar only on desktop
 const AppBar = dynamic(() => import('@/components/AppBar/DeskMenu'), { ssr: false });
 
 const geistSans = Geist({
@@ -34,9 +34,10 @@ export default function RootLayout({
         <link rel="icon" href="/images/greenpax-logo.svg" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {isDesktop && <AppBar />}      {/* ✅ Render AppBar only on desktop */}
+        {isDesktop && <AppBar />}
         {children}
-        <MobileMenu />                 {/* ✅ Always rendered but self-hides on desktop */}
+        <Footer />       {/* ✅ Always show footer */}
+        <MobileMenu />
       </body>
     </html>
   );
