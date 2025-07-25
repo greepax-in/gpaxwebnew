@@ -56,13 +56,13 @@ export default function FeaturedProducts() {
             overflowX: { xs: 'auto', sm: 'hidden' },
             justifyContent: { xs: 'flex-start', sm: 'center' },
             scrollSnapType: 'x mandatory',
+            scrollPaddingLeft: isMobile ? 12 : 20,
+            scrollPaddingRight: isMobile ? 8 : 20,
             scrollbarWidth: 'none',
             '&::-webkit-scrollbar': { display: 'none' },
             px: 0,
           }}
         >
-          <Box sx={{ width: isMobile ? 12 : 20, flexShrink: 0 }} />
-
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.name}
@@ -86,6 +86,8 @@ export default function FeaturedProducts() {
                 width: itemWidth,
                 minWidth: itemWidth,
                 position: 'relative',
+                marginLeft: index === 0 ? (isMobile ? 12 : 20) : 0,
+                marginRight: index === filteredProducts.length - 1 ? (isMobile ? 8 : 20) : 0,
               }}
             >
               <motion.div
@@ -162,8 +164,6 @@ export default function FeaturedProducts() {
               )}
             </motion.div>
           ))}
-
-          <Box sx={{ width: isMobile ? 8 : 20, flexShrink: 0 }} />
         </Box>
 
         {isMobile && showBlurOverlay && (

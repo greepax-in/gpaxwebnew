@@ -5,7 +5,7 @@ import "./globals.css";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from "@mui/material";
 import MobileMenu from "@/components/Common/MobileMenu";
-import Footer from "@/components/Common/Footer/page"; // ✅ Import Footer
+import FooterWrapper from "@/components/Common/Footer/FooterWrapper"; // ✅ Import Footer
 
 const AppBar = dynamic(() => import('@/components/AppBar/DeskMenu'), { ssr: false });
 
@@ -33,10 +33,21 @@ export default function RootLayout({
         <meta name="theme-color" content="#2e7d32" />
         <link rel="icon" href="/images/greenpax-logo.svg" />
       </head>
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {isDesktop && <AppBar />}
-        {children}
-        <Footer />       {/* ✅ Always show footer */}
+      <body
+        className={`${geistSans.variable} ${geistMono.variable}`}
+        style={{ margin: 0, padding: 0 }}
+      >
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'column',
+            minHeight: '100vh',
+          }}
+        >
+          {isDesktop && <AppBar />}
+          <main style={{ flexGrow: 1 }}>{children}</main>
+          <FooterWrapper />
+        </div>
         <MobileMenu />
       </body>
     </html>
