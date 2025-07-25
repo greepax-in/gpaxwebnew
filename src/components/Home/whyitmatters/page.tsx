@@ -53,7 +53,7 @@ export default function WhyItMatters() {
         backgroundColor: '#f1fdf4',
         px: isMobile ? 2 : 10,
         py: isMobile ? 0 : 8,
-        mt: isMobile ? 2 : 4,
+        // mt: isMobile ? 2 : 4,
         minHeight: isMobile ? '20vh' : 'auto',
         display: 'flex',
         flexDirection: 'column',

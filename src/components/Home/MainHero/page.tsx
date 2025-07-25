@@ -52,7 +52,7 @@ const MainHeroPage: React.FC = () => {
         width: '100vw',
         height: {
           xs: '30vh',
-          sm: '95vh',
+          sm: '100vh',
         },
         mt: {
           xs: '-12px',

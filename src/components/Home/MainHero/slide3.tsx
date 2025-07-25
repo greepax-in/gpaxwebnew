@@ -112,8 +112,9 @@ export default function Slide3() {
                 sx={{
                   p: 3,
                   borderRadius: 4,
-                  minWidth: 340,
-                  maxWidth: 420,
+                  width: 360,
+                  height: 600,
+                  boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
                   display: 'flex',
                   flexDirection: 'column',
                   alignItems: 'center',
@@ -136,8 +137,8 @@ export default function Slide3() {
                     src={v.img}
                     alt={v.title}
                     style={{
-                      width: '240px',
-                      height: '280px',
+                      width: '100%',
+                      height: 'calc(100% - 140px)',
                       objectFit: 'contain',
                       marginBottom: 16,
                       marginTop: '10%',

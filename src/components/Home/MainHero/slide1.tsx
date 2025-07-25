@@ -34,7 +34,7 @@ export default function Slide1() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundColor: '#fff',
-        py: { xs: 1.5, sm: 0 },
+        // py: { xs: 1.5, sm: 0 },
       }}
     >
       {/* Overlay */}

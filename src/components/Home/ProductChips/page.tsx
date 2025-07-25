@@ -68,7 +68,6 @@ const ProductGroup = ({
                     avatar={<Avatar src={product.image} alt={product.name} sx={{ width: 28, height: 28 }} />}
                     label={product.name}
                     clickable
-                    component="a"
                     aria-label={`Go to ${product.name}`}
                     sx={{
                       fontSize: isMobile ? 13 : 15,
