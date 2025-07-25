@@ -1,131 +1,159 @@
 'use client';
 
-import { Box, Typography } from '@mui/material';
-import Grid from '@mui/material/Grid';
-import { motion } from 'framer-motion';
-import Image from 'next/image';
-// import { RefObject } from 'react';
+import React, { useEffect, useState } from 'react';
+import {
+  Box,
+  Typography,
+  useMediaQuery,
+} from '@mui/material';
+import { AnimatePresence, motion } from 'framer-motion';
 
-
-const stats = [
+// Shared data
+const facts = [
   {
-    icon: '/images/home/whyitmatters/plastic-cover.svg',
+    icon: '🌱',
     title: 'Only 9% of plastic waste is recycled',
-    description: 'The rest ends up in landfills, oceans, and our food chains.',
+    description: 'Most ends up in oceans and landfills.',
   },
   {
-    icon: '/images/home/whyitmatters/turtles.svg',
-    title: '100,000+ marine animals die each year',
-    description: 'Plastic pollution is choking our oceans.',
+    icon: '🐢',
+    title: '100,000+ marine animals die yearly',
+    description: 'Choked by plastic in our seas.',
   },
   {
-    icon: '/images/home/whyitmatters/rain.svg',
-    title: 'Sudden rains and floods are rising',
-    description: 'Climate changes are becoming more frequent in India.',
+    icon: '🌧️',
+    title: 'Floods are rising across India',
+    description: 'Climate change is more frequent.',
+  },
+  {
+    icon: '🌾',
+    title: 'Soil fertility is declining',
+    description: 'Waste is damaging our farmland.',
   },
 ];
 
 export default function WhyItMatters() {
+  // const theme = useTheme();
+  const isMobile = useMediaQuery('(max-width:600px)');
+  const [index, setIndex] = useState(0);
+
+  useEffect(() => {
+    if (!isMobile) return;
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % facts.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  const current = facts[index];
+
   return (
-    <div >
-      <Box
+    <Box
+      component="section"
+      sx={{
+        backgroundColor: '#f1fdf4',
+        px: isMobile ? 2 : 10,
+        py: isMobile ? 0 : 8,
+        mt: isMobile ? 2 : 4, // ADDITION: Margin top to separate from Multilingual CTA
+        minHeight: isMobile ? '20vh' : 'auto',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        textAlign: 'center',
+      }}
+    >
+      {/* Heading */}
+      <Typography
+        variant="h2"
+        fontWeight="bold"
+        textAlign="center"
+        gutterBottom
         sx={{
-          position: 'relative',
-          py: { xs: 8, md: 10 },
-          px: { xs: 2, md: 6 },
-          backgroundImage: 'url(/images/home/whyitmatters/cleannature.png)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          zIndex: 1,
-          overflow: 'hidden',
+          fontSize: isMobile ? '1.1rem' : '2rem',
+          color: '#2E7D32',
+          mb: isMobile ? 1 : 4,
         }}
       >
+        Protecting Earth for Every Child: Why Plastic-Free Packaging Matters
+      </Typography>
+
+      {/* Mobile: Animated Text */}
+      {isMobile && (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }} // Slightly quicker
+            style={{ width: '100%' }}
+          >
+            <Typography fontSize="1rem" fontWeight="bold">
+              {current.icon} {current.title}
+            </Typography>
+            <Typography fontSize="0.85rem" color="text.secondary">
+              → {current.description}
+            </Typography>
+          </motion.div>
+        </AnimatePresence>
+      )}
+
+      {/* Desktop: Grid of Cards */}
+      {!isMobile && (
         <Box
           sx={{
-            position: 'absolute',
-            inset: 0,
-            backgroundColor: 'rgba(255,255,255,0.7)',
-            zIndex: 2,
+            display: 'flex',
+            gap: 4,
+            justifyContent: 'center',
+            mt: 2,
           }}
-        />
-
-        <Box sx={{ position: 'relative', zIndex: 3, textAlign: 'center' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            <Typography
-              variant="h4"
-              fontWeight={700}
-              color="#2e7d32"
-              sx={{ mb: 6 }}
+        >
+          {facts.map((item, idx) => (
+            <motion.div
+              key={idx}
+              whileHover={{ scale: 1.05 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              style={{
+                backgroundColor: '#fff',
+                borderRadius: '12px',
+                padding: '16px',
+                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
+                width: '22%',
+                minWidth: 200,
+              }}
             >
-              Every Child Deserves a World with Clean Air, Water, and Soil
-            </Typography>
-          </motion.div>
-
-          <Grid container spacing={4} justifyContent="center">
-            {stats.map((item, i) => (
-              <Grid size={{xs:8, md:4}}  key={i}>
-                <motion.div
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: i * 0.2 }}
-                >
-                  <Box
-                    sx={{
-                      textAlign: 'center',
-                      px: 2,
-                      maxWidth: 300,
-                      mx: 'auto',
-                    }}
-                  >
-                    <Image
-                      src={item.icon}
-                      alt={item.title}
-                      width={64}
-                      height={64}
-                      style={{ marginBottom: '1rem' }}
-                    />
-                    <Typography
-                      variant="h6"
-                      fontWeight={600}
-                      color="text.primary"
-                      sx={{ mb: 1 }}
-                    >
-                      {item.title}
-                    </Typography>
-                    <Typography
-                      variant="body2"
-                      color="text.secondary"
-                      sx={{ fontSize: '1rem' }}
-                    >
-                      {item.description}
-                    </Typography>
-                  </Box>
-                </motion.div>
-              </Grid>
-            ))}
-          </Grid>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.8 }}
-            style={{ marginTop: '3rem' }}
-          >
-            <Typography
-              variant="subtitle1"
-              fontStyle="italic"
-              color="text.primary"
-              sx={{ fontSize: '1.1rem', fontWeight: 700, maxWidth: '600px', mx: 'auto' }}
-            >
-              We can’t undo the damage, but we can make better choices now.
-            </Typography>
-          </motion.div>
+              <Box
+                sx={{
+                  fontSize: '2rem',
+                  mb: 1,
+                  display: 'flex',
+                  justifyContent: 'center',
+                }}
+              >
+                {item.icon}
+              </Box>
+              <Typography fontWeight="bold" fontSize="1rem" gutterBottom>
+                {item.title}
+              </Typography>
+              <Typography color="text.secondary" fontSize="0.875rem">
+                {item.description}
+              </Typography>
+            </motion.div>
+          ))}
         </Box>
-      </Box>
-    </div>
+      )}
+
+      {/* Optional footer caption (desktop only) */}
+      {!isMobile && (
+        <Typography
+          fontStyle="italic"
+          textAlign="center"
+          mt={4}
+          color="text.primary"
+        >
+          We can't undo the damage, but we can make better choices now.
+        </Typography>
+      )}
+    </Box>
   );
 }

@@ -20,6 +20,7 @@ const phrases = [
   'ಕನ್ನಡ',
   'മലയാളം',
   'ગુજરાતી',
+  'ଓଡ଼ିଆ',
 ];
 
 const printVariants = [
@@ -28,41 +29,37 @@ const printVariants = [
   { label: 'Multi Color', icon: '🌈' },
 ];
 
+interface PhraseInstance {
+  id: number;
+  text: string;
+  top: number;
+  left: number;
+}
+
 const MultilanguageCTA = () => {
-  const isMobile = useMediaQuery('(max-width:600px)');
-  const [animatedWords, setAnimatedWords] = useState<
-    { phrase: string; id: number; top: number; left: number }[]
-  >([]);
+//   const isMobile = useMediaQuery('(max-width:600px)');
+  const [visiblePhrases, setVisiblePhrases] = useState<PhraseInstance[]>([]);
 
-  const getRandomPosition = () => ({
-    top: Math.random() * 20 + 20,
-    left: Math.random() * 70 + 20,
-  });
+  const spawnPhrase = () => {
+    const randomText = phrases[Math.floor(Math.random() * phrases.length)];
+    const top = Math.random() * 60 + 10;
+    const left = Math.random() * 60 + 10;
+    const id = Date.now() + Math.random();
 
-  const getTwoUniquePhrases = () => {
-    const shuffled = [...phrases].sort(() => 0.5 - Math.random());
-    return [shuffled[0], shuffled[1]];
+    const phrase = { id, text: randomText, top, left };
+    setVisiblePhrases((prev) => [...prev, phrase]);
+
+    setTimeout(() => {
+      setVisiblePhrases((prev) => prev.filter((p) => p.id !== id));
+    }, 3500);
   };
 
   useEffect(() => {
-    const updateWords = () => {
-      const [first, second] = getTwoUniquePhrases();
-      setAnimatedWords([
-        {
-          phrase: first,
-          id: Date.now(),
-          ...getRandomPosition(),
-        },
-        {
-          phrase: second,
-          id: Date.now() + 1,
-          ...getRandomPosition(),
-        },
-      ]);
-    };
-
-    updateWords();
-    const interval = setInterval(updateWords, 3000);
+    spawnPhrase();
+    const interval = setInterval(() => {
+      spawnPhrase();
+      spawnPhrase(); // 2 at a time
+    }, 3000);
     return () => clearInterval(interval);
   }, []);
 
@@ -70,24 +67,25 @@ const MultilanguageCTA = () => {
     <Box
       sx={{
         width: '100%',
-        minHeight: { xs: '200px', sm: '45vh' },
+        minHeight: { xs: '20vh', sm: '35vh' },
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
-        px: 2,
-        py: 4,
-        gap: 1,
+        px: 1,
+        py: 1,
+        gap: 4,
+        mb: 2, // Space before Why It Matters
         background: 'radial-gradient(circle, #e7f5ff 60%, #d4eaff 100%)',
       }}
     >
-      {/* Floating Words Layer */}
+      {/* Floating Words */}
       <Box
         sx={{
           position: 'absolute',
-        //   top: isMobile ? 10 : 20,
+          top: 0,
           left: 0,
           width: '100%',
           height: '100%',
@@ -96,13 +94,13 @@ const MultilanguageCTA = () => {
         }}
       >
         <AnimatePresence>
-          {animatedWords.map(({ phrase, top, left, id }) => (
+          {visiblePhrases.map(({ id, text, top, left }) => (
             <motion.div
               key={id}
               initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 0.5, y: -20 }}
-              exit={{ opacity: 0, y: -40 }}
-              transition={{ duration: 2 }}
+              animate={{ opacity: 0.5, x: 10, y: -10 }}
+              exit={{ opacity: 0, y: -30 }}
+              transition={{ duration: 3, ease: 'easeInOut' }}
               style={{
                 position: 'absolute',
                 top: `${top}%`,
@@ -111,7 +109,7 @@ const MultilanguageCTA = () => {
               }}
             >
               <Typography
-                variant="h3"
+                variant="h4"
                 sx={{
                   fontWeight: 600,
                   fontSize: { xs: '1.5rem', sm: '2.5rem' },
@@ -122,7 +120,7 @@ const MultilanguageCTA = () => {
                   whiteSpace: 'nowrap',
                 }}
               >
-                {phrase}
+                {text}
               </Typography>
             </motion.div>
           ))}
@@ -143,15 +141,11 @@ const MultilanguageCTA = () => {
         Choose from multiple Indian languages
       </Typography>
 
-      {/* WhatsApp Button */}
-
-
-      {/* Print Variant Chips */}
+      {/* Chips */}
       <Stack
         direction="row"
         spacing={2}
         justifyContent="center"
-        // flexWrap="wrap"
         sx={{ zIndex: 1 }}
       >
         {printVariants.map((variant) => (
@@ -160,9 +154,9 @@ const MultilanguageCTA = () => {
             label={`${variant.icon} ${variant.label}`}
             sx={{
               fontSize: { xs: '0.75rem', sm: '0.9rem' },
-              px: 1,
+              px: 1.5,
               py: 1,
-              fontWeight: 700,
+              fontWeight: 500,
               backgroundColor: '#0890f1ff',
               color: '#f7f8f9ff',
               borderRadius: '20px',
@@ -171,15 +165,14 @@ const MultilanguageCTA = () => {
         ))}
       </Stack>
 
-    <motion.div
+      {/* WhatsApp CTA */}
+      <motion.div
         initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         transition={{ duration: 0.5, ease: 'easeOut' }}
-        style={{ zIndex: 1
-            // top: isMobile ? '10px' : '20px',
-         }}
+        style={{ zIndex: 1 }}
       >
         <Button
           variant="contained"
@@ -189,12 +182,11 @@ const MultilanguageCTA = () => {
           sx={{
             backgroundColor: '#25D366',
             color: '#fff',
-            fontWeight: 600,
+            fontWeight: 700,
             borderRadius: 2,
-            fontSize: { xs: '0.8rem', sm: '1rem' },
-            top: isMobile ? '20px' : '20px',
+            fontSize: { xs: '0.9rem', sm: '1.2rem' },
             px: 4,
-            py: 1.2,
+            py: { xs: 1.2, sm: 1.6 },
             '&:hover': { backgroundColor: '#1ebe5d' },
           }}
         >

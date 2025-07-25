@@ -15,7 +15,8 @@ import MultilanguageCTA from '@/components/Home/CTA/MutliLanguageCTA';
 import WhyItMatters from '@/components/Home/whyitmatters/page';
 import Footer from '@/components/Home/Footer/page';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
-import CustomerLogoSection from '@/components/Home/CustomerLogoSection/page'; 
+import CustomerLogoSection from '@/components/Home/CustomerLogoSection/page';
+import ProductsChips from '@/components/Home/ProductChips/page';
 
 interface BeforeInstallPromptEvent extends Event {
   prompt: () => void;
@@ -66,11 +67,19 @@ const HomePage: React.FC = () => {
       {isMobile && <MobileMenu />}
 
       {isMobile ? <MobileHero /> : <HeroSection />}
+      {!isMobile && <DeskMenu />}
+      {!isMobile && <WhyItMatters />}
+
       <FeaturedProducts />
       <Products />
-      <MultilanguageCTA />
-      {!isMobile && <WhyItMatters />}
+      {isMobile && <MultilanguageCTA />}
+      {/* <MultilanguageCTA /> */}
+      {isMobile && <WhyItMatters />}
+
+
+      {!isMobile && <MultilanguageCTA />}
       <CustomerLogoSection />
+     {!isMobile && <ProductsChips />}
       <Footer />
       <BackToTopButton />
 
