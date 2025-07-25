@@ -7,20 +7,13 @@ import {
   Button,
   Chip,
   Stack,
-
 } from '@mui/material';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const phrases = [
-  'తెలుగు',
-  'हिंदी',
-  'বাঙ্গালী',
-  'தமிழ்',
-  'ಕನ್ನಡ',
-  'മലയാളം',
-  'ગુજરાતી',
-  'ଓଡ଼ିଆ',
+  'తెలుగు', 'हिंदी', 'বাঙ্গালী', 'தமிழ்', 'ಕನ್ನಡ',
+  'മലയാളം', 'ગુજરાતી', 'ଓଡ଼ିଆ',
 ];
 
 const printVariants = [
@@ -29,37 +22,17 @@ const printVariants = [
   { label: 'Multi Color', icon: '🌈' },
 ];
 
-interface PhraseInstance {
-  id: number;
-  text: string;
-  top: number;
-  left: number;
-}
+const orbitSize = 90;
+
+const MotionChip = motion(Chip);
 
 const MultilanguageCTA = () => {
-//   const isMobile = useMediaQuery('(max-width:600px)');
-  const [visiblePhrases, setVisiblePhrases] = useState<PhraseInstance[]>([]);
-
-  const spawnPhrase = () => {
-    const randomText = phrases[Math.floor(Math.random() * phrases.length)];
-    const top = Math.random() * 60 + 10;
-    const left = Math.random() * 60 + 10;
-    const id = Date.now() + Math.random();
-
-    const phrase = { id, text: randomText, top, left };
-    setVisiblePhrases((prev) => [...prev, phrase]);
-
-    setTimeout(() => {
-      setVisiblePhrases((prev) => prev.filter((p) => p.id !== id));
-    }, 3500);
-  };
+  const [rotation, setRotation] = useState(0);
 
   useEffect(() => {
-    spawnPhrase();
     const interval = setInterval(() => {
-      spawnPhrase();
-      spawnPhrase(); // 2 at a time
-    }, 3000);
+      setRotation((prev) => (prev + 1) % 360);
+    }, 50);
     return () => clearInterval(interval);
   }, []);
 
@@ -67,55 +40,56 @@ const MultilanguageCTA = () => {
     <Box
       sx={{
         width: '100%',
-        minHeight: { xs: '20vh', sm: '35vh' },
+        minHeight: { xs: '28vh', sm: '40vh' },
         position: 'relative',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
         overflow: 'hidden',
-        px: 1,
-        py: 1,
+        px: 2,
+        py: 3,
         gap: 4,
-        mb: 2, // Space before Why It Matters
+        mb: 4,
         background: 'radial-gradient(circle, #e7f5ff 60%, #d4eaff 100%)',
       }}
     >
-      {/* Floating Words */}
+      {/* Rotating Phrases */}
       <Box
         sx={{
           position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          zIndex: 0,
+          top: '50%',
+          left: '50%',
+          width: `${orbitSize}%`,
+          height: `${orbitSize}%`,
+          transform: 'translate(-50%, -50%)',
           pointerEvents: 'none',
+          zIndex: 0,
         }}
       >
-        <AnimatePresence>
-          {visiblePhrases.map(({ id, text, top, left }) => (
+        {phrases.map((text, index) => {
+          const angle = (index / phrases.length) * 360 + rotation;
+          const radius = orbitSize / 2;
+          const x = radius * Math.cos((angle * Math.PI) / 180);
+          const y = radius * Math.sin((angle * Math.PI) / 180);
+
+          return (
             <motion.div
-              key={id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 0.5, x: 10, y: -10 }}
-              exit={{ opacity: 0, y: -30 }}
-              transition={{ duration: 3, ease: 'easeInOut' }}
+              key={text}
               style={{
                 position: 'absolute',
-                top: `${top}%`,
-                left: `${left}%`,
+                left: `calc(50% + ${x}%)`,
+                top: `calc(50% + ${y}%)`,
                 transform: 'translate(-50%, -50%)',
               }}
             >
               <Typography
-                variant="h4"
+                variant="h6"
                 sx={{
-                  fontWeight: 600,
-                  fontSize: { xs: '1.5rem', sm: '2.5rem' },
+                  fontSize: { xs: '1.1rem', sm: '1.6rem' },
                   color: '#b919d2ff',
-                  opacity: 0.5,
-                  textShadow: '0px 0px 6px rgba(25, 118, 210, 0.3)',
+                  opacity: 0.4,
+                  fontWeight: 600,
                   userSelect: 'none',
                   whiteSpace: 'nowrap',
                 }}
@@ -123,8 +97,8 @@ const MultilanguageCTA = () => {
                 {text}
               </Typography>
             </motion.div>
-          ))}
-        </AnimatePresence>
+          );
+        })}
       </Box>
 
       {/* Heading */}
@@ -141,7 +115,7 @@ const MultilanguageCTA = () => {
         Choose from multiple Indian languages
       </Typography>
 
-      {/* Chips */}
+      {/* Chips with Hover Animations */}
       <Stack
         direction="row"
         spacing={2}
@@ -149,17 +123,22 @@ const MultilanguageCTA = () => {
         sx={{ zIndex: 1 }}
       >
         {printVariants.map((variant) => (
-          <Chip
+          <MotionChip
             key={variant.label}
             label={`${variant.icon} ${variant.label}`}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 15 }}
             sx={{
               fontSize: { xs: '0.75rem', sm: '0.9rem' },
               px: 1.5,
               py: 1,
-              fontWeight: 500,
+              fontWeight: 700,
               backgroundColor: '#0890f1ff',
               color: '#f7f8f9ff',
               borderRadius: '20px',
+              cursor: 'pointer',
+              userSelect: 'none',
             }}
           />
         ))}

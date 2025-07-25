@@ -7,8 +7,9 @@ import { AnimatePresence } from 'framer-motion';
 import DeskMenu from '@/components/AppBar/DeskMenu';
 import MobileMenu from '@/components/Common/MobileMenu';
 import PWAPrompt from '@/components/Common/PWAInstall';
-import HeroSection from '../components/Home/MainHero/page';
-import MobileHero from '../components/Home/MobileHero/page';
+
+import HeroSection from '@/components/Home/MainHero/page';
+import MobileHero from '@/components/Home/MobileHero/page';
 import FeaturedProducts from '@/components/Home/FeaturedProducts/page';
 import Products from '@/components/Home/Products/page';
 import MultilanguageCTA from '@/components/Home/CTA/MutliLanguageCTA';
@@ -24,10 +25,10 @@ interface BeforeInstallPromptEvent extends Event {
 }
 
 const HomePage: React.FC = () => {
+  const isMobile = useMediaQuery('(max-width:600px)');
   const [isMounted, setIsMounted] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<BeforeInstallPromptEvent | null>(null);
   const [showPopup, setShowPopup] = useState(true);
-  const isMobile = useMediaQuery('(max-width:600px)');
 
   useEffect(() => {
     setIsMounted(true);
@@ -63,23 +64,27 @@ const HomePage: React.FC = () => {
 
   return (
     <main style={{ position: 'relative', overflow: 'visible' }}>
-      {!isMobile && <DeskMenu />}
-      {isMobile && <MobileMenu />}
+      {/* Navigation */}
+      {isMobile ? <MobileMenu /> : <DeskMenu />}
 
+      {/* Hero Section */}
       {isMobile ? <MobileHero /> : <HeroSection />}
-      {!isMobile && <DeskMenu />}
-      {!isMobile && <WhyItMatters />}
 
+      {/* Why It Matters Section */}
+      <WhyItMatters />
+
+      {/* Products */}
       <FeaturedProducts />
       <Products />
-      {isMobile && <MultilanguageCTA />}
-      {/* <MultilanguageCTA /> */}
-      {isMobile && <WhyItMatters />}
 
+      {/* Multilanguage CTA */}
+      <MultilanguageCTA />
 
-      {!isMobile && <MultilanguageCTA />}
+      {/* Customers & Chips */}
       <CustomerLogoSection />
-     {!isMobile && <ProductsChips />}
+      {!isMobile && <ProductsChips />}
+
+      {/* Footer */}
       <Footer />
       <BackToTopButton />
 

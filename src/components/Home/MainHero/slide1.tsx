@@ -25,7 +25,6 @@ export default function Slide1() {
       sx={{
         width: '100vw',
         height: '100%',
-        // mt: { xs: '56px', sm: '64px' },
         position: 'relative',
         display: 'flex',
         alignItems: 'center',
@@ -35,7 +34,7 @@ export default function Slide1() {
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
         backgroundColor: '#fff',
-        py: { xs: 1.5, sm: 0 }, // Compact vertical padding on mobile
+        py: { xs: 1.5, sm: 0 },
       }}
     >
       {/* Overlay */}
@@ -46,7 +45,9 @@ export default function Slide1() {
           left: 0,
           width: '100%',
           height: '100%',
-          backgroundColor: 'rgba(234, 233, 233, 0.3)',
+          backgroundColor: isDesktop
+            ? 'rgba(255, 255, 255, 0.4)'
+            : 'rgba(234, 233, 233, 0.3)',
           zIndex: 1,
         }}
       />
@@ -65,6 +66,7 @@ export default function Slide1() {
           textAlign: 'center',
         }}
       >
+        {/* Heading */}
         <h1
           style={{
             color: '#00040a',
@@ -75,41 +77,38 @@ export default function Slide1() {
             textShadow: '0px 2px 6px rgba(245, 241, 241, 0.5)',
           }}
         >
-          {titleLine1}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            {titleLine1}
+          </motion.span>
           <br />
-          {titleLine2}
+          <motion.span
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.3 }}
+          >
+            {titleLine2}
+          </motion.span>
         </h1>
 
-        {!isDesktop && (
-          <p
-            style={{
-              fontSize: 'clamp(0.75rem, 2vw, 1rem)',
-              color: '#006d9fff',
-              fontWeight: 400,
-              // margin: '1rem 0 2rem',
-              marginTop: '3.3rem',
-              paddingInline: 6,
-              lineHeight: 1.3,
-            }}
-          >
-            {descMobile}
-          </p>
-        )}
-
-        {isDesktop && (
-          <p
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.4rem)',
-              color: '#006d9fff',
-              fontWeight: 400,
-              marginTop: '1.6rem',
-              paddingInline: 4,
-              lineHeight: 1.4,
-            }}
-          >
-            {descDesktop}
-          </p>
-        )}
+        {/* Subheading */}
+        <p
+          style={{
+            fontSize: isDesktop
+              ? 'clamp(1rem, 2vw, 1.4rem)'
+              : 'clamp(0.75rem, 2vw, 1rem)',
+            color: '#006d9fff',
+            fontWeight: 400,
+            marginTop: isDesktop ? '1.6rem' : '3.3rem',
+            paddingInline: isDesktop ? 16 : 6,
+            lineHeight: 1.4,
+          }}
+        >
+          {isDesktop ? descDesktop : descMobile}
+        </p>
 
         {/* CTA Button */}
         <Box
@@ -132,7 +131,7 @@ export default function Slide1() {
             },
           }}
         >
-          Explore Eco Products
+          🌍 Explore Eco Products
         </Box>
       </motion.div>
     </Box>

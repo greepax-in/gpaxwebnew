@@ -5,10 +5,10 @@ import {
   Box,
   Typography,
   useMediaQuery,
+  Grid,
 } from '@mui/material';
 import { AnimatePresence, motion } from 'framer-motion';
 
-// Shared data
 const facts = [
   {
     icon: '🌱',
@@ -33,7 +33,6 @@ const facts = [
 ];
 
 export default function WhyItMatters() {
-  // const theme = useTheme();
   const isMobile = useMediaQuery('(max-width:600px)');
   const [index, setIndex] = useState(0);
 
@@ -54,12 +53,13 @@ export default function WhyItMatters() {
         backgroundColor: '#f1fdf4',
         px: isMobile ? 2 : 10,
         py: isMobile ? 0 : 8,
-        mt: isMobile ? 2 : 4, // ADDITION: Margin top to separate from Multilingual CTA
+        mt: isMobile ? 2 : 4,
         minHeight: isMobile ? '20vh' : 'auto',
         display: 'flex',
         flexDirection: 'column',
         justifyContent: 'center',
         textAlign: 'center',
+        overflow: 'hidden',
       }}
     >
       {/* Heading */}
@@ -69,15 +69,16 @@ export default function WhyItMatters() {
         textAlign="center"
         gutterBottom
         sx={{
-          fontSize: isMobile ? '1.1rem' : '2rem',
+          fontSize: isMobile ? '1.1rem' : '2.2rem',
           color: '#2E7D32',
           mb: isMobile ? 1 : 4,
+          lineHeight: 1.3,
         }}
       >
-        Protecting Earth for Every Child: Why Plastic-Free Packaging Matters
+        🌍 Why Plastic-Free Packaging Matters
       </Typography>
 
-      {/* Mobile: Animated Text */}
+      {/* Mobile: Rotating fact */}
       {isMobile && (
         <AnimatePresence mode="wait">
           <motion.div
@@ -85,7 +86,7 @@ export default function WhyItMatters() {
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.4 }} // Slightly quicker
+            transition={{ duration: 0.4 }}
             style={{ width: '100%' }}
           >
             <Typography fontSize="1rem" fontWeight="bold">
@@ -98,57 +99,71 @@ export default function WhyItMatters() {
         </AnimatePresence>
       )}
 
-      {/* Desktop: Grid of Cards */}
+      {/* Desktop: Animated Grid */}
       {!isMobile && (
-        <Box
-          sx={{
-            display: 'flex',
-            gap: 4,
-            justifyContent: 'center',
-            mt: 2,
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          transition={{ staggerChildren: 0.2 }}
+          variants={{
+            hidden: {},
+            visible: {},
           }}
         >
-          {facts.map((item, idx) => (
-            <motion.div
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              transition={{ type: 'spring', stiffness: 300 }}
-              style={{
-                backgroundColor: '#fff',
-                borderRadius: '12px',
-                padding: '16px',
-                boxShadow: '0 4px 10px rgba(0,0,0,0.05)',
-                width: '22%',
-                minWidth: 200,
-              }}
-            >
-              <Box
-                sx={{
-                  fontSize: '2rem',
-                  mb: 1,
-                  display: 'flex',
-                  justifyContent: 'center',
-                }}
-              >
-                {item.icon}
-              </Box>
-              <Typography fontWeight="bold" fontSize="1rem" gutterBottom>
-                {item.title}
-              </Typography>
-              <Typography color="text.secondary" fontSize="0.875rem">
-                {item.description}
-              </Typography>
-            </motion.div>
-          ))}
-        </Box>
+          <Grid container spacing={4} justifyContent="center">
+            {facts.map((item, idx) => (
+              <Grid size={{xs: 12, sm: 6, md: 3}} key={idx}>
+                <motion.div
+                  whileHover={{ scale: 1.06 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30 }}
+                  transition={{ duration: 0.5 }}
+                  style={{
+                    background: 'linear-gradient(to top, #ffffff, #f8fff8)',
+                    borderRadius: '16px',
+                    padding: '20px',
+                    boxShadow: '0 4px 14px rgba(0,0,0,0.05)',
+                    height: '100%',
+                  }}
+                >
+                  <Box
+                    sx={{
+                      fontSize: '2.2rem',
+                      mb: 1,
+                      color: '#2E7D32',
+                      display: 'flex',
+                      justifyContent: 'center',
+                    }}
+                  >
+                    {item.icon}
+                  </Box>
+                  <Typography
+                    fontWeight="bold"
+                    fontSize="1rem"
+                    gutterBottom
+                  >
+                    {item.title}
+                  </Typography>
+                  <Typography
+                    color="text.secondary"
+                    fontSize="0.875rem"
+                  >
+                    {item.description}
+                  </Typography>
+                </motion.div>
+              </Grid>
+            ))}
+          </Grid>
+        </motion.div>
       )}
 
-      {/* Optional footer caption (desktop only) */}
+      {/* Footer caption */}
       {!isMobile && (
         <Typography
           fontStyle="italic"
           textAlign="center"
-          mt={4}
+          mt={5}
           color="text.primary"
         >
           We can&apos;t undo the damage, but we can make better choices now.

@@ -38,20 +38,20 @@ export default function ProductCard({
         sx={{
           width: isMobile ? '45vw' : 300,
           height: isMobile ? 'auto' : 600,
-          borderRadius: 2,
+          borderRadius: 3,
           overflow: 'hidden',
-          bgcolor: '#fff',
-          boxShadow: 1,
+          bgcolor: isMobile ? '#fff' : '#fff',
+          boxShadow: isMobile ? 1 : 4,
           mx: 'auto',
-          mb: 2,
-          transition: 'all 0.3s ease-in-out',
+          mb: 3,
+          transition: 'all 0.35s ease',
           '&:hover': {
-            boxShadow: 6,
-            transform: 'scale(1.02)',
+            boxShadow: isMobile ? 6 : 8,
+            transform: isMobile ? 'none' : 'scale(1.025)',
           },
         }}
       >
-        {/* --- mobile image full view --- */}
+        {/* --- MOBILE --- */}
         {isMobile ? (
           <>
             <Box
@@ -87,32 +87,30 @@ export default function ProductCard({
             initial={{ opacity: 0, scale: 1 }}
             animate={{ opacity: 1 }}
             whileHover={{
-              scale: 1.06,
+              scale: 1.04,
               filter: 'brightness(1.05)',
-              boxShadow: '0 8px 20px rgba(0, 0, 0, 0.25)',
+              boxShadow: '0 8px 20px rgba(0, 0, 0, 0.15)',
             }}
-            transition={{
-              type: 'spring',
-              stiffness: 250,
-              damping: 22,
-            }}
+            transition={{ type: 'spring', stiffness: 250, damping: 20 }}
           >
-            <Box
-              component="img"
+            <motion.img
               src={image}
               alt={name}
-              sx={{
+              style={{
                 width: '100%',
                 height: 360,
                 objectFit: 'cover',
                 display: 'block',
               }}
+              whileHover={{ scale: 1.06 }}
+              transition={{ type: 'spring', stiffness: 200, damping: 18 }}
             />
           </motion.div>
         )}
 
-        {/* --- bottom section --- */}
+        {/* --- CONTENT --- */}
         <Box sx={{ px: 2, pt: isMobile ? 1.5 : 2 }}>
+          {/* Name */}
           {!isMobile && (
             <Typography
               noWrap
@@ -127,6 +125,7 @@ export default function ProductCard({
             </Typography>
           )}
 
+          {/* Description */}
           {!isMobile && desc && (
             <Typography
               sx={{
@@ -144,86 +143,103 @@ export default function ProductCard({
             </Typography>
           )}
 
-          {/* Paper Variants (desktop only) */}
+          {/* Paper Variants */}
           {!isMobile && paperVariants && paperVariants.length > 0 && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-              <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
-                📄 Paper:
-              </Typography>
-              {paperVariants.map((variant, i) => {
-                const lower = variant.toLowerCase();
-                let sx: Record<string, string | number> = {
-                  px: 1.2,
-                  py: 0.4,
-                  fontSize: '0.7rem',
-                  fontWeight: 600,
-                  borderRadius: 99,
-                };
-
-                if (lower === 'kraft') {
-                  sx = {
-                    ...sx,
-                    backgroundColor: '#a47148',
-                    color: '#fff',
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
+                <Typography
+                  sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}
+                >
+                  📄 Paper:
+                </Typography>
+                {paperVariants.map((variant, i) => {
+                  const lower = variant.toLowerCase();
+                  let sx: Record<string, string | number> = {
+                    px: 1.2,
+                    py: 0.4,
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    borderRadius: 99,
                   };
-                } else if (lower === 'white') {
-                  sx = {
-                    ...sx,
-                    backgroundColor: '#fff',
-                    color: '#333',
-                    border: '1px solid #ccc',
-                  };
-                }
 
-                return (
-                  <Box key={i} sx={sx}>
-                    {variant}
-                  </Box>
-                );
-              })}
-            </Box>
+                  if (lower === 'kraft') {
+                    sx = {
+                      ...sx,
+                      backgroundColor: '#a47148',
+                      color: '#fff',
+                    };
+                  } else if (lower === 'white') {
+                    sx = {
+                      ...sx,
+                      backgroundColor: '#fff',
+                      color: '#333',
+                      border: '1px solid #ccc',
+                    };
+                  }
+
+                  return (
+                    <Box key={i} sx={sx}>
+                      {variant}
+                    </Box>
+                  );
+                })}
+              </Box>
+            </motion.div>
           )}
 
-          {/* Print Variants (desktop only) */}
+          {/* Print Variants */}
           {!isMobile && printVariants && printVariants.length > 0 && (
-            <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-              <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
-                🎨 Print:
-              </Typography>
-              {printVariants.map((variant, i) => {
-                const variantLower = variant.toLowerCase();
-                let label = variant;
-                const styleProps: Record<string, string | number> = {
-                  px: 1.2,
-                  py: 0.4,
-                  fontSize: '0.7rem',
-                  fontWeight: 600,
-                  borderRadius: 99,
-                  color: '#fff',
-                  whiteSpace: 'nowrap',
-                };
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
+                <Typography
+                  sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}
+                >
+                  🎨 Print:
+                </Typography>
+                {printVariants.map((variant, i) => {
+                  const variantLower = variant.toLowerCase();
+                  let label = variant;
+                  const styleProps: Record<string, string | number> = {
+                    px: 1.2,
+                    py: 0.4,
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    borderRadius: 99,
+                    color: '#fff',
+                    whiteSpace: 'nowrap',
+                  };
 
-                if (variantLower === 'plain') {
-                  label = 'Plain';
-                  styleProps.backgroundColor = '#b4b5b4';
-                } else if (variantLower === 'single color') {
-                  label = '1-Color';
-                  styleProps.backgroundColor = '#5f02b0';
-                } else if (variantLower === 'multi color') {
-                  label = 'MultiColor';
-                  styleProps.background = 'linear-gradient(135deg, #5f02b0, #f3a42f)';
-                }
+                  if (variantLower === 'plain') {
+                    label = 'Plain';
+                    styleProps.backgroundColor = '#b4b5b4';
+                  } else if (variantLower === 'single color') {
+                    label = '1-Color';
+                    styleProps.backgroundColor = '#5f02b0';
+                  } else if (variantLower === 'multi color') {
+                    label = 'MultiColor';
+                    styleProps.background =
+                      'linear-gradient(135deg, #5f02b0, #f3a42f)';
+                  }
 
-                return (
-                  <Box key={i} sx={styleProps}>
-                    {label}
-                  </Box>
-                );
-              })}
-            </Box>
+                  return (
+                    <Box key={i} sx={styleProps}>
+                      {label}
+                    </Box>
+                  );
+                })}
+              </Box>
+            </motion.div>
           )}
 
-          {/* Pricing */}
+          {/* Price */}
           <Box
             sx={{
               display: 'flex',
@@ -241,7 +257,7 @@ export default function ProductCard({
                 color: '#fff',
                 borderRadius: '20px',
                 fontWeight: 700,
-                fontSize: isMobile ? '1.2rem' : '1.2rem',
+                fontSize: '1.2rem',
                 display: 'inline-flex',
                 alignItems: 'center',
               }}
@@ -249,7 +265,7 @@ export default function ProductCard({
               <Typography
                 component="span"
                 sx={{
-                  fontSize: isMobile ? '0.5rem' : '0.6rem',
+                  fontSize: '0.6rem',
                   fontWeight: 400,
                   mr: 0.5,
                   opacity: 0.85,
@@ -264,7 +280,7 @@ export default function ProductCard({
                   sx={{
                     ml: 1,
                     textDecoration: 'line-through',
-                    fontSize: isMobile ? '0.8rem' : '1rem',
+                    fontSize: '1rem',
                     color: 'rgba(255,255,255,0.85)',
                     fontWeight: 400,
                   }}

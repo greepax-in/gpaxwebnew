@@ -33,7 +33,6 @@ export default function FeaturedProducts() {
         py: { xs: 2, sm: 4 },
       }}
     >
-      {/* Heading */}
       <Box sx={{ maxWidth: 1500, margin: '0 auto', mb: { xs: 0.5, sm: 2 } }}>
         <Typography
           sx={{
@@ -48,7 +47,6 @@ export default function FeaturedProducts() {
         </Typography>
       </Box>
 
-      {/* Scrollable container wrapper */}
       <Box sx={{ position: 'relative' }}>
         <Box
           ref={scrollRef}
@@ -63,15 +61,22 @@ export default function FeaturedProducts() {
             px: 0,
           }}
         >
-          {/* Left padding spacer */}
           <Box sx={{ width: isMobile ? 12 : 20, flexShrink: 0 }} />
 
           {filteredProducts.map((product, index) => (
             <motion.div
               key={product.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: index * 0.05 }}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: false, amount: 0.3 }}
+              variants={{
+                hidden: { opacity: 0, y: 20 },
+                visible: {
+                  opacity: 1,
+                  y: 0,
+                  transition: { duration: 0.4, delay: index * 0.05 },
+                },
+              }}
               style={{
                 scrollSnapAlign: 'center',
                 flex: '0 0 auto',
@@ -83,7 +88,6 @@ export default function FeaturedProducts() {
                 position: 'relative',
               }}
             >
-              {/* Image Circle */}
               <motion.div
                 whileHover={{ scale: 1.1 }}
                 style={{
@@ -97,7 +101,6 @@ export default function FeaturedProducts() {
                   justifyContent: 'center',
                   alignItems: 'center',
                   boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
-                  position: 'relative',
                 }}
               >
                 <img
@@ -111,7 +114,6 @@ export default function FeaturedProducts() {
                 />
               </motion.div>
 
-              {/* Title */}
               <Typography
                 sx={{
                   mt: 0.5,
@@ -124,7 +126,6 @@ export default function FeaturedProducts() {
                 {product.name}
               </Typography>
 
-              {/* Price Badge */}
               <Typography
                 sx={{
                   bottom: '-10px',
@@ -141,7 +142,6 @@ export default function FeaturedProducts() {
                 ₹{product.offeredPrice} (<del>₹{product.sellingPrice}</del>)
               </Typography>
 
-              {/* Optional Tag */}
               {product.tagtext && (
                 <Typography
                   variant="caption"
@@ -163,11 +163,9 @@ export default function FeaturedProducts() {
             </motion.div>
           ))}
 
-          {/* Right spacer */}
           <Box sx={{ width: isMobile ? 8 : 20, flexShrink: 0 }} />
         </Box>
 
-        {/* Right blur/fade */}
         {isMobile && showBlurOverlay && (
           <Box
             sx={{

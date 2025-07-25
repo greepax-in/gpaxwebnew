@@ -33,7 +33,6 @@ export default function HeroSlide() {
     <Box
       sx={{
         width: '100vw',
-        mt: { xs: '56px', sm: '64px' },
         height: '100%',
         display: 'flex',
         flexDirection: { xs: 'column', sm: 'row' },
@@ -43,29 +42,33 @@ export default function HeroSlide() {
         px: { xs: 2, sm: 6 },
       }}
     >
-      {/* Left Side: Animated Words */}
+      {/* Left: Animated Languages */}
       <Box
         sx={{
           flex: 1,
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
-          pb: { xs: 0.5, sm: 0 },
           mt: { xs: '-20%', sm: 0 },
+          pb: { xs: 0.5, sm: 0 },
         }}
       >
         <AnimatePresence mode="wait">
           <motion.div
             key={index}
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -30, opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            initial={{ y: 30, opacity: 0, scale: 0.95 }}
+            animate={{ y: 0, opacity: 1, scale: 1 }}
+            exit={{ y: -30, opacity: 0, scale: 0.95 }}
+            transition={{
+              duration: 0.6,
+              ease: [0.42, 0, 0.58, 1],
+            }}
             style={{
               display: 'flex',
-              gap: '12px',
-              justifyContent: isMobile ? 'center' : 'right', // Center for mobile, right for desktop
+              gap: isMobile ? '12px' : '32px',
+              justifyContent: isMobile ? 'center' : 'flex-end',
               alignItems: 'center',
+              flexWrap: 'wrap',
             }}
           >
             {currentWords.map((word, i) => (
@@ -85,7 +88,7 @@ export default function HeroSlide() {
         </AnimatePresence>
       </Box>
 
-      {/* Right Side */}
+      {/* Right Side: Text + CTA */}
       <Box
         sx={{
           flex: 1,
@@ -95,6 +98,7 @@ export default function HeroSlide() {
           alignItems: isMobile ? 'center' : 'flex-start',
           textAlign: isMobile ? 'center' : 'left',
           gap: isMobile ? 0 : 1.5,
+          pl: isMobile ? 0 : 4,
         }}
       >
         {/* Title */}
@@ -103,13 +107,14 @@ export default function HeroSlide() {
             fontWeight: 700,
             fontSize: { xs: '0.95rem', sm: '2rem', md: '2.8rem' },
             color: '#1976d2',
-            mt: { xs: '-20%', sm: 0 }, // Moved title up by 20% for mobile
+            lineHeight: 1.3,
+            mt: { xs: '-20%', sm: 0 },
           }}
         >
           We Print in Hindi, Tamil, Telugu, Kannada & More.
         </Typography>
 
-        {/* Subtitle and badge for Desktop */}
+        {/* Subtitle */}
         {!isMobile && (
           <>
             <Typography
@@ -117,6 +122,7 @@ export default function HeroSlide() {
                 fontWeight: 400,
                 fontSize: '1.2rem',
                 color: '#555',
+                mt: 1,
               }}
             >
               Build deeper connections with regional language packaging.
@@ -133,6 +139,7 @@ export default function HeroSlide() {
                 fontSize: '0.9rem',
                 color: '#444',
                 fontWeight: 500,
+                mt: 1,
               }}
             >
               🇮🇳 India’s Regional Languages Supported
@@ -140,22 +147,23 @@ export default function HeroSlide() {
           </>
         )}
 
-        {/* Icon Row */}
+        {/* Icon row */}
         <Box
           sx={{
             display: 'flex',
-            gap: 1,
+            gap: 1.4,
             fontSize: { xs: '0.75rem', sm: '1.4rem' },
+            mt: isMobile ? 1 : 2,
             justifyContent: 'center',
           }}
         >
-          <span>A</span>
-          <span>आ</span>
-          <span>అ</span>
-          <span>அ</span>
+          <motion.span whileInView={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.2 }}>A</motion.span>
+          <motion.span whileInView={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.4 }}>आ</motion.span>
+          <motion.span whileInView={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.6 }}>అ</motion.span>
+          <motion.span whileInView={{ opacity: 1 }} initial={{ opacity: 0 }} transition={{ delay: 0.8 }}>அ</motion.span>
         </Box>
 
-        {/* CTA Button */}
+        {/* CTA */}
         <Button
           variant="contained"
           sx={{
@@ -165,7 +173,7 @@ export default function HeroSlide() {
             color: '#fff',
             px: 2,
             py: 0.6,
-            mt: isMobile ? 0.5 : 2,
+            mt: isMobile ? 0.5 : 2.4,
             '&:hover': {
               backgroundColor: '#ef6c00',
             },
