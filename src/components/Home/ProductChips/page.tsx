@@ -29,9 +29,9 @@ const chipVariants = {
   whileHover: { scale: 1.05 },
 };
 
-// Grouping logic
-const groupProducts = (groupName: string) => {
-  return products.filter((product: any) => {
+// Updated types to replace 'any' with a more specific type
+const groupProducts = (groupName: string): Array<{ name: string; pageLink: string; image: string }> => {
+  return products.filter((product: { name: string; pageLink: string; image: string }) => {
     const lower = product.name.toLowerCase();
     return lower.includes(groupName);
   });
@@ -42,7 +42,8 @@ const ProductGroup = ({
   items,
 }: {
   title: string;
-  items: any[];
+  items: Array<{ name: string; pageLink: string; image: string }>;
+
 }) => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -70,7 +71,7 @@ const ProductGroup = ({
           spacing={isMobile ? 1.5 : 2}
           justifyContent="center"
         >
-          {items.map((product: any) => (
+          {items.map((product) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.name}>
               <Link href={product.pageLink} passHref>
                 <motion.div variants={chipVariants} whileHover="whileHover">

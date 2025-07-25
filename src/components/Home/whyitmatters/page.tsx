@@ -151,7 +151,7 @@ export default function WhyItMatters() {
           mt={4}
           color="text.primary"
         >
-          We can't undo the damage, but we can make better choices now.
+          We can&apos;t undo the damage, but we can make better choices now.
         </Typography>
       )}
     </Box>
