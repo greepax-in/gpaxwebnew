@@ -1,3 +1,9 @@
+---
+title: A
+slug: A
+category: A
+subcategory: A
+---
 # Products
 
 Welcome to our product catalog! Here you will find a selection of our featured products.
