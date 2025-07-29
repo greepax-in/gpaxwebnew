@@ -12,3 +12,7 @@ These kraft paper bags are made from 100% recycled materials. Suitable for resta
 
 
 These kraft paper bags are made from 100% recycled materials. Suitable for restaurants, cafes, and bakeries. Available in various sizes3
+
+
+
+These kraft paper bags are made from 100% recycled materials. Suitable for restaurants, cafes, and bakeries. Available in various Sinzdeaslkjdf 
