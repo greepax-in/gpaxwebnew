@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
-import featuredProducts from '../../../data/products.json';
+import featuredProducts from '@/data/items.json';
 
 const filteredProducts = featuredProducts.filter(
   (product) => product.featuredProduct === 'yes'

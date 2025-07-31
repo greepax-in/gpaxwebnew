@@ -9,7 +9,7 @@ import {
   useMediaQuery,
 } from '@mui/material';
 import { motion } from 'framer-motion';
-import products from '../../../data/products.json';
+import products from '@/data/items.json';
 
 type ProductType = {
   name: string;

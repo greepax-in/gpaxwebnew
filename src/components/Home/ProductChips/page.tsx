@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import products from '../../../data/products.json';
+import products from '@/data/items.json';
 import Link from 'next/link';
 import {
   Box,
