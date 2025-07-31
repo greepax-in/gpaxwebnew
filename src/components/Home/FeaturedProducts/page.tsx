@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
+import Link from 'next/link';
 import featuredProducts from '@/data/items.json';
 
 const filteredProducts = featuredProducts.filter(
@@ -64,105 +65,110 @@ export default function FeaturedProducts() {
           }}
         >
           {filteredProducts.map((product, index) => (
-            <motion.div
+            <Link
               key={product.name}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: false, amount: 0.3 }}
-              variants={{
-                hidden: { opacity: 0, y: 20 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.4, delay: index * 0.05 },
-                },
-              }}
-              style={{
-                scrollSnapAlign: 'center',
-                flex: '0 0 auto',
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                width: itemWidth,
-                minWidth: itemWidth,
-                position: 'relative',
-                marginLeft: index === 0 ? (isMobile ? 12 : 20) : 0,
-                marginRight: index === filteredProducts.length - 1 ? (isMobile ? 8 : 20) : 0,
-              }}
+              href={product.pageLink}
+              style={{ textDecoration: 'none', color: 'inherit' }}
             >
               <motion.div
-                whileHover={{ scale: 1.1 }}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: false, amount: 0.3 }}
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  visible: {
+                    opacity: 1,
+                    y: 0,
+                    transition: { duration: 0.4, delay: index * 0.05 },
+                  },
+                }}
                 style={{
-                  width: isMobile ? 80 : 150,
-                  height: isMobile ? 80 : 150,
-                  borderRadius: '50%',
-                  overflow: 'hidden',
-                  border: '3px solid #fcd34d',
-                  backgroundColor: '#fff',
+                  scrollSnapAlign: 'center',
+                  flex: '0 0 auto',
                   display: 'flex',
-                  justifyContent: 'center',
+                  flexDirection: 'column',
                   alignItems: 'center',
-                  boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
+                  width: itemWidth,
+                  minWidth: itemWidth,
+                  position: 'relative',
+                  marginLeft: index === 0 ? (isMobile ? 12 : 20) : 0,
+                  marginRight: index === filteredProducts.length - 1 ? (isMobile ? 8 : 20) : 0,
                 }}
               >
-                <img
-                  src={product.image}
-                  alt={product.name}
+                <motion.div
+                  whileHover={{ scale: 1.1 }}
                   style={{
-                    width: '80%',
-                    height: '80%',
-                    objectFit: 'contain',
-                  }}
-                />
-              </motion.div>
-
-              <Typography
-                sx={{
-                  mt: 0.5,
-                  fontWeight: 700,
-                  fontSize: { xs: '0.74rem', sm: '1.2rem' },
-                  textAlign: 'center',
-                  color: '#111',
-                }}
-              >
-                {product.name}
-              </Typography>
-
-              <Typography
-                sx={{
-                  bottom: '-10px',
-                  zIndex: 2,
-                  background: 'linear-gradient(135deg, #ef4444 0%, #5f36f3 100%)',
-                  color: '#fff',
-                  fontSize: { xs: '0.9rem', sm: '1rem' },
-                  fontWeight: 700,
-                  px: 1,
-                  borderRadius: '0 999px 999px 999px',
-                  boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                }}
-              >
-                ₹{product.offeredPrice} (<del>₹{product.sellingPrice}</del>)
-              </Typography>
-
-              {product.tagtext && (
-                <Typography
-                  variant="caption"
-                  sx={{
-                    position: 'absolute',
-                    top: '0px',
-                    right: '-4px',
-                    backgroundColor: '#34d399',
-                    color: '#fff',
-                    fontSize: '0.6rem',
-                    borderRadius: '8px',
-                    px: 1,
-                    py: 0.2,
+                    width: isMobile ? 80 : 150,
+                    height: isMobile ? 80 : 150,
+                    borderRadius: '50%',
+                    overflow: 'hidden',
+                    border: '3px solid #fcd34d',
+                    backgroundColor: '#fff',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    boxShadow: '0 2px 8px rgba(0,0,0,0.1)',
                   }}
                 >
-                  {product.tagtext}
+                  <img
+                    src={product.image}
+                    alt={product.name}
+                    style={{
+                      width: '80%',
+                      height: '80%',
+                      objectFit: 'contain',
+                    }}
+                  />
+                </motion.div>
+
+                <Typography
+                  sx={{
+                    mt: 0.5,
+                    fontWeight: 700,
+                    fontSize: { xs: '0.74rem', sm: '1.2rem' },
+                    textAlign: 'center',
+                    color: '#111',
+                  }}
+                >
+                  {product.name}
                 </Typography>
-              )}
-            </motion.div>
+
+                <Typography
+                  sx={{
+                    bottom: '-10px',
+                    zIndex: 2,
+                    background: 'linear-gradient(135deg, #ef4444 0%, #5f36f3 100%)',
+                    color: '#fff',
+                    fontSize: { xs: '0.9rem', sm: '1rem' },
+                    fontWeight: 700,
+                    px: 1,
+                    borderRadius: '0 999px 999px 999px',
+                    boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                  }}
+                >
+                  ₹{product.offeredPrice} (<del>₹{product.sellingPrice}</del>)
+                </Typography>
+
+                {product.tagtext && (
+                  <Typography
+                    variant="caption"
+                    sx={{
+                      position: 'absolute',
+                      top: '0px',
+                      right: '-4px',
+                      backgroundColor: '#34d399',
+                      color: '#fff',
+                      fontSize: '0.6rem',
+                      borderRadius: '8px',
+                      px: 1,
+                      py: 0.2,
+                    }}
+                  >
+                    {product.tagtext}
+                  </Typography>
+                )}
+              </motion.div>
+            </Link>
           ))}
         </Box>
 

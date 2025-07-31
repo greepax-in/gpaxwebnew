@@ -62,9 +62,10 @@ const ProductGroup = ({
         <Grid container spacing={isMobile ? 2 : 3} justifyContent="center">
           {items.map((product) => (
             <Grid size={{ xs: 12, sm: 6, md: 4 }} key={product.name}>
-              <Link href={product.pageLink} passHref>
+              <Link href={product.pageLink} passHref style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
                 <motion.div variants={chipVariants} whileHover="whileHover">
                   <Chip
+                    component="span"
                     avatar={<Avatar src={product.image} alt={product.name} sx={{ width: 28, height: 28 }} />}
                     label={product.name}
                     clickable
