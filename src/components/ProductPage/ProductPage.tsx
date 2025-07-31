@@ -2,7 +2,9 @@
 
 import React from 'react';
 import { Box, useMediaQuery } from '@mui/material';
+
 import HeroSection from '@/components/ProductPage/HeroSection';
+import ProductDetails from '@/components/ProductPage/ProductDetails';
 import AvailableOptions from '@/components/ProductPage/AvailableOptions';
 
 import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
@@ -27,6 +29,7 @@ export type ProductType = {
   highlights: string[];
   specifications: Record<string, string>;
   faqs: { q: string; a: string }[];
+  sizes: string[];  
 };
 
 type Props = {
@@ -39,6 +42,7 @@ const ProductLayout = ({ product }: Props) => {
   return (
     <Box sx={{ maxWidth: '1280px', mx: 'auto', px: isMobile ? 2 : 4, mt: isMobile ? 7 : 15 }}>
       <HeroSection product={product} />
+      <ProductDetails product={product} />
     </Box>
   );
 };

@@ -19,10 +19,8 @@ const AvailableOptions = ({ product }: Props) => {
   if (!hasPrintVariants && !hasPaperVariants) return null;
 
   return (
-    <Box mt={1}>
-      <Typography variant="h6" gutterBottom>
-        Available Options
-      </Typography>
+    <Box mt={0}>
+
 
       {hasPrintVariants && (
         <Box mb={3}>

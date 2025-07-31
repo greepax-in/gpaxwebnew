@@ -1,5 +1,6 @@
 import ProductPageComponent from '@/components/ProductPage/ProductPage';
 import { notFound } from 'next/navigation';
+import type { ProductType } from '../../../../types/products';
 
 export async function generateStaticParams() {
   const products = (await import('@/data/items.json')).default;
@@ -31,5 +32,5 @@ export default async function ProductPage({
 
   if (!item) notFound();
 
-  return <ProductPageComponent product={item} />;
+  return <ProductPageComponent product={item as ProductType} />;
 }

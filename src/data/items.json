@@ -1,56 +1,123 @@
 [
   {
-    "name": "Kraft Printed Food Delivery Paper Bags",
-    "category": "Paper Bags",
-    "description": "Engineered for the food delivery revolution—our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
-    "industry": "Food Delivery, Restaurants, Cloud Kitchens",
-    "image": "/images/products/paperbags/1.svg",
-    "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
-    "printvariants": [
-      "Plain",
-      "1-Color",
-      "Multi Color"
-    ],
-    "featuredProduct": "yes",
-    "offeredPrice": 9,
-    "sellingPrice": 10,
-    "papervariant": [
-      "Kraft",
-      "White"
-    ],
-    "tagtext": "New",
-    "slug": "kraft-printed-food-delivery-paper-bags",
-    "featuredImage": "/images/products/paperbags/1.svg",
-    "productImages": [
-      "/images/products/paperbags/1.svg",
-      "/images/products/paperbags/7.svg",
-      "/images/products/paperbags/1.svg"
-    ],
-    "highlights": [
-      "Eco-friendly & recyclable",
-      "Available in custom sizes",
-      "Durable for daily use"
-    ],
-    "specifications": {
-      "Material": "Kraft Paper",
-      "GSM": "100",
-      "Size": "Standard",
-      "Print Method": "Flexo"
-    },
-    "faqs": [
-      {
-        "q": "Can I customize this product?",
-        "a": "Yes, custom printing and sizing are available."
-      },
-      {
-        "q": "What is the minimum order quantity?",
-        "a": "Minimum order starts at 500 units."
-      }
-    ],
-    "categorySlug": "paper-bags",
-    "baseSlug": "food-delivery-paper-bags",
-    "paper": "Kraft"
+  "name": "Kraft Printed Food Delivery Paper Bags",
+  "slug": "kraft-printed-food-delivery-paper-bags",
+  "category": "Paper Bags",
+  "categorySlug": "paper-bags",
+  "subcategory": "Food Delivery Paper Bags",
+  "subcategorySlug": "food-delivery-paper-bags",
+  "breadcrumb": [
+    { "label": "Home", "href": "/" },
+    { "label": "Paper Bags", "href": "/paper-bags" },
+    { "label": "Food Delivery Paper Bags", "href": "/paper-bags/food-delivery-paper-bags" },
+    { "label": "Kraft Printed Food Delivery Paper Bags", "href": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags" }
+  ],
+  "description": "Engineered for the food delivery revolution—our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
+  "industry": "Food Delivery, Restaurants, Cloud Kitchens",
+  "image": "/images/products/paperbags/1.svg",
+  "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
+  "printvariants": ["1-Color"],
+  "papervariant": ["Kraft"],
+  "featuredProduct": "yes",
+  "offeredPrice": 9,
+  "sellingPrice": 10,
+  "tagtext": "New",
+  "featuredImage": "/images/products/paperbags/1.svg",
+  "productImages": [
+    "/images/products/paperbags/1.svg",
+    "/images/products/paperbags/7.svg",
+    "/images/products/paperbags/13.svg"
+  ],
+  "sizes": ["6x8\"", "8x10\"", "10x12\"", "12x15\""],
+  "sizePrices": {
+    "6x8\"": 8,
+    "8x10\"": 9,
+    "10x12\"": 10,
+    "12x15\"": 12
   },
+  "sizeImages": {
+    "6x8\"": ["/images/products/paperbags/file.svg"],
+    "8x10\"": ["/images/products/paperbags/kraft-paper-bag.svg"],
+    "10x12\"": ["/images/products/paperbags/1.svg", "/images/products/paperbags/7.svg"],
+    "12x15\"": ["/images/products/paperbags/minimenu-paperbags.svg"]
+  },
+  "units": ["100", "1kg"],
+  "minimumQuantities": [100, 200, 500],
+  "variantPrices": {
+    "6x8\"": {
+      "100pcs": {
+        "100": 6,
+        "200": 5.5,
+        "500": 5
+      },
+      "1kg": {
+        "100": 7,
+        "200": 6.5,
+        "500": 6
+      }
+    },
+    "8x10\"": {
+      "100pcs": {
+        "100": 7.5,
+        "200": 7,
+        "500": 6.5
+      },
+      "1kg": {
+        "100": 8,
+        "200": 7.5,
+        "500": 7
+      }
+    },
+    "10x12\"": {
+      "100pcs": {
+        "100": 8.5,
+        "200": 8,
+        "500": 7.5
+      },
+      "1kg": {
+        "100": 9,
+        "200": 8.5,
+        "500": 8
+      }
+    },
+    "12x15\"": {
+      "100pcs": {
+        "100": 10,
+        "200": 9.5,
+        "500": 9
+      },
+      "1kg": {
+        "100": 11,
+        "200": 10.5,
+        "500": 10
+      }
+    }
+  },
+  "highlights": [
+    "Eco-friendly & recyclable",
+    "Available in custom sizes",
+    "Durable for daily use"
+  ],
+  "specifications": {
+    "Material": "Kraft Paper",
+    "GSM": "100",
+    "Size": "Standard",
+    "Print Method": "Flexo"
+  },
+  "faqs": [
+    {
+      "q": "Can I customize this product?",
+      "a": "Yes, custom printing and sizing are available."
+    },
+    {
+      "q": "What is the minimum order quantity?",
+      "a": "Minimum order starts at 500 units."
+    }
+  ],
+  "paper": "Kraft"
+},
+
+
   {
     "name": "White Printed Food Delivery Paper Bags",
     "category": "Paper Bags",

@@ -309,8 +309,8 @@ export default function ProductCard({
   );
 
   return link ? (
-    <Link href={link} passHref legacyBehavior>
-      <a style={{ textDecoration: 'none' }}>{CardContent}</a>
+    <Link href={link} style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+      {CardContent}
     </Link>
   ) : (
     CardContent
