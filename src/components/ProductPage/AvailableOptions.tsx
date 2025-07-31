@@ -1,0 +1,56 @@
+'use client';
+
+import React from 'react';
+import { Box, Typography, Stack } from '@mui/material';
+import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
+import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
+
+import { ProductType } from '../../types/products';
+
+
+type Props = {
+  product: ProductType;
+};
+
+const AvailableOptions = ({ product }: Props) => {
+  const hasPrintVariants = product.printvariants?.length > 0;
+  const hasPaperVariants = product.papervariant?.length > 0;
+
+  if (!hasPrintVariants && !hasPaperVariants) return null;
+
+  return (
+    <Box mt={1}>
+      <Typography variant="h6" gutterBottom>
+        Available Options
+      </Typography>
+
+      {hasPrintVariants && (
+        <Box mb={3}>
+          <Typography variant="subtitle1" gutterBottom>
+            Print Variants
+          </Typography>
+          <Stack direction="row" spacing={1} flexWrap="wrap">
+            {product.printvariants.map((variant, i) => (
+              <PrintVariantChip key={i} label={variant.trim()} size="medium" />
+            ))}
+          </Stack>
+        </Box>
+      )}
+
+      {hasPaperVariants && (
+        <Box>
+          <Typography variant="subtitle1" gutterBottom>
+            Paper Variants
+          </Typography>
+          <Stack direction="row" spacing={1} flexWrap="wrap">
+            {product.papervariant.map((variant, i) => (
+              <PaperVariantChip key={i} label={variant.trim()} size="medium" />
+            ))}
+          </Stack>
+        </Box>
+      )}
+    </Box>
+  );
+};
+
+export default AvailableOptions;

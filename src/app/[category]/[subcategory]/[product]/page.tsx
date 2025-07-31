@@ -1,4 +1,4 @@
-import ProductLayout from '@/components/Products/ProductPage';
+import ProductPageComponent from '@/components/ProductPage/ProductPage';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {
@@ -31,5 +31,5 @@ export default async function ProductPage({
 
   if (!item) notFound();
 
-  return <ProductLayout product={item} />;
+  return <ProductPageComponent product={item} />;
 }

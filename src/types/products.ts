@@ -1,0 +1,20 @@
+export type ProductType = {
+  name: string;
+  slug: string;
+  category: string;
+  description: string;
+  industry: string;
+  image: string;
+  featuredImage: string;
+  productImages: string[];
+  pageLink: string;
+  printvariants: string[];
+  papervariant: string[];
+  featuredProduct: string;
+  offeredPrice: number;
+  sellingPrice: number;
+  tagtext: string;
+  highlights: string[];
+  specifications: Record<string, string>;
+  faqs: { q: string; a: string }[];
+};
