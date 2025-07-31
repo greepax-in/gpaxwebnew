@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import ProductCard from '@components/Home/ProductCategories/ProductCard';
+import ProductCard from '@/components/Home/Products/ProductCard';
 import {
   Box,
   Button,
@@ -18,7 +18,7 @@ type ProductType = {
   sellingPrice?: number;
   printVariants?: string[];
   paperVariants?: string[];
-  link?: string;
+  pageLink?: string;
   desc?: string;
   category: string;
   description?: string;
@@ -176,7 +176,7 @@ export default function ProductGridSection() {
                   desc={product.description}
                   offeredPrice={product.offeredPrice ?? undefined}
                   sellingPrice={product.sellingPrice ?? undefined}
-                  link={product.link}
+                  link={product.pageLink}
                   printVariants={product.printvariants}
                   paperVariants={product.papervariant}
                 />

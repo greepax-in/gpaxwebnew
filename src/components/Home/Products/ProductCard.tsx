@@ -28,12 +28,8 @@ export default function ProductCard({
 }: ProductCardProps) {
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  return (
+  const CardContent = (
     <Box
-      component={link ? Link : 'div'}
-      href={link}
-      target={link ? '_blank' : undefined}
-      rel={link ? 'noopener noreferrer' : undefined}
       sx={{
         textDecoration: 'none',
         width: isMobile ? '45vw' : 300,
@@ -87,7 +83,7 @@ export default function ProductCard({
             </Typography>
           </Box>
 
-          {/* --- Price Chip Animation --- */}
+          {/* Price Chip Animation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             whileInView={{ opacity: 1, scale: 1 }}
@@ -149,7 +145,7 @@ export default function ProductCard({
         </motion.div>
       ) : (
         <motion.div
-          initial={{ opacity: 0, scale: 1 }}
+          initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           whileHover={{
             scale: 1.04,
@@ -173,23 +169,16 @@ export default function ProductCard({
         </motion.div>
       )}
 
-      {/* --- CONTENT (Desktop only) --- */}
+      {/* Desktop content */}
       {!isMobile && (
         <Box sx={{ px: 2, pt: 2 }}>
-          {/* Name */}
           <Typography
             noWrap
-            sx={{
-              fontWeight: 700,
-              fontSize: '1.4rem',
-              color: '#222',
-              mb: 1,
-            }}
+            sx={{ fontWeight: 700, fontSize: '1.4rem', color: '#222', mb: 1 }}
           >
             {name}
           </Typography>
 
-          {/* Description */}
           {desc && (
             <Typography
               sx={{
@@ -209,15 +198,9 @@ export default function ProductCard({
 
           {/* Paper Variants */}
           {paperVariants && paperVariants.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4 }}
-            >
+            <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                <Typography
-                  sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}
-                >
+                <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
                   📄 Paper:
                 </Typography>
                 {paperVariants.map((variant, i) => {
@@ -231,25 +214,12 @@ export default function ProductCard({
                   };
 
                   if (lower === 'kraft') {
-                    sx = {
-                      ...sx,
-                      backgroundColor: '#a47148',
-                      color: '#fff',
-                    };
+                    sx = { ...sx, backgroundColor: '#a47148', color: '#fff' };
                   } else if (lower === 'white') {
-                    sx = {
-                      ...sx,
-                      backgroundColor: '#fff',
-                      color: '#333',
-                      border: '1px solid #ccc',
-                    };
+                    sx = { ...sx, backgroundColor: '#fff', color: '#333', border: '1px solid #ccc' };
                   }
 
-                  return (
-                    <Box key={i} sx={sx}>
-                      {variant}
-                    </Box>
-                  );
+                  return <Box key={i} sx={sx}>{variant}</Box>;
                 })}
               </Box>
             </motion.div>
@@ -257,15 +227,9 @@ export default function ProductCard({
 
           {/* Print Variants */}
           {printVariants && printVariants.length > 0 && (
-            <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.4, delay: 0.1 }}
-            >
+            <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                <Typography
-                  sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}
-                >
+                <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
                   🎨 Print:
                 </Typography>
                 {printVariants.map((variant, i) => {
@@ -289,30 +253,17 @@ export default function ProductCard({
                     styleProps.backgroundColor = '#5f02b0';
                   } else if (variantLower === 'multi color') {
                     label = 'MultiColor';
-                    styleProps.background =
-                      'linear-gradient(135deg, #5f02b0, #f3a42f)';
+                    styleProps.background = 'linear-gradient(135deg, #5f02b0, #f3a42f)';
                   }
 
-                  return (
-                    <Box key={i} sx={styleProps}>
-                      {label}
-                    </Box>
-                  );
+                  return <Box key={i} sx={styleProps}>{label}</Box>;
                 })}
               </Box>
             </motion.div>
           )}
 
-          {/* Price (desktop – no animation) */}
-          <Box
-            sx={{
-              display: 'flex',
-              justifyContent: 'flex-start',
-              alignItems: 'center',
-              mt: 'auto',
-              mb: 2,
-            }}
-          >
+          {/* Price */}
+          <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', mt: 'auto', mb: 2 }}>
             <Box
               sx={{
                 px: 2,
@@ -326,15 +277,7 @@ export default function ProductCard({
                 alignItems: 'center',
               }}
             >
-              <Typography
-                component="span"
-                sx={{
-                  fontSize: '0.6rem',
-                  fontWeight: 400,
-                  mr: 0.5,
-                  opacity: 0.85,
-                }}
-              >
+              <Typography component="span" sx={{ fontSize: '0.6rem', fontWeight: 400, mr: 0.5, opacity: 0.85 }}>
                 from
               </Typography>
               ₹{offeredPrice}
@@ -357,5 +300,13 @@ export default function ProductCard({
         </Box>
       )}
     </Box>
+  );
+
+  return link ? (
+    <Link href={link} passHref legacyBehavior>
+      <a style={{ textDecoration: 'none' }}>{CardContent}</a>
+    </Link>
+  ) : (
+    CardContent
   );
 }
