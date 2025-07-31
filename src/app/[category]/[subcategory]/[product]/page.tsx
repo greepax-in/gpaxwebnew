@@ -1,4 +1,4 @@
-import ProductLayout from '@/components/Products/ProductLayout';
+import ProductLayout from '@/components/Products/ProductPage';
 import { notFound } from 'next/navigation';
 
 export async function generateStaticParams() {

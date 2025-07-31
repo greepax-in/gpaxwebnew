@@ -4,6 +4,8 @@ import React from 'react';
 import { Box, Typography, useMediaQuery } from '@mui/material';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
+import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
+import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 
 export type ProductCardProps = {
   name: string;
@@ -198,72 +200,68 @@ export default function ProductCard({
 
           {/* Paper Variants */}
           {paperVariants && paperVariants.length > 0 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-                <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
-                  📄 Paper:
-                </Typography>
-                {paperVariants.map((variant, i) => {
-                  const lower = variant.toLowerCase();
-                  let sx: Record<string, string | number> = {
-                    px: 1.2,
-                    py: 0.4,
-                    fontSize: '0.7rem',
-                    fontWeight: 600,
-                    borderRadius: 99,
-                  };
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  mb: 1,
+                  flexWrap: 'nowrap',
+                  overflowX: 'auto',
+                  scrollbarWidth: 'none',
+                  '&::-webkit-scrollbar': { display: 'none' },
+                }}
+              >
 
-                  if (lower === 'kraft') {
-                    sx = { ...sx, backgroundColor: '#a47148', color: '#fff' };
-                  } else if (lower === 'white') {
-                    sx = { ...sx, backgroundColor: '#fff', color: '#333', border: '1px solid #ccc' };
-                  }
-
-                  return <Box key={i} sx={sx}>{variant}</Box>;
-                })}
+                {paperVariants.map((variant, i) => (
+                  <PaperVariantChip key={i} label={variant} size="small" />
+                ))}
               </Box>
             </motion.div>
           )}
 
           {/* Print Variants */}
           {printVariants && printVariants.length > 0 && (
-            <motion.div initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.4, delay: 0.1 }}>
-              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 2 }}>
-                <Typography sx={{ fontSize: '0.72rem', fontWeight: 500, color: '#555' }}>
-                  🎨 Print:
-                </Typography>
-                {printVariants.map((variant, i) => {
-                  const variantLower = variant.toLowerCase();
-                  let label = variant;
-                  const styleProps: Record<string, string | number> = {
-                    px: 1.2,
-                    py: 0.4,
-                    fontSize: '0.7rem',
-                    fontWeight: 600,
-                    borderRadius: 99,
-                    color: '#fff',
-                    whiteSpace: 'nowrap',
-                  };
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+            >
+              <Box
+                sx={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: 1,
+                  mb: 2,
+                  flexWrap: 'nowrap',
+                  overflowX: 'auto',
+                  scrollbarWidth: 'none',
+                  '&::-webkit-scrollbar': { display: 'none' },
+                }}
+              >
 
-                  if (variantLower === 'plain') {
-                    label = 'Plain';
-                    styleProps.backgroundColor = '#b4b5b4';
-                  } else if (variantLower === 'single color') {
-                    label = '1-Color';
-                    styleProps.backgroundColor = '#5f02b0';
-                  } else if (variantLower === 'multi color') {
-                    label = 'MultiColor';
-                    styleProps.background = 'linear-gradient(135deg, #5f02b0, #f3a42f)';
-                  }
-
-                  return <Box key={i} sx={styleProps}>{label}</Box>;
-                })}
+                {printVariants.map((variant, i) => (
+                  <PrintVariantChip key={i} label={variant} size="small" />
+                ))}
               </Box>
             </motion.div>
           )}
 
           {/* Price */}
-          <Box sx={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', mt: 'auto', mb: 2 }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-start',
+              alignItems: 'center',
+              mt: 'auto',
+              mb: 2,
+            }}
+          >
             <Box
               sx={{
                 px: 2,
@@ -277,7 +275,15 @@ export default function ProductCard({
                 alignItems: 'center',
               }}
             >
-              <Typography component="span" sx={{ fontSize: '0.6rem', fontWeight: 400, mr: 0.5, opacity: 0.85 }}>
+              <Typography
+                component="span"
+                sx={{
+                  fontSize: '0.6rem',
+                  fontWeight: 400,
+                  mr: 0.5,
+                  opacity: 0.85,
+                }}
+              >
                 from
               </Typography>
               ₹{offeredPrice}

@@ -8,7 +8,7 @@
     "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "yes",
@@ -60,7 +60,7 @@
     "pageLink": "/paper-bags/food-delivery-paper-bags/white-printed-food-delivery-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "yes",
@@ -112,7 +112,7 @@
     "pageLink": "/paper-bags/cake-box-paper-bags/kraft-printed-cake-box-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color"
+      "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 11,
@@ -161,7 +161,7 @@
     "image": "/images/paperbags/13.svg",
     "pageLink": "/paper-bags/promotion-paper-bags/kraft-printed-promotion-paper-bags",
     "printvariants": [
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "yes",
@@ -212,7 +212,7 @@
     "image": "/images/paperbags/13.svg",
     "pageLink": "/paper-bags/promotion-paper-bags/white-printed-promotion-paper-bags",
     "printvariants": [
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "yes",
@@ -264,7 +264,7 @@
     "pageLink": "/paper-bags/gift-paper-bags/kraft-printed-gift-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
@@ -316,7 +316,7 @@
     "pageLink": "/paper-bags/gift-paper-bags/white-printed-gift-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
@@ -368,7 +368,7 @@
     "pageLink": "/paper-bags/garment-paper-bags/kraft-printed-garment-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
@@ -420,7 +420,7 @@
     "pageLink": "/paper-bags/garment-paper-bags/white-printed-garment-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
@@ -472,7 +472,7 @@
     "pageLink": "/paper-covers/medical-paper-covers/kraft-printed-medical-paper-covers",
     "printvariants": [
       "Plain",
-      "Single Color"
+      "1-Color"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 6,
@@ -522,7 +522,7 @@
     "pageLink": "/paper-covers/bakery-paper-covers/kraft-printed-bakery-paper-covers",
     "printvariants": [
       "Plain",
-      "Single Color"
+      "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 6,
@@ -572,7 +572,7 @@
     "pageLink": "/paper-covers/grocery-paper-covers/kraft-printed-grocery-paper-covers",
     "printvariants": [
       "Plain",
-      "Single Color"
+      "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 5,
@@ -622,7 +622,7 @@
     "pageLink": "/paper-covers/vegetable-paper-covers/kraft-printed-vegetable-paper-covers",
     "printvariants": [
       "Plain",
-      "Single Color"
+      "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 5,
@@ -672,7 +672,7 @@
     "pageLink": "/paper-covers/textile-paper-covers/kraft-printed-textile-paper-covers",
     "printvariants": [
       "Plain",
-      "Single Color"
+      "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 8,
@@ -722,7 +722,7 @@
     "pageLink": "/paper-covers/laundry-paper-covers/kraft-printed-laundry-paper-covers",
     "printvariants": [
       "Plain",
-      "Single Color"
+      "1-Color"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 8,
@@ -821,7 +821,7 @@
     "pageLink": "/paper-boxes/burger-boxes/kraft-printed-burger-boxes",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
@@ -873,7 +873,7 @@
     "pageLink": "/paper-boxes/burger-boxes/white-printed-burger-boxes",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
@@ -925,7 +925,7 @@
     "pageLink": "/paper-bags/custom-paper-bags/kraft-printed-custom-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
@@ -977,7 +977,7 @@
     "pageLink": "/paper-bags/custom-paper-bags/white-printed-custom-paper-bags",
     "printvariants": [
       "Plain",
-      "Single Color",
+      "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "no",
