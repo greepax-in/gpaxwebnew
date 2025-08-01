@@ -9,6 +9,7 @@ import LocalMallIcon from '@mui/icons-material/LocalMall';
 import LayersIcon from '@mui/icons-material/Layers';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import { WHATSAPP_NUMBER  } from '@/components/constants/whatsapp';
 
 const navItems = [
   { label: 'Home', icon: HomeIcon, href: '/' },
@@ -90,7 +91,7 @@ export default function MobileMenu() {
         {/* ✅ Conditional WhatsApp Button */}
         {!isProductPage && (
           <motion.a
-            href="https://wa.me/919999999999"
+            href={`https://wa.me/${WHATSAPP_NUMBER}`}
             target="_blank"
             rel="noopener noreferrer"
             whileTap={{ scale: 0.92 }}

@@ -17,6 +17,7 @@ import WhatsappIcon from '@mui/icons-material/WhatsApp';
 import PhoneIcon from '@mui/icons-material/Phone';
 import CloseIcon from '@mui/icons-material/Close';
 import MainMenu from './MainMenu'; // Assuming MainMenu is a separate component
+import { WHATSAPP_NUMBER  } from '@/components/constants/whatsapp'; // Adjust the import path as necessary
 
 const MotionA = motion('a');
 
@@ -100,7 +101,7 @@ export default function AppBar() {
 
             {/* WhatsApp */}
             <MotionA
-              href="https://wa.me/919999999999"
+              href={`https://wa.me/${WHATSAPP_NUMBER}`}
               target="_blank"
               rel="noopener noreferrer"
               style={{

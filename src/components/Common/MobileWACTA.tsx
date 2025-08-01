@@ -14,7 +14,7 @@ interface WhatsAppCTAProps {
   label?: string;
 }
 
-const WhatsAppCTA = ({
+const MobileWACTA = ({
   productName,
   selectedSize,
   selectedQty,
@@ -63,7 +63,6 @@ Please share pricing and availability.`;
           disabled={!enabled}
           fullWidth
           variant="contained"
-          color="success"
           startIcon={
             <motion.div
               animate={enabled ? { scale: [1, 1.1, 1] } : { scale: 1 }}
@@ -83,6 +82,11 @@ Please share pricing and availability.`;
             textTransform: 'none',
             boxShadow: '0 6px 20px rgba(0, 0, 0, 0.15)',
             opacity: enabled ? 1 : 0.5,
+            backgroundColor: enabled ? '#25D366' : undefined,
+            color: enabled ? '#fff' : undefined,
+            '&:hover': {
+              backgroundColor: enabled ? '#1ebe5d' : undefined,
+            },
           }}
         >
           {label}
@@ -101,4 +105,4 @@ Please share pricing and availability.`;
   );
 };
 
-export default WhatsAppCTA;
+export default MobileWACTA;

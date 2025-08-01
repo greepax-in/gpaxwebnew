@@ -1,17 +1,15 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Fab, useMediaQuery } from '@mui/material';
+import { Box, Fab, Zoom, useScrollTrigger } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
-import { motion, AnimatePresence } from 'framer-motion';
 
-const BackToTopButton = () => {
-  const [showButton, setShowButton] = useState(false);
-  const isMobile = useMediaQuery('(max-width:600px)');
+const BackToTopMobile = () => {
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowButton(window.scrollY > 300);
+      setVisible(window.scrollY > 400); // Show only after scrolling
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -23,36 +21,23 @@ const BackToTopButton = () => {
   };
 
   return (
-    <AnimatePresence>
-      {showButton && (
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: 50 }}
-          transition={{ duration: 0.3 }}
-          style={{
-            position: 'fixed',
-            bottom: isMobile ? 80 : 32, // Adjusted for mobile to display above bottom nav bar
-            right: isMobile ? 16 : 32, // Adjusted to always be on the right side bottom
-            zIndex: 1300,
-          }}
-        >
-          <Fab
-            onClick={scrollToTop}
-            size="medium"
-            color="primary"
-            aria-label="scroll back to top"
-            sx={{
-              backgroundColor: '#007a5e',
-              '&:hover': { backgroundColor: '#005f47' },
-            }}
-          >
-            <KeyboardArrowUpIcon />
-          </Fab>
-        </motion.div>
-      )}
-    </AnimatePresence>
+    <Zoom in={visible}>
+      <Box
+        role="presentation"
+        onClick={scrollToTop}
+        sx={{
+          position: 'fixed',
+          bottom: 140, // ✅ lifted above WhatsApp CTA (72 + button height)
+          right: 16,
+          zIndex: 1250,
+        }}
+      >
+        <Fab size="small" aria-label="Back to Top" sx={{ bgcolor: '#1B5E20', color: '#fff' }}>
+          <KeyboardArrowUpIcon />
+        </Fab>
+      </Box>
+    </Zoom>
   );
 };
 
-export default BackToTopButton;
+export default BackToTopMobile;

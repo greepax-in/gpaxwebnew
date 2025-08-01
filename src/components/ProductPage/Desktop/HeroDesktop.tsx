@@ -22,7 +22,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType } from '@/types/itemTypes';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
-
+import DesktopWACTA from '@/components/Common/DesktopWACTA';
+import { WHATSAPP_NUMBER } from '@/components/constants/whatsapp';
 type Props = {
   product: ItemType;
 };
@@ -272,11 +273,17 @@ const HeroSection = ({ product }: Props) => {
               size="large"
               sx={{ height: 48, mb: 1 }}
               startIcon={<WhatsAppIcon />}
-              href={`https://wa.me/91xxxxxxxxxx?text=I%20am%20interested%20in%20${encodeURIComponent(product.name)}%20${selectedSize} ${selectedUnit} ${selectedMinQty}`}
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=I%20am%20interested%20in%20${encodeURIComponent(product.name)}%20${selectedSize} ${selectedUnit} ${selectedMinQty}`}
               target="_blank"
             >
-              Chat with us on WhatsApp
+              Get Best Price on WhatsApp
             </Button>
+            <DesktopWACTA
+              productName={product.name}
+              selectedSize={selectedSize}
+              selectedQty={selectedMinQty.toString()}
+              selectedUnit={selectedUnit}
+            />
           </Box>
         </Box>
       </Box>

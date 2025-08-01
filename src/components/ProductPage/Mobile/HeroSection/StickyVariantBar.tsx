@@ -67,7 +67,8 @@ const StickyVariantBar = ({
         flexDirection: 'column',
         gap: 2,
         maxWidth: 400,
-        mx: 'auto',
+        // mx: 'auto',
+        marginTop: -1.5,
       }}
     >
       {variantRows.map(({ icon, label, data, selected, onClick }) => (
