@@ -19,7 +19,7 @@ import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { motion, AnimatePresence } from 'framer-motion';
 // import AvailableOptions from './AvailableOptions';
-import { ItemType } from '../../types/itemTypes';
+import { ItemType } from '@/types/itemTypes';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
 

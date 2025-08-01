@@ -51,11 +51,12 @@ export type ItemType = {
   sizePrices?: { [size: string]: number };
   units?: string[];
   minimumQuantities?: number[];
-  variantPrices?: {
+ variantPrices?: {
     [size: string]: {
       [unit: string]: {
-        [minQty: number]: number;
+        [qty: string]: number;
       };
     };
   };
+
 };

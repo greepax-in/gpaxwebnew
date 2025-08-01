@@ -309,7 +309,7 @@ export default function ProductCard({
   );
 
   return link ? (
-    <Link href={link} style={{ textDecoration: 'none' }} target="_blank" rel="noopener noreferrer">
+    <Link href={link} style={{ textDecoration: 'none' }}>
       {CardContent}
     </Link>
   ) : (

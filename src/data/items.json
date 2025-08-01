@@ -72,8 +72,8 @@
       ]
     },
     "units": [
-      "100",
-      "1kg"
+      "pcs",
+      "kg"
     ],
     "minimumQuantities": [
       100,
