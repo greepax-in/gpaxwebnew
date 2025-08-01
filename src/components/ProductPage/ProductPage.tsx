@@ -5,10 +5,7 @@ import { Box, useMediaQuery } from '@mui/material';
 
 import HeroSection from '@/components/ProductPage/HeroSection';
 import ProductDetails from '@/components/ProductPage/ProductDetails';
-import AvailableOptions from '@/components/ProductPage/AvailableOptions';
 
-import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
-import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 
 export type ProductType = {
   name: string;
