@@ -34,7 +34,10 @@
       ],
       "@data/*": [
         "./src/data/*"
-      ],  
+      ],
+      "@constants/*": [
+        "./src/components/Common/*"
+      ]
     }
   },
   "include": [

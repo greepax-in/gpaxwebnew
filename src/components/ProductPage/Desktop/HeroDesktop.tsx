@@ -40,10 +40,19 @@ const HeroSection = ({ product }: Props) => {
   const handlePrev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
   const handleThumbnailClick = (i: number) => setIndex(i);
 
-  const currentPrice =
-    product.variantPrices?.[selectedSize]?.[selectedUnit]?.[selectedMinQty] ||
-    product.sizePrices?.[selectedSize] ||
-    product.offeredPrice;
+  const variantPrice =
+    product.variantPrices?.[selectedSize]?.[selectedUnit]?.[selectedMinQty];
+  const fallbackOffered = product.offeredPrice ?? 0;
+  const fallbackSelling = product.sellingPrice ?? 0;
+
+  const offeredPrice =
+    variantPrice !== undefined ? variantPrice : fallbackOffered;
+  const sellingPrice =
+    variantPrice !== undefined
+      ? Math.round(variantPrice * 1.2)
+      : fallbackSelling;
+
+ 
 
   return (
     <Box>
@@ -93,35 +102,45 @@ const HeroSection = ({ product }: Props) => {
             >
               {product.name} {selectedSize && `- ${selectedSize}`}
             </Typography>
-            {/* Stack for Price */}
-            <Stack direction="row" alignItems="center" spacing={1} mt={1}>
-              <Typography variant="h5" fontWeight="bold" sx={{ color: 'success.main' }}>
-                ₹{currentPrice}
-              </Typography>
-              {product.sellingPrice > currentPrice && (
-                <>
-                  <Typography
-                    variant="body1"
-                    color="text.secondary"
-                    sx={{ textDecoration: 'line-through' }}
-                  >
-                    ₹{product.sellingPrice}
+            {/* Animated Price Section */}
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`${selectedSize}-${selectedUnit}-${selectedMinQty}-${offeredPrice}`}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Stack direction="row" alignItems="center" spacing={1} mt={1}>
+                  <Typography variant="h5" fontWeight="bold" sx={{ color: 'success.main' }}>
+                    ₹{offeredPrice}
                   </Typography>
-                  <Chip
-                    label={`-${Math.round(
-                      100 * (product.sellingPrice - currentPrice) / product.sellingPrice
-                    )}%`}
-                    size="small"
-                    sx={{
-                      bgcolor: '#d32f2f',
-                      color: '#fff',
-                      fontWeight: 500,
-                      borderRadius: '16px',
-                    }}
-                  />
-                </>
-              )}
-            </Stack>
+                  {sellingPrice > offeredPrice && (
+                    <>
+                      <Typography
+                        variant="body1"
+                        color="text.secondary"
+                        sx={{ textDecoration: 'line-through' }}
+                      >
+                        ₹{sellingPrice}
+                      </Typography>
+                      <Chip
+                        label={`-${Math.round(
+                          100 * (sellingPrice - offeredPrice) / product.sellingPrice
+                        )}%`}
+                        size="small"
+                        sx={{
+                          bgcolor: '#d32f2f',
+                          color: '#fff',
+                          fontWeight: 500,
+                          borderRadius: '16px',
+                        }}
+                      />
+                    </>
+                  )}
+                </Stack>
+              </motion.div>
+            </AnimatePresence>
 
 
             {/* Configure Your Product Block */}
@@ -134,74 +153,87 @@ const HeroSection = ({ product }: Props) => {
               </Stack>
             )}
             <Paper variant="outlined" sx={{ p: 2, bgcolor: 'grey.50' }}>
-              <Typography variant="subtitle2" fontWeight="bold">📏 Size</Typography>
-              <Stack direction="row" spacing={1} mt={1} flexWrap="wrap">
-                {product.sizes?.map((size, idx) => (
-                  <Chip
-                    key={idx}
-                    label={size}
-                    variant={selectedSize === size ? 'filled' : 'outlined'}
-                    onClick={() => {
-                      setSelectedSize(size);
-                      setIndex(0);
-                    }}
-                    sx={{
-                      bgcolor: selectedSize === size ? 'primary.main' : 'grey.100',
-                      color: selectedSize === size ? '#fff' : 'inherit',
-                      fontWeight: 500,
-                      borderRadius: 2,
-                      px: isMobile ? 1 : 2,
-                      minWidth: isMobile ? 60 : undefined,
-                      fontSize: '0.875rem',
-                      cursor: 'pointer',
-                    }}
-                  />
-                ))}
-              </Stack>
-
-              <Typography variant="subtitle2" fontWeight="bold" mt={2}>⚖️ Units</Typography>
-              <Stack direction="row" spacing={1} mt={1} flexWrap="wrap">
-                {product.units?.map((unit, idx) => (
-                  <Chip
-                    key={idx}
-                    label={unit}
-                    variant={selectedUnit === unit ? 'filled' : 'outlined'}
-                    onClick={() => setSelectedUnit(unit)}
-                    sx={{
-                      bgcolor: selectedUnit === unit ? 'primary.main' : 'grey.100',
-                      color: selectedUnit === unit ? '#fff' : 'inherit',
-                      fontWeight: 500,
-                      borderRadius: 2,
-                      px: isMobile ? 1 : 2,
-                      minWidth: isMobile ? 60 : undefined,
-                      fontSize: '0.875rem',
-                      cursor: 'pointer',
-                    }}
-                  />
-                ))}
-              </Stack>
-
-              <Typography variant="subtitle2" fontWeight="bold" mt={2}>📦 Min. Qty</Typography>
-              <Stack direction="row" spacing={1} mt={1} flexWrap="wrap">
-                {product.minimumQuantities?.map((qty, idx) => (
-                  <Chip
-                    key={idx}
-                    label={`${qty}`}
-                    variant={selectedMinQty === qty ? 'filled' : 'outlined'}
-                    onClick={() => setSelectedMinQty(qty)}
-                    sx={{
-                      bgcolor: selectedMinQty === qty ? 'primary.main' : 'grey.100',
-                      color: selectedMinQty === qty ? '#fff' : 'inherit',
-                      fontWeight: 500,
-                      borderRadius: 2,
-                      px: isMobile ? 1 : 2,
-                      minWidth: isMobile ? 60 : undefined,
-                      fontSize: '0.875rem',
-                      cursor: 'pointer',
-                    }}
-                  />
-                ))}
-              </Stack>
+              {/* Variant Selection Rows: Size, Qty, Unit */}
+              {[
+                {
+                  icon: '📏',
+                  label: 'Size',
+                  data: product.sizes ?? [] as string[],
+                  selected: selectedSize,
+                  onClick: (val: string) => {
+                    setSelectedSize(val);
+                    setIndex(0);
+                  },
+                  type: 'string' as const,
+                },
+                {
+                  icon: '📦',
+                  label: 'Qty',
+                  data: product.minimumQuantities ?? [] as number[],
+                  selected: selectedMinQty,
+                  onClick: (val: number) => setSelectedMinQty(val),
+                  type: 'number' as const,
+                },
+                {
+                  icon: '📐',
+                  label: 'Unit',
+                  data: product.units ?? [] as string[],
+                  selected: selectedUnit,
+                  onClick: (val: string) => setSelectedUnit(val),
+                  type: 'string' as const,
+                },
+              ].map(({ icon, label, data, selected, onClick, type }, idx) => (
+                <Box key={label} sx={{ display: 'grid', gridTemplateColumns: '64px 1fr', alignItems: 'center', rowGap: 1, mb: 2 }}>
+                  <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
+                    {icon} {label}:
+                  </Typography>
+                  <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                    {type === 'string'
+                      ? (data as string[]).map((val) => (
+                          <Chip
+                            key={val}
+                            label={val}
+                            size={isMobile ? 'small' : 'medium'}
+                            variant={selected === val ? 'filled' : 'outlined'}
+                            onClick={() => (onClick as (v: string) => void)(val)}
+                            sx={{
+                              bgcolor: selected === val ? 'primary.main' : '#f5f5f5',
+                              color: selected === val ? '#fff' : 'text.primary',
+                              fontWeight: 600,
+                              borderRadius: '9999px',
+                              fontSize: isMobile ? '0.8rem' : '1rem',
+                              px: isMobile ? 1 : 2,
+                              py: isMobile ? 0.5 : 1,
+                              minWidth: isMobile ? 48 : 72,
+                              transition: 'all 0.2s',
+                              cursor: 'pointer',
+                            }}
+                          />
+                        ))
+                      : (data as number[]).map((val) => (
+                          <Chip
+                            key={val}
+                            label={val}
+                            size={isMobile ? 'small' : 'medium'}
+                            variant={selected === val ? 'filled' : 'outlined'}
+                            onClick={() => (onClick as (v: number) => void)(val)}
+                            sx={{
+                              bgcolor: selected === val ? 'primary.main' : '#f5f5f5',
+                              color: selected === val ? '#fff' : 'text.primary',
+                              fontWeight: 600,
+                              borderRadius: '9999px',
+                              fontSize: isMobile ? '0.8rem' : '1rem',
+                              px: isMobile ? 1 : 2,
+                              py: isMobile ? 0.5 : 1,
+                              minWidth: isMobile ? 48 : 72,
+                              transition: 'all 0.2s',
+                              cursor: 'pointer',
+                            }}
+                          />
+                        ))}
+                  </Box>
+                </Box>
+              ))}
 
               {/* Visual Variant Chips */}
               <Stack direction="row" spacing={3} alignItems="center" mt={3}>

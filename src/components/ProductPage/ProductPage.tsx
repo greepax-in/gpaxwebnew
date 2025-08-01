@@ -16,7 +16,7 @@ import IndustriesServed from './IndustryServed';
 import TrustedBy from './TrustedBy';
 import UseCases from './UseCases';
 import { ItemType } from '../../types/itemTypes';
-import ProductPageMobile from './Mobile/ProductPageMobile';
+import ProductPageMobile from './Mobile/HeroSection/ProductPageMobile';
 // import products from '@/data/items.json';  
 
 type Props = {

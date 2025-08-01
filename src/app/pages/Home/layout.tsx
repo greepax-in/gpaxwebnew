@@ -4,7 +4,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 // import "./global.css";
 import dynamic from "next/dynamic";
 import { useMediaQuery } from "@mui/material";
-import MobileMenu from "@/components/Common/MobileMenu";
+import MobileMenu from "@/components/AppBar/MobileMenu";
 import FooterWrapper from "@/components/Common/Footer/FooterWrapper"; // ✅ Import Footer
 
 const AppBar = dynamic(() => import('@/components/AppBar/DeskMenu'), { ssr: false });

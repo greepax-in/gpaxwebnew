@@ -5,7 +5,7 @@ import { useMediaQuery } from '@mui/material';
 import { AnimatePresence } from 'framer-motion';
 
 import DeskMenu from '@/components/AppBar/DeskMenu';
-import MobileMenu from '@/components/Common/MobileMenu';
+import MobileMenu from '@/components/AppBar/MobileMenu';
 import PWAPrompt from '@/components/Common/PWAInstall';
 
 import HeroSection from '@/components/Home/MainHero/page';

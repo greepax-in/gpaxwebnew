@@ -21,6 +21,12 @@ export default function MobileMenu() {
   const isMobile = useMediaQuery('(max-width:600px)');
   const pathname = usePathname();
 
+  // ✅ Hide WhatsApp icon on product detail pages
+  const isProductPage =
+    pathname?.includes('/paper-bags/') ||
+    pathname?.includes('/paper-covers/') ||
+    pathname?.includes('/paper-boxes/');
+
   if (!isMobile) return null;
 
   return (
@@ -81,34 +87,36 @@ export default function MobileMenu() {
           );
         })}
 
-        {/* WhatsApp Button */}
-        <motion.a
-          href="https://wa.me/919999999999"
-          target="_blank"
-          rel="noopener noreferrer"
-          whileTap={{ scale: 0.92 }}
-          style={{ textDecoration: 'none' }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              justifyContent: 'center',
-              px: 1,
-              py: 0.5,
-              borderRadius: '12px',
-              fontSize: '0.7rem',
-              fontWeight: 500,
-              minWidth: 50,
-              color: '#25D366',
-              transition: 'all 0.3s ease-in-out',
-            }}
+        {/* ✅ Conditional WhatsApp Button */}
+        {!isProductPage && (
+          <motion.a
+            href="https://wa.me/919999999999"
+            target="_blank"
+            rel="noopener noreferrer"
+            whileTap={{ scale: 0.92 }}
+            style={{ textDecoration: 'none' }}
           >
-            <WhatsAppIcon fontSize="small" sx={{ color: '#25D366' }} />
-            Chat
-          </Box>
-        </motion.a>
+            <Box
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                px: 1,
+                py: 0.5,
+                borderRadius: '12px',
+                fontSize: '0.7rem',
+                fontWeight: 500,
+                minWidth: 50,
+                color: '#25D366',
+                transition: 'all 0.3s ease-in-out',
+              }}
+            >
+              <WhatsAppIcon fontSize="small" sx={{ color: '#25D366' }} />
+              Chat
+            </Box>
+          </motion.a>
+        )}
       </Box>
     </motion.div>
   );

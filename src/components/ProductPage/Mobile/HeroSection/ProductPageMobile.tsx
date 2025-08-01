@@ -14,7 +14,10 @@ import StickyVariantBar from './StickyVariantBar';
 import ImageCarousel from './ImageCarousel';
 import { ItemType } from '@/types/itemTypes';
 import { motion, AnimatePresence } from 'framer-motion';
+// import FloatingWhatsAppCTA from '../WhatsAppCTA';
+import WhatsAppCTA from '@/components/Common/WhatsAppCTA';
 // import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+// import WhatsAppCTA from '@/components/Common/WhatsAppCTA');  
 
 interface ProductPageMobileProps {
   product: ItemType;
@@ -79,6 +82,7 @@ const ProductPageMobile = ({ product }: ProductPageMobileProps) => {
       {/* Product Title */}
       <Typography variant="h6" fontWeight={600} lineHeight={1.4}>
         {product.name}
+        {selectedSize ? ` – ${selectedSize}` : ''}
       </Typography>
 
 
@@ -140,6 +144,12 @@ const ProductPageMobile = ({ product }: ProductPageMobileProps) => {
         selectedUnit={selectedUnit}
         onUnitSelect={setSelectedUnit}
       />
+<WhatsAppCTA
+  productName={product.name}
+  selectedSize={selectedSize}
+  selectedQty={selectedQty}
+  selectedUnit={selectedUnit}
+/>
     </Box>
   );
 };
