@@ -3,10 +3,10 @@
 import React from 'react';
 import { Box, Typography, Grid, useMediaQuery } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { ProductType } from '../../types/itemTypes';
+import { ItemType } from '../../types/itemTypes';
 
 type Props = {
-  product: ProductType;
+  product: ItemType;
 };
 
 const UseCases = ({ product }: Props) => {

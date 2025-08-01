@@ -11,10 +11,10 @@ import {
   Divider,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ProductType } from '../../types/itemTypes';
+import { ItemType } from '../../types/itemTypes';
 
 type Props = {
-  product: ProductType;
+  product: ItemType;
 };
 
 const ProductFAQ = ({ product }: Props) => {

@@ -3,10 +3,10 @@
 import React from 'react';
 import { Box, Typography, Divider, Tooltip, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
-import { ProductType } from '@/types/itemTypes';
+import { ItemType } from '@/types/itemTypes';
 
 interface Props {
-  product: ProductType;
+  product: ItemType;
 }
 
 export default function TrustedBy({ product }: Props) {

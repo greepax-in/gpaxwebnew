@@ -3,11 +3,11 @@
 import React from 'react';
 import { Box, Typography, Grid, Divider, useMediaQuery } from '@mui/material';
 import ProductCard from '@/components/Home/Products/SimilarProductCard';
-import { ProductType } from '@/types/itemTypes';
+import { ItemType } from '@/types/itemTypes';
 
 type Props = {
-  currentProduct: ProductType;
-  allProducts: ProductType[];
+  currentProduct: ItemType;
+  allProducts: ItemType[];
 };
 
 const SimilarProducts = ({ currentProduct, allProducts }: Props) => {

@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Box, Typography, Divider, Chip, useMediaQuery } from '@mui/material';
-import { ProductType } from '@/types/itemTypes';
+import { ItemType } from '@/types/itemTypes';
 
 interface Props {
-  product: ProductType;
+  product: ItemType;
 }
 
 export default function IndustriesServed({ product }: Props) {

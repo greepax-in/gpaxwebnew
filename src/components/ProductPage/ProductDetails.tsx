@@ -2,10 +2,10 @@
 
 import React from 'react';
 import { Box, Typography, Stack, Divider, useMediaQuery, Grid } from '@mui/material';
-import { ProductType } from '../../types/itemTypes';
+import { ItemType } from '../../types/itemTypes';
 
 type Props = {
-  product: ProductType;
+  product: ItemType;
 };
 
 const ProductDetails = ({ product }: Props) => {
