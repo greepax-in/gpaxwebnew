@@ -11,4 +11,7 @@ module.exports = withPWA({
   typescript: {
     ignoreBuildErrors: true, // ✅ Fixes build crash from `.next/types/...`
   },
+  images: {
+    unoptimized: true,
+  },
 });

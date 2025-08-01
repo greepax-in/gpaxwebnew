@@ -207,7 +207,7 @@ const HeroSection = ({ product }: Props) => {
               href={`https://wa.me/91xxxxxxxxxx?text=I%20am%20interested%20in%20${encodeURIComponent(product.name)}%20${selectedSize} ${selectedUnit} ${selectedMinQty}`}
               target="_blank"
             >
-              Order Now via WhatsApp – No Online Checkout Needed
+              Chat with us on WhatsApp
             </Button>
           </Box>
         </Box>
