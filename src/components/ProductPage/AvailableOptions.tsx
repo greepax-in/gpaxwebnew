@@ -13,8 +13,8 @@ type Props = {
 };
 
 const AvailableOptions = ({ product }: Props) => {
-  const hasPrintVariants = product.printvariants?.length > 0;
-  const hasPaperVariants = product.papervariant?.length > 0;
+  const hasPrintVariants = product.printVariants?.length > 0;
+  const hasPaperVariants = product.paperVariant?.length > 0;
 
   if (!hasPrintVariants && !hasPaperVariants) return null;
 
@@ -28,7 +28,7 @@ const AvailableOptions = ({ product }: Props) => {
             Print Variants
           </Typography>
           <Stack direction="row" spacing={1} flexWrap="wrap">
-            {product.printvariants.map((variant, i) => (
+            {product.printVariants.map((variant, i) => (
               <PrintVariantChip key={i} label={variant.trim()} size="medium" />
             ))}
           </Stack>
@@ -41,7 +41,7 @@ const AvailableOptions = ({ product }: Props) => {
             Paper Variants
           </Typography>
           <Stack direction="row" spacing={1} flexWrap="wrap">
-            {product.papervariant.map((variant, i) => (
+            {product.paperVariant.map((variant, i) => (
               <PaperVariantChip key={i} label={variant.trim()} size="medium" />
             ))}
           </Stack>

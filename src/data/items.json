@@ -28,10 +28,10 @@
     "industry": "Food Delivery, Restaurants, Cloud Kitchens",
     "image": "/images/products/paperbags/1.svg",
     "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "1-Color"
     ],
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "featuredProduct": "yes",
@@ -72,8 +72,8 @@
       ]
     },
     "units": [
-      "pcs",
-      "kg"
+      "Bag",
+      "Kg"
     ],
     "minimumQuantities": [
       100,
@@ -82,36 +82,36 @@
     ],
     "variantPrices": {
       "6x8\"": {
-        "100pcs": {
+        "Bag": {
           "100": 6,
           "200": 5.5,
           "500": 5
         },
-        "1kg": {
+        "Kg": {
           "100": 7,
           "200": 6.5,
           "500": 6
         }
       },
       "8x10\"": {
-        "100pcs": {
+        "Bag": {
           "100": 7.5,
           "200": 7,
           "500": 6.5
         },
-        "1kg": {
+        "Kg": {
           "100": 8,
           "200": 7.5,
           "500": 7
         }
       },
       "10x12\"": {
-        "100pcs": {
+        "Bag": {
           "100": 8.5,
           "200": 8,
           "500": 7.5
         },
-        "1kg": {
+        "Kg": {
           "100": 9,
           "200": 8.5,
           "500": 8
@@ -189,15 +189,18 @@
     "industry": "Food Delivery, Restaurants, Cloud Kitchens",
     "image": "/images/paperbags/1.svg",
     "pageLink": "/paper-bags/food-delivery-paper-bags/white-printed-food-delivery-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "yes",
+    "packSize": 100,
+  "minimumOrderQty": 500,
+  "tags": ["eco-friendly", "food-delivery", "kraft"],
     "offeredPrice": 9,
     "sellingPrice": 10,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -256,14 +259,14 @@
     "industry": "Bakeries, Patisseries, Dessert Shops",
     "image": "/images/paperbags/7.svg",
     "pageLink": "/paper-bags/cake-box-paper-bags/kraft-printed-cake-box-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 11,
     "sellingPrice": 12,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "Hot",
@@ -321,14 +324,14 @@
     "industry": "Events, Exhibitions, Retail Promotions",
     "image": "/images/paperbags/13.svg",
     "pageLink": "/paper-bags/promotion-paper-bags/kraft-printed-promotion-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 14,
     "sellingPrice": 15,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -387,14 +390,14 @@
     "industry": "Events, Exhibitions, Retail Promotions",
     "image": "/images/paperbags/13.svg",
     "pageLink": "/paper-bags/promotion-paper-bags/white-printed-promotion-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "1-Color",
       "Multi Color"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 14,
     "sellingPrice": 15,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -453,7 +456,7 @@
     "industry": "Retail, Gifting, Lifestyle Stores",
     "image": "/images/paperbags/file.svg",
     "pageLink": "/paper-bags/gift-paper-bags/kraft-printed-gift-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -461,7 +464,7 @@
     "featuredProduct": "no",
     "offeredPrice": 17,
     "sellingPrice": 18,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -520,7 +523,7 @@
     "industry": "Retail, Gifting, Lifestyle Stores",
     "image": "/images/paperbags/file.svg",
     "pageLink": "/paper-bags/gift-paper-bags/white-printed-gift-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -528,7 +531,7 @@
     "featuredProduct": "no",
     "offeredPrice": 17,
     "sellingPrice": 18,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -587,7 +590,7 @@
     "industry": "Apparel, Fashion Boutiques, Showrooms",
     "image": "/images/paperbags/kraft-paper-bag.svg",
     "pageLink": "/paper-bags/garment-paper-bags/kraft-printed-garment-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -595,7 +598,7 @@
     "featuredProduct": "no",
     "offeredPrice": 19,
     "sellingPrice": 20,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -654,7 +657,7 @@
     "industry": "Apparel, Fashion Boutiques, Showrooms",
     "image": "/images/paperbags/kraft-paper-bag.svg",
     "pageLink": "/paper-bags/garment-paper-bags/white-printed-garment-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -662,7 +665,7 @@
     "featuredProduct": "no",
     "offeredPrice": 19,
     "sellingPrice": 20,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -721,14 +724,14 @@
     "industry": "Healthcare, Hospitals, Medical Stores",
     "image": "/images/papercovers/62.svg",
     "pageLink": "/paper-covers/medical-paper-covers/kraft-printed-medical-paper-covers",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 6,
     "sellingPrice": 7,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "Popular",
@@ -786,14 +789,14 @@
     "industry": "Bakeries, Cafes, Street Food Vendors",
     "image": "/images/papercovers/6.svg",
     "pageLink": "/paper-covers/bakery-paper-covers/kraft-printed-bakery-paper-covers",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 6,
     "sellingPrice": 7,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "New",
@@ -851,14 +854,14 @@
     "industry": "Supermarkets, Grocery Stores, Organic Shops",
     "image": "/images/papercovers/10.svg",
     "pageLink": "/paper-covers/grocery-paper-covers/kraft-printed-grocery-paper-covers",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 5,
     "sellingPrice": 6,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "Hot",
@@ -916,14 +919,14 @@
     "industry": "Farmers Markets, Vegetable Vendors",
     "image": "/images/papercovers/62.svg",
     "pageLink": "/paper-covers/vegetable-paper-covers/kraft-printed-vegetable-paper-covers",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 5,
     "sellingPrice": 6,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "Popular",
@@ -981,14 +984,14 @@
     "industry": "Textile Mills, Fabric Stores, Tailors",
     "image": "/images/papercovers/10.svg",
     "pageLink": "/paper-covers/textile-paper-covers/kraft-printed-textile-paper-covers",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color"
     ],
     "featuredProduct": "no",
     "offeredPrice": 8,
     "sellingPrice": 9,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "Popular",
@@ -1046,14 +1049,14 @@
     "industry": "Laundry Services, Dry Cleaners, Hotels",
     "image": "/images/papercovers/10.svg",
     "pageLink": "/paper-covers/laundry-paper-covers/kraft-printed-laundry-paper-covers",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 8,
     "sellingPrice": 9,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "New",
@@ -1111,13 +1114,13 @@
     "industry": "Bakeries, Cake Shops, Dessert Cafes",
     "image": "/images/paperboxes/kraft-cake-boxes.svg",
     "pageLink": "/paper-boxes/cake-boxes/kraft-printed-cake-boxes",
-    "printvariants": [
+    "printVariants": [
       "Plain"
     ],
     "featuredProduct": "yes",
     "offeredPrice": 15,
     "sellingPrice": 17,
-    "papervariant": [
+    "paperVariant": [
       "Kraft"
     ],
     "tagtext": "Hot",
@@ -1175,7 +1178,7 @@
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/paperboxes/burger-boxes.svg",
     "pageLink": "/paper-boxes/burger-boxes/kraft-printed-burger-boxes",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -1183,7 +1186,7 @@
     "featuredProduct": "no",
     "offeredPrice": 12,
     "sellingPrice": 14,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -1242,7 +1245,7 @@
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/paperboxes/burger-boxes.svg",
     "pageLink": "/paper-boxes/burger-boxes/white-printed-burger-boxes",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -1250,7 +1253,7 @@
     "featuredProduct": "no",
     "offeredPrice": 12,
     "sellingPrice": 14,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -1309,7 +1312,7 @@
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/paperboxes/burger-boxes.svg",
     "pageLink": "/paper-bags/custom-paper-bags/kraft-printed-custom-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -1317,7 +1320,7 @@
     "featuredProduct": "no",
     "offeredPrice": 12,
     "sellingPrice": 14,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],
@@ -1376,7 +1379,7 @@
     "industry": "QSRs, Food Trucks, Restaurants",
     "image": "/images/paperboxes/burger-boxes.svg",
     "pageLink": "/paper-bags/custom-paper-bags/white-printed-custom-paper-bags",
-    "printvariants": [
+    "printVariants": [
       "Plain",
       "1-Color",
       "Multi Color"
@@ -1384,7 +1387,7 @@
     "featuredProduct": "no",
     "offeredPrice": 12,
     "sellingPrice": 14,
-    "papervariant": [
+    "paperVariant": [
       "Kraft",
       "White"
     ],

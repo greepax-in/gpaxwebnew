@@ -11,10 +11,10 @@ import InventoryIcon from '@mui/icons-material/Inventory';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 
 const navItems = [
-  { label: 'Home', icon: <HomeIcon fontSize="small" />, href: '/' },
-  { label: 'Paper Bags', icon: <LocalMallIcon fontSize="small" />, href: '/products/paper-bags' },
-  { label: 'Paper Covers', icon: <LayersIcon fontSize="small" />, href: '/products/paper-covers' },
-  { label: 'Paper Boxes', icon: <InventoryIcon fontSize="small" />, href: '/products/paper-boxes' },
+  { label: 'Home', icon: HomeIcon, href: '/' },
+  { label: 'Paper Bags', icon: LocalMallIcon, href: '/products/paper-bags' },
+  { label: 'Paper Covers', icon: LayersIcon, href: '/products/paper-covers' },
+  { label: 'Paper Boxes', icon: InventoryIcon, href: '/products/paper-boxes' },
 ];
 
 export default function MobileMenu() {
@@ -49,6 +49,7 @@ export default function MobileMenu() {
       >
         {navItems.map((item) => {
           const isActive = pathname === item.href;
+          const IconComponent = item.icon;
           return (
             <motion.a
               key={item.label}
@@ -73,7 +74,7 @@ export default function MobileMenu() {
                   transition: 'all 0.3s ease-in-out',
                 }}
               >
-                {item.icon}
+                <IconComponent fontSize="small" sx={{ color: isActive ? '#1B5E20' : '#ffffff' }} />
                 {item.label}
               </Box>
             </motion.a>
@@ -97,14 +98,14 @@ export default function MobileMenu() {
               px: 1,
               py: 0.5,
               borderRadius: '12px',
-              color: '#25D366',
               fontSize: '0.7rem',
               fontWeight: 500,
               minWidth: 50,
+              color: '#25D366',
               transition: 'all 0.3s ease-in-out',
             }}
           >
-            <WhatsAppIcon fontSize="small" />
+            <WhatsAppIcon fontSize="small" sx={{ color: '#25D366' }} />
             Chat
           </Box>
         </motion.a>

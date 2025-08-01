@@ -6,14 +6,16 @@ import {
     Box,
     Typography,
     Chip,
-    useMediaQuery,
+    // useMediaQuery,
 } from '@mui/material';
+import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
 import { motion } from 'framer-motion';
 import { ItemType } from '@/types/itemTypes';
+import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 import StickyVariantBar from './StickyVariantBar';
 
 const HeroMobile = ({ product }: { product: ItemType }) => {
-    const isMobile = useMediaQuery('(max-width:600px)');
+    // const isMobile = useMediaQuery('(max-width:600px)');
 
     const [selectedSize, setSelectedSize] = useState<string>(product.sizes?.[0] || '');
     const [selectedQty, setSelectedQty] = useState<string>(
@@ -75,8 +77,8 @@ const HeroMobile = ({ product }: { product: ItemType }) => {
                             flexWrap: 'wrap',
                         }}
                     >
-                        <Chip label={`🎨 ${product.printvariants?.[0] || ''}`} color="primary" size="small" />
-                        <Chip label={`📄 ${product.papervariant?.[0] || ''}`} color="success" size="small" />
+                        <PrintVariantChip label={product.printVariants?.[0] || ''} size="small" />
+                        <PaperVariantChip label={product.paperVariant?.[0] || ''} size="small" />
                     </Box>
                 </Box>
 

@@ -209,13 +209,13 @@ const HeroSection = ({ product }: Props) => {
                   <Typography variant="body2" fontWeight="medium" color="text.secondary">
                     Print
                   </Typography>
-                  <PrintVariantChip label={product.printvariants?.[0]} />
+                  <PrintVariantChip label={product.printVariants?.[0]} />
                 </Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="body2" fontWeight="medium" color="text.secondary">
                     Paper
                   </Typography>
-                  <PaperVariantChip label={product.papervariant?.[0]} />
+                  <PaperVariantChip label={product.paperVariant?.[0]} />
                 </Stack>
               </Stack>
             </Paper>

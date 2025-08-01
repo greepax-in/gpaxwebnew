@@ -1,6 +1,6 @@
 import ProductPageComponent from '@/components/ProductPage/ProductPage';
 import { notFound } from 'next/navigation';
-import type { ItemType } from '../../../../types/itemTypes';
+import type { ItemType } from '@/types/itemTypes';
 
 export async function generateStaticParams() {
   const products = (await import('@/data/items.json')).default;

@@ -4,17 +4,17 @@ import React from 'react';
 import { Box, Typography, Grid, Divider, useMediaQuery } from '@mui/material';
 import ProductCard from '@/components/Home/Products/SimilarProductCard';
 import { ItemType } from '@/types/itemTypes';
+import products from '@/data/items.json'; // ✅ Use directly
 
 type Props = {
   currentProduct: ItemType;
-  allProducts: ItemType[];
 };
 
-const SimilarProducts = ({ currentProduct, allProducts }: Props) => {
+const SimilarProducts = ({ currentProduct }: Props) => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  // Filter only from same subcategory excluding self
-  const filtered = allProducts.filter(
+  // ✅ No normalization needed
+  const filtered = products.filter(
     (item) =>
       item.subcategorySlug === currentProduct.subcategorySlug &&
       item.slug !== currentProduct.slug
@@ -39,8 +39,8 @@ const SimilarProducts = ({ currentProduct, allProducts }: Props) => {
               offeredPrice={product.offeredPrice}
               sellingPrice={product.sellingPrice}
               link={product.pageLink}
-              printVariants={product.printvariants}   // ✅ Correct mapping
-              paperVariants={product.papervariant}     // ✅ Correct mapping
+              printVariants={product.printVariants}
+              paperVariants={product.paperVariant}
             />
           </Grid>
         ))}

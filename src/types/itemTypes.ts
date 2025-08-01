@@ -7,12 +7,14 @@ export type ItemType = {
   productImages: string[];
   pageLink: string;
   tagtext: string;
+  // tags: string[];
+  packSize?: string;
 
   // ProductDetails
   description: string;
 
-  printvariants: string[];
-  papervariant: string[];
+  printVariants: string[];
+  paperVariant: string[];
   featuredProduct: string;
   offeredPrice: number;
   sellingPrice: number;

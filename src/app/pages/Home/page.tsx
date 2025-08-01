@@ -14,7 +14,6 @@ import FeaturedProducts from '@/components/Home/FeaturedProducts/page';
 import Products from '@/components/Home/Products/page';
 import MultilanguageCTA from '@/components/Home/CTA/MutliLanguageCTA';
 import WhyItMatters from '@/components/Home/whyitmatters/page';
-// import Footer from '@/components/Common/Footer/page';
 import BackToTopButton from '@/components/Common/BacktoTopButton';
 import CustomerLogoSection from '@/components/Home/CustomerLogoSection/page';
 import ProductsChips from '@/components/Home/ProductChips/page';
@@ -32,6 +31,13 @@ const HomePage: React.FC = () => {
 
   useEffect(() => {
     setIsMounted(true);
+
+    // attempt to trigger minimal-ui (mobile) by scrolling 1px
+    setTimeout(() => {
+      if (typeof window !== 'undefined' && window.scrollY === 0) {
+        window.scrollTo(0, 1);
+      }
+    }, 100);
 
     const handleBeforeInstallPrompt = (event: Event) => {
       event.preventDefault();

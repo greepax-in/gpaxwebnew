@@ -2,8 +2,7 @@
 'use client';
 
 import React from 'react';
-import { Box, Chip, Typography, useTheme } from '@mui/material';
-import { motion } from 'framer-motion';
+import { Box, Chip, Typography } from '@mui/material';
 
 interface StickyVariantBarProps {
   sizes: string[];
@@ -28,7 +27,6 @@ const StickyVariantBar = ({
   selectedUnit,
   onUnitSelect,
 }: StickyVariantBarProps) => {
-  const theme = useTheme();
   const variantRows = [
     {
       icon: '📏',
@@ -58,58 +56,66 @@ const StickyVariantBar = ({
       sx={{
         position: 'sticky',
         top: 0,
-        bgcolor: theme.palette.mode === 'light' ? '#f8f9fb' : '#1c1c1e',
+        bgcolor: '#ffffff',
+        border: '1px solid #ddd',
+        boxShadow: '0 2px 8px rgba(0, 0, 0, 0.06)',
         zIndex: 10,
         px: 2,
         py: 2,
-        borderBottom: '1px solid #e0e0e0',
-        boxShadow: '0 2px 12px rgba(0,0,0,0.06)',
         borderRadius: 3,
         display: 'flex',
         flexDirection: 'column',
         gap: 2,
-        width: '100%',
-        maxWidth: 420,
+        maxWidth: 400,
         mx: 'auto',
       }}
     >
       {variantRows.map(({ icon, label, data, selected, onClick }) => (
-        <Box key={label}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, mb: 1 }}>
-            <Typography
-              variant="body2"
-              fontWeight={500}
-              color="text.secondary"
-              sx={{ minWidth: 56 }}
-            >
-              {icon} {label}:
-            </Typography>
-          </Box>
+        <Box
+          key={label}
+          sx={{
+            display: 'grid',
+            gridTemplateColumns: '64px 1fr',
+            alignItems: 'center',
+            rowGap: 1,
+          }}
+        >
+          <Typography
+            variant="body2"
+            fontWeight={600}
+            color="text.secondary"
+            sx={{ display: 'flex',  alignItems: 'center', gap: 0.5 }}
+          >
+            {icon} {label}:
+          </Typography>
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
             {data.map((val) => (
-              <motion.div
+              <Chip
                 key={val}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Chip
-                  label={val}
-                  size="medium"
-                  onClick={() => onClick(val)}
-                  color={selected === val ? 'primary' : 'default'}
-                  sx={{
-                    borderRadius: 3,
-                    fontWeight: 500,
-                    px: 2,
-                    height: 36,
-                    fontSize: '0.8rem',
-                    bgcolor: selected === val ? theme.palette.primary.main : '#f0f0f0',
-                    color: selected === val ? '#fff' : '#444',
-                    transition: 'all 0.2s ease-in-out',
-                    boxShadow: selected === val ? '0 2px 6px rgba(0,0,0,0.15)' : 'none',
-                  }}
-                />
-              </motion.div>
+                label={val}
+                size="small"
+                onClick={() => onClick(val)}
+                sx={{
+                  borderRadius: '9999px',
+                  fontWeight: 600,
+                  fontSize: '0.8rem',
+                  px: 1,
+                  py: 0.5,
+                  transition: 'all 0.2s ease-in-out',
+                  transform: selected === val ? 'scale(1.03)' : 'scale(1)',
+                  bgcolor: selected === val ? 'primary.main' : 'transparent',
+                  border: selected === val ? 'none' : '1px solid #cfcfcf',
+                  color: selected === val ? '#fff' : 'text.primary',
+                  boxShadow: selected === val
+                    ? '0 4px 10px rgba(0,0,0,0.15)'
+                    : '0 1px 2px rgba(0,0,0,0.05)',
+                  '&:hover': {
+                    bgcolor: selected === val ? 'primary.dark' : '#f0f0f0',
+                    borderColor: '#bbb',
+                    cursor: 'pointer',
+                  },
+                }}
+              />
             ))}
           </Box>
         </Box>
