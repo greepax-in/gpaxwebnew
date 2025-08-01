@@ -15,10 +15,10 @@ import IndustriesServed from './IndustryServed';
 import TrustedBy from './TrustedBy';
 import UseCases from './UseCases';
 
-import { ProductType } from '../../../src/types/products';
+import { ItemType } from '../../types/itemTypes';
 
 type Props = {
-  product: ProductType;
+  product: ItemType;
 };
 
 

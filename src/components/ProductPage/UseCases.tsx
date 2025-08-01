@@ -3,7 +3,7 @@
 import React from 'react';
 import { Box, Typography, Grid, useMediaQuery } from '@mui/material';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
-import { ProductType } from '../../../src/types/products';
+import { ProductType } from '../../types/itemTypes';
 
 type Props = {
   product: ProductType;

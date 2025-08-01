@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box, Typography, Divider, Chip, useMediaQuery } from '@mui/material';
-import { ProductType } from '@/types/products';
+import { ProductType } from '@/types/itemTypes';
 
 interface Props {
   product: ProductType;

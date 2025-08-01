@@ -11,7 +11,7 @@ import {
   Divider,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ProductType } from '../../types/products';
+import { ProductType } from '../../types/itemTypes';
 
 type Props = {
   product: ProductType;

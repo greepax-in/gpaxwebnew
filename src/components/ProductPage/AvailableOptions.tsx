@@ -5,7 +5,7 @@ import { Box, Typography, Stack } from '@mui/material';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
 
-import { ProductType } from '../../types/products';
+import { ProductType } from '../../types/itemTypes';
 
 
 type Props = {

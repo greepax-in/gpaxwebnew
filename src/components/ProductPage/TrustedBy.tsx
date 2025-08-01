@@ -3,7 +3,7 @@
 import React from 'react';
 import { Box, Typography, Divider, Tooltip, useMediaQuery } from '@mui/material';
 import Image from 'next/image';
-import { ProductType } from '@/types/products';
+import { ProductType } from '@/types/itemTypes';
 
 interface Props {
   product: ProductType;
