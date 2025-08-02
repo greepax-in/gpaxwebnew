@@ -7,20 +7,18 @@ import {
   Button,
   Chip,
   Stack,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import { ItemType, UnitType, SizeUnit } from '@/types/itemTypes';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ItemType, UnitType } from '@/types/itemTypes';
+import ProductTitleWithPrice from '../../ProductTitleWithPrice';
+import { off } from 'process';
 
 interface Props {
   product: ItemType;
 }
 
 export default function ProductMobileUI({ product }: Props) {
-  const [sizeUnit, setSizeUnit] = useState<SizeUnit>('in');
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedUnit, setSelectedUnit] = useState<UnitType>(product.sizes[0].units[0].unitType);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
@@ -34,15 +32,11 @@ export default function ProductMobileUI({ product }: Props) {
 
   const selectedUnitData = selectedSize.units.find(u => u.unitType === selectedUnit);
 
-  const offeredPrice = selectedUnitData?.offeredPrice ||  0;
-  const sellingPrice = selectedUnitData?.sellingPrice ||  0;
-
-  const discountPercentage = offeredPrice > sellingPrice
-    ? Math.round(((offeredPrice - sellingPrice) / offeredPrice) * 100)
-    : 0;
+  const offeredPrice = selectedUnitData?.offeredPrice || 0;
+  const sellingPrice = selectedUnitData?.sellingPrice || 0;
 
   const derivedPrice = selectedUnitData?.contains
-    ? (sellingPrice / selectedUnitData.contains).toFixed(2)
+    ? (offeredPrice / selectedUnitData.contains).toFixed(2)
     : undefined;
 
   const getImagesArray = (images: string | string[] | undefined): string[] => {
@@ -59,13 +53,21 @@ export default function ProductMobileUI({ product }: Props) {
   return (
     <Box sx={{ p: 0, maxWidth: 400, mx: 'auto' }}>
       {/* Image + Thumbnail Overlay */}
-      <Box sx={{ position: 'relative', width: '100%', height: 260, borderRadius: 2, mb: 1 }}>
-        <Box
-          component="img"
-          src={productImages[selectedImageIndex]}
-          alt="product"
-          sx={{ width: '100%', height: '100%', borderRadius: 2 }}
-        />
+      <Box sx={{ position: 'relative', width: '100%', height: 260, borderRadius: 2, mb: 1, overflow: 'hidden' }}>
+        <AnimatePresence mode="wait">
+          <motion.img
+            key={productImages[selectedImageIndex]}
+            src={productImages[selectedImageIndex]}
+            alt="product"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.3 }}
+            style={{ width: '100%', height: '100%', borderRadius: '8px', position: 'absolute', top: 0, left: 0 }}
+          />
+        </AnimatePresence>
+
+        {/* Thumbnail Selector */}
         <Box
           sx={{
             position: 'absolute',
@@ -89,140 +91,156 @@ export default function ProductMobileUI({ product }: Props) {
                 height: 40,
                 borderRadius: 1,
                 border: selectedImageIndex === index ? '2px solid #4caf50' : '1px solid #ccc',
-                cursor: 'pointer',
+                cursor: 'pointer'
               }}
             />
           ))}
         </Box>
+
+        {/* Animated Price Overlay */}
+        {derivedPrice && selectedUnit && (
+          <motion.div
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            style={{
+              position: 'absolute',
+              top: 12,
+              right: 12,
+              zIndex: 2,
+            }}
+          >
+            <Box
+              sx={{
+                backgroundColor: 'success.main',
+                borderRadius: 2,
+                px: 1.5,
+                py: 0.5,
+                fontWeight: 700,
+                fontSize: 14,
+                color: '#fff',
+                boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+              }}
+            >
+              ₹{derivedPrice} / {selectedUnitData?.containsLabel}
+            </Box>
+          </motion.div>
+        )}
       </Box>
 
-      {/* Title + Subtitle */}
-      <Typography variant="h6" fontWeight={600}>{product.name}</Typography>
-      {product.subTitle && (
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>{product.subTitle}</Typography>
-      )}
+      <ProductTitleWithPrice
+        title={product.name}
+        subtitle={product.subTitle}
+        size={selectedSize.sizeIn || ''}
+        offeredPrice={offeredPrice}
+        sellingPrice={sellingPrice}
+        contains={selectedUnitData?.contains}
+        containsLabel={selectedUnitData?.containsLabel}
+        selectedUnit={selectedUnit}
+        MOQ={selectedUnitData?.moq ?? 0}
+        deviceType='mobile'
+      />
 
-     
-
-      {/* Pricing Section */}
-      <Stack direction="row" spacing={1} alignItems="baseline" sx={{ mb: 0.5 }}>
-        <Typography variant="h6" color="success.main">
-          ₹{sellingPrice} / {selectedUnit}
-        </Typography>
-        {offeredPrice > sellingPrice && (
-          <>
-            <Typography variant="body2" sx={{ textDecoration: 'line-through', color: 'text.secondary' }}>
-              ₹{offeredPrice}
-            </Typography>
-            <Chip
-              label={`${discountPercentage}% OFF`}
-              size="small"
-              sx={{ bgcolor: '#e53935', color: '#fff', height: 20, fontSize: '0.75rem' }}
-            />
-          </>
-        )}
-      </Stack>
-
-      {derivedPrice && (
-        <Typography variant="body2" color="text.secondary">
-          Approx. ₹{derivedPrice} per {selectedUnitData?.containsLabel} ({selectedUnitData?.contains} per {selectedUnit})
-        </Typography>
-      )}
-      <Typography variant="caption">MOQ: {selectedUnitData?.moq} {selectedUnit}</Typography>
- {/* Size, Unit, and SizeUnit Toggle */}
-      <Stack direction="row" spacing={1} sx={{ mb: 1, alignItems: 'center' }}>
-        <FormControl size="small" sx={{ flexGrow: 2 }}>
-          <InputLabel>Size</InputLabel>
-          <Select
-            value={selectedSize.sizeIn}
-            label="Size"
-            onChange={e => {
-              const newSize = product.sizes.find(s => s.sizeIn === e.target.value);
-              if (newSize) setSelectedSize(newSize);
-            }}
-          >
-            {product.sizes.map(size => (
-              <MenuItem key={size.sizeIn} value={size.sizeIn}>
-                {sizeUnit === 'in' ? size.sizeIn : size.sizeCm}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <FormControl size="small" sx={{ width: 80 }}>
-          <InputLabel>Unit</InputLabel>
-          <Select
-            value={selectedUnit}
-            label="Unit"
-            onChange={e => setSelectedUnit(e.target.value as UnitType)}
-          >
-            {selectedSize.units.map(unit => (
-              <MenuItem key={unit.unitType} value={unit.unitType}>{unit.unitType}</MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-
-        <Box sx={{ display: 'flex', alignItems: 'center', height: 28, px: 0 }}>
-          <Box
-            sx={{
-              display: 'flex',
-              borderRadius: 999,
-              bgcolor: '#f5f5f5',
-              border: '1px solid #e0e0e0',
-              overflow: 'hidden',
-              height: 24,
-              minWidth: 65,
-              width: 56,
-            }}
-          >
-            <Box
-              onClick={() => setSizeUnit('in')}
-              sx={{
-                flex: 1,
-                px: 1,
-                py: 0.25,
-                textAlign: 'center',
-                fontWeight: 700,
-                fontSize: '0.85em',
-                color: sizeUnit === 'in' ? '#fff' : '#888',
-                background: sizeUnit === 'in' ? '#4caf50' : 'transparent',
-                cursor: 'pointer',
-                transition: 'background 0.2s',
-              }}
-            >
-              IN
-            </Box>
-            <Box
-              onClick={() => setSizeUnit('cm')}
-              sx={{
-                flex: 1,
-                px: 1,
-                py: 0.25,
-                textAlign: 'center',
-                fontWeight: 700,
-                fontSize: '0.85em',
-                color: sizeUnit === 'cm' ? '#fff' : '#888',
-                background: sizeUnit === 'cm' ? '#4caf50' : 'transparent',
-                cursor: 'pointer',
-                transition: 'background 0.2s',
-              }}
-            >
-              CM
-            </Box>
-          </Box>
+      {/* Size Chips with Scroll Shadow */}
+      <Box sx={{ position: 'relative', px: 1 }}>
+        <Box
+          sx={{
+            overflowX: 'auto',
+            whiteSpace: 'nowrap',
+            display: 'flex',
+            gap: 1,
+            py: 1,
+            pr: 3,
+            scrollBehavior: 'smooth',
+          }}
+        >
+          {product.sizes.map((s) => (
+            <motion.div key={s.sizeIn} whileTap={{ scale: 0.96 }} style={{ display: 'inline-block' }}>
+              <Box
+                onClick={() => setSelectedSize(s)}
+                sx={{
+                  px: 2,
+                  py: 1,
+                  borderRadius: 2,
+                  border: selectedSize.sizeIn === s.sizeIn ? '2px solid #ff5722' : '1px solid #ddd',
+                  backgroundColor: '#fff',
+                  fontWeight: 500,
+                  fontSize: 14,
+                  minWidth: 72,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  boxShadow: selectedSize.sizeIn === s.sizeIn ? '0 2px 6px rgba(0,0,0,0.1)' : 'none',
+                }}
+              >
+                {s.sizeIn}
+              </Box>
+            </motion.div>
+          ))}
         </Box>
-      </Stack>
+
+        {/* Left Gradient */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            width: 24,
+            background: 'linear-gradient(to right, #fff, rgba(255,255,255,0))',
+            pointerEvents: 'none',
+          }}
+        />
+
+        {/* Right Gradient */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            width: 24,
+            background: 'linear-gradient(to left, #fff, rgba(255,255,255,0))',
+            pointerEvents: 'none',
+          }}
+        />
+      </Box>
+
+      {/* Unit Chips – Capsule Style */}
+      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, px: 1, mt: 1 }}>
+        {selectedSize.units.map((u, i) => (
+          <motion.div key={`unit-${u.unitType}-${i}`} whileTap={{ scale: 0.96 }}>
+            <Box
+              onClick={() => setSelectedUnit(u.unitType)}
+              sx={{
+                px: 2.5,
+                py: 1,
+                borderRadius: '32px',
+                backgroundColor: selectedUnit === u.unitType ? 'success.main' : '#e0f2f1',
+                color: selectedUnit === u.unitType ? '#fff' : 'text.primary',
+                fontWeight: 700,
+                fontSize: 14,
+                minWidth: 80,
+                textAlign: 'center',
+                cursor: 'pointer',
+                boxShadow: selectedUnit === u.unitType ? '0 2px 8px rgba(0, 128, 0, 0.2)' : 'none',
+              }}
+            >
+              {u.unitType}
+            </Box>
+          </motion.div>
+        ))}
+      </Box>
 
       {/* Features */}
-      <Stack direction="row" spacing={1} sx={{ mt: 1, flexWrap: 'wrap' }}>
+      <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', px: 1 }}>
         {product.features.map((f, i) => (
           <Chip key={i} label={f} size="small" />
         ))}
       </Stack>
 
       {/* Shipping Info */}
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
-        {product.shippingInfo || 'Ships in 3–5 days'}
+      <Typography variant="body2" color="text.secondary" sx={{ mt: 2, px: 1 }}>
+        {product.shippingInfo || 'Ships in 2–4 business days'}
       </Typography>
 
       {/* CTA */}
@@ -230,7 +248,7 @@ export default function ProductMobileUI({ product }: Props) {
         fullWidth
         variant="contained"
         color="success"
-        sx={{ mt: 2 }}
+        sx={{ mt: 2, mb: 3, mx: 1 }}
         startIcon={<WhatsAppIcon />}
       >
         Buy via WhatsApp

@@ -40,11 +40,64 @@
         ]
       },
       {
-        "sizeIn": "8x10\"",
+        "sizeIn": "6x8x15\"",
+        "sizeCm": "15.2x15.5x20.3cm",
+        "units": [
+          {
+            "unitType": "500 Bags",
+            "offeredPrice": 2000,
+            "sellingPrice": 3000,
+            "moq": 500,
+            "contains": 500,
+            "containsLabel": "bag"
+          },
+          {
+            "unitType": "2000 Bags",
+            "offeredPrice": 7500,
+            "sellingPrice": 10000,
+            "moq": 50,
+            "contains": 2000,
+            "containsLabel": "bag"
+          }
+        ],
+        "sizeImages": [
+          "/images/products/paperbags/7.svg",
+          "/images/products/paperbags/minimenu-paperbags.svg"
+        ]
+      },
+      {
+        "sizeIn": "6x10x8\"",
+        "sizeCm": "15.2x15.5x20.3cm",
+        "units": [
+          {
+            "unitType": "500 Bags",
+            "offeredPrice": 4000,
+            "sellingPrice": 7000,
+            "moq": 500,
+            "contains": 500,
+            "containsLabel": "bag"
+          },
+          {
+            "unitType": "1000 Bags",
+            "offeredPrice": 7500,
+            "sellingPrice": 10000,
+            "moq": 50,
+            "contains": 1000,
+            "containsLabel": "bag"
+          }
+        ],
+        "sizeImages": [
+          "/images/products/paperbags/7.svg",
+          "/images/products/paperbags/minimenu-paperbags.svg"
+        ]
+      },
+      
+      {
+        "sizeIn": "8x10x6\"",
         "sizeCm": "20.3x25.4x30.5cm",
         "units": [
           {
-            "unitType": "pc",
+            "unitType": "1 Bag",
             "offeredPrice": 4,
             "sellingPrice": 6,
             "moq": 500,

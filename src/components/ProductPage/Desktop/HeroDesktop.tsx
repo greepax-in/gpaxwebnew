@@ -62,6 +62,37 @@ const HeroSection = ({ product }: Props) => {
               style={{ width: '100%', height:  480, objectFit: 'contain', borderRadius: '8px' }}
             />
           </AnimatePresence>
+
+          {/* ✅ Unit price overlay */}
+          {selectedUnitData?.sellingPrice && selectedUnitData?.contains && (
+            <motion.div
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4, delay: 0.2 }}
+              style={{
+                position: 'absolute',
+                top: 16,
+                right: 16,
+                zIndex: 2,
+              }}
+            >
+              <Box
+                sx={{
+                  backgroundColor: 'success.main',
+                  borderRadius: 2,
+                  px: 2,
+                  py: 0.5,
+                  fontWeight: 700,
+                  fontSize: 16,
+                  color: '#fff',
+                  boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                }}
+              >
+                ₹{(selectedUnitData.offeredPrice / selectedUnitData.contains).toFixed(2)} / {selectedUnitData.containsLabel}
+              </Box>
+            </motion.div>
+          )}
+
           {images.length > 1 && (
             <Box position="absolute" top="50%" left={0} right={0} display="flex" justifyContent="space-between" px={1}>
               <IconButton onClick={handlePrev}><ChevronLeftIcon /></IconButton>
@@ -94,6 +125,7 @@ const HeroSection = ({ product }: Props) => {
             containsLabel={selectedUnitData?.containsLabel }
             selectedUnit={selectedUnit}
             deviceType='desktop'
+            MOQ ={selectedUnitData?.moq ?? 0}
           />
 
           <Paper
@@ -101,14 +133,14 @@ const HeroSection = ({ product }: Props) => {
             sx={{
               p: 2,
               bgcolor: 'grey.50',
-              mt: 10,
+              mt: 5,
               transform: 'translateY(-20%)',
               transition: 'transform 0.3s',
-              minHeight: 150,
+              minHeight: 200,
             }}
           >
             {/* Size Row */}
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt:3 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt:0 }}>
               <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ minWidth: 64 }}>
                 📏 Size:
               </Typography>
@@ -137,7 +169,7 @@ const HeroSection = ({ product }: Props) => {
             </Box>
 
             {/* Unit Row */}
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt: 6 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt: 4 }}>
               <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ minWidth: 64 }}>
                 📐 Unit:
               </Typography>
@@ -166,7 +198,7 @@ const HeroSection = ({ product }: Props) => {
             </Box>
 
             {/* Print / Paper section moved down by 20% */}
-            <Box sx={{ mt: 5, transform: 'translateY(20%)', transition: 'transform 0.3s' }}>
+            <Box sx={{ mt: 3, transform: 'translateY(20%)', transition: 'transform 0.3s' }}>
               <Stack direction="row" spacing={3} alignItems="center">
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="body2" fontWeight={600} color="text.secondary">
@@ -184,7 +216,7 @@ const HeroSection = ({ product }: Props) => {
             </Box>
           </Paper>
 
-          <Box sx={{ bgcolor: '#e8f5e9', borderRadius: 2, p: 1.5, mt: -10, fontSize: '0.875rem', color: 'text.secondary' }}>
+          <Box sx={{ bgcolor: '#e8f5e9', borderRadius: 2, p: 1.5, mt: -5, fontSize: '0.875rem', color: 'text.secondary' }}>
             <Typography>
               📦 Guaranteed to arrive by <strong>2 Aug</strong> — Free Shipping<br />
               🎁 Get ₹50 voucher if your order arrives late.
