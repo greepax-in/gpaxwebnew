@@ -2,7 +2,7 @@
 
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Box,
   Typography,
@@ -18,42 +18,35 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { motion, AnimatePresence } from 'framer-motion';
-// import AvailableOptions from './AvailableOptions';
 import { ItemType } from '@/types/itemTypes';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
 import DesktopWACTA from '@/components/Common/DesktopWACTA';
 import { WHATSAPP_NUMBER } from '@/components/constants/whatsapp';
+
 type Props = {
   product: ItemType;
 };
 
 const HeroSection = ({ product }: Props) => {
   const isMobile = useMediaQuery('(max-width:600px)');
-  const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || '');
-  const [selectedUnit, setSelectedUnit] = useState(product.units?.[0] || '');
-  const [selectedMinQty, setSelectedMinQty] = useState<number>(product.minimumQuantities?.[0] || 0);
 
-  const images = product.sizeImages?.[selectedSize] || product.productImages || [product.featuredImage];
+  const [selectedSize, setSelectedSize] = useState<string>(product.sizes?.[0]?.sizeIn || '');
+  const selectedSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);
+  const [selectedUnit, setSelectedUnit] = useState<string>(selectedSizeObj?.units?.[0]?.unitType || '');
+
+  useEffect(() => {
+    const newSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);
+    setSelectedUnit(newSizeObj?.units?.[0]?.unitType || '');
+  }, [selectedSize, product.sizes]);
+
+  const selectedUnitData = selectedSizeObj?.units?.find(u => u.unitType === selectedUnit);
+  const images = selectedSizeObj?.sizeImages?.length ? selectedSizeObj.sizeImages : (product.productImages?.length ? product.productImages : [product.featuredImage ?? "/next.svg"]);
   const [index, setIndex] = useState(0);
 
   const handleNext = () => setIndex((prev) => (prev + 1) % images.length);
   const handlePrev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
   const handleThumbnailClick = (i: number) => setIndex(i);
-
-  const variantPrice =
-    product.variantPrices?.[selectedSize]?.[selectedUnit]?.[selectedMinQty];
-  const fallbackOffered = product.offeredPrice ?? 0;
-  const fallbackSelling = product.sellingPrice ?? 0;
-
-  const offeredPrice =
-    variantPrice !== undefined ? variantPrice : fallbackOffered;
-  const sellingPrice =
-    variantPrice !== undefined
-      ? Math.round(variantPrice * 1.2)
-      : fallbackSelling;
-
- 
 
   return (
     <Box>
@@ -79,14 +72,14 @@ const HeroSection = ({ product }: Props) => {
             </Box>
           )}
           <Stack direction="row" spacing={1} mt={2} justifyContent="center" flexWrap="wrap">
-            {images.map((img, i) => (
+            {images.map((img: string, i: number) => (
               <Box
-                key={i}
+                key={`thumb-${img}-${i}`}
                 component="img"
                 src={img}
                 alt={`thumb-${i}`}
                 onClick={() => handleThumbnailClick(i)}
-                sx={{ width: 64, height: 64, borderRadius: 1, objectFit: 'cover', border: i === index ? '2px solid #1976d2' : '1px solid #ccc', cursor: 'pointer', transition: 'border 0.3s' }}
+                sx={{ width: 64, height: 64, borderRadius: 1, border: i === index ? '2px solid #1976d2' : '1px solid #ccc', cursor: 'pointer', transition: 'border 0.3s' }}
               />
             ))}
           </Stack>
@@ -103,10 +96,10 @@ const HeroSection = ({ product }: Props) => {
             >
               {product.name} {selectedSize && `- ${selectedSize}`}
             </Typography>
-            {/* Animated Price Section */}
+
             <AnimatePresence mode="wait">
               <motion.div
-                key={`${selectedSize}-${selectedUnit}-${selectedMinQty}-${offeredPrice}`}
+                key={`${selectedSize}-${selectedUnit}-${selectedUnitData?.offeredPrice}`}
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -10 }}
@@ -114,28 +107,21 @@ const HeroSection = ({ product }: Props) => {
               >
                 <Stack direction="row" alignItems="center" spacing={1} mt={1}>
                   <Typography variant="h5" fontWeight="bold" sx={{ color: 'success.main' }}>
-                    ₹{offeredPrice}
+                    ₹{selectedUnitData?.offeredPrice ?? product.offeredPrice}
                   </Typography>
-                  {sellingPrice > offeredPrice && (
+                  {(selectedUnitData?.sellingPrice && selectedUnitData?.offeredPrice && selectedUnitData.sellingPrice > selectedUnitData.offeredPrice) && (
                     <>
                       <Typography
                         variant="body1"
                         color="text.secondary"
                         sx={{ textDecoration: 'line-through' }}
                       >
-                        ₹{sellingPrice}
+                        ₹{selectedUnitData.sellingPrice}
                       </Typography>
                       <Chip
-                        label={`-${Math.round(
-                          100 * (sellingPrice - offeredPrice) / product.sellingPrice
-                        )}%`}
+                        label={`-${Math.round(((selectedUnitData.sellingPrice - selectedUnitData.offeredPrice) / selectedUnitData.sellingPrice) * 100)}%`}
                         size="small"
-                        sx={{
-                          bgcolor: '#d32f2f',
-                          color: '#fff',
-                          fontWeight: 500,
-                          borderRadius: '16px',
-                        }}
+                        sx={{ bgcolor: '#d32f2f', color: '#fff', fontWeight: 500, borderRadius: '16px' }}
                       />
                     </>
                   )}
@@ -143,117 +129,77 @@ const HeroSection = ({ product }: Props) => {
               </motion.div>
             </AnimatePresence>
 
-
-            {/* Configure Your Product Block */}
-
             {!isMobile && (
               <Stack spacing={1} direction="row" mt={1} mb={2} flexWrap="wrap">
-              <Chip label="FSC-Certified Paper" color="success" variant="outlined" />
-              <Chip label="100% Biodegradable" color="success" variant="outlined" />
-              <Chip label="Made in India" color="success" variant="outlined" />
+                <Chip label="FSC-Certified Paper" color="success" variant="outlined" />
+                <Chip label="100% Biodegradable" color="success" variant="outlined" />
+                <Chip label="Made in India" color="success" variant="outlined" />
               </Stack>
             )}
+
             <Paper variant="outlined" sx={{ p: 2, bgcolor: 'grey.50' }}>
-              {/* Variant Selection Rows: Size, Qty, Unit */}
-              {[
-                {
-                  icon: '📏',
-                  label: 'Size',
-                  data: product.sizes ?? [] as string[],
-                  selected: selectedSize,
-                  onClick: (val: string) => {
-                    setSelectedSize(val);
-                    setIndex(0);
-                  },
-                  type: 'string' as const,
-                },
-                {
-                  icon: '📦',
-                  label: 'Qty',
-                  data: product.minimumQuantities ?? [] as number[],
-                  selected: selectedMinQty,
-                  onClick: (val: number) => setSelectedMinQty(val),
-                  type: 'number' as const,
-                },
-                {
-                  icon: '📐',
-                  label: 'Unit',
-                  data: product.units ?? [] as string[],
-                  selected: selectedUnit,
-                  onClick: (val: string) => setSelectedUnit(val),
-                  type: 'string' as const,
-                },
-              ].map(({ icon, label, data, selected, onClick, type }) => (
+              {[{
+                icon: '📏',
+                label: 'Size',
+                data: product.sizes.map(s => s.sizeIn),
+                selected: selectedSize,
+                onClick: (val: string) => setSelectedSize(val),
+                type: 'string' as const,
+              },
+              {
+                icon: '📐',
+                label: 'Unit',
+                data: selectedSizeObj?.units?.map(u => u.unitType) ?? [],
+                selected: selectedUnit,
+                onClick: (val: string) => setSelectedUnit(val),
+                type: 'string' as const,
+              }].map(({ icon, label, data, selected, onClick, type }) => (
                 <Box key={label} sx={{ display: 'grid', gridTemplateColumns: '64px 1fr', alignItems: 'center', rowGap: 1, mb: 2 }}>
                   <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     {icon} {label}:
                   </Typography>
                   <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
-                    {type === 'string'
-                      ? (data as string[]).map((val) => (
-                          <Chip
-                            key={val}
-                            label={val}
-                            size={isMobile ? 'small' : 'medium'}
-                            variant={selected === val ? 'filled' : 'outlined'}
-                            onClick={() => (onClick as (v: string) => void)(val)}
-                            sx={{
-                              bgcolor: selected === val ? 'primary.main' : '#f5f5f5',
-                              color: selected === val ? '#fff' : 'text.primary',
-                              fontWeight: 600,
-                              borderRadius: '9999px',
-                              fontSize: isMobile ? '0.8rem' : '1rem',
-                              px: isMobile ? 1 : 2,
-                              py: isMobile ? 0.5 : 1,
-                              minWidth: isMobile ? 48 : 72,
-                              transition: 'all 0.2s',
-                              cursor: 'pointer',
-                            }}
-                          />
-                        ))
-                      : (data as number[]).map((val) => (
-                          <Chip
-                            key={val}
-                            label={val}
-                            size={isMobile ? 'small' : 'medium'}
-                            variant={selected === val ? 'filled' : 'outlined'}
-                            onClick={() => (onClick as (v: number) => void)(val)}
-                            sx={{
-                              bgcolor: selected === val ? 'primary.main' : '#f5f5f5',
-                              color: selected === val ? '#fff' : 'text.primary',
-                              fontWeight: 600,
-                              borderRadius: '9999px',
-                              fontSize: isMobile ? '0.8rem' : '1rem',
-                              px: isMobile ? 1 : 2,
-                              py: isMobile ? 0.5 : 1,
-                              minWidth: isMobile ? 48 : 72,
-                              transition: 'all 0.2s',
-                              cursor: 'pointer',
-                            }}
-                          />
-                        ))}
+                    {data.map((val, idx) => (
+                      <Chip
+                        key={`chip-${label}-${val}-${idx}`}
+                        label={val}
+                        size={isMobile ? 'small' : 'medium'}
+                        variant={selected === val ? 'filled' : 'outlined'}
+                        onClick={() => onClick(val)}
+                        sx={{
+                          bgcolor: selected === val ? 'primary.main' : '#f5f5f5',
+                          color: selected === val ? '#fff' : 'text.primary',
+                          fontWeight: 600,
+                          borderRadius: '9999px',
+                          fontSize: isMobile ? '0.8rem' : '1rem',
+                          px: isMobile ? 1 : 2,
+                          py: isMobile ? 0.5 : 1,
+                          minWidth: isMobile ? 48 : 72,
+                          transition: 'all 0.2s',
+                          cursor: 'pointer',
+                        }}
+                      />
+                    ))}
                   </Box>
                 </Box>
               ))}
 
-              {/* Visual Variant Chips */}
               <Stack direction="row" spacing={3} alignItems="center" mt={3}>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="body2" fontWeight="medium" color="text.secondary">
                     Print
                   </Typography>
-                  <PrintVariantChip label={product.printVariants?.[0]} />
+                  <PrintVariantChip label={product.printVariants?.[0] ?? ''} />
                 </Stack>
                 <Stack direction="row" spacing={1} alignItems="center">
                   <Typography variant="body2" fontWeight="medium" color="text.secondary">
                     Paper
                   </Typography>
-                  <PaperVariantChip label={product.paperVariant?.[0]} />
+                  <PaperVariantChip label={product.paperVariant?.[0] ?? ''} />
                 </Stack>
               </Stack>
             </Paper>
 
-            {/* Delivery & Trust */}
             <Box sx={{ bgcolor: '#e8f5e9', borderRadius: 2, p: 1.5, mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
               <Typography>
                 📦 Guaranteed to arrive by <strong>2 Aug</strong> — Free Shipping<br />
@@ -261,11 +207,8 @@ const HeroSection = ({ product }: Props) => {
               </Typography>
             </Box>
 
-
-
             <Divider sx={{ my: 2 }} />
 
-            {/* WhatsApp CTA */}
             <Button
               variant="contained"
               color="primary"
@@ -273,7 +216,7 @@ const HeroSection = ({ product }: Props) => {
               size="large"
               sx={{ height: 48, mb: 1 }}
               startIcon={<WhatsAppIcon />}
-              href={`https://wa.me/${WHATSAPP_NUMBER}?text=I%20am%20interested%20in%20${encodeURIComponent(product.name)}%20${selectedSize} ${selectedUnit} ${selectedMinQty}`}
+              href={`https://wa.me/${WHATSAPP_NUMBER}?text=I%20am%20interested%20in%20${encodeURIComponent(product.name)}%20${selectedSize} ${selectedUnit}`}
               target="_blank"
             >
               Get Best Price on WhatsApp
@@ -281,7 +224,6 @@ const HeroSection = ({ product }: Props) => {
             <DesktopWACTA
               productName={product.name}
               selectedSize={selectedSize}
-              selectedQty={selectedMinQty.toString()}
               selectedUnit={selectedUnit}
             />
           </Box>

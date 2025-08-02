@@ -202,24 +202,24 @@ export default function MegaMenu({ open, menuType }: MegaMenuProps) {
   const sectionGroups = getMenuSections(menuType);
 
   // Height logic: Paper Bags uses sum, Paper Boxes uses max items per section, Paper Covers uses sum
-let height;
-if (menuType === "Paper Bags") {
+  let height;
+  if (menuType === "Paper Bags") {
     const maxGroupItems = Math.max(
-        ...sectionGroups.map(group => group.reduce((acc, section) => acc + section.items.length, 0))
+      ...sectionGroups.map(group => group.reduce((acc, section) => acc + section.items.length, 0))
     );
     height = (80 + maxGroupItems * 32) * 1.1;
-} else if (menuType === "Paper Covers") {
+  } else if (menuType === "Paper Covers") {
     // For Paper Covers, use the sum of all items across all groups
     const totalItems = sectionGroups.flat().reduce((acc, section) => acc + section.items.length, 0);
     height = (1 + totalItems * 22) * 1.1;
-} else if (menuType === "Paper Boxes") {
+  } else if (menuType === "Paper Boxes") {
     const maxItemsInSection = Math.max(
-        ...sectionGroups.flat().map(section => section.items.length)
+      ...sectionGroups.flat().map(section => section.items.length)
     );
     height = (25 + maxItemsInSection * 32) * 1.1;
-} else {
+  } else {
     height = 400;
-}
+  }
 
   let minWidth;
   if (menuType === "Paper Boxes") {
@@ -270,11 +270,12 @@ if (menuType === "Paper Bags") {
                       {section.title}
                     </Typography>
                   </Box>
-                  {section.items.map((item) => (
-                    <Typography key={item} variant="body2" sx={{ mb: 0.5 }}>
-                      {item}
-                    </Typography>
-                  ))}
+                 {section.items.map((item, index) => (
+  <Typography key={`${section.title}-${item}-${index}`} variant="body2" sx={{ mb: 0.5 }}>
+    {item}
+  </Typography>
+))}
+
                 </Box>
               ))}
             </Box>

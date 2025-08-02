@@ -19,7 +19,7 @@ import TrustedBy from './TrustedBy';
 import UseCases from './UseCases';
 import { ItemType } from '../../types/itemTypes';
 // import ProductPageMobile from './Mobile/HeroSection/ProductPageMobile';
-import ProductPageMobile2 from './Mobile/HeroSection3/page'
+import ProductPageMobile3 from './Mobile/HeroSection/page'
 // import DesktopWACTA from '../Common/DesktopWACTA';
 // import products from '@/data/items.json';  
 
@@ -43,7 +43,7 @@ const isMobile = useIsMobile();
       <div ref={heroRef}>
         {isMobile ? (
           <>
-            <ProductPageMobile2  product={product}/>
+            <ProductPageMobile3  product={product}/>
             <BackToTopButton />
           </>
         ) : (
@@ -54,14 +54,14 @@ const isMobile = useIsMobile();
         )}
       </div>
 
-      <ProductDetails product={product} />
+      {/* <ProductDetails product={product} />
       <ProductSpecifications product={product} />
       <ProductAssurance product={product} />
       <IndustriesServed product={product} />
       <TrustedBy product={product} />
       <UseCases product={product} />
       <ProductFAQ product={product} />
-      <SimilarProducts currentProduct={product}  />
+      <SimilarProducts currentProduct={product}  /> */}
 
 
 

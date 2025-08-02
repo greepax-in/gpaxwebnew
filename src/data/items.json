@@ -1,114 +1,165 @@
 [
   {
-  "name": "Kraft Printed Food Delivery Paper Bags",
-  "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
-  "image": "/images/products/default.jpg",
-  "productImages": [
-    "/images/products/paperbags/7.svg",
-    "/images/products/paperbags/13.svg"
-  ],
-  "sizeImages": {
-    "6x8\"": [
+    "name": "Kraft Printed Food Delivery Paper Bags",
+    "category": "Paper Bags",
+    "subcategory": "Food Delivery Paper Bags",
+    "featuredProduct": "yes",
+    "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
+    "image": "/images/products/default.jpg",
+    "featuredImage": "/images/products/paperbags/7.svg",
+    "productImages": [
       "/images/products/paperbags/7.svg",
-      "/images/products/paperbags/minimenu-paperbags.svg"
-    ],
-    "8x10\"": [
       "/images/products/paperbags/13.svg"
     ],
-    "10x12\"": [
-      "/images/products/paperbags/1.svg"
-    ]
-  },
-  "sizes": [
-    {
-      "sizeIn": "6x8\"",
-      "sizeCm": "15.2x15.5x20.3cm",
-      "availableUnits": ["pc", "Bundle"]
-    },
-    {
-      "sizeIn": "8x10\"",
-      "sizeCm": "20.3x25.4x30.5cm",
-      "availableUnits": ["pc"]
-    },
-    {
-      "sizeIn": "10x12\"",
-      "sizeCm": "25.4x30.5cm",
-      "availableUnits": ["kg"]
-    }
-  ],
-  "units": [
-    {
-      "unitType": "pc",
-      "price": 3,
-      "moq": 500,
-      "contains": 1,
-      "containsLabel": "bag"
-    },
-    {
-      "unitType": "kg",
-      "price": 300,
-      "moq": 50,
-      "contains": 1000,
-      "containsLabel": "bags"
-    }
-  ],
-  "features": ["Eco-Friendly", "Reusable", "Durable"],
-  "shippingInfo": "Ships in 2–4 business days"
-},
-{
-  "name": "Kraft Printed Food Delivery Paper Bags2",
-  "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags2",
-  "image": "/images/products/paperbags/1.svg",
-  "productImages": [
-    "/images/products/paperbags/7.svg",
-    "/images/products/paperbags/13.svg"
-  ],
-  "sizeImages": {
-    "6x8\"": [
-      "/images/products/paperbags/7.svg",
-      "/images/products/paperbags/minimenu-paperbags.svg"
+    "sizes": [
+      {
+        "sizeIn": "6x8\"",
+        "sizeCm": "15.2x15.5x20.3cm",
+        "units": [
+          {
+            "unitType": "pc",
+            "offeredPrice": 3,
+            "sellingPrice": 5,
+            "moq": 500,
+            "contains": 1,
+            "containsLabel": "bag"
+          },
+          {
+            "unitType": "bundle",
+            "offeredPrice": 300,
+            "sellingPrice": 500,
+            "moq": 50,
+            "contains": 1000,
+            "containsLabel": "bags"
+          }
+        ],
+        "sizeImages": [
+          "/images/products/paperbags/7.svg",
+          "/images/products/paperbags/minimenu-paperbags.svg"
+        ]
+      },
+      {
+        "sizeIn": "8x10\"",
+        "sizeCm": "20.3x25.4x30.5cm",
+        "units": [
+          {
+            "unitType": "pc",
+            "offeredPrice": 4,
+            "sellingPrice": 6,
+            "moq": 500,
+            "contains": 1,
+            "containsLabel": "bag"
+          }
+        ],
+        "sizeImages": [
+          "/images/products/paperbags/13.svg"
+        ]
+      },
+      {
+        "sizeIn": "10x12\"",
+        "sizeCm": "25.4x30.5cm",
+        "units": [
+          {
+            "unitType": "kg",
+            "offeredPrice": 350,
+            "sellingPrice": 420,
+            "moq": 50,
+            "contains": 1000,
+            "containsLabel": "bags"
+          }
+        ],
+        "sizeImages": [
+          "/images/products/paperbags/1.svg"
+        ]
+      }
     ],
-    "8x10\"": [
-      "/images/products/paperbags/13.svg"
+    "features": ["Eco-Friendly", "Reusable", "Durable"],
+    "shippingInfo": "Ships in 2–4 business days",
+    "variantPrices": {
+      "6x8\"": {
+        "100pcs": {
+          "100": 6,
+          "200": 5.5,
+          "500": 5
+        },
+        "1kg": {
+          "100": 7,
+          "200": 6.5,
+          "500": 6
+        }
+      },
+      "8x10\"": {
+        "100pcs": {
+          "100": 7.5,
+          "200": 7,
+          "500": 6.5
+        },
+        "1kg": {
+          "100": 8,
+          "200": 7.5,
+          "500": 7
+        }
+      },
+      "10x12\"": {
+        "100pcs": {
+          "100": 8.5,
+          "200": 8,
+          "500": 7.5
+        },
+        "1kg": {
+          "100": 9,
+          "200": 8.5,
+          "500": 8
+        }
+      },
+      "12x15\"": {
+        "100pcs": {
+          "100": 10,
+          "200": 9.5,
+          "500": 9
+        },
+        "1kg": {
+          "100": 11,
+          "200": 10.5,
+          "500": 10
+        }
+      }
+    },
+    "offeredPrice": 9,
+    "sellingPrice": 10,
+    "description": "Engineered for the food delivery revolution—our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
+    "industry": "Food Delivery, Restaurants, Cloud Kitchens",
+    "sizePrices": {
+      "6x8\"": 8,
+      "8x10\"": 9,
+      "10x12\"": 10,
+      "12x15\"": 12
+    },
+    "sizeImages": {
+      "6x8\"": [
+        "/images/products/paperbags/file.svg"
+      ],
+      "8x10\"": [
+        "/images/products/paperbags/kraft-paper-bag.svg"
+      ],
+      "10x12\"": [
+        "/images/products/paperbags/1.svg",
+        "/images/products/paperbags/7.svg"
+      ],
+      "12x15\"": [
+        "/images/products/paperbags/minimenu-paperbags.svg"
+      ]
+    },
+    "paperVariant": [
+      "Kraft"
     ],
-    "10x12\"": [
-      "/images/products/paperbags/1.svg"
+    "printVariants": [
+      "1-Color"
+    ],
+    "minimumQuantities": [
+      100,
+      200,
+      500
     ]
-  },
-  "sizes": [
-    {
-      "sizeIn": "6x8\"",
-      "sizeCm": "15.2x20.3cm",
-      "availableUnits": ["pc", "kg"]
-    },
-    {
-      "sizeIn": "8x10\"",
-      "sizeCm": "20.3x25.4cm",
-      "availableUnits": ["pc"]
-    },
-    {
-      "sizeIn": "10x12\"",
-      "sizeCm": "25.4x30.5cm",
-      "availableUnits": ["kg"]
-    }
-  ],
-  "units": [
-    {
-      "unitType": "pc",
-      "price": 3,
-      "moq": 500,
-      "contains": 1,
-      "containsLabel": "bag"
-    },
-    {
-      "unitType": "kg",
-      "price": 300,
-      "moq": 50,
-      "contains": 1000,
-      "containsLabel": "bags"
-    }
-  ],
-  "features": ["Eco-Friendly", "Reusable", "Durable"],
-  "shippingInfo": "Ships in 2–4 business days"
-}
+  }
 ]

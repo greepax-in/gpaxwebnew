@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { Box, Button } from '@mui/material';
 import { motion } from 'framer-motion';
 
@@ -11,9 +11,24 @@ interface MiniMenuProps {
   style?: React.CSSProperties;
 }
 
-// const MotionBox = motion(Box);
-
 const MiniMenu: React.FC<MiniMenuProps> = ({ items, onItemClick, selectedItem, style }) => {
+  const buttonRefs = useRef<Record<string, HTMLButtonElement | null>>({});
+  const [highlightStyle, setHighlightStyle] = useState({ left: 0, width: 0 });
+
+  useEffect(() => {
+    const selectedRef = buttonRefs.current[selectedItem];
+    if (selectedRef) {
+      const rect = selectedRef.getBoundingClientRect();
+      const parentRect = selectedRef.parentElement?.parentElement?.getBoundingClientRect();
+      if (parentRect) {
+        setHighlightStyle({
+          left: rect.left - parentRect.left,
+          width: rect.width,
+        });
+      }
+    }
+  }, [selectedItem, items]);
+
   return (
     <Box
       sx={{
@@ -26,27 +41,24 @@ const MiniMenu: React.FC<MiniMenuProps> = ({ items, onItemClick, selectedItem, s
         padding: '0.3rem 0.8rem',
         boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
         top: '-10%',
+        overflowX: 'auto',
         ...style,
       }}
     >
-      {/* Animated Highlight Pill */}
+      {/* Animated highlight pill */}
       <motion.div
-        layoutId="miniMenuHighlight"
+        layout
         style={{
           position: 'absolute',
           top: 4,
           bottom: 4,
-          left: 0,
           borderRadius: 9999,
           backgroundColor: '#FFFFFF',
           zIndex: 0,
         }}
-        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
         initial={false}
-        animate={{
-          left: `${items.findIndex(i => i === selectedItem) * 100}px`, // Assumes roughly 100px per button
-          width: 'auto',
-        }}
+        animate={highlightStyle}
+        transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       />
 
       {items.map((item) => {
@@ -59,6 +71,10 @@ const MiniMenu: React.FC<MiniMenuProps> = ({ items, onItemClick, selectedItem, s
             style={{ zIndex: 1 }}
           >
             <Button
+              ref={(el: HTMLButtonElement | null) => {
+                buttonRefs.current[item] = el;
+              }}
+              component="button"
               onClick={() => onItemClick(item)}
               sx={{
                 color: isSelected ? '#1B5E20' : '#E8F5E9',
@@ -74,6 +90,7 @@ const MiniMenu: React.FC<MiniMenuProps> = ({ items, onItemClick, selectedItem, s
                   background: isSelected ? '#FFFFFF' : '#2E7D32',
                   color: isSelected ? '#1B5E20' : '#FFFFFF',
                 },
+                whiteSpace: 'nowrap',
               }}
             >
               {item}

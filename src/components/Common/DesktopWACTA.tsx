@@ -9,14 +9,14 @@ import { useMediaQuery } from '@mui/material';
 interface WhatsAppCTAProps {
   productName: string;
   selectedSize: string;
-  selectedQty: string;
+  // selectedQty: string;
   selectedUnit: string;
   label?: string;
 }
 const FloatingWhatsAppFAB = ({
   productName,
   selectedSize,         
-  selectedQty,
+
   selectedUnit,
   // label = 'Chat with us on WhatsApp',
 }: WhatsAppCTAProps) => {
@@ -40,7 +40,7 @@ const FloatingWhatsAppFAB = ({
   const waMessage = `Hello! I'm interested in:
 🛍️ ${productName}
 📐 Size: ${selectedSize}
-📦 Qty: ${selectedQty}
+
 ⚖️ Unit: ${selectedUnit}
 Please share pricing and availability.`;
 
