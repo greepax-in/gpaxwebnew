@@ -18,7 +18,7 @@ const FloatingWhatsAppFAB = ({
   selectedSize,         
   selectedQty,
   selectedUnit,
-  label = 'Chat with us on WhatsApp',
+  // label = 'Chat with us on WhatsApp',
 }: WhatsAppCTAProps) => {
  
 

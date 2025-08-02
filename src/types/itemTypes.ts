@@ -1,14 +1,14 @@
 export type ItemType = {
   // HeroSection
   name: string;
+  SubTitle: string; 
   slug: string;
   category: string;
   featuredImage: string;
   productImages: string[];
   pageLink: string;
   tagtext: string;
-  // tags: string[];
-  packSize?: string;
+  packSize?: number;
 
   // ProductDetails
   description: string;
@@ -31,8 +31,11 @@ export type ItemType = {
   }[];
 
   // IndustriesServed
-  // industry field already declared above
-    industry: string;
+  industry: string;
+  visualFeatures: {
+    icon: string;
+    label: string;
+  }[];
 
   // TrustedBy
   customers?: { name: string; logo: string; alt?: string }[];
@@ -53,7 +56,7 @@ export type ItemType = {
   sizePrices?: { [size: string]: number };
   units?: string[];
   minimumQuantities?: number[];
- variantPrices?: {
+  variantPrices?: {
     [size: string]: {
       [unit: string]: {
         [qty: string]: number;
@@ -61,4 +64,15 @@ export type ItemType = {
     };
   };
 
+  // ✅ New Fields for Manufacturing Context
+  shippingInfo?: string;
+  availability?: string;
+  notes?: string[];
+  badges?: string[];
+  socialProof?: string;
+  reviewSummary?: {
+    rating: number;
+    count: number;
+    text: string;
+  };
 };

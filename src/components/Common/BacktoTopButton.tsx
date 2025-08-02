@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { Box, Fab, Zoom, useScrollTrigger } from '@mui/material';
+import { Box, Fab, Zoom } from '@mui/material';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 const BackToTopMobile = () => {

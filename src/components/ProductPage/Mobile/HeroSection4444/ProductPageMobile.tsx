@@ -6,7 +6,7 @@ import {
   Typography,
   Chip,
   Stack,
-  Divider,
+  // Divider,
   // useMediaQuery,
   // Button,
 } from '@mui/material';
@@ -182,6 +182,16 @@ const ProductPageMobile = ({ product }: ProductPageMobileProps) => {
           Get Best Price on WhatsApp
         </button>
       </Box>
+
+      
+                  {/* Delivery & Trust */}
+                  <Box sx={{ bgcolor: '#e8f5e9', borderRadius: 2, p: 1.5, mt: 2, fontSize: '0.875rem', color: 'text.secondary' }}>
+                    <Typography>
+                      📦 Guaranteed to arrive by <strong>2 Aug</strong> — Free Shipping<br />
+                      🎁 Get ₹50 voucher if your order arrives late.
+                    </Typography>
+                  </Box>
+      
       <BackToTopMobile />
     </Box>
 

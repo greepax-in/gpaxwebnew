@@ -183,7 +183,7 @@ const HeroSection = ({ product }: Props) => {
                   onClick: (val: string) => setSelectedUnit(val),
                   type: 'string' as const,
                 },
-              ].map(({ icon, label, data, selected, onClick, type }, idx) => (
+              ].map(({ icon, label, data, selected, onClick, type }) => (
                 <Box key={label} sx={{ display: 'grid', gridTemplateColumns: '64px 1fr', alignItems: 'center', rowGap: 1, mb: 2 }}>
                   <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ display: 'flex', alignItems: 'center', gap: 0.5 }}>
                     {icon} {label}:

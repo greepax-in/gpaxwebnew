@@ -19,7 +19,7 @@ const sizeStyles = {
 };
 
 const paperColors: Record<string, { bg: string; color: string }> = {
-  Kraft: { bg: '#E0C9A6', color: '#3E2F1C' },
+  Kraft: { bg: '#c9b392ff', color: '#3E2F1C' },
   White: { bg: '#F3F4F6', color: '#333' },
 };
 
@@ -30,7 +30,7 @@ export default function PaperVariantChip({
   label: string;
   size?: ChipSize;
 }) {
-  const style = paperColors[label] || { bg: '#eee', color: '#333' };
+  const style = paperColors[label] || { bg: '#eee', color: '#fff' };
   const chipStyle = sizeStyles[size];
 
   return (
