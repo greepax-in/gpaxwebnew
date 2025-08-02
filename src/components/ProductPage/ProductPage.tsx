@@ -54,14 +54,14 @@ const isMobile = useIsMobile();
         )}
       </div>
 
-      {/* <ProductDetails product={product} />
+      <ProductDetails product={product} />
       <ProductSpecifications product={product} />
       <ProductAssurance product={product} />
       <IndustriesServed product={product} />
       <TrustedBy product={product} />
       <UseCases product={product} />
       <ProductFAQ product={product} />
-      <SimilarProducts currentProduct={product}  /> */}
+      <SimilarProducts currentProduct={product}  />
 
 
 

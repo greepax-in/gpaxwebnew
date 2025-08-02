@@ -24,11 +24,11 @@ export default function ProductTitleWithPrice({
   size,
   offeredPrice,
   sellingPrice,
-  currencySymbol = '₹',
+  // currencySymbol = '₹',
   contains,
   containsLabel,
   selectedUnit,
-  MOQ,
+  // MOQ,
   deviceType = 'mobile',
 }: ProductTitleWithPriceProps) {
     const derivedPrice = contains
@@ -123,4 +123,4 @@ export default function ProductTitleWithPrice({
       </Box> */}
     </Box>
   );
-
+}

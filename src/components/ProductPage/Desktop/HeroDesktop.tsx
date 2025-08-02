@@ -6,11 +6,11 @@ import {
   Typography,
   Stack,
   Button,
-  useMediaQuery,
+  // useMediaQuery,
   Chip,
   IconButton,
   Paper,
-  Divider,
+  // Divider,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
@@ -174,7 +174,7 @@ const HeroSection = ({ product }: Props) => {
                 📐 Unit:
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
-                {(selectedSizeObj?.units || []).map((u, idx) => (
+                {(selectedSizeObj?.units || []).map((u) => (
                   <Chip
                     key={`unit-${u.unitType}`}
                     label={u.unitType}
