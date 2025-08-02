@@ -32,7 +32,7 @@ export interface ItemType {
 
   features: string[];
   shippingInfo?: string;
-  subtitle?: string;
+  subTitle?: string;
   pageLink?: string;
   offeredPrice?: number;
   sellingPrice?: number;

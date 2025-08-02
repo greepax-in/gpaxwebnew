@@ -5,118 +5,82 @@ import { Box, Typography, Chip, Stack } from '@mui/material';
 
 interface ProductTitleWithPriceProps {
   title: string;
+  subtitle?: string;
   size?: string;
-  offeredPrice?: number;
+  contains?: number; // Optional, used for derived price calculation,
+  containsLabel?: string; // Optional, label for the contains field
+  offeredPrice: number;
   sellingPrice: number;
-  currencySymbol?: string;
+  selectedUnit?: string; // Optional, used for displaying selected unit
   deviceType?: 'mobile' | 'desktop';
+  currencySymbol?: string; // Retained for currency display
 }
 
 export default function ProductTitleWithPrice({
   title,
+  subtitle,
   size,
   offeredPrice,
   sellingPrice,
   currencySymbol = '₹',
+  contains,
+  containsLabel,
+  selectedUnit,
   deviceType = 'mobile',
 }: ProductTitleWithPriceProps) {
-  const isDiscounted =
-    typeof offeredPrice === 'number' && offeredPrice > sellingPrice;
-
-  const discount = isDiscounted
-    ? Math.round(((offeredPrice - sellingPrice) / offeredPrice) * 100)
-    : 0;
-
-  // 🔧 Centralized style configuration
-  const styleConfig = {
-    mobile: {
-      titleVariant: 'h6',
-      priceVariant: 'h6',
-      marginTop: 1,
-      marginBottom: 1,
-      marginLeft: 0,
-      marginRight: 0,
-      paddingX: 1,
-      stackMarginTop: 0.5,
-      stackSpacing: 1,
-    },
-    desktop: {
-      titleVariant: 'h5',
-      priceVariant: 'h5',
-      marginTop: 5,
-      marginBottom: 2,
-      marginLeft: -2,
-      marginRight: 1,
-      paddingX: 2,
-      stackMarginTop: 1,
-      stackSpacing: 1.5,
-    },
-  };
-
-  const styles = styleConfig[deviceType];
-
+    const derivedPrice = contains
+    ? (offeredPrice / contains).toFixed(2)
+    : undefined;
+  const isDiscounted = offeredPrice < sellingPrice;
+  const discount = isDiscounted ? Math.round(100 * (sellingPrice - offeredPrice) / sellingPrice) : 0;
   return (
-    <Box
-      sx={{
-        mt: styles.marginTop,
-        mb: styles.marginBottom,
-        ml: styles.marginLeft,
-        mr: styles.marginRight,
-        px: styles.paddingX,
-      }}
-    >
+    <Box>
       <Typography
-        variant={styles.titleVariant as any}
-        fontWeight={600}
-        lineHeight={1.3}
+        variant={deviceType === 'desktop' ? 'h4' : 'h6'}
+        fontWeight={700}
+        sx={{ mb: 0.5 }}
       >
-        {title}
-        {size ? ` - ${size}` : ''}
+        {title} {size && `- ${size}`}
       </Typography>
-
-      <Stack
-        direction="row"
-        spacing={styles.stackSpacing}
-        alignItems="center"
-        mt={styles.stackMarginTop}
-      >
-        <Typography
-          variant={styles.priceVariant as any}
-          fontWeight={600}
-          color="success.main"
-        >
-          {currencySymbol}
-          {sellingPrice}
+      {subtitle && (
+        <Typography variant="subtitle1" color="text.secondary" sx={{ mb: 1 }}>
+          {subtitle}
         </Typography>
+      )}
 
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <Typography variant={deviceType === 'desktop' ? 'h5' : 'body1'} fontWeight={700} color="success.main">
+          ₹{offeredPrice}
+        </Typography>
         {isDiscounted && (
-          <>
-            <Typography
-              variant="body1"
-              sx={{
-                color: 'text.secondary',
-                textDecoration: 'line-through',
-              }}
-            >
-              {currencySymbol}
-              {offeredPrice}
-            </Typography>
-
-            <Chip
-              label={`-${discount}%`}
-              size="small"
-              sx={{
-                bgcolor: '#c62828',
-                color: '#fff',
-                fontSize: '0.75rem',
-                height: 22,
-                borderRadius: 1,
-                px: 1,
-              }}
-            />
-          </>
+          <Typography variant="body1" color="text.secondary" sx={{ textDecoration: 'line-through' }}>
+            ₹{sellingPrice}
+          </Typography>
         )}
-      </Stack>
+        {isDiscounted && (
+          <Chip
+            label={`-${discount}%`}
+            size="small"
+            sx={{ bgcolor: '#d32f2f', color: '#fff', fontWeight: 500, borderRadius: '16px' }}
+          />
+        )}
+        </Stack>
+        {(selectedUnit === 'Kg') ? (
+          <Box>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+              Approx. {derivedPrice} per {containsLabel || 'unit'} ({contains} {containsLabel}s per {selectedUnit})
+              {/* ({contains} per {size || 'unit'}) */}
+            </Typography>
+          </Box>
+        ) : (
+          <Box>
+            <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
+              Approx. ₹{derivedPrice} per {containsLabel || 'unit'} 
+              {/* If containsLabel is not provided, it defaults to 'unit' */}
+            </Typography>
+          </Box>
+        )}
+
     </Box>
   );
-}
+

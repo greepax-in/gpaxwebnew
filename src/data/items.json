@@ -2,6 +2,7 @@
   {
     "name": "Kraft Printed Food Delivery Paper Bags",
     "category": "Paper Bags",
+    "subTitle": "Eco-Friendly and Durable for Food Delivery",
     "subcategory": "Food Delivery Paper Bags",
     "featuredProduct": "yes",
     "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
@@ -17,20 +18,20 @@
         "sizeCm": "15.2x15.5x20.3cm",
         "units": [
           {
-            "unitType": "pc",
-            "offeredPrice": 3,
-            "sellingPrice": 5,
+            "unitType": "500 Bags",
+            "offeredPrice": 4000,
+            "sellingPrice": 7000,
             "moq": 500,
-            "contains": 1,
+            "contains": 500,
             "containsLabel": "bag"
           },
           {
-            "unitType": "bundle",
-            "offeredPrice": 300,
-            "sellingPrice": 500,
+            "unitType": "1000 Bags",
+            "offeredPrice": 7500,
+            "sellingPrice": 10000,
             "moq": 50,
             "contains": 1000,
-            "containsLabel": "bags"
+            "containsLabel": "bag"
           }
         ],
         "sizeImages": [
@@ -60,12 +61,12 @@
         "sizeCm": "25.4x30.5cm",
         "units": [
           {
-            "unitType": "kg",
+            "unitType": "Kg",
             "offeredPrice": 350,
             "sellingPrice": 420,
             "moq": 50,
             "contains": 1000,
-            "containsLabel": "bags"
+            "containsLabel": "cover"
           }
         ],
         "sizeImages": [

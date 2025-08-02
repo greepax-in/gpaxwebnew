@@ -98,38 +98,11 @@ export default function ProductMobileUI({ product }: Props) {
 
       {/* Title + Subtitle */}
       <Typography variant="h6" fontWeight={600}>{product.name}</Typography>
-      {product.subTitle && (
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>{product.subTitle}</Typography>
+      {product.subtitle && (
+        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>{product.subtitle}</Typography>
       )}
 
-     
-
-      {/* Pricing Section */}
-      <Stack direction="row" spacing={1} alignItems="baseline" sx={{ mb: 0.5 }}>
-        <Typography variant="h6" color="success.main">
-          ₹{sellingPrice} / {selectedUnit}
-        </Typography>
-        {offeredPrice > sellingPrice && (
-          <>
-            <Typography variant="body2" sx={{ textDecoration: 'line-through', color: 'text.secondary' }}>
-              ₹{offeredPrice}
-            </Typography>
-            <Chip
-              label={`${discountPercentage}% OFF`}
-              size="small"
-              sx={{ bgcolor: '#e53935', color: '#fff', height: 20, fontSize: '0.75rem' }}
-            />
-          </>
-        )}
-      </Stack>
-
-      {derivedPrice && (
-        <Typography variant="body2" color="text.secondary">
-          Approx. ₹{derivedPrice} per {selectedUnitData?.containsLabel} ({selectedUnitData?.contains} per {selectedUnit})
-        </Typography>
-      )}
-      <Typography variant="caption">MOQ: {selectedUnitData?.moq} {selectedUnit}</Typography>
- {/* Size, Unit, and SizeUnit Toggle */}
+      {/* Size, Unit, and SizeUnit Toggle */}
       <Stack direction="row" spacing={1} sx={{ mb: 1, alignItems: 'center' }}>
         <FormControl size="small" sx={{ flexGrow: 2 }}>
           <InputLabel>Size</InputLabel>
@@ -212,6 +185,32 @@ export default function ProductMobileUI({ product }: Props) {
           </Box>
         </Box>
       </Stack>
+
+      {/* Pricing Section */}
+      <Stack direction="row" spacing={1} alignItems="baseline" sx={{ mb: 0.5 }}>
+        <Typography variant="h6" color="success.main">
+          ₹{sellingPrice} / {selectedUnit}
+        </Typography>
+        {offeredPrice > sellingPrice && (
+          <>
+            <Typography variant="body2" sx={{ textDecoration: 'line-through', color: 'text.secondary' }}>
+              ₹{offeredPrice}
+            </Typography>
+            <Chip
+              label={`${discountPercentage}% OFF`}
+              size="small"
+              sx={{ bgcolor: '#e53935', color: '#fff', height: 20, fontSize: '0.75rem' }}
+            />
+          </>
+        )}
+      </Stack>
+
+      {derivedPrice && (
+        <Typography variant="body2" color="text.secondary">
+          Approx. ₹{derivedPrice} per {selectedUnitData?.containsLabel} ({selectedUnitData?.contains} per {selectedUnit})
+        </Typography>
+      )}
+      <Typography variant="caption">MOQ: {selectedUnitData?.moq} {selectedUnit}</Typography>
 
       {/* Features */}
       <Stack direction="row" spacing={1} sx={{ mt: 1, flexWrap: 'wrap' }}>

@@ -86,9 +86,13 @@ const HeroSection = ({ product }: Props) => {
         <Box flex={1} display="flex" flexDirection="column" justifyContent="space-between" gap={2}>
           <ProductTitleWithPrice
             title={product.name}
+            subtitle={product.subTitle}
             size={selectedSize || ''}
             offeredPrice={selectedUnitData?.offeredPrice || 0}
             sellingPrice={selectedUnitData?.sellingPrice || 0}
+            contains={selectedUnitData?.contains}
+            containsLabel={selectedUnitData?.containsLabel }
+            selectedUnit={selectedUnit}
             deviceType='desktop'
           />
 
@@ -97,7 +101,7 @@ const HeroSection = ({ product }: Props) => {
             sx={{
               p: 2,
               bgcolor: 'grey.50',
-              mt: 1,
+              mt: 10,
               transform: 'translateY(-20%)',
               transition: 'transform 0.3s',
               minHeight: 150,
