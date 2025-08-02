@@ -28,7 +28,7 @@ import { ItemType } from '@/types/itemTypes';
 
 
 
-const product: ItemType = items[0];
+// const product: ItemType = items[0];
 
 const containerVariants = {
   hidden: {},
@@ -44,7 +44,7 @@ const itemVariants = {
   visible: { opacity: 1, x: 0 },
 };
 
-export default function ProductPage() {
+export default function ProductPage({ product }: { product: ItemType }) {
   // const isMobile = useMediaQuery('(max-width:600px)');
   const [selectedSize, setSelectedSize] = useState(product.sizes?.[0] || '');
   const [mainImage, setMainImage] = useState(() =>
@@ -67,7 +67,7 @@ export default function ProductPage() {
       product.sizePrices?.[selectedSize] || product.offeredPrice
     );
     setSellingPrice(product.sellingPrice);
-  }, [selectedSize]);
+  }, [selectedSize, product]);
 
   return (
     <Box sx={{ p: 0, mt: '0vh', maxWidth: 480, mx: 'auto' }}>

@@ -43,8 +43,8 @@ const isMobile = useIsMobile();
       <div ref={heroRef}>
         {isMobile ? (
           <>
-            <ProductPageMobile2  />
-            <BackToTopButton  />
+            <ProductPageMobile2  product={product}/>
+            <BackToTopButton />
           </>
         ) : (
           <>
