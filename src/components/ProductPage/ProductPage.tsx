@@ -19,7 +19,7 @@ import TrustedBy from './TrustedBy';
 import UseCases from './UseCases';
 import { ItemType } from '../../types/itemTypes';
 // import ProductPageMobile from './Mobile/HeroSection/ProductPageMobile';
-import ProductPageMobile2 from './Mobile/HeroSection2/page'
+import ProductPageMobile2 from './Mobile/HeroSection3/page'
 // import DesktopWACTA from '../Common/DesktopWACTA';
 // import products from '@/data/items.json';  
 

@@ -1,78 +1,34 @@
-export type ItemType = {
-  // HeroSection
+// types/itemTypes.ts
+
+export type SizeUnit = 'in' | 'cm';
+
+export type UnitType = 'pc' | 'kg' | 'bundle';
+
+export interface SizeVariant {
+  sizeIn: string;
+  sizeCm: string;
+  availableUnits: UnitType[];
+}
+
+export interface UnitData {
+  unitType: UnitType;
+  price: number;
+  moq: number;
+  contains: number;
+  containsLabel: string;
+}
+
+export interface ItemType {
   name: string;
-  SubTitle: string; 
-  slug: string;
-  category: string;
-  featuredImage: string;
-  productImages: string[];
-  pageLink: string;
-  tagtext: string;
-  packSize?: number;
-
-  // ProductDetails
-  description: string;
-
-  printVariants: string[];
-  paperVariant: string[];
-  featuredProduct: string;
-  offeredPrice: number;
-  sellingPrice: number;
-
-  // ProductSpecifications
-  highlights: string[];
-  specifications: Record<string, string>;
-
-  // ProductAssurance
-  assurance?: {
-    icon: string;
-    title: string;
-    desc: string;
-  }[];
-
-  // IndustriesServed
-  industry: string;
-  visualFeatures: {
-    icon: string;
-    label: string;
-  }[];
-
-  // TrustedBy
-  customers?: { name: string; logo: string; alt?: string }[];
-
-  // UseCases
-  usecases: string[];
-
-  // ProductFAQ
-  faqs: { q: string; a: string }[];
-
-  // SimilarProducts
-  categorySlug?: string;
-  subcategorySlug?: string;
-
-  // Size & Variant Details (used in multiple sections)
-  sizes: string[];
-  sizeImages?: { [size: string]: string[] };
-  sizePrices?: { [size: string]: number };
-  units?: string[];
-  minimumQuantities?: number[];
-  variantPrices?: {
-    [size: string]: {
-      [unit: string]: {
-        [qty: string]: number;
-      };
-    };
+  image: string;
+  productImages?: string[];
+  sizeImages?: {
+    [size: string]: string[];
   };
-
-  // ✅ New Fields for Manufacturing Context
+  sizes: SizeVariant[];
+  units: UnitData[];
+  features: string[];
   shippingInfo?: string;
-  availability?: string;
-  notes?: string[];
-  badges?: string[];
-  socialProof?: string;
-  reviewSummary?: {
-    rating: number;
-    count: number;
-    text: string;
-  };
-};
+  subtitle?: string;
+  pageLink?: string;
+}

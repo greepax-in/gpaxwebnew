@@ -1,0 +1,2262 @@
+[
+  {
+    "name": "Kraft Printed Food Delivery Paper Bags",
+    "slug": "kraft-printed-food-delivery-paper-bags",
+    "category": "Paper Bags",
+    "categorySlug": "paper-bags",
+    "subcategory": "Food Delivery Paper Bags",
+    "subcategorySlug": "food-delivery-paper-bags",
+    "breadcrumb": [
+   
+    ],
+    "description": "Engineered for the food delivery revolution\u2014our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
+    "industry": "Food Delivery, Restaurants, Cloud Kitchens",
+    "image": "/images/products/paperbags/1.svg",
+    "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
+    "printvariants": [
+      "1-Color"
+    ],
+    "papervariant": [
+      "Kraft"
+    ],
+    "featuredProduct": "yes",
+    "offeredPrice": 9,
+    "sellingPrice": 10,
+
+    "featuredImage": "/images/products/paperbags/1.svg",
+    "productImages": [
+      "/images/products/paperbags/1.svg",
+      "/images/products/paperbags/7.svg",
+      "/images/products/paperbags/13.svg"
+    ],
+    "sizes": [
+      "6x8\"",
+      "8x10\"",
+      "10x12\"",
+      "12x15\""
+    ],
+    "sizePrices": {
+      "6x8\"": 8,
+      "8x10\"": 9,
+      "10x12\"": 10,
+      "12x15\"": 12
+    },
+    "sizeImages": {
+      "6x8\"": [
+        "/images/products/paperbags/file.svg"
+      ],
+      "8x10\"": [
+        "/images/products/paperbags/kraft-paper-bag.svg"
+      ],
+      "10x12\"": [
+        "/images/products/paperbags/1.svg",
+        "/images/products/paperbags/7.svg"
+      ],
+      "12x15\"": [
+        "/images/products/paperbags/minimenu-paperbags.svg"
+      ]
+    },
+    "units": [
+      "100",
+      "1kg"
+    ],
+    "minimumQuantities": [
+      100,
+      200,
+      500
+    ],
+    "variantPrices": {
+      "6x8\"": {
+        "100pcs": {
+          "100": 6,
+          "200": 5.5,
+          "500": 5
+        },
+        "1kg": {
+          "100": 7,
+          "200": 6.5,
+          "500": 6
+        }
+      },
+      "8x10\"": {
+        "100pcs": {
+          "100": 7.5,
+          "200": 7,
+          "500": 6.5
+        },
+        "1kg": {
+          "100": 8,
+          "200": 7.5,
+          "500": 7
+        }
+      },
+      "10x12\"": {
+        "100pcs": {
+          "100": 8.5,
+          "200": 8,
+          "500": 7.5
+        },
+        "1kg": {
+          "100": 9,
+          "200": 8.5,
+          "500": 8
+        }
+      },
+      "12x15\"": {
+        "100pcs": {
+          "100": 10,
+          "200": 9.5,
+          "500": 9
+        },
+        "1kg": {
+          "100": 11,
+          "200": 10.5,
+          "500": 10
+        }
+      }
+    },
+    "highlights": [
+      "\u267b\ufe0f 100% Eco-Friendly \u2014 Made from recyclable, biodegradable kraft paper",
+      "\ud83d\udccf Custom Sizes Available \u2014 Fit your unique packaging needs",
+      "\ud83d\udcaa Built for Daily Use \u2014 Strong 120 GSM paper holds up to 5kg",
+      "\ud83d\udda8\ufe0f Brandable Surface \u2014 Supports single-color or multi-color printing"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "120-150",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "paper": "Kraft",
+    "assurance": [
+      {
+        "icon": "\u267b\ufe0f",
+        "title": "Eco-Friendly Materials",
+        "desc": "Made from recyclable and biodegradable kraft paper using food-safe ink and glue."
+      },
+      {
+        "icon": "\ud83d\ude9a",
+        "title": "Pan-India Delivery Coordination",
+        "desc": "We deliver across India through trusted third-party logistics partners. Shipping method and cost depend on product type, quantity, and location. We coordinate dispatch and provide tracking details to ensure a smooth and transparent delivery experience."
+      },
+      {
+        "icon": "\u2705",
+        "title": "Quality Checked",
+        "desc": "Each batch is inspected for strength, finish, and print clarity to meet consistent quality standards."
+      },
+      {
+        "icon": "\ud83c\uddee\ud83c\uddf3",
+        "title": "Made in India",
+        "desc": "Proudly made in India using locally sourced materials to support regional suppliers and minimize environmental impact."
+      }
+    ],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "White Printed Food Delivery Paper Bags",
+    "category": "Paper Bags",
+    "description": "Engineered for the food delivery revolution\u2014our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
+    "industry": "Food Delivery, Restaurants, Cloud Kitchens",
+    "image": "/images/home/productcategories/paperbags/7.svg",
+    "pageLink": "/paper-bags/food-delivery-paper-bags/white-printed-food-delivery-paper-bags",
+    "printvariants": [
+
+      "Multi Color"
+    ],
+    "featuredProduct": "yes",
+    "offeredPrice": 9,
+    "sellingPrice": 10,
+    "papervariant": [
+
+      "White"
+    ],
+    "tagtext": "New",
+    "slug": "white-printed-food-delivery-paper-bags",
+    "featuredImage": "/images/paperbags/1.webp",
+    "productImages": [
+      "/images/paperbags/1.webp",
+      "/images/paperbags/1_2.webp",
+      "/images/paperbags/1_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "subcategorySlug": "food-delivery-paper-bags",
+    "baseSlug": "food-delivery-paper-bags",
+    "paper": "White",
+    "subcategory": "food-delivery-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Cake Box Paper Bags",
+    "category": "Paper Bags",
+    "description": "Crafted for celebration\u2014our cake box paper bags are strong, elegant, and made to carry sweetness with care.",
+    "industry": "Bakeries, Patisseries, Dessert Shops",
+    "image": "/images/home/productcategories/paperbags/13.svg",
+    "pageLink": "/paper-bags/cake-box-paper-bags/kraft-printed-cake-box-paper-bags",
+    "printvariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 11,
+    "sellingPrice": 12,
+    "papervariant": [
+      "Kraft"
+    ],
+    "tagtext": "Hot",
+    "slug": "kraft-printed-cake-box-paper-bags",
+    "featuredImage": "/images/paperbags/7.webp",
+    "productImages": [
+      "/images/paperbags/7.webp",
+      "/images/paperbags/7_2.webp",
+      "/images/paperbags/7_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "cake-box-paper-bags",
+    "paper": "Kraft",
+    "subcategory": "cake-box-paper-bags",
+    "subcategorySlug": "cake-box-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Promotion Paper Bags",
+    "category": "Paper Bags",
+    "description": "Turn every giveaway into a brand experience\u2014these customizable paper bags elevate your promotional efforts with professional flair.",
+    "industry": "Events, Exhibitions, Retail Promotions",
+    "image": "/images/home/productcategories/paperbags/kraft-paper-bag.svg",
+    "pageLink": "/paper-bags/promotion-paper-bags/kraft-printed-promotion-paper-bags",
+    "printvariants": [
+      "1-Color",
+      "Multi Color"
+    ],
+    "featuredProduct": "yes",
+    "offeredPrice": 14,
+    "sellingPrice": 15,
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New",
+    "slug": "kraft-printed-promotion-paper-bags",
+    "featuredImage": "/images/paperbags/13.webp",
+    "productImages": [
+      "/images/paperbags/13.webp",
+      "/images/paperbags/13_2.webp",
+      "/images/paperbags/13_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "promotion-paper-bags",
+    "paper": "Kraft",
+    "subcategory": "promotion-paper-bags",
+    "subcategorySlug": "promotion-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "White Printed Promotion Paper Bags",
+    "category": "Paper Bags",
+    "description": "Turn every giveaway into a brand experience\u2014these customizable paper bags elevate your promotional efforts with professional flair.",
+    "industry": "Events, Exhibitions, Retail Promotions",
+    "image": "/images/home/productcategories/paperbags/minimenu-paperbags.svg",
+    "pageLink": "/paper-bags/promotion-paper-bags/white-printed-promotion-paper-bags",
+    "printvariants": [
+      "1-Color",
+      "Multi Color"
+    ],
+    "featuredProduct": "yes",
+    "offeredPrice": 14,
+    "sellingPrice": 15,
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New",
+    "slug": "white-printed-promotion-paper-bags",
+    "featuredImage": "/images/paperbags/13.webp",
+    "productImages": [
+      "/images/paperbags/13.webp",
+      "/images/paperbags/13_2.webp",
+      "/images/paperbags/13_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "promotion-paper-bags",
+    "paper": "White",
+    "subcategory": "promotion-paper-bags",
+    "subcategorySlug": "promotion-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Gift Paper Bags",
+    "category": "Paper Bags",
+    "description": "Add charm to every gift\u2014our premium paper bags are designed to impress with their sleek look and sturdy feel.",
+    "industry": "Retail, Gifting, Lifestyle Stores",
+    "image": "/images/home/productcategories/paperbags/1.svg",
+    "pageLink": "/paper-bags/gift-paper-bags/kraft-printed-gift-paper-bags",
+
+    "featuredProduct": "no",
+    "offeredPrice": 17,
+    "sellingPrice": 18,
+    "tagtext": "Hot",
+    "slug": "kraft-printed-gift-paper-bags",
+    "featuredImage": "/images/paperbags/file.webp",
+    "productImages": [
+      "/images/paperbags/file.webp",
+      "/images/paperbags/file_2.webp",
+      "/images/paperbags/file_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "gift-paper-bags",
+    "paper": "Kraft",
+    "subcategory": "gift-paper-bags",
+    "subcategorySlug": "gift-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "White Printed Gift Paper Bags",
+    "category": "Paper Bags",
+    "description": "Add charm to every gift\u2014our premium paper bags are designed to impress with their sleek look and sturdy feel.",
+    "industry": "Retail, Gifting, Lifestyle Stores",
+    "image": "/images/home/productcategories/paperbags/file.svg",
+    "pageLink": "/paper-bags/gift-paper-bags/white-printed-gift-paper-bags",
+    "printvariants": [
+
+      "Multi Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 17,
+    "sellingPrice": 18,
+
+    "tagtext": "Hot",
+    "slug": "white-printed-gift-paper-bags",
+    "featuredImage": "/images/paperbags/file.webp",
+    "productImages": [
+      "/images/paperbags/file.webp",
+      "/images/paperbags/file_2.webp",
+      "/images/paperbags/file_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "gift-paper-bags",
+    "paper": "White",
+    "subcategory": "gift-paper-bags",
+    "subcategorySlug": "gift-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Garment Paper Bags",
+    "category": "Paper Bags",
+    "description": "Designed for fashion retailers\u2014our spacious garment paper bags combine style, strength, and sustainability in every fold.",
+    "industry": "Apparel, Fashion Boutiques, Showrooms",
+    "image": "/images/home/productcategories/paperbags/7.svg",
+    "pageLink": "/paper-bags/garment-paper-bags/kraft-printed-garment-paper-bags",
+
+    "featuredProduct": "no",
+    "offeredPrice": 19,
+    "sellingPrice": 20,
+    "tagtext": "New",
+    "slug": "kraft-printed-garment-paper-bags",
+    "featuredImage": "/images/paperbags/kraft-paper-bag.webp",
+    "productImages": [
+      "/images/paperbags/kraft-paper-bag.webp",
+      "/images/paperbags/kraft-paper-bag_2.webp",
+      "/images/paperbags/kraft-paper-bag_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "garment-paper-bags",
+    "paper": "Kraft",
+    "subcategory": "garment-paper-bags",
+    "subcategorySlug": "garment-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+  
+    ],
+    "printVariants": [
+
+      "1-Color"
+ 
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "White Printed Garment Paper Bags",
+    "category": "Paper Bags",
+    "description": "Designed for fashion retailers\u2014our spacious garment paper bags combine style, strength, and sustainability in every fold.",
+    "industry": "Apparel, Fashion Boutiques, Showrooms",
+    "image": "/images/home/productcategories/paperbags/13.svg",
+    "pageLink": "/paper-bags/garment-paper-bags/white-printed-garment-paper-bags",
+
+    "featuredProduct": "no",
+    "offeredPrice": 19,
+    "sellingPrice": 20,
+
+    "tagtext": "New",
+    "slug": "white-printed-garment-paper-bags",
+    "featuredImage": "/images/paperbags/kraft-paper-bag.webp",
+    "productImages": [
+      "/images/paperbags/kraft-paper-bag.webp",
+      "/images/paperbags/kraft-paper-bag_2.webp",
+      "/images/paperbags/kraft-paper-bag_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "garment-paper-bags",
+    "paper": "White",
+    "subcategory": "garment-paper-bags",
+    "subcategorySlug": "garment-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+   
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Medical Paper Covers",
+    "category": "Paper Covers",
+    "description": "Hygienic and durable paper covers tailored for hospitals, clinics, and pharmacies.",
+    "industry": "Healthcare, Hospitals, Medical Stores",
+    "image": "/images/papercovers/62.svg",
+    "pageLink": "/paper-covers/medical-paper-covers/kraft-printed-medical-paper-covers",
+
+    "featuredProduct": "yes",
+    "offeredPrice": 6,
+    "sellingPrice": 7,
+    "papervariant": [
+      "Kraft"
+    ],
+    "tagtext": "Popular",
+    "slug": "kraft-printed-medical-paper-covers",
+    "featuredImage": "/images/papercovers/62.webp",
+    "productImages": [
+      "/images/papercovers/62.webp",
+      "/images/papercovers/62_2.webp",
+      "/images/papercovers/62_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-covers",
+    "baseSlug": "medical-paper-covers",
+    "paper": "Kraft",
+    "subcategory": "medical-paper-covers",
+    "subcategorySlug": "medical-paper-covers",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Bakery Paper Covers",
+    "category": "Paper Covers",
+    "description": "Grease-resistant covers ideal for bread, pastries, and baked goods on-the-go.",
+    "industry": "Bakeries, Cafes, Street Food Vendors",
+    "image": "/images/papercovers/6.svg",
+    "pageLink": "/paper-covers/bakery-paper-covers/kraft-printed-bakery-paper-covers",
+
+    "featuredProduct": "no",
+    "offeredPrice": 6,
+    "sellingPrice": 7,
+    "tagtext": "New",
+    "slug": "kraft-printed-bakery-paper-covers",
+    "featuredImage": "/images/papercovers/6.webp",
+    "productImages": [
+      "/images/papercovers/6.webp",
+      "/images/papercovers/6_2.webp",
+      "/images/papercovers/6_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-covers",
+    "baseSlug": "bakery-paper-covers",
+    "paper": "Kraft",
+    "subcategory": "bakery-paper-covers",
+    "subcategorySlug": "bakery-paper-covers",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Grocery Paper Covers",
+    "category": "Paper Covers",
+    "description": "Eco-conscious paper covers perfect for packing grains, pulses, and groceries.",
+    "industry": "Supermarkets, Grocery Stores, Organic Shops",
+    "image": "/images/papercovers/10.svg",
+    "pageLink": "/paper-covers/grocery-paper-covers/kraft-printed-grocery-paper-covers",
+    "printvariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 5,
+    "sellingPrice": 6,
+    "papervariant": [
+      "Kraft"
+    ],
+    "tagtext": "Hot",
+    "slug": "kraft-printed-grocery-paper-covers",
+    "featuredImage": "/images/papercovers/10.webp",
+    "productImages": [
+      "/images/papercovers/10.webp",
+      "/images/papercovers/10_2.webp",
+      "/images/papercovers/10_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-covers",
+    "baseSlug": "grocery-paper-covers",
+    "paper": "Kraft",
+    "subcategory": "grocery-paper-covers",
+    "subcategorySlug": "grocery-paper-covers",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Vegetable Paper Covers",
+    "category": "Paper Covers",
+    "description": "Breathable, eco-friendly paper covers to keep vegetables fresh and secure.",
+    "industry": "Farmers Markets, Vegetable Vendors",
+    "image": "/images/papercovers/62.svg",
+    "pageLink": "/paper-covers/vegetable-paper-covers/kraft-printed-vegetable-paper-covers",
+    "printvariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 5,
+    "sellingPrice": 6,
+    "papervariant": [
+      "Kraft"
+    ],
+    "tagtext": "Popular",
+    "slug": "kraft-printed-vegetable-paper-covers",
+    "featuredImage": "/images/papercovers/62.webp",
+    "productImages": [
+      "/images/papercovers/62.webp",
+      "/images/papercovers/62_2.webp",
+      "/images/papercovers/62_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-covers",
+    "baseSlug": "vegetable-paper-covers",
+    "paper": "Kraft",
+    "subcategory": "vegetable-paper-covers",
+    "subcategorySlug": "vegetable-paper-covers",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Textile Paper Covers",
+    "category": "Paper Covers",
+    "description": "Smooth and tough covers used in wrapping and protecting fabric rolls.",
+    "industry": "Textile Mills, Fabric Stores, Tailors",
+    "image": "/images/papercovers/10.svg",
+    "pageLink": "/paper-covers/textile-paper-covers/kraft-printed-textile-paper-covers",
+    "printvariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 8,
+    "sellingPrice": 9,
+    "papervariant": [
+      "Kraft"
+    ],
+    "tagtext": "Popular",
+    "slug": "kraft-printed-textile-paper-covers",
+    "featuredImage": "/images/papercovers/10.webp",
+    "productImages": [
+      "/images/papercovers/10.webp",
+      "/images/papercovers/10_2.webp",
+      "/images/papercovers/10_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-covers",
+    "baseSlug": "textile-paper-covers",
+    "paper": "Kraft",
+    "subcategory": "textile-paper-covers",
+    "subcategorySlug": "textile-paper-covers",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Laundry Paper Covers",
+    "category": "Paper Covers",
+    "description": "Clean and crisp covers for packaging washed garments professionally.",
+    "industry": "Laundry Services, Dry Cleaners, Hotels",
+    "image": "/images/papercovers/10.svg",
+    "pageLink": "/paper-covers/laundry-paper-covers/kraft-printed-laundry-paper-covers",
+    "printvariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "featuredProduct": "yes",
+    "offeredPrice": 8,
+    "sellingPrice": 9,
+    "papervariant": [
+      "Kraft"
+    ],
+    "tagtext": "New",
+    "slug": "kraft-printed-laundry-paper-covers",
+    "featuredImage": "/images/papercovers/10.webp",
+    "productImages": [
+      "/images/papercovers/10.webp",
+      "/images/papercovers/10_2.webp",
+      "/images/papercovers/10_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-covers",
+    "baseSlug": "laundry-paper-covers",
+    "paper": "Kraft",
+    "subcategory": "laundry-paper-covers",
+    "subcategorySlug": "laundry-paper-covers",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Cake Boxes",
+    "category": "Paper Boxes",
+    "description": "Elegant and strong paper boxes to hold cakes with care and style.",
+    "industry": "Bakeries, Cake Shops, Dessert Cafes",
+    "image": "/images/paperboxes/kraft-cake-boxes.svg",
+    "pageLink": "/paper-boxes/cake-boxes/kraft-printed-cake-boxes",
+    "printvariants": [
+      "Plain"
+    ],
+    "featuredProduct": "yes",
+    "offeredPrice": 15,
+    "sellingPrice": 17,
+    "papervariant": [
+      "Kraft"
+    ],
+    "tagtext": "Hot",
+    "slug": "kraft-printed-cake-boxes",
+    "featuredImage": "/images/paperboxes/kraft-cake-boxes.webp",
+    "productImages": [
+      "/images/paperboxes/kraft-cake-boxes.webp",
+      "/images/paperboxes/kraft-cake-boxes_2.webp",
+      "/images/paperboxes/kraft-cake-boxes_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-boxes",
+    "baseSlug": "cake-boxes",
+    "paper": "Kraft",
+    "subcategory": "cake-boxes",
+    "subcategorySlug": "cake-boxes",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft"
+    ],
+    "printVariants": [
+      "Plain"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Burger Boxes",
+    "category": "Paper Boxes",
+    "description": "Compact and sturdy boxes to serve burgers hot and mess-free.",
+    "industry": "QSRs, Food Trucks, Restaurants",
+    "image": "/images/paperboxes/burger-boxes.svg",
+    "pageLink": "/paper-boxes/burger-boxes/kraft-printed-burger-boxes",
+    "printvariants": [
+
+      "1-Color"
+  
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 12,
+    "sellingPrice": 14,
+    "papervariant": [
+      "Kraft"
+
+    ],
+    "tagtext": "New",
+    "slug": "kraft-printed-burger-boxes",
+    "featuredImage": "/images/paperboxes/burger-boxes.webp",
+    "productImages": [
+      "/images/paperboxes/burger-boxes.webp",
+      "/images/paperboxes/burger-boxes_2.webp",
+      "/images/paperboxes/burger-boxes_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-boxes",
+    "baseSlug": "burger-boxes",
+    "paper": "Kraft",
+    "subcategory": "burger-boxes",
+    "subcategorySlug": "burger-boxes",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "White Printed Burger Boxes",
+    "category": "Paper Boxes",
+    "description": "Compact and sturdy boxes to serve burgers hot and mess-free.",
+    "industry": "QSRs, Food Trucks, Restaurants",
+    "image": "/images/paperboxes/burger-boxes.svg",
+    "pageLink": "/paper-boxes/burger-boxes/white-printed-burger-boxes",
+    "printvariants": [
+
+      "1-Color",
+      "Multi Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 12,
+    "sellingPrice": 14,
+    "papervariant": [
+
+      "White"
+    ],
+    "tagtext": "New",
+    "slug": "white-printed-burger-boxes",
+    "featuredImage": "/images/paperboxes/burger-boxes.webp",
+    "productImages": [
+      "/images/paperboxes/burger-boxes.webp",
+      "/images/paperboxes/burger-boxes_2.webp",
+      "/images/paperboxes/burger-boxes_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-boxes",
+    "baseSlug": "burger-boxes",
+    "paper": "White",
+    "subcategory": "burger-boxes",
+    "subcategorySlug": "burger-boxes",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "Kraft Printed Custom Paper Bags",
+    "category": "Paper Bags",
+    "description": "Compact and sturdy boxes to serve burgers hot and mess-free.",
+    "industry": "QSRs, Food Trucks, Restaurants",
+    "image": "/images/paperboxes/burger-boxes.svg",
+    "pageLink": "/paper-bags/custom-paper-bags/kraft-printed-custom-paper-bags",
+    "printvariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 12,
+    "sellingPrice": 14,
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New",
+    "slug": "kraft-printed-custom-paper-bags",
+    "featuredImage": "/images/paperboxes/burger-boxes.webp",
+    "productImages": [
+      "/images/paperboxes/burger-boxes.webp",
+      "/images/paperboxes/burger-boxes_2.webp",
+      "/images/paperboxes/burger-boxes_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "custom-paper-bags",
+    "paper": "Kraft",
+    "subcategory": "custom-paper-bags",
+    "subcategorySlug": "custom-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  },
+  {
+    "name": "White Printed Custom Paper Bags",
+    "category": "Paper Bags",
+    "description": "Compact and sturdy boxes to serve burgers hot and mess-free.",
+    "industry": "QSRs, Food Trucks, Restaurants",
+    "image": "/images/paperboxes/burger-boxes.svg",
+    "pageLink": "/paper-bags/custom-paper-bags/white-printed-custom-paper-bags",
+    "printvariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "featuredProduct": "no",
+    "offeredPrice": 12,
+    "sellingPrice": 14,
+    "papervariant": [
+      "Kraft",
+      "White"
+    ],
+    "tagtext": "New",
+    "slug": "white-printed-custom-paper-bags",
+    "featuredImage": "/images/paperboxes/burger-boxes.webp",
+    "productImages": [
+      "/images/paperboxes/burger-boxes.webp",
+      "/images/paperboxes/burger-boxes_2.webp",
+      "/images/paperboxes/burger-boxes_3.webp"
+    ],
+    "highlights": [
+      "Eco-friendly & recyclable",
+      "Available in custom sizes",
+      "Durable for daily use"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "100",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "faqs": [
+      {
+        "q": "Can I customize this product?",
+        "a": "Yes, custom printing and sizing are available."
+      },
+      {
+        "q": "What is the minimum order quantity?",
+        "a": "Minimum order starts at 500 units."
+      }
+    ],
+    "categorySlug": "paper-bags",
+    "baseSlug": "custom-paper-bags",
+    "paper": "White",
+    "subcategory": "custom-paper-bags",
+    "subcategorySlug": "custom-paper-bags",
+    "sizes": [],
+    "sizePrices": {},
+    "sizeImages": {},
+    "units": [],
+    "minimumQuantities": [],
+    "variantPrices": {},
+    "assurance": [],
+    "customers": [],
+    "useCases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ],
+    "SubTitle": "",
+    "shippingInfo": "Shipping across India via VRL and other logistics partners. Charges to be borne by the customer.",
+    "availability": "This is a regular product. Delivery timelines vary based on order size, paper availability, printing method, and design approval.",
+    "notes": [
+      "All prices are ex-factory and exclude shipping costs.",
+      "Shipping coordination handled by us; shipping cost confirmed post-inquiry.",
+      "Lead time typically ranges between 3\u201310 business days depending on customization requirements.",
+      "Production timelines vary if multi-color printing or special paper sourcing is required."
+    ],
+    "badges": [
+      "Best Seller",
+      "Customizable",
+      "Eco-Friendly",
+      "Made in India"
+    ],
+    "socialProof": "",
+    "reviewSummary": {
+      "rating": 0,
+      "count": 0,
+      "text": ""
+    },
+    "visualFeatures": [
+      {
+        "icon": "DesignServicesIcon",
+        "label": "Custom Sizes"
+      },
+      {
+        "icon": "PrintIcon",
+        "label": "Local Language Print"
+      }
+    ],
+    "paperVariant": [
+      "Kraft",
+      "White"
+    ],
+    "printVariants": [
+      "Plain",
+      "1-Color",
+      "Multi Color"
+    ],
+    "usecases": [
+      "Ideal for cloud kitchens delivering hot meals",
+      "Perfect for food delivery platforms like Zomato & Swiggy",
+      "Suitable for eco-conscious restaurants and takeaways"
+    ]
+  }
+]
