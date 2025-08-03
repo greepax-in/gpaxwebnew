@@ -37,9 +37,10 @@ export interface ItemType {
   offeredPrice?: number;
   sellingPrice?: number;
   description?: string;
-  industry?: string;
+  industry: string;
   printVariants?: string[];
   paperVariant?: string[];
+  usecases: string[];
   minimumQuantities: {
     [unit: string]: number; // e.g., "pc": 100
   };

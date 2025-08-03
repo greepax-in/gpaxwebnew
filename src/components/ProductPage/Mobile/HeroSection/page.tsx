@@ -7,8 +7,15 @@ import {
   Button,
   Chip,
   Stack,
+  IconButton,
+  Tooltip,
+  Collapse,
+  Divider,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+import InfoIcon from '@mui/icons-material/Info';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+import RecyclingIcon from '@mui/icons-material/Recycling';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType, UnitType } from '@/types/itemTypes';
 import ProductTitleWithPrice from '../../ProductTitleWithPrice';
@@ -21,7 +28,7 @@ export default function ProductMobileUI({ product }: Props) {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedUnit, setSelectedUnit] = useState<UnitType>(product.sizes[0].units[0].unitType);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-
+const [showShippingDetails, setShowShippingDetails] = useState(false);
   const chipScrollRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -137,6 +144,7 @@ export default function ProductMobileUI({ product }: Props) {
             </Box>
           </motion.div>
         )}
+        
       </Box>
 
       <ProductTitleWithPrice
@@ -153,7 +161,7 @@ export default function ProductMobileUI({ product }: Props) {
       />
 
       {/* Size Chips with Edge Fader and Bounce */}
-      <Box sx={{ position: 'relative', px: 1 }}>
+      <Box sx={{ position: 'relative', px: 0 }}>
         <Box
           ref={chipScrollRef}
           sx={{
@@ -163,6 +171,7 @@ export default function ProductMobileUI({ product }: Props) {
             py: 1,
             pr: 3,
             scrollBehavior: 'smooth',
+
             '::-webkit-scrollbar': { display: 'none' },
           }}
         >
@@ -232,6 +241,7 @@ export default function ProductMobileUI({ product }: Props) {
             key={`unit-${u.unitType}-${i}`}
             whileHover={{ scale: 1.08, boxShadow: '0 6px 24px 0 rgba(3,162,14,0.18)' }}
             whileTap={{ scale: 0.97 }}
+
             animate={selectedUnit === u.unitType ? { boxShadow: '0 8px 32px 0 rgba(3,162,14,0.28)' } : { boxShadow: '0 2px 8px 0 rgba(0,77,64,0.10)' }}
             style={{ borderRadius: '9999px', display: 'inline-block' }}
           >
@@ -259,16 +269,116 @@ export default function ProductMobileUI({ product }: Props) {
       </Box>
 
       {/* Features */}
-      <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', px: 1 }}>
+      {/* <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', px: 1 }}>
         {product.features.map((f, i) => (
           <Chip key={i} label={f} size="small" />
         ))}
-      </Stack>
+      </Stack> */}
 
-      {/* Shipping Info */}
-      <Typography variant="body2" color="text.secondary" sx={{ mt: 2, px: 1 }}>
-        {product.shippingInfo || 'Ships in 2–4 business days'}
+  
+
+
+
+{/* Use Cases */}
+<Box
+  sx={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 1,
+    mt: 2,
+  }}
+>
+  {product.usecases.map((f, i) => (
+    <Typography
+      key={`usecase-${i}`}
+      variant="body2"
+      color="text.secondary"
+      sx={{
+        fontSize: '0.75rem',
+        padding: 0,
+        margin: 0,
+        border: 'none',
+        background: 'transparent',
+        boxShadow: 'none',
+      }}
+    >
+      {i > 0 && <>&nbsp;•&nbsp;</>}
+      {f}
+    </Typography>
+  ))}
+</Box>
+
+      {/* <Divider sx={{mt:1}} /> */}
+{/* Features */}
+<Box
+  sx={{
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    gap: 1,
+    mt: 1.5,
+  }}
+>
+  {product.features.map((f, i) => (
+    <Typography
+      key={`usecase-${i}`}
+      variant="body2"
+      color="text.secondary"
+      sx={{
+        fontSize: '0.75rem',
+        padding: 0,
+        margin: 0,
+        border: 'none',
+        background: 'transparent',
+        boxShadow: 'none',
+      }}
+    >
+      {i > 0 && <>&nbsp;•&nbsp;</>}
+      {f}
+    </Typography>
+  ))}
+</Box>
+
+{/* Shipping Info */}
+{/* Shipping Info */}
+<Box sx={{ px: 1, mt: 2 }}>
+  <Box
+    sx={{
+      backgroundColor: '#f7f7ff',
+      borderRadius: 2,
+      px: 2,
+      py: 1,
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 1,
+    }}
+  >
+    <Typography variant="body2" color="text.secondary">
+      🚚 Shipping arranged at actuals
+    </Typography>
+    <IconButton
+      size="small"
+      onClick={() => setShowShippingDetails((prev) => !prev)}
+      sx={{ color: 'text.secondary', p: 0 }}
+    >
+      <InfoOutlinedIcon fontSize="small" />
+    </IconButton>
+  </Box>
+
+  <Collapse in={showShippingDetails} timeout="auto" unmountOnExit>
+    <Box sx={{ mt: 1, px: 1 }}>
+      <Typography variant="caption" color="text.secondary" align="center">
+        We help coordinate economical shipping via VRL, Porter, etc. Customers pay shipping cost
+        separately based on location, mode, and quantity.
       </Typography>
+    </Box>
+  </Collapse>
+</Box>
+
+
+
 
       {/* CTA */}
       <Button

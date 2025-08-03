@@ -127,8 +127,8 @@
         ]
       }
     ],
-    "features": ["Eco-Friendly", "Reusable", "Durable"],
-    "shippingInfo": "Ships in 2–4 business days",
+    "features": ["♻️ 100% Recyclable", "🌱 Compostable Ink"],
+    "shippingInfo": "🚚 Shipping arranged at actuals",
     "variantPrices": {
       "6x8\"": {
         "100pcs": {
@@ -183,6 +183,11 @@
     "sellingPrice": 10,
     "description": "Engineered for the food delivery revolution—our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
     "industry": "Food Delivery, Restaurants, Cloud Kitchens",
+    "usecases" : [
+      "🧑‍🍳 Food Service",
+      "🏪 Retail Stores",
+      "📦 Online Orders"
+    ],
     "sizePrices": {
       "6x8\"": 8,
       "8x10\"": 9,
