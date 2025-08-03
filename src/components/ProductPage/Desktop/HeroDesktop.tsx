@@ -142,28 +142,38 @@ const HeroSection = ({ product }: Props) => {
             {/* Size Row */}
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt:0 }}>
               <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ minWidth: 64 }}>
-                📏 Size:
+                <span style={{ fontSize: '1rem', color: '#111' }}>📏 Size:</span>
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', mr: 6 }}>
                 {product.sizes.map((s, idx) => (
-                  <Chip
+                  <motion.div
                     key={`size-${idx}`}
-                    label={s.sizeIn}
-                    onClick={() => setSelectedSize(s.sizeIn)}
-                    variant={selectedSize === s.sizeIn ? 'filled' : 'outlined'}
-                    size="medium"
-                    sx={{
-                      bgcolor: selectedSize === s.sizeIn ? 'primary.main' : '#f5f5f5',
-                      color: selectedSize === s.sizeIn ? '#fff' : 'text.primary',
-                      fontWeight: 700,
-                      borderRadius: '9999px',
-                      px: 3,
-                      py: 1,
-                      minWidth: 100,
-                      fontSize: '1.25rem',
-                      letterSpacing: 0.5,
-                    }}
-                  />
+                    whileHover={{ scale: 1.08, boxShadow: '0 6px 24px 0 rgba(3,162,14,0.18)' }}
+                    whileTap={{ scale: 0.97 }}
+                    animate={selectedSize === s.sizeIn ? { boxShadow: '0 8px 32px 0 rgba(3,162,14,0.28)' } : { boxShadow: '0 2px 8px 0 rgba(140,58,0,0.10)' }}
+                    style={{ borderRadius: '9999px', display: 'inline-block' }}
+                  >
+                    <Chip
+                      label={s.sizeIn}
+                      onClick={() => setSelectedSize(s.sizeIn)}
+                      variant={selectedSize === s.sizeIn ? 'filled' : 'outlined'}
+                      size="medium"
+                      sx={{
+                        border: selectedSize === s.sizeIn ? '2px solid #03a20eff' : '1px solid #ebbb29ff ',
+                        bgcolor: selectedSize === s.sizeIn ? '#fff' : '#fff7ed',
+                        color: '#111',
+                        fontWeight: 700,
+                        borderRadius: '9999px',
+                        px: 3,
+                        py: 1,
+                        minWidth: 100,
+                        fontSize: '1.25rem',
+                        letterSpacing: 0.5,
+                        boxShadow: 'none',
+                        transition: 'box-shadow 0.3s',
+                      }}
+                    />
+                  </motion.div>
                 ))}
               </Box>
             </Box>
@@ -171,28 +181,37 @@ const HeroSection = ({ product }: Props) => {
             {/* Unit Row */}
             <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt: 4 }}>
               <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ minWidth: 64 }}>
-                📐 Unit:
+                <span style={{ fontSize: '1rem', color: '#111' }}>📐 Unit:</span>
               </Typography>
               <Box sx={{ display: 'flex', gap: 1, flexWrap: 'wrap' }}>
                 {(selectedSizeObj?.units || []).map((u) => (
-                  <Chip
+                  <motion.div
                     key={`unit-${u.unitType}`}
-                    label={u.unitType}
-                    onClick={() => setSelectedUnit(u.unitType)}
-                    variant={selectedUnit === u.unitType ? 'filled' : 'outlined'}
-                    size="medium"
-                    sx={{
-                      bgcolor: selectedUnit === u.unitType ? 'primary.main' : '#f5f5f5',
-                      color: selectedUnit === u.unitType ? '#fff' : 'text.primary',
-                      fontWeight: 700,
-                      borderRadius: '9999px',
-                      px: 3,
-                      py: 1,
-                      minWidth: 100,
-                      fontSize: '1.25rem',
-                      letterSpacing: 0.5,
-                    }}
-                  />
+                    whileHover={{ scale: 1.08, boxShadow: '0 6px 24px 0 rgba(3,162,14,0.18)' }}
+                    whileTap={{ scale: 0.97 }}
+                    animate={selectedUnit === u.unitType ? { boxShadow: '0 8px 32px 0 rgba(3,162,14,0.28)' } : { boxShadow: '0 2px 8px 0 rgba(0,77,64,0.10)' }}
+                    style={{ borderRadius: '9999px', display: 'inline-block' }}
+                  >
+                    <Chip
+                      label={u.unitType}
+                      onClick={() => setSelectedUnit(u.unitType)}
+                      variant={selectedUnit === u.unitType ? 'filled' : 'outlined'}
+                      size="medium"
+                      sx={{
+                        bgcolor: selectedUnit === u.unitType ? 'success.main' : '#e0f2f1',
+                        color: selectedUnit === u.unitType ? '#fff' : '#004d40',
+                        fontWeight: 700,
+                        borderRadius: '9999px',
+                        px: 3,
+                        py: 1,
+                        minWidth: 100,
+                        fontSize: '1.25rem',
+                        letterSpacing: 0.5,
+                        boxShadow: 'none',
+                        transition: 'box-shadow 0.3s',
+                      }}
+                    />
+                  </motion.div>
                 ))}
               </Box>
             </Box>

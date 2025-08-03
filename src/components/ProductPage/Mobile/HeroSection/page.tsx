@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Box,
   Typography,
@@ -12,7 +12,6 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType, UnitType } from '@/types/itemTypes';
 import ProductTitleWithPrice from '../../ProductTitleWithPrice';
-// import { off } from 'process';
 
 interface Props {
   product: ItemType;
@@ -23,12 +22,24 @@ export default function ProductMobileUI({ product }: Props) {
   const [selectedUnit, setSelectedUnit] = useState<UnitType>(product.sizes[0].units[0].unitType);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
 
+  const chipScrollRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     const availableUnits = selectedSize.units.map(u => u.unitType);
     if (!availableUnits.includes(selectedUnit)) {
       setSelectedUnit(availableUnits[0]);
     }
   }, [selectedSize]);
+
+  useEffect(() => {
+    const el = chipScrollRef.current;
+    if (el) {
+      el.scrollLeft = 20;
+      setTimeout(() => {
+        el.scrollLeft = 0;
+      }, 300);
+    }
+  }, []);
 
   const selectedUnitData = selectedSize.units.find(u => u.unitType === selectedUnit);
 
@@ -97,7 +108,7 @@ export default function ProductMobileUI({ product }: Props) {
           ))}
         </Box>
 
-        {/* Animated Price Overlay */}
+        {/* Price Overlay */}
         {derivedPrice && selectedUnit && (
           <motion.div
             initial={{ opacity: 0, y: -10 }}
@@ -141,35 +152,44 @@ export default function ProductMobileUI({ product }: Props) {
         deviceType='mobile'
       />
 
-      {/* Size Chips with Scroll Shadow */}
+      {/* Size Chips with Edge Fader and Bounce */}
       <Box sx={{ position: 'relative', px: 1 }}>
         <Box
+          ref={chipScrollRef}
           sx={{
             overflowX: 'auto',
-            whiteSpace: 'nowrap',
             display: 'flex',
             gap: 1,
             py: 1,
             pr: 3,
             scrollBehavior: 'smooth',
+            '::-webkit-scrollbar': { display: 'none' },
           }}
         >
           {product.sizes.map((s) => (
-            <motion.div key={s.sizeIn} whileTap={{ scale: 0.96 }} style={{ display: 'inline-block' }}>
+            <motion.div
+              key={s.sizeIn}
+              whileHover={{ scale: 1.08, boxShadow: '0 6px 24px 0 rgba(3,162,14,0.18)' }}
+              whileTap={{ scale: 0.97 }}
+              animate={selectedSize.sizeIn === s.sizeIn ? { boxShadow: '0 8px 32px 0 rgba(3,162,14,0.28)' } : { boxShadow: '0 2px 8px 0 rgba(140,58,0,0.10)' }}
+              style={{ borderRadius: '9999px', display: 'inline-block', flex: '0 0 auto' }}
+            >
               <Box
                 onClick={() => setSelectedSize(s)}
                 sx={{
                   px: 2,
                   py: 1,
-                  borderRadius: 2,
-                  border: selectedSize.sizeIn === s.sizeIn ? '2px solid #ff5722' : '1px solid #ddd',
-                  backgroundColor: '#fff',
+                  borderRadius: '9999px',
+                  border: selectedSize.sizeIn === s.sizeIn ? '2px solid #03a20eff' : '1px solid #ebbb29ff ',
+                  backgroundColor: selectedSize.sizeIn === s.sizeIn ? '#fff' : '#fff7ed',
+                  color: selectedSize.sizeIn === s.sizeIn ? '#ff5722' : '#8c3a00',
                   fontWeight: 500,
                   fontSize: 14,
                   minWidth: 72,
                   textAlign: 'center',
                   cursor: 'pointer',
-                  boxShadow: selectedSize.sizeIn === s.sizeIn ? '0 2px 6px rgba(0,0,0,0.1)' : 'none',
+                  boxShadow: 'none',
+                  transition: 'box-shadow 0.3s',
                 }}
               >
                 {s.sizeIn}
@@ -178,7 +198,7 @@ export default function ProductMobileUI({ product }: Props) {
           ))}
         </Box>
 
-        {/* Left Gradient */}
+        {/* Edge Fader */}
         <Box
           sx={{
             position: 'absolute',
@@ -188,10 +208,9 @@ export default function ProductMobileUI({ product }: Props) {
             width: 24,
             background: 'linear-gradient(to right, #fff, rgba(255,255,255,0))',
             pointerEvents: 'none',
+            zIndex: 1,
           }}
         />
-
-        {/* Right Gradient */}
         <Box
           sx={{
             position: 'absolute',
@@ -201,28 +220,36 @@ export default function ProductMobileUI({ product }: Props) {
             width: 24,
             background: 'linear-gradient(to left, #fff, rgba(255,255,255,0))',
             pointerEvents: 'none',
+            zIndex: 1,
           }}
         />
       </Box>
 
-      {/* Unit Chips – Capsule Style */}
+      {/* Unit Chips */}
       <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, px: 1, mt: 1 }}>
         {selectedSize.units.map((u, i) => (
-          <motion.div key={`unit-${u.unitType}-${i}`} whileTap={{ scale: 0.96 }}>
+          <motion.div
+            key={`unit-${u.unitType}-${i}`}
+            whileHover={{ scale: 1.08, boxShadow: '0 6px 24px 0 rgba(3,162,14,0.18)' }}
+            whileTap={{ scale: 0.97 }}
+            animate={selectedUnit === u.unitType ? { boxShadow: '0 8px 32px 0 rgba(3,162,14,0.28)' } : { boxShadow: '0 2px 8px 0 rgba(0,77,64,0.10)' }}
+            style={{ borderRadius: '9999px', display: 'inline-block' }}
+          >
             <Box
               onClick={() => setSelectedUnit(u.unitType)}
               sx={{
                 px: 2.5,
                 py: 1,
-                borderRadius: '32px',
-                backgroundColor: selectedUnit === u.unitType ? 'success.main' : '#e0f2f1',
-                color: selectedUnit === u.unitType ? '#fff' : 'text.primary',
+                borderRadius: '9999px',
+                backgroundColor: selectedUnit === u.unitType ? '#2e7d32' : '#e0f2f1',
+                color: selectedUnit === u.unitType ? '#fff' : '#004d40',
                 fontWeight: 700,
                 fontSize: 14,
                 minWidth: 80,
                 textAlign: 'center',
                 cursor: 'pointer',
-                boxShadow: selectedUnit === u.unitType ? '0 2px 8px rgba(0, 128, 0, 0.2)' : 'none',
+                boxShadow: 'none',
+                transition: 'box-shadow 0.3s',
               }}
             >
               {u.unitType}
