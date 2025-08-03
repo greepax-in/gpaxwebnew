@@ -10,13 +10,13 @@ import {
   Chip,
   IconButton,
   Paper,
-  Collapse,
+  // Collapse,
   // Divider,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
+// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType } from '@/types/itemTypes';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
@@ -34,7 +34,7 @@ const HeroSection = ({ product }: Props) => {
   const [selectedSize, setSelectedSize] = useState<string>(product.sizes?.[0]?.sizeIn || '');
   const selectedSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);
   const [selectedUnit, setSelectedUnit] = useState<string>(selectedSizeObj?.units?.[0]?.unitType || '');
-    const [showShippingDetails, setShowShippingDetails] = useState(false);
+    // const [showShippingDetails, setShowShippingDetails] = useState(false);
 
   useEffect(() => {
     const newSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);

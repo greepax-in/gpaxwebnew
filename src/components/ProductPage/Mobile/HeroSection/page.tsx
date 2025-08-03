@@ -5,17 +5,17 @@ import {
   Box,
   Typography,
   Button,
-  Chip,
-  Stack,
+  // Chip,
+  // Stack,
   IconButton,
-  Tooltip,
+  // Tooltip,
   Collapse,
-  Divider,
+  // Divider,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-import InfoIcon from '@mui/icons-material/Info';
+// import InfoIcon from '@mui/icons-material/Info';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-import RecyclingIcon from '@mui/icons-material/Recycling';
+// import RecyclingIcon from '@mui/icons-material/Recycling';
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
