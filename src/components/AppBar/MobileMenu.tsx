@@ -10,12 +10,15 @@ import LayersIcon from '@mui/icons-material/Layers';
 import InventoryIcon from '@mui/icons-material/Inventory';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import { WHATSAPP_NUMBER  } from '@/components/constants/whatsapp';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const navItems = [
   { label: 'Home', icon: HomeIcon, href: '/' },
   { label: 'Paper Bags', icon: LocalMallIcon, href: '/products/paper-bags' },
   { label: 'Paper Covers', icon: LayersIcon, href: '/products/paper-covers' },
   { label: 'Paper Boxes', icon: InventoryIcon, href: '/products/paper-boxes' },
+  { label: 'My List', icon: ShoppingCartIcon, href: '/my-list' },
+  
 ];
 
 export default function MobileMenu() {

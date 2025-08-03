@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 // import FactoryIcon from '@mui/icons-material/Factory';
 // import StorefrontIcon from '@mui/icons-material/Storefront';
 // import UseCases from './UseCases';
+import { useMediaQuery } from '@mui/material';
 
 interface ProductTitleWithPriceProps {
   title: string;
@@ -36,7 +37,7 @@ export default function ProductTitleWithPrice({
   containsLabel,
   selectedUnit,
   MOQ,
-  // deviceType = 'mobile',
+  deviceType = 'mobile',
   printVariant,
   // features = [],
   usecases = [],
@@ -46,30 +47,43 @@ export default function ProductTitleWithPrice({
     : undefined;
   const isDiscounted = offeredPrice < sellingPrice;
   const discount = isDiscounted ? Math.round(100 * (sellingPrice - offeredPrice) / sellingPrice) : 0;
+  const isDesktop = useMediaQuery('(min-width:600px)');
+  console.log('usecases:', usecases);
   return (
     <Box>
 
+      <Typography
+        fontSize={isDesktop ? '1.85rem' : '1.15rem'}
+        lineHeight={1.3}
+        sx={{ mb: 0.5 }}
+      >
+        {title}
+      </Typography>
 
-<Typography
-  component="h1"
-  fontWeight={700}
-  fontSize="1rem"
-  lineHeight={1.3}
-  sx={{ mb: 0.5 }}
->
-  {  title}
-</Typography>
+      <Typography
+        fontSize={isDesktop ? '1.2rem' : '0.75rem'}
+        color="text.secondary"
+        sx={{ mt: -0.5, mb: 0.5 }}
+      >
+        {size} • {selectedUnit} • {printVariant}
+      </Typography>
 
-<Typography fontSize="0.75rem" color="text.secondary" sx={{ mt: -0.5, mb: 0.5 }}>
-  {size} • {selectedUnit} • {printVariant}
-</Typography>
-<Typography
-  fontSize="0.65rem"
-  color="text.secondary"
-  sx={{ mt: 0.75, mb: 1 }}
->
-  {usecases || 'Explore our range of eco-friendly products'}
-</Typography>
+      <Typography
+        color="text.secondary"
+        sx={{
+          mt: 0.75,
+          mb: 1,
+          fontSize: {
+            xs: '0.65rem',
+            sm: '0.85rem',
+            md: '1rem',
+          },
+        }}
+      >
+        {(Array.isArray(usecases) && usecases.length > 0)
+          ? usecases.join(', ')
+          : 'Explore our range of eco-friendly products'}
+      </Typography>
 
       <AnimatePresence mode="wait">
         <motion.div
@@ -92,7 +106,7 @@ export default function ProductTitleWithPrice({
             {/* Offered Price */}
             <Typography
               fontWeight={700}
-              fontSize="1.125rem"
+              fontSize={typeof window !== 'undefined' && window.innerWidth >= 600 ? '2rem' : '1rem'}
               color="success.main"
               lineHeight={1}
             >
@@ -102,8 +116,8 @@ export default function ProductTitleWithPrice({
             {/* Strikethrough Price */}
             {isDiscounted && (
               <Typography
-                fontSize="0.9rem"
-                color="text.secondary"
+                // fontSize="0.9rem"
+                fontSize={typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.50rem' : '0.9rem'}
                 sx={{
                   textDecoration: 'line-through',
                   mt: '1px',
@@ -123,7 +137,10 @@ export default function ProductTitleWithPrice({
                   color: '#fff',
                   fontWeight: 500,
                   borderRadius: 1.5,
-                  fontSize: '0.75rem',
+                  fontSize:
+                    typeof window !== 'undefined' && window.innerWidth >= 600
+                      ? '1.25rem'
+                      : '0.75rem',
                   height: 22,
                   px: 0.5,
                 }}
@@ -135,7 +152,7 @@ export default function ProductTitleWithPrice({
 
 
       <Box>
-        <Typography variant="body2" color="text.secondary" >
+        <Typography variant="body2" color="text.secondary" fontSize={typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.15rem' : '0.75rem'}>
           Approx.&nbsp;
           <AnimatePresence mode="wait">
             <motion.span
@@ -151,7 +168,10 @@ export default function ProductTitleWithPrice({
                 fontWeight: 700,
                 padding: '2px 6px',
                 borderRadius: '12px',
-                fontSize: '0.7rem',
+                fontSize:
+                  typeof window !== 'undefined' && window.innerWidth >= 600
+                    ? '1rem'
+                    : '0.7rem',
               }}
             >
               ₹{derivedPrice}
@@ -165,72 +185,54 @@ export default function ProductTitleWithPrice({
 
 
 
-      {/* <Box
-  sx={{
-    display: 'flex',
-    // alignItems: 'center',
-    justifyContent: 'space-between',
-    // flexWrap: 'wrap',
-    mt: -1,
-    bgcolor: '#f9fafb',
-    px: 2,
-    py: 1,
-    borderRadius: 2,
-  }}
-> */}
-<Box
-  sx={{
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    gap: 1,
-    mt: 0.5,
-    px: 1,
- whiteSpace: 'nowrap', // enforce single-line
-    overflowX: 'auto',     // prevent breaking on small screens
 
-  }}
->
-  <Typography
-    variant="caption"
-    color="text.secondary"
-    sx={{ fontSize: '0.7rem' }}
-  >
-    MOQ:  {selectedUnit}(s)
-  </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'left',
+          alignItems: 'center',
+          gap: 1,
+          mt: 0.5,
+          px: 0,
+          whiteSpace: 'nowrap', // enforce single-line
+          overflowX: 'auto',     // prevent breaking on small screens
+          // fontSize: typeof window !== 'undefined' && window.innerWidth >= 600 ? '3rem' : '0.7rem',
+        }}
+      >
+        <Typography
+          variant="caption"
+          color="text.secondary"
+          sx={{
+            fontSize: typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.1rem' : '0.7rem',
+          }}
+        >
+          MOQ:&nbsp;
+          <Box component="span" sx={{ fontWeight: 'bold', display: 'inline' }}>
+            {selectedUnit}
+          </Box>
 
-  {/* Optional CTA for B2B */}
-  {MOQ >= 500 && (
-    <Typography
-      variant="caption"
-      color="primary"
-      
-      sx={{
-        fontSize: '0.7rem',
-        whiteSpace: 'nowrap',
-            textDecoration: 'underline dotted',
-textUnderlineOffset: '2px',
-cursor: 'pointer',
-      }}
-    >
-      🔖More units, less cost — let’s chat!
-    </Typography>
-  )}
-</Box>
-      {/* 
-  <Chip
-    label="Bulk Orders"
-    size="small"
-    // color="success"
-    clickable
-    sx={{
-      borderRadius: 2,
-      color: '#fff',
-      bgcolor: '#288ef3ff',
-      '&:hover': { bgcolor: 'success.dark' },
-    }}
-  /> */}
-      {/* </Box> */}
+        </Typography>
+
+
+        {/* Optional CTA for B2B */}
+        {MOQ >= 500 && (
+          <Typography
+            variant="caption"
+            color="primary"
+
+            sx={{
+              fontSize: typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.1rem' : '0.7rem',
+              whiteSpace: 'nowrap',
+              textDecoration: 'underline dotted',
+              textUnderlineOffset: '2px',
+              cursor: 'pointer',
+            }}
+          >
+            🔖More units, less cost — let’s chat!
+          </Typography>
+        )}
+      </Box>
+
 
     </Box>
   );

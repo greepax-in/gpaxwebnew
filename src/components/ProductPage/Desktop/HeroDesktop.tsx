@@ -10,6 +10,7 @@ import {
   Chip,
   IconButton,
   Paper,
+  Divider,
   // Collapse,
   // Divider,
 } from '@mui/material';
@@ -151,6 +152,7 @@ const HeroSection = ({ product }: Props) => {
             selectedUnit={selectedUnit}
             deviceType='desktop'
             MOQ={selectedUnitData?.moq ?? 0}
+             usecases={product.usecases}
           />
 
           <Paper
@@ -261,66 +263,82 @@ const HeroSection = ({ product }: Props) => {
           </Paper>
 
   <Box marginTop={-5} sx={{ px: 2 }  }>
-         {/* Use Cases */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 1,
-          mt: 0,
-        }}
-      >
-        {product.usecases.map((f, i) => (
-          <Typography
-            key={`usecase-${i}`}
-            variant="body2"
-            color="black"
-            sx={{
-              fontSize: '1rem',
-              padding: 0,
-              margin: 0,
-              border: 'none',
-              background: 'transparent',
-              boxShadow: 'none',
-            }}
-          >
-            {i > 0 && <>&nbsp;•&nbsp;</>}
-            {f}
-          </Typography>
-        ))}
-      </Box>
+      
+{/* <Box
+  sx={{
+    width: '100%',
+    height: '1px',
+    background: 'linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.1), rgba(0,0,0,0.05))',
+    my: 0.5,
+  }}
+/> */}
+
 
       {/* <Divider sx={{mt:1}} /> */}
       {/* Features */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 1,
-          mt: 1,
-        }}
-      >
-        {product.features.map((f, i) => (
-          <Typography
-            key={`usecase-${i}`}
-            variant="body2"
-            color="primary"
-            sx={{
-              fontSize: '1rem',
-              padding: 0,
-              margin: 0,
-              border: 'none',
-              background: 'transparent',
-              boxShadow: 'none',
-            }}
-          >
-            {i > 0 && <>&nbsp;•&nbsp;</>}
-            {f}
-          </Typography>
-        ))}
-      </Box>
+  <Box
+  sx={{
+    mt: 0.4,
+    px: 1,
+    py: 0.5,
+    borderRadius: 2,
+    backgroundColor: '#e8f5dfff',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 0.5,
+  }}
+>
+  {/* Features */}
+  <Typography
+    variant="body2"
+    color="black"
+    sx={{
+      fontSize: { xs: '0.75rem', md: '1.1rem' },
+      lineHeight: 1.4,
+      textAlign: 'center',
+    }}
+  >
+    {product.features.map((f, i) => (
+      <React.Fragment key={i}>
+        {i > 0 && <span>&nbsp;•&nbsp;</span>}
+        {f}
+      </React.Fragment>
+    ))}
+  </Typography>
+
+  {/* Info tags */}
+  <Stack
+    direction="row"
+    spacing={1}
+    alignItems="center"
+    justifyContent="center"
+    sx={{
+      fontSize: { xs: '0.75rem', md: '1.1rem' },
+    }}
+  >
+    <Typography
+      variant="body2"
+      color="black"
+      sx={{
+        fontSize: { xs: '0.75rem', md: '1rem' },
+      }}
+    >
+      🌐 Multi-Language Design
+    </Typography>
+    <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+    <Typography
+      variant="body2"
+      color="black"
+      sx={{
+        fontSize: { xs: '0.75rem', md: '1rem' },
+      }}
+    >
+      🏭 Manufacture Direct
+    </Typography>
+  </Stack>
+</Box>
+
    </Box>
       {/* Shipping Info */}
 <Box sx={{ px: 1, mt: 0 }}>
