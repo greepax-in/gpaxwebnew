@@ -10,11 +10,13 @@ import {
   Chip,
   IconButton,
   Paper,
+  Collapse,
   // Divider,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType } from '@/types/itemTypes';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
@@ -22,6 +24,7 @@ import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip'
 import DesktopWACTA from '@/components/Common/DesktopWACTA';
 import { WHATSAPP_NUMBER } from '@/components/constants/whatsapp';
 import ProductTitleWithPrice from '../ProductTitleWithPrice';
+
 
 type Props = {
   product: ItemType;
@@ -31,6 +34,7 @@ const HeroSection = ({ product }: Props) => {
   const [selectedSize, setSelectedSize] = useState<string>(product.sizes?.[0]?.sizeIn || '');
   const selectedSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);
   const [selectedUnit, setSelectedUnit] = useState<string>(selectedSizeObj?.units?.[0]?.unitType || '');
+    const [showShippingDetails, setShowShippingDetails] = useState(false);
 
   useEffect(() => {
     const newSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);
@@ -154,7 +158,7 @@ const HeroSection = ({ product }: Props) => {
             sx={{
               p: 2,
               bgcolor: 'grey.50',
-              mt: 5,
+              mt: 4,
               transform: 'translateY(-20%)',
               transition: 'transform 0.3s',
               minHeight: 200,
@@ -256,13 +260,98 @@ const HeroSection = ({ product }: Props) => {
             </Box>
           </Paper>
 
-          <Box sx={{ bgcolor: '#e8f5e9', borderRadius: 2, p: 1.5, mt: -5, fontSize: '0.875rem', color: 'text.secondary' }}>
-            <Typography>
-              📦 Guaranteed to arrive by <strong>2 Aug</strong> — Free Shipping<br />
-              🎁 Get ₹50 voucher if your order arrives late.
-            </Typography>
-          </Box>
+  <Box marginTop={-5} sx={{ px: 2 }  }>
+         {/* Use Cases */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 1,
+          mt: 0,
+        }}
+      >
+        {product.usecases.map((f, i) => (
+          <Typography
+            key={`usecase-${i}`}
+            variant="body2"
+            color="black"
+            sx={{
+              fontSize: '1rem',
+              padding: 0,
+              margin: 0,
+              border: 'none',
+              background: 'transparent',
+              boxShadow: 'none',
+            }}
+          >
+            {i > 0 && <>&nbsp;•&nbsp;</>}
+            {f}
+          </Typography>
+        ))}
+      </Box>
 
+      {/* <Divider sx={{mt:1}} /> */}
+      {/* Features */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 1,
+          mt: 1,
+        }}
+      >
+        {product.features.map((f, i) => (
+          <Typography
+            key={`usecase-${i}`}
+            variant="body2"
+            color="primary"
+            sx={{
+              fontSize: '1rem',
+              padding: 0,
+              margin: 0,
+              border: 'none',
+              background: 'transparent',
+              boxShadow: 'none',
+            }}
+          >
+            {i > 0 && <>&nbsp;•&nbsp;</>}
+            {f}
+          </Typography>
+        ))}
+      </Box>
+   </Box>
+      {/* Shipping Info */}
+<Box sx={{ px: 1, mt: 0 }}>
+  <Box
+    sx={{
+      backgroundColor: '#f7f7ff',
+      borderRadius: 2,
+      px: 2,
+      py: 1.5,
+      display: 'flex',
+      flexDirection: 'column',
+      // alignItems: 'center',
+      // textAlign: 'center',
+    }}
+  >
+    <Typography variant="body2" color="text.primary" fontWeight="bold" align="left" fontSize="1.25rem">
+      🚚 Shipping arranged at actuals
+    </Typography>
+
+    <Typography
+      variant="caption"
+      color="text.secondary"
+      sx={{ mt: 0.5, lineHeight: 1.4 }}
+    >
+      We help coordinate economical shipping via VRL, Porter, etc. Customers pay shipping cost
+      separately based on location, mode, and quantity.
+    </Typography>
+  </Box>
+
+
+      </Box>
           <Button
             variant="contained"
             color="primary"
