@@ -22,6 +22,8 @@ import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType, UnitType } from '@/types/itemTypes';
 import ProductTitleWithPrice from '../../ProductTitleWithPrice';
+import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
+import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
 
 interface Props {
   product: ItemType;
@@ -97,6 +99,16 @@ export default function ProductMobileUI({ product }: Props) {
             onClick={() => setIsZoomed(true)}
           />
         </AnimatePresence>
+
+        {/* Print & Paper Variant Chips (bottom right) */}
+        <Box sx={{ position: 'absolute', bottom: 12, right: 12, zIndex: 3, display: 'flex', gap: 1 }}>
+          {product.printVariants?.[0] && (
+            <PrintVariantChip label={product.printVariants[0]} size='small' />
+          )}
+          {product.paperVariant?.[0] && (
+            <PaperVariantChip label={product.paperVariant[0]} size='small' />
+          )}
+        </Box>
 
         {/* Thumbnail Selector */}
         <Box

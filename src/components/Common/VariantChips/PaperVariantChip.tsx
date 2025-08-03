@@ -9,7 +9,8 @@ const sizeStyles = {
   small: {
     height: 28,
     px: 1.5,
-    fontSize: '0.75rem',
+    fontSize: '0.80rem',
+    fontWeight: 700,
   },
   medium: {
     height: 32,
@@ -19,7 +20,7 @@ const sizeStyles = {
 };
 
 const paperColors: Record<string, { bg: string; color: string }> = {
-  Kraft: { bg: '#c9b392ff', color: '#3E2F1C' },
+  Kraft: { bg: '#c9b392ff', color: '#110a02ff' },
   White: { bg: '#F3F4F6', color: '#333' },
 };
 
