@@ -293,14 +293,6 @@ export default function ProductMobileUI({ product }: Props) {
         ))}
       </Box>
 
-      {/* Features */}
-      {/* <Stack direction="row" spacing={1} sx={{ mt: 2, flexWrap: 'wrap', px: 1 }}>
-        {product.features.map((f, i) => (
-          <Chip key={i} label={f} size="small" />
-        ))}
-      </Stack> */}
-
-
 
 
 

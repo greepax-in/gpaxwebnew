@@ -28,7 +28,7 @@ export default function ProductTitleWithPrice({
   contains,
   containsLabel,
   selectedUnit,
-  // MOQ,
+  MOQ,
   deviceType = 'mobile',
 }: ProductTitleWithPriceProps) {
     const derivedPrice = contains
@@ -116,11 +116,11 @@ export default function ProductTitleWithPrice({
 </Typography>
 
 </Box>
-      {/* <Box>
+      <Box>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
           MOQ - {MOQ} {selectedUnit === 'Kg' ? 'Kg' : containsLabel}(s)
         </Typography>
-      </Box> */}
+      </Box>
     </Box>
   );
 }
