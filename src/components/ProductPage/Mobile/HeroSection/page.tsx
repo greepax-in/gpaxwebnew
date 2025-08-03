@@ -293,7 +293,7 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
     <Typography
       key={`usecase-${i}`}
       variant="body2"
-      color="text.secondary"
+      color="black"
       sx={{
         fontSize: '0.75rem',
         padding: 0,
@@ -324,7 +324,7 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
     <Typography
       key={`usecase-${i}`}
       variant="body2"
-      color="text.secondary"
+      color="primary"
       sx={{
         fontSize: '0.75rem',
         padding: 0,
@@ -353,9 +353,10 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
       alignItems: 'center',
       justifyContent: 'center',
       gap: 1,
+      mt: 1
     }}
   >
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="body2" color="text.primary">
       🚚 Shipping arranged at actuals
     </Typography>
     <IconButton

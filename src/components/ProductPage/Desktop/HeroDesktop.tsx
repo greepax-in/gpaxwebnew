@@ -51,16 +51,37 @@ const HeroSection = ({ product }: Props) => {
         {/* Left: Image Carousel */}
         <Box flex={1} position="relative">
           <AnimatePresence initial={false} mode="wait">
-            <motion.img
-              key={images[index]}
-              src={images[index]}
-              alt={`Product image ${index + 1}`}
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -50 }}
-              transition={{ duration: 0.4 }}
-              style={{ width: '100%', height:  480, objectFit: 'contain', borderRadius: '8px' }}
-            />
+            <motion.div
+              whileHover={{ scale: 1.5 }}
+              transition={{ type: 'spring', stiffness: 200 }}
+              style={{
+                width: '100%',
+                height: 480,
+                overflow: 'hidden',
+                borderRadius: '8px',
+                position: 'relative',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <motion.img
+                key={images[index]}
+                src={images[index]}
+                alt={`Product image ${index + 1}`}
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -50 }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'contain',
+                  pointerEvents: 'none', // prevents scroll interference
+                }}
+              />
+            </motion.div>
+
           </AnimatePresence>
 
           {/* ✅ Unit price overlay */}
@@ -122,10 +143,10 @@ const HeroSection = ({ product }: Props) => {
             offeredPrice={selectedUnitData?.offeredPrice || 0}
             sellingPrice={selectedUnitData?.sellingPrice || 0}
             contains={selectedUnitData?.contains}
-            containsLabel={selectedUnitData?.containsLabel }
+            containsLabel={selectedUnitData?.containsLabel}
             selectedUnit={selectedUnit}
             deviceType='desktop'
-            MOQ ={selectedUnitData?.moq ?? 0}
+            MOQ={selectedUnitData?.moq ?? 0}
           />
 
           <Paper
@@ -140,7 +161,7 @@ const HeroSection = ({ product }: Props) => {
             }}
           >
             {/* Size Row */}
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt:0 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt: 0 }}>
               <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ minWidth: 64 }}>
                 <span style={{ fontSize: '1rem', color: '#111' }}>📏 Size:</span>
               </Typography>
