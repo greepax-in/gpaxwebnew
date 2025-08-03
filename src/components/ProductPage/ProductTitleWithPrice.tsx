@@ -3,10 +3,10 @@
 import React from 'react';
 import { Box, Typography, Chip, Stack } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
-import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-import FactoryIcon from '@mui/icons-material/Factory';
-import StorefrontIcon from '@mui/icons-material/Storefront';
-import UseCases from './UseCases';
+// import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+// import FactoryIcon from '@mui/icons-material/Factory';
+// import StorefrontIcon from '@mui/icons-material/Storefront';
+// import UseCases from './UseCases';
 
 interface ProductTitleWithPriceProps {
   title: string;
@@ -27,7 +27,7 @@ interface ProductTitleWithPriceProps {
 
 export default function ProductTitleWithPrice({
   title,
-  subtitle,
+  // subtitle,
   size,
   offeredPrice,
   sellingPrice,
@@ -36,9 +36,9 @@ export default function ProductTitleWithPrice({
   containsLabel,
   selectedUnit,
   MOQ,
-  deviceType = 'mobile',
+  // deviceType = 'mobile',
   printVariant,
-  features = [],
+  // features = [],
   usecases = [],
 }: ProductTitleWithPriceProps) {
   const derivedPrice = contains
