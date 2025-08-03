@@ -183,6 +183,7 @@ export default function ProductMobileUI({ product }: Props) {
         selectedUnit={selectedUnit}
         MOQ={selectedUnitData?.moq ?? 0}
         deviceType='mobile'
+        printVariant= {product.printVariants?.[0]}  
       />
 
       {/* Size Chips with Edge Fader and Bounce */}

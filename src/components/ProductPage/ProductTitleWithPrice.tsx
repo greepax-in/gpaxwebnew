@@ -16,6 +16,7 @@ interface ProductTitleWithPriceProps {
   deviceType?: 'mobile' | 'desktop';
   MOQ: number; // Minimum Order Quantity
   currencySymbol?: string; // Retained for currency display
+  printVariant?: string; // Optional, used for print variant display
 }
 
 export default function ProductTitleWithPrice({
@@ -30,6 +31,7 @@ export default function ProductTitleWithPrice({
   selectedUnit,
   MOQ,
   deviceType = 'mobile',
+  printVariant
 }: ProductTitleWithPriceProps) {
     const derivedPrice = contains
     ? (offeredPrice / contains).toFixed(2)
@@ -43,7 +45,7 @@ export default function ProductTitleWithPrice({
         fontWeight={700}
         sx={{ mb: 0.5 }}
       >
-        {title} {size && `- ${size}`} - {selectedUnit ? selectedUnit : 'Unit'}
+        {title} {size && `- ${size}`} - {selectedUnit ? selectedUnit : 'Unit'} - {printVariant}
       </Typography>
       {subtitle && (
         <Typography variant="subtitle1" color="text.secondary" sx={{ fontSize: 15, mt:-1, mb: 1 }}>
@@ -118,7 +120,7 @@ export default function ProductTitleWithPrice({
 </Box>
       <Box>
         <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-          MOQ - {MOQ} {selectedUnit === 'Kg' ? 'Kg' : containsLabel}(s)
+          MOQ - {MOQ} {selectedUnit === 'Kg' ? 'Kg' : containsLabel}(s) 
         </Typography>
       </Box>
     </Box>
