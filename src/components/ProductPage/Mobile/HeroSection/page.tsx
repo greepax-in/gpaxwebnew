@@ -10,6 +10,8 @@ import {
   IconButton,
   // Tooltip,
   Collapse,
+  Divider,
+  Stack,
   // Divider,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
@@ -19,6 +21,8 @@ import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
+import TranslateIcon from '@mui/icons-material/Translate';
+import FactoryIcon from '@mui/icons-material/Factory';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType, UnitType } from '@/types/itemTypes';
 import ProductTitleWithPrice from '../../ProductTitleWithPrice';
@@ -77,7 +81,7 @@ export default function ProductMobileUI({ product }: Props) {
   return (
     <Box sx={{ p: 0, maxWidth: 400, mx: 'auto', marginTop: -4 }}>
       {/* Image + Thumbnail Overlay */}
-      <Box sx={{ position: 'relative', width: '100%', height: 260, borderRadius: 2, mb: 1, overflow: 'hidden' }}>
+      <Box sx={{ position: 'relative', width: '100%', height: 220, borderRadius: 2, mb: 1, overflow: 'hidden' }}>
         <AnimatePresence mode="wait">
           <motion.img
             key={productImages[selectedImageIndex]}
@@ -183,7 +187,8 @@ export default function ProductMobileUI({ product }: Props) {
         selectedUnit={selectedUnit}
         MOQ={selectedUnitData?.moq ?? 0}
         deviceType='mobile'
-        printVariant= {product.printVariants?.[0]}  
+        printVariant={product.printVariants?.[0]}
+        usecases={product.usecases}
       />
 
       {/* Size Chips with Edge Fader and Bounce */}
@@ -204,33 +209,50 @@ export default function ProductMobileUI({ product }: Props) {
           {product.sizes.map((s) => (
             <motion.div
               key={s.sizeIn}
-              whileHover={{ scale: 1.08, boxShadow: '0 6px 24px 0 rgba(3,162,14,0.18)' }}
-              whileTap={{ scale: 0.97 }}
-              animate={selectedSize.sizeIn === s.sizeIn ? { boxShadow: '0 8px 32px 0 rgba(3,162,14,0.28)' } : { boxShadow: '0 2px 8px 0 rgba(140,58,0,0.10)' }}
-              style={{ borderRadius: '9999px', display: 'inline-block', flex: '0 0 auto' }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow:
+                  selectedSize.sizeIn === s.sizeIn
+                    ? '0 4px 14px rgba(3, 162, 14, 0.18)'
+                    : 'none',
+              }}
+              style={{
+                borderRadius: '9999px',
+                display: 'inline-block',
+                flex: '0 0 auto',
+              }}
             >
               <Box
                 onClick={() => setSelectedSize(s)}
                 sx={{
-                  px: 2,
-                  py: 1,
+                  px: 1.5,
+                  py: 0.5,
                   borderRadius: '9999px',
-                  border: selectedSize.sizeIn === s.sizeIn ? '2px solid #03a20eff' : '1px solid #ebbb29ff ',
-                  backgroundColor: selectedSize.sizeIn === s.sizeIn ? '#fff' : '#fff7ed',
-                  color: selectedSize.sizeIn === s.sizeIn ? '#ff5722' : '#8c3a00',
+                  border:
+                    selectedSize.sizeIn === s.sizeIn
+                      ? '1.5px solid #03a20eff'
+                      : '1px solid #ebbb29ff',
+                  bgcolor:
+                    selectedSize.sizeIn === s.sizeIn ? '#fff' : '#fff7ed',
+                  color:
+                    selectedSize.sizeIn === s.sizeIn
+                      ? '#ff5722'
+                      : '#8c3a00',
                   fontWeight: 500,
-                  fontSize: 14,
-                  minWidth: 72,
+                  fontSize: '0.75rem',
+                  minWidth: 64,
                   textAlign: 'center',
                   cursor: 'pointer',
-                  boxShadow: 'none',
-                  transition: 'box-shadow 0.3s',
+                  transition: 'all 0.2s ease',
                 }}
               >
                 {s.sizeIn}
               </Box>
             </motion.div>
           ))}
+
+
         </Box>
 
         {/* Edge Fader */}
@@ -261,109 +283,109 @@ export default function ProductMobileUI({ product }: Props) {
       </Box>
 
       {/* Unit Chips */}
-      <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, px: 1, mt: 1 }}>
-        {selectedSize.units.map((u, i) => (
-          <motion.div
-            key={`unit-${u.unitType}-${i}`}
-            whileHover={{ scale: 1.08, boxShadow: '0 6px 24px 0 rgba(3,162,14,0.18)' }}
-            whileTap={{ scale: 0.97 }}
-
-            animate={selectedUnit === u.unitType ? { boxShadow: '0 8px 32px 0 rgba(3,162,14,0.28)' } : { boxShadow: '0 2px 8px 0 rgba(0,77,64,0.10)' }}
-            style={{ borderRadius: '9999px', display: 'inline-block' }}
-          >
-            <Box
-              onClick={() => setSelectedUnit(u.unitType)}
-              sx={{
-                px: 2.5,
-                py: 1,
-                borderRadius: '9999px',
-                backgroundColor: selectedUnit === u.unitType ? '#2e7d32' : '#e0f2f1',
-                color: selectedUnit === u.unitType ? '#fff' : '#004d40',
-                fontWeight: 700,
-                fontSize: 14,
-                minWidth: 80,
-                textAlign: 'center',
-                cursor: 'pointer',
-                boxShadow: 'none',
-                transition: 'box-shadow 0.3s',
-              }}
-            >
-              {u.unitType}
-            </Box>
-          </motion.div>
-        ))}
-      </Box>
-
-
-
-
-      {/* Use Cases */}
       <Box
         sx={{
           display: 'flex',
-          flexWrap: 'wrap',
           justifyContent: 'center',
           gap: 1,
-          mt: 2,
+          mt: 0.5,
+          px: 1,
+          flexWrap: 'wrap', // fallback for small widths
         }}
       >
-        {product.usecases.map((f, i) => (
-          <Typography
-            key={`usecase-${i}`}
-            variant="body2"
-            color="black"
+        {selectedSize.units.map((u, i) => (
+          <Box
+            key={`unit-${u.unitType}-${i}`}
+            onClick={() => setSelectedUnit(u.unitType)}
             sx={{
+              px: 2,
+              py: 0.5,
               fontSize: '0.75rem',
-              padding: 0,
-              margin: 0,
-              border: 'none',
-              background: 'transparent',
-              boxShadow: 'none',
+              fontWeight: 600,
+              borderRadius: '9999px',
+              border: selectedUnit === u.unitType ? '2px solid #2e7d32' : '1px solid #ccc',
+              bgcolor: selectedUnit === u.unitType ? '#d0f2df' : '#fff',
+              color: selectedUnit === u.unitType ? '#1b5e20' : '#555',
+              cursor: 'pointer',
             }}
           >
-            {i > 0 && <>&nbsp;•&nbsp;</>}
-            {f}
-          </Typography>
+            {u.unitType}
+          </Box>
         ))}
       </Box>
+
+
+<Box
+  sx={{
+    width: '100%',
+    height: '1px',
+    background: 'linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.1), rgba(0,0,0,0.05))',
+    my: 0.5,
+  }}
+/>
+
 
       {/* <Divider sx={{mt:1}} /> */}
       {/* Features */}
-      <Box
-        sx={{
-          display: 'flex',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-          gap: 1,
-          mt: 1.5,
-        }}
-      >
-        {product.features.map((f, i) => (
-          <Typography
-            key={`usecase-${i}`}
-            variant="body2"
-            color="primary"
-            sx={{
-              fontSize: '0.75rem',
-              padding: 0,
-              margin: 0,
-              border: 'none',
-              background: 'transparent',
-              boxShadow: 'none',
-            }}
-          >
-            {i > 0 && <>&nbsp;•&nbsp;</>}
-            {f}
-          </Typography>
-        ))}
-      </Box>
+  <Box
+  sx={{
+    mt: 0.4,
+    px: 1,
+    py: 0.5,
+    borderRadius: 2,
+    backgroundColor: '#f7f7ff',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    gap: 0.5,
+  }}
+>
+  {/* Features */}
+  <Typography
+    variant="body2"
+    color="black"
+    sx={{
+      fontSize: '0.75rem',
+      lineHeight: 1.4,
+      textAlign: 'center',
+    }}
+  >
+    {product.features.map((f, i) => (
+      <React.Fragment key={i}>
+        {i > 0 && <span>&nbsp;•&nbsp;</span>}
+        {f}
+      </React.Fragment>
+    ))}
+  </Typography>
 
+  {/* Info tags */}
+  <Stack
+    direction="row"
+    spacing={1}
+    alignItems="center"
+    justifyContent="center"
+    sx={{ fontSize: '0.75rem' }}
+  >
+    <Typography variant="body2" color="black" fontSize="0.75rem">
+      🌐 Multi-Language Design
+    </Typography>
+    <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+    <Typography variant="body2" color="black" fontSize="0.75rem">
+      🏭 Manufacture Direct
+    </Typography>
+  </Stack>
+</Box>
+
+
+
+
+{/* <Divider sx={{ borderColor: 'rgba(0, 0, 0, 0.05)', my: 1 }} /> */}
       {/* Shipping Info */}
       {/* Shipping Info */}
-      <Box sx={{ px: 1, mt: 2 }}>
+      <Box sx={{ px: 1, mt: 0.5 }}>
         <Box
           sx={{
-            backgroundColor: '#f7f7ff',
+            // backgroundColor: '#f7f7ff',
             borderRadius: 2,
             px: 2,
             py: 1,
@@ -371,7 +393,7 @@ export default function ProductMobileUI({ product }: Props) {
             alignItems: 'center',
             justifyContent: 'center',
             gap: 1,
-            mt: 1
+            mt: -0.5
           }}
         >
           <Typography variant="body2" color="text.primary">
@@ -400,107 +422,133 @@ export default function ProductMobileUI({ product }: Props) {
 
 
       {/* CTA */}
-      <Button
-        fullWidth
-        variant="contained"
-        color="success"
-        sx={{ mt: 2, mb: 3, mx: 1 }}
-        startIcon={<WhatsAppIcon />}
-      >
-        Buy via WhatsApp
-      </Button>
-      {/* 👇 Add this block just before the final </Box> */}
-     <AnimatePresence>
-  {isZoomed && (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      style={{
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backgroundColor: 'rgba(0,0,0,0.95)',
-        zIndex: 9999,
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 16,
-      }}
-    >
-      {/* Close Button */}
-      <IconButton
-        onClick={() => setIsZoomed(false)}
+      {/* <Box sx={{ height: 80 }} /> Pushes content up above sticky CTA */}
+
+      <Box
         sx={{
-          position: 'absolute',
-          top: 16,
-          right: 16,
-          color: '#fff',
-          zIndex: 99999,
+          position: 'sticky',
+          bottom: 0,
+          zIndex: 1300,
+          bgcolor: '#fff',
+          // borderTop: '1px solid #e0e0e0',
+          py: `calc(env(safe-area-inset-bottom, 0px) + 1px)`,
+          px: 2,
         }}
       >
-        <CloseIcon />
-      </IconButton>
-
-      {/* Left Arrow */}
-      {productImages.length > 1 && (
-        <IconButton
-          onClick={() =>
-            setSelectedImageIndex((prev) =>
-              prev === 0 ? productImages.length - 1 : prev - 1
-            )
-          }
+        <Button
+          fullWidth
+          variant="contained"
+          color="success"
+          startIcon={<WhatsAppIcon />}
           sx={{
-            position: 'absolute',
-            left: 12,
-            color: '#fff',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)' },
+            fontWeight: 600,
+            fontSize: '1rem',
+            borderRadius: 2,
+            py: 1.25,
           }}
         >
-          <ChevronLeftIcon />
-        </IconButton>
-      )}
+          Buy via WhatsApp
+        </Button>
+      </Box>
 
-      {/* Fullscreen Image */}
-      <motion.img
-        src={productImages[selectedImageIndex]}
-        alt="zoomed-product"
-        initial={{ scale: 0.9 }}
-        animate={{ scale: 1 }}
-        exit={{ scale: 0.9 }}
-        transition={{ duration: 0.3 }}
-        style={{
-          maxWidth: '100%',
-          maxHeight: '100%',
-          objectFit: 'contain',
-        }}
-      />
 
-      {/* Right Arrow */}
-      {productImages.length > 1 && (
-        <IconButton
-          onClick={() =>
-            setSelectedImageIndex((prev) =>
-              prev === productImages.length - 1 ? 0 : prev + 1
-            )
-          }
-          sx={{
-            position: 'absolute',
-            right: 12,
-            color: '#fff',
-            backgroundColor: 'rgba(0,0,0,0.5)',
-            '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)' },
-          }}
-        >
-          <ChevronRightIcon />
-        </IconButton>
-      )}
-    </motion.div>
-  )}
-</AnimatePresence>
+
+
+
+
+
+      {/* 👇 Add this block just before the final </Box> */}
+      <AnimatePresence>
+        {isZoomed && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              top: 0,
+              left: 0,
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: 'rgba(0,0,0,0.95)',
+              zIndex: 9999,
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+              padding: 16,
+            }}
+          >
+            {/* Close Button */}
+            <IconButton
+              onClick={() => setIsZoomed(false)}
+              sx={{
+                position: 'absolute',
+                top: 16,
+                right: 16,
+                color: '#fff',
+                zIndex: 99999,
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+
+            {/* Left Arrow */}
+            {productImages.length > 1 && (
+              <IconButton
+                onClick={() =>
+                  setSelectedImageIndex((prev) =>
+                    prev === 0 ? productImages.length - 1 : prev - 1
+                  )
+                }
+                sx={{
+                  position: 'absolute',
+                  left: 12,
+                  color: '#fff',
+                  backgroundColor: 'rgba(0,0,0,0.5)',
+                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)' },
+                }}
+              >
+                <ChevronLeftIcon />
+              </IconButton>
+            )}
+
+            {/* Fullscreen Image */}
+            <motion.img
+              src={productImages[selectedImageIndex]}
+              alt="zoomed-product"
+              initial={{ scale: 0.9 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.9 }}
+              transition={{ duration: 0.3 }}
+              style={{
+                maxWidth: '100%',
+                maxHeight: '100%',
+                objectFit: 'contain',
+              }}
+            />
+
+            {/* Right Arrow */}
+            {productImages.length > 1 && (
+              <IconButton
+                onClick={() =>
+                  setSelectedImageIndex((prev) =>
+                    prev === productImages.length - 1 ? 0 : prev + 1
+                  )
+                }
+                sx={{
+                  position: 'absolute',
+                  right: 12,
+                  color: '#fff',
+                  backgroundColor: 'rgba(0,0,0,0.5)',
+                  '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)' },
+                }}
+              >
+                <ChevronRightIcon />
+              </IconButton>
+            )}
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </Box>
   );

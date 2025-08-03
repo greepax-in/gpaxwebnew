@@ -3,6 +3,10 @@
 import React from 'react';
 import { Box, Typography, Chip, Stack } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
+import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
+import FactoryIcon from '@mui/icons-material/Factory';
+import StorefrontIcon from '@mui/icons-material/Storefront';
+import UseCases from './UseCases';
 
 interface ProductTitleWithPriceProps {
   title: string;
@@ -17,6 +21,8 @@ interface ProductTitleWithPriceProps {
   MOQ: number; // Minimum Order Quantity
   currencySymbol?: string; // Retained for currency display
   printVariant?: string; // Optional, used for print variant display
+  features?: string[]; // Optional, used for displaying product features
+  usecases?: string[]; // Optional, used for displaying product use cases
 }
 
 export default function ProductTitleWithPrice({
@@ -31,98 +37,201 @@ export default function ProductTitleWithPrice({
   selectedUnit,
   MOQ,
   deviceType = 'mobile',
-  printVariant
+  printVariant,
+  features = [],
+  usecases = [],
 }: ProductTitleWithPriceProps) {
-    const derivedPrice = contains
+  const derivedPrice = contains
     ? (offeredPrice / contains).toFixed(2)
     : undefined;
   const isDiscounted = offeredPrice < sellingPrice;
   const discount = isDiscounted ? Math.round(100 * (sellingPrice - offeredPrice) / sellingPrice) : 0;
   return (
     <Box>
-      <Typography
-        variant={deviceType === 'desktop' ? 'h4' : 'h6'}
-        fontWeight={700}
-        sx={{ mb: 0.5 }}
-      >
-        {title} {size && `- ${size}`} - {selectedUnit ? selectedUnit : 'Unit'} - {printVariant}
-      </Typography>
-      {subtitle && (
-        <Typography variant="subtitle1" color="text.secondary" sx={{ fontSize: 15, mt:-1, mb: 1 }}>
-          {subtitle}
-        </Typography>
-      )}
 
- <AnimatePresence mode="wait">
-  <motion.div
-    key={`priceStack-${offeredPrice}-${sellingPrice}-${discount}`}
-    initial={{ opacity: 0, y: 10 }}
-    animate={{ opacity: 1, y: 0 }}
-    exit={{ opacity: 0, y: -10 }}
-    transition={{ duration: 0.25 }}
-  >
-    <Stack direction="row" alignItems="center" spacing={1}>
-      <Typography variant={deviceType === 'desktop' ? 'h5' : 'h5'} fontWeight={700} color="success.main">
-        ₹{offeredPrice}
-      </Typography>
 
-      {isDiscounted && (
-        <Typography variant="body1" color="text.secondary" sx={{ textDecoration: 'line-through' }}>
-          ₹{sellingPrice}
-        </Typography>
-      )}
-
-      {isDiscounted && (
-        <Chip
-          label={`-${discount}%`}
-          size="medium"
-          sx={{
-            bgcolor: '#d32f2f',
-            color: '#fff',
-            fontWeight: 500,
-            borderRadius: '16px',
-            fontSize: '15px',
-            height: '20px',
-          }}
-        />
-      )}
-    </Stack>
-  </motion.div>
-</AnimatePresence>
-
-  <Box>
-<Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-  Approx.&nbsp;
-  <AnimatePresence mode="wait">
-    <motion.span
-      key={`derivedPrice-${derivedPrice}`}
-      initial={{ opacity: 0, y: 6 }}
-      animate={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, y: -6 }}
-      transition={{ duration: 0.2 }}
-      style={{
-        display: 'inline-block',
-        backgroundColor: '#e8f5e9',
-        color: '#1b5e20',
-        fontWeight: 700,
-        padding: '2px 6px',
-        borderRadius: '12px',
-        fontSize: '0.875rem',
-      }}
-    >
-      ₹{derivedPrice}
-    </motion.span>
-  </AnimatePresence>
-  &nbsp;per {containsLabel || 'unit'}
-  {selectedUnit === 'Kg' && ` (${contains} ${containsLabel}s per ${selectedUnit})`}
+<Typography
+  component="h1"
+  fontWeight={700}
+  fontSize="1rem"
+  lineHeight={1.3}
+  sx={{ mb: 0.5 }}
+>
+  {  title}
 </Typography>
 
-</Box>
+<Typography fontSize="0.75rem" color="text.secondary" sx={{ mt: -0.5, mb: 0.5 }}>
+  {size} • {selectedUnit} • {printVariant}
+</Typography>
+<Typography
+  fontSize="0.65rem"
+  color="text.secondary"
+  sx={{ mt: 0.75, mb: 1 }}
+>
+  {usecases || 'Explore our range of eco-friendly products'}
+</Typography>
+
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={`priceStack-${offeredPrice}-${sellingPrice}-${discount}`}
+          initial={{ opacity: 0, y: 6 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -6 }}
+          transition={{ duration: 0.25 }}
+        >
+          <Stack
+            direction="row"
+            spacing={1}
+            alignItems="center"
+            sx={{
+              mb: 0.5,
+              flexWrap: 'wrap',
+              lineHeight: 1.2,
+            }}
+          >
+            {/* Offered Price */}
+            <Typography
+              fontWeight={700}
+              fontSize="1.125rem"
+              color="success.main"
+              lineHeight={1}
+            >
+              ₹{offeredPrice}
+            </Typography>
+
+            {/* Strikethrough Price */}
+            {isDiscounted && (
+              <Typography
+                fontSize="0.9rem"
+                color="text.secondary"
+                sx={{
+                  textDecoration: 'line-through',
+                  mt: '1px',
+                }}
+              >
+                ₹{sellingPrice}
+              </Typography>
+            )}
+
+            {/* Discount Chip */}
+            {isDiscounted && (
+              <Chip
+                label={`-${discount}%`}
+                size="small"
+                sx={{
+                  bgcolor: '#d32f2f',
+                  color: '#fff',
+                  fontWeight: 500,
+                  borderRadius: 1.5,
+                  fontSize: '0.75rem',
+                  height: 22,
+                  px: 0.5,
+                }}
+              />
+            )}
+          </Stack>
+        </motion.div>
+      </AnimatePresence>
+
+
       <Box>
-        <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
-          MOQ - {MOQ} {selectedUnit === 'Kg' ? 'Kg' : containsLabel}(s) 
+        <Typography variant="body2" color="text.secondary" >
+          Approx.&nbsp;
+          <AnimatePresence mode="wait">
+            <motion.span
+              key={`derivedPrice-${derivedPrice}`}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.2 }}
+              style={{
+                display: 'inline-block',
+                backgroundColor: '#e8f5e9',
+                color: '#1b5e20',
+                fontWeight: 700,
+                padding: '2px 6px',
+                borderRadius: '12px',
+                fontSize: '0.7rem',
+              }}
+            >
+              ₹{derivedPrice}
+            </motion.span>
+          </AnimatePresence>
+          &nbsp;per {containsLabel || 'unit'}
+          {selectedUnit === 'Kg' && ` (${contains} ${containsLabel}s per ${selectedUnit})`}
         </Typography>
+
       </Box>
+
+
+
+      {/* <Box
+  sx={{
+    display: 'flex',
+    // alignItems: 'center',
+    justifyContent: 'space-between',
+    // flexWrap: 'wrap',
+    mt: -1,
+    bgcolor: '#f9fafb',
+    px: 2,
+    py: 1,
+    borderRadius: 2,
+  }}
+> */}
+<Box
+  sx={{
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    gap: 1,
+    mt: 0.5,
+    px: 1,
+ whiteSpace: 'nowrap', // enforce single-line
+    overflowX: 'auto',     // prevent breaking on small screens
+
+  }}
+>
+  <Typography
+    variant="caption"
+    color="text.secondary"
+    sx={{ fontSize: '0.7rem' }}
+  >
+    MOQ:  {selectedUnit}(s)
+  </Typography>
+
+  {/* Optional CTA for B2B */}
+  {MOQ >= 500 && (
+    <Typography
+      variant="caption"
+      color="primary"
+      
+      sx={{
+        fontSize: '0.7rem',
+        whiteSpace: 'nowrap',
+            textDecoration: 'underline dotted',
+textUnderlineOffset: '2px',
+cursor: 'pointer',
+      }}
+    >
+      🔖More units, less cost — let’s chat!
+    </Typography>
+  )}
+</Box>
+      {/* 
+  <Chip
+    label="Bulk Orders"
+    size="small"
+    // color="success"
+    clickable
+    sx={{
+      borderRadius: 2,
+      color: '#fff',
+      bgcolor: '#288ef3ff',
+      '&:hover': { bgcolor: 'success.dark' },
+    }}
+  /> */}
+      {/* </Box> */}
+
     </Box>
   );
 }

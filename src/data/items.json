@@ -184,9 +184,9 @@
     "description": "Engineered for the food delivery revolution—our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
     "industry": "Food Delivery, Restaurants, Cloud Kitchens",
     "usecases" : [
-      "🧑‍🍳 Food Service",
+      "🧑‍🍳 Food Delivery",
       "🏪 Retail Stores",
-      "📦 Online Orders"
+      "📦 Online Packaging"
     ],
     "sizePrices": {
       "6x8\"": 8,
