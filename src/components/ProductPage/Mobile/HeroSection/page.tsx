@@ -16,6 +16,9 @@ import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InfoIcon from '@mui/icons-material/Info';
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import RecyclingIcon from '@mui/icons-material/Recycling';
+import CloseIcon from '@mui/icons-material/Close';
+import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType, UnitType } from '@/types/itemTypes';
 import ProductTitleWithPrice from '../../ProductTitleWithPrice';
@@ -28,8 +31,9 @@ export default function ProductMobileUI({ product }: Props) {
   const [selectedSize, setSelectedSize] = useState(product.sizes[0]);
   const [selectedUnit, setSelectedUnit] = useState<UnitType>(product.sizes[0].units[0].unitType);
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-const [showShippingDetails, setShowShippingDetails] = useState(false);
+  const [showShippingDetails, setShowShippingDetails] = useState(false);
   const chipScrollRef = useRef<HTMLDivElement>(null);
+  const [isZoomed, setIsZoomed] = useState(false);
 
   useEffect(() => {
     const availableUnits = selectedSize.units.map(u => u.unitType);
@@ -69,7 +73,7 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
   }
 
   return (
-    <Box sx={{ p: 0, maxWidth: 400, mx: 'auto' }}>
+    <Box sx={{ p: 0, maxWidth: 400, mx: 'auto', marginTop: -4 }}>
       {/* Image + Thumbnail Overlay */}
       <Box sx={{ position: 'relative', width: '100%', height: 260, borderRadius: 2, mb: 1, overflow: 'hidden' }}>
         <AnimatePresence mode="wait">
@@ -81,7 +85,16 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            style={{ width: '100%', height: '100%', borderRadius: '8px', position: 'absolute', top: 0, left: 0 }}
+            style={{
+              width: '100%',
+              height: '100%',
+              borderRadius: '8px',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              cursor: 'zoom-in',
+            }}
+            onClick={() => setIsZoomed(true)}
           />
         </AnimatePresence>
 
@@ -144,7 +157,7 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
             </Box>
           </motion.div>
         )}
-        
+
       </Box>
 
       <ProductTitleWithPrice
@@ -275,108 +288,108 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
         ))}
       </Stack> */}
 
-  
 
 
 
-{/* Use Cases */}
-<Box
-  sx={{
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 1,
-    mt: 2,
-  }}
->
-  {product.usecases.map((f, i) => (
-    <Typography
-      key={`usecase-${i}`}
-      variant="body2"
-      color="black"
-      sx={{
-        fontSize: '0.75rem',
-        padding: 0,
-        margin: 0,
-        border: 'none',
-        background: 'transparent',
-        boxShadow: 'none',
-      }}
-    >
-      {i > 0 && <>&nbsp;•&nbsp;</>}
-      {f}
-    </Typography>
-  ))}
-</Box>
+
+      {/* Use Cases */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 1,
+          mt: 2,
+        }}
+      >
+        {product.usecases.map((f, i) => (
+          <Typography
+            key={`usecase-${i}`}
+            variant="body2"
+            color="black"
+            sx={{
+              fontSize: '0.75rem',
+              padding: 0,
+              margin: 0,
+              border: 'none',
+              background: 'transparent',
+              boxShadow: 'none',
+            }}
+          >
+            {i > 0 && <>&nbsp;•&nbsp;</>}
+            {f}
+          </Typography>
+        ))}
+      </Box>
 
       {/* <Divider sx={{mt:1}} /> */}
-{/* Features */}
-<Box
-  sx={{
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-    gap: 1,
-    mt: 1.5,
-  }}
->
-  {product.features.map((f, i) => (
-    <Typography
-      key={`usecase-${i}`}
-      variant="body2"
-      color="primary"
-      sx={{
-        fontSize: '0.75rem',
-        padding: 0,
-        margin: 0,
-        border: 'none',
-        background: 'transparent',
-        boxShadow: 'none',
-      }}
-    >
-      {i > 0 && <>&nbsp;•&nbsp;</>}
-      {f}
-    </Typography>
-  ))}
-</Box>
+      {/* Features */}
+      <Box
+        sx={{
+          display: 'flex',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+          gap: 1,
+          mt: 1.5,
+        }}
+      >
+        {product.features.map((f, i) => (
+          <Typography
+            key={`usecase-${i}`}
+            variant="body2"
+            color="primary"
+            sx={{
+              fontSize: '0.75rem',
+              padding: 0,
+              margin: 0,
+              border: 'none',
+              background: 'transparent',
+              boxShadow: 'none',
+            }}
+          >
+            {i > 0 && <>&nbsp;•&nbsp;</>}
+            {f}
+          </Typography>
+        ))}
+      </Box>
 
-{/* Shipping Info */}
-{/* Shipping Info */}
-<Box sx={{ px: 1, mt: 2 }}>
-  <Box
-    sx={{
-      backgroundColor: '#f7f7ff',
-      borderRadius: 2,
-      px: 2,
-      py: 1,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center',
-      gap: 1,
-      mt: 1
-    }}
-  >
-    <Typography variant="body2" color="text.primary">
-      🚚 Shipping arranged at actuals
-    </Typography>
-    <IconButton
-      size="small"
-      onClick={() => setShowShippingDetails((prev) => !prev)}
-      sx={{ color: 'text.secondary', p: 0 }}
-    >
-      <InfoOutlinedIcon fontSize="small" />
-    </IconButton>
-  </Box>
+      {/* Shipping Info */}
+      {/* Shipping Info */}
+      <Box sx={{ px: 1, mt: 2 }}>
+        <Box
+          sx={{
+            backgroundColor: '#f7f7ff',
+            borderRadius: 2,
+            px: 2,
+            py: 1,
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            gap: 1,
+            mt: 1
+          }}
+        >
+          <Typography variant="body2" color="text.primary">
+            🚚 Shipping arranged at actuals
+          </Typography>
+          <IconButton
+            size="small"
+            onClick={() => setShowShippingDetails((prev) => !prev)}
+            sx={{ color: 'text.secondary', p: 0 }}
+          >
+            <InfoOutlinedIcon fontSize="small" />
+          </IconButton>
+        </Box>
 
-  <Collapse in={showShippingDetails} timeout="auto" unmountOnExit>
-    <Box sx={{ mt: 1, px: 1 }}>
-      <Typography variant="caption" color="text.secondary" align="center">
-        We help coordinate economical shipping via VRL, Porter, etc. Customers pay shipping cost
-        separately based on location, mode, and quantity.
-      </Typography>
-    </Box>
-  </Collapse>
-</Box>
+        <Collapse in={showShippingDetails} timeout="auto" unmountOnExit>
+          <Box sx={{ mt: 1, px: 1 }}>
+            <Typography variant="caption" color="text.secondary" align="center">
+              We help coordinate economical shipping via VRL, Porter, etc. Customers pay shipping cost
+              separately based on location, mode, and quantity.
+            </Typography>
+          </Box>
+        </Collapse>
+      </Box>
 
 
 
@@ -391,6 +404,99 @@ const [showShippingDetails, setShowShippingDetails] = useState(false);
       >
         Buy via WhatsApp
       </Button>
+      {/* 👇 Add this block just before the final </Box> */}
+     <AnimatePresence>
+  {isZoomed && (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      style={{
+        position: 'fixed',
+        top: 0,
+        left: 0,
+        width: '100vw',
+        height: '100vh',
+        backgroundColor: 'rgba(0,0,0,0.95)',
+        zIndex: 9999,
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 16,
+      }}
+    >
+      {/* Close Button */}
+      <IconButton
+        onClick={() => setIsZoomed(false)}
+        sx={{
+          position: 'absolute',
+          top: 16,
+          right: 16,
+          color: '#fff',
+          zIndex: 99999,
+        }}
+      >
+        <CloseIcon />
+      </IconButton>
+
+      {/* Left Arrow */}
+      {productImages.length > 1 && (
+        <IconButton
+          onClick={() =>
+            setSelectedImageIndex((prev) =>
+              prev === 0 ? productImages.length - 1 : prev - 1
+            )
+          }
+          sx={{
+            position: 'absolute',
+            left: 12,
+            color: '#fff',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)' },
+          }}
+        >
+          <ChevronLeftIcon />
+        </IconButton>
+      )}
+
+      {/* Fullscreen Image */}
+      <motion.img
+        src={productImages[selectedImageIndex]}
+        alt="zoomed-product"
+        initial={{ scale: 0.9 }}
+        animate={{ scale: 1 }}
+        exit={{ scale: 0.9 }}
+        transition={{ duration: 0.3 }}
+        style={{
+          maxWidth: '100%',
+          maxHeight: '100%',
+          objectFit: 'contain',
+        }}
+      />
+
+      {/* Right Arrow */}
+      {productImages.length > 1 && (
+        <IconButton
+          onClick={() =>
+            setSelectedImageIndex((prev) =>
+              prev === productImages.length - 1 ? 0 : prev + 1
+            )
+          }
+          sx={{
+            position: 'absolute',
+            right: 12,
+            color: '#fff',
+            backgroundColor: 'rgba(0,0,0,0.5)',
+            '&:hover': { backgroundColor: 'rgba(0,0,0,0.7)' },
+          }}
+        >
+          <ChevronRightIcon />
+        </IconButton>
+      )}
+    </motion.div>
+  )}
+</AnimatePresence>
+
     </Box>
   );
 }
