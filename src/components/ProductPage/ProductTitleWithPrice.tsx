@@ -24,6 +24,8 @@ interface ProductTitleWithPriceProps {
   sizeUnit: 'IN' | 'CM';
   GSM: string; // Optional GSM for paper products
   toggleSizeUnit: () => void;
+  sizeIn?: string;
+  sizeCm?: string;
 }
 
 export default function ProductTitleWithPrice({
@@ -40,7 +42,9 @@ export default function ProductTitleWithPrice({
   usecases = [],
   sizeUnit,
   toggleSizeUnit,
-  GSM
+  GSM,
+  sizeCm,
+  sizeIn,
 }: ProductTitleWithPriceProps) {
   const derivedPrice = contains ? (offeredPrice / contains).toFixed(2) : undefined;
   const isDiscounted = offeredPrice < sellingPrice;
@@ -67,7 +71,7 @@ export default function ProductTitleWithPrice({
           mb: 0.5,
         }}
       >
-        {size}  • {GSM} • {selectedUnit} • {printVariant}
+        {sizeUnit === 'IN' ? sizeIn : sizeCm}  • {GSM} • {selectedUnit} • {printVariant}
       </Typography>
 
       <Typography

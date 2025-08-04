@@ -206,6 +206,8 @@ const toggleSizeUnit = () => {
         sizeUnit={sizeUnit}
         toggleSizeUnit={toggleSizeUnit}
         GSM={product.GSM || 'N/A'}
+         sizeIn={selectedSize.sizeIn}
+  sizeCm={selectedSize.sizeCm}
       />
 
       {/* Size Chips with Edge Fader and Bounce */}
