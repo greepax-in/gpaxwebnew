@@ -154,13 +154,14 @@ const HeroSection = ({ product }: Props) => {
             MOQ={selectedUnitData?.moq ?? 0}
              usecases={product.usecases}
           />
+          
 
           <Paper
             variant="outlined"
             sx={{
               p: 2,
               bgcolor: 'grey.50',
-              mt: 4,
+              mt:5,
               transform: 'translateY(-20%)',
               transition: 'transform 0.3s',
               minHeight: 200,
@@ -262,20 +263,8 @@ const HeroSection = ({ product }: Props) => {
             </Box>
           </Paper>
 
-  <Box marginTop={-5} sx={{ px: 2 }  }>
+  <Box marginTop={-6} sx={{ px: 2 }  }>
       
-{/* <Box
-  sx={{
-    width: '100%',
-    height: '1px',
-    background: 'linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.1), rgba(0,0,0,0.05))',
-    my: 0.5,
-  }}
-/> */}
-
-
-      {/* <Divider sx={{mt:1}} /> */}
-      {/* Features */}
   <Box
   sx={{
     mt: 0.4,

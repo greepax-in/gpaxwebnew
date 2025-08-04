@@ -1,69 +1,63 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, Chip, Stack } from '@mui/material';
+import { Box, Typography, Chip, Stack, useMediaQuery } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
-// import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
-// import FactoryIcon from '@mui/icons-material/Factory';
-// import StorefrontIcon from '@mui/icons-material/Storefront';
-// import UseCases from './UseCases';
-import { useMediaQuery } from '@mui/material';
 
 interface ProductTitleWithPriceProps {
   title: string;
   subtitle?: string;
   size?: string;
-  contains?: number; // Optional, used for derived price calculation,
-  containsLabel?: string; // Optional, label for the contains field
+  contains?: number;
+  containsLabel?: string;
   offeredPrice: number;
   sellingPrice: number;
-  selectedUnit?: string; // Optional, used for displaying selected unit
+  selectedUnit?: string;
   deviceType?: 'mobile' | 'desktop';
-  MOQ: number; // Minimum Order Quantity
-  currencySymbol?: string; // Retained for currency display
-  printVariant?: string; // Optional, used for print variant display
-  features?: string[]; // Optional, used for displaying product features
-  usecases?: string[]; // Optional, used for displaying product use cases
+  MOQ: number;
+  currencySymbol?: string;
+  printVariant?: string;
+  features?: string[];
+  usecases?: string[];
 }
 
 export default function ProductTitleWithPrice({
   title,
-  // subtitle,
   size,
   offeredPrice,
   sellingPrice,
-  // currencySymbol = '₹',
   contains,
   containsLabel,
   selectedUnit,
   MOQ,
   deviceType = 'mobile',
   printVariant,
-  // features = [],
   usecases = [],
 }: ProductTitleWithPriceProps) {
-  const derivedPrice = contains
-    ? (offeredPrice / contains).toFixed(2)
-    : undefined;
+  const derivedPrice = contains ? (offeredPrice / contains).toFixed(2) : undefined;
   const isDiscounted = offeredPrice < sellingPrice;
   const discount = isDiscounted ? Math.round(100 * (sellingPrice - offeredPrice) / sellingPrice) : 0;
   const isDesktop = useMediaQuery('(min-width:600px)');
-  console.log('usecases:', usecases);
+
   return (
     <Box>
-
       <Typography
-        fontSize={isDesktop ? '1.85rem' : '1.15rem'}
-        lineHeight={1.3}
-        sx={{ mb: 0.5 }}
+        sx={{
+          fontSize: isDesktop ? '1.85rem' : '1.15rem',
+          lineHeight: 1.3,
+          mb: 0.5,
+        }}
       >
         {title}
       </Typography>
 
       <Typography
-        fontSize={isDesktop ? '1.2rem' : '0.75rem'}
         color="text.secondary"
-        sx={{ mt: -0.5, mb: 0.5 }}
+        sx={{
+          fontSize: isDesktop ? '1.2rem' : '0.75rem',
+          mt: -0.5,
+          mb: 0.5,
+        }}
       >
         {size} • {selectedUnit} • {printVariant}
       </Typography>
@@ -97,29 +91,24 @@ export default function ProductTitleWithPrice({
             direction="row"
             spacing={1}
             alignItems="center"
-            sx={{
-              mb: 0.5,
-              flexWrap: 'wrap',
-              lineHeight: 1.2,
-            }}
+            sx={{ mb: 0.5, flexWrap: 'wrap', lineHeight: 1.2 }}
           >
-            {/* Offered Price */}
             <Typography
               fontWeight={700}
-              fontSize={typeof window !== 'undefined' && window.innerWidth >= 600 ? '2rem' : '1rem'}
               color="success.main"
-              lineHeight={1}
+              sx={{
+                fontSize: isDesktop ? '2rem' : '1rem',
+                lineHeight: 1,
+              }}
             >
               ₹{offeredPrice}
             </Typography>
 
-            {/* Strikethrough Price */}
             {isDiscounted && (
               <Typography
-                // fontSize="0.9rem"
-                fontSize={typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.50rem' : '0.9rem'}
                 sx={{
                   textDecoration: 'line-through',
+                  fontSize: isDesktop ? '1.5rem' : '0.9rem',
                   mt: '1px',
                 }}
               >
@@ -127,7 +116,6 @@ export default function ProductTitleWithPrice({
               </Typography>
             )}
 
-            {/* Discount Chip */}
             {isDiscounted && (
               <Chip
                 label={`-${discount}%`}
@@ -137,10 +125,7 @@ export default function ProductTitleWithPrice({
                   color: '#fff',
                   fontWeight: 500,
                   borderRadius: 1.5,
-                  fontSize:
-                    typeof window !== 'undefined' && window.innerWidth >= 600
-                      ? '1.25rem'
-                      : '0.75rem',
+                  fontSize: isDesktop ? '1.25rem' : '0.75rem',
                   height: 22,
                   px: 0.5,
                 }}
@@ -150,9 +135,12 @@ export default function ProductTitleWithPrice({
         </motion.div>
       </AnimatePresence>
 
-
       <Box>
-        <Typography variant="body2" color="text.secondary" fontSize={typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.15rem' : '0.75rem'}>
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{ fontSize: isDesktop ? '1.15rem' : '0.75rem' }}
+        >
           Approx.&nbsp;
           <AnimatePresence mode="wait">
             <motion.span
@@ -168,10 +156,7 @@ export default function ProductTitleWithPrice({
                 fontWeight: 700,
                 padding: '2px 6px',
                 borderRadius: '12px',
-                fontSize:
-                  typeof window !== 'undefined' && window.innerWidth >= 600
-                    ? '1rem'
-                    : '0.7rem',
+                fontSize: isDesktop ? '1rem' : '0.7rem',
               }}
             >
               ₹{derivedPrice}
@@ -180,11 +165,7 @@ export default function ProductTitleWithPrice({
           &nbsp;per {containsLabel || 'unit'}
           {selectedUnit === 'Kg' && ` (${contains} ${containsLabel}s per ${selectedUnit})`}
         </Typography>
-
       </Box>
-
-
-
 
       <Box
         sx={{
@@ -192,48 +173,41 @@ export default function ProductTitleWithPrice({
           justifyContent: 'left',
           alignItems: 'center',
           gap: 1,
-          mt: 0.5,
+          mt: 0.75,
           px: 0,
-          whiteSpace: 'nowrap', // enforce single-line
-          overflowX: 'auto',     // prevent breaking on small screens
-          // fontSize: typeof window !== 'undefined' && window.innerWidth >= 600 ? '3rem' : '0.7rem',
+          flexWrap: 'wrap',
         }}
       >
         <Typography
           variant="caption"
           color="text.secondary"
           sx={{
-            fontSize: typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.1rem' : '0.7rem',
+            fontSize: isDesktop ? '1.1rem' : '0.7rem',
           }}
         >
           MOQ:&nbsp;
           <Box component="span" sx={{ fontWeight: 'bold', display: 'inline' }}>
             {selectedUnit}
           </Box>
-
+          (s)
         </Typography>
 
-
-        {/* Optional CTA for B2B */}
         {MOQ >= 500 && (
           <Typography
             variant="caption"
             color="primary"
-
             sx={{
-              fontSize: typeof window !== 'undefined' && window.innerWidth >= 600 ? '1.1rem' : '0.7rem',
-              whiteSpace: 'nowrap',
+              fontSize: isDesktop ? '1.1rem' : '0.7rem',
               textDecoration: 'underline dotted',
               textUnderlineOffset: '2px',
               cursor: 'pointer',
+              whiteSpace: 'nowrap',
             }}
           >
-            🔖More units, less cost — let’s chat!
+            🔖 More units, less cost — let’s chat!
           </Typography>
         )}
       </Box>
-
-
     </Box>
   );
 }
