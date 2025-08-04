@@ -9,7 +9,7 @@ type Props = {
 };
 
 const ProductDetails = ({ product }: Props) => {
-  const hasHighlights = product.highlights?.length > 0;
+  const hasHighlights = (product.highlights?.length ?? 0) > 0;
   const hasDescription = Boolean(product.description);
   const isMobile = useMediaQuery('(max-width:600px)');
 
@@ -50,7 +50,7 @@ const ProductDetails = ({ product }: Props) => {
                 },
               }}
             >
-              {product.highlights.map((item, index) => (
+              {(product.highlights ?? []).map((item, index) => (
                 <li key={index}>
                   <Typography variant="body2" color="text.primary">
                     {item}
@@ -61,27 +61,25 @@ const ProductDetails = ({ product }: Props) => {
           ) : (
             // Desktop: 2-column layout with aligned emojis
             <Grid container spacing={1.5} component="ul" sx={{ pl: 0, mt: 1 }}>
-              {product.highlights.map((item, index) => (
-                <Grid
-                  size={{ xs: 12, sm: 6, md: 6 }}
-                  key={index}
-         
-              
-                  component="li"
-                  sx={{
-                    listStyle: 'none',
-                    display: 'flex',
-                    alignItems: 'flex-start',
-                    gap: 1,
-                    pl: 0,
-                    mb: 1,
-                  }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    {item}
-                  </Typography>
-                </Grid>
-              ))}
+        {(product.highlights ?? []).map((item, index) => (
+          <Grid
+            size={{ xs: 12, sm: 6, md: 6 }}
+            key={index}
+            component="li"
+            sx={{
+              listStyle: 'none',
+              display: 'flex',
+              alignItems: 'flex-start',
+              gap: 1,
+              pl: 0,
+              mb: 1,
+            }}
+          >
+            <Typography variant="body2" color="text.primary">
+              {item}
+            </Typography>
+          </Grid>
+        ))}
             </Grid>
           )}
         </Box>

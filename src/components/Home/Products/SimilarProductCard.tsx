@@ -75,23 +75,20 @@ export default function SimilarProductCard({
           {name}
         </Typography>
 
-        {/* Paper Variant Chips */}
-        {paperVariants && paperVariants.length > 0 && (
-          <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1.2}}>
-            {paperVariants.map((v, i) => (
-              <PaperVariantChip key={i} label={v} size="small" />
-            ))}
-          </Box>
-        )}
-
-        {/* Print Variant Chips */}
-        {printVariants && printVariants.length > 0 && (
+        {/* Paper & Print Variant Chips in same row */}
+        {(paperVariants && paperVariants.length > 0) || (printVariants && printVariants.length > 0) ? (
           <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1.2 }}>
-            {printVariants.map((v, i) => (
-              <PrintVariantChip key={i} label={v} size="small" />
-            ))}
+            {printVariants && printVariants.length > 0 &&
+              printVariants.map((v, i) => (
+                <PrintVariantChip key={`print-${i}`} label={v} size="small" />
+              ))}
+            {paperVariants && paperVariants.length > 0 &&
+              paperVariants.map((v, i) => (
+                <PaperVariantChip key={`paper-${i}`} label={v} size="small" />
+              ))}
+
           </Box>
-        )}
+        ) : null}
 
         {/* Price */}
         {offeredPrice && (

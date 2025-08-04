@@ -5,9 +5,9 @@ import { Box} from '@mui/material';
 import useIsMobile from '@/components/Common/isMobile';
 
 // import HeroMobile from '@/components/ProductPage/Mobile/HeroMobile';
-import HeroDesktop from '@/components/ProductPage/Desktop/HeroDesktop'; // fallback if exists
+import HeroDesktop from '@/components/ProductPage/Desktop/HeroSection/page'; // fallback if exists
 import BackToTopButton from '../Common/BacktoTopButton';
-import ProductDetails from '@/components/ProductPage/ProductDetails';
+import ProductDescription from '@/components/ProductPage/Description';
 import ProductSpecifications from './Specifications';
 import ProductAssurance from './ProductAssurance';
 import ProductFAQ from './ProductFAQs';
@@ -54,7 +54,7 @@ const isMobile = useIsMobile();
         )}
       </div>
 
-      <ProductDetails product={product} />
+      <ProductDescription product={product} />
       <ProductSpecifications product={product} />
       <ProductAssurance product={product} />
       <IndustriesServed product={product} />

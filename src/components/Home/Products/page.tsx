@@ -16,14 +16,13 @@ type ProductType = {
   image: string;
   offeredPrice?: number;
   sellingPrice?: number;
-  printVariants?: string[];
-  paperVariants?: string[];
+
   pageLink?: string;
   desc?: string;
   category: string;
   description?: string;
-  printvariants?: string[];
-  papervariant?: string[];
+  printVariants?: string[];
+  paperVariant?: string[];
 };
 
 export default function ProductGridSection() {
@@ -177,8 +176,8 @@ export default function ProductGridSection() {
                   offeredPrice={product.offeredPrice ?? undefined}
                   sellingPrice={product.sellingPrice ?? undefined}
                   link={product.pageLink}
-                  printVariants={product.printvariants}
-                  paperVariants={product.papervariant}
+                  printVariants={product.printVariants}
+                  paperVariants={product.paperVariant}
                 />
               </Box>
             ))}

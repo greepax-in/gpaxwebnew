@@ -5,8 +5,11 @@
     "subTitle": "Eco-Friendly and Durable for Food Delivery",
     "subcategory": "Food Delivery Paper Bags",
     "featuredProduct": "yes",
+    "categorySlug":"paper-bags",
+    "subcategorySlug": "food-delivery-paper-bags",
+    "slug": "kraft-printed-food-delivery-paper-bags",
     "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
-    "image": "/images/products/default.jpg",
+    "image": "/images/products/paperbags/7.svg",
     "featuredImage": "/images/products/paperbags/7.svg",
     "productImages": [
       "/images/products/paperbags/7.svg",
@@ -91,7 +94,6 @@
           "/images/products/paperbags/minimenu-paperbags.svg"
         ]
       },
-      
       {
         "sizeIn": "8x10x6\"",
         "sizeCm": "20.3x25.4x30.5cm",
@@ -127,7 +129,10 @@
         ]
       }
     ],
-    "features": ["♻️ 100% Recyclable", "🌱 Compostable Ink"],
+    "features": [
+      "♻️ 100% Recyclable",
+      "🌱 Compostable Ink"
+    ],
     "shippingInfo": "🚚 Shipping arranged at actuals",
     "variantPrices": {
       "6x8\"": {
@@ -182,12 +187,87 @@
     "offeredPrice": 9,
     "sellingPrice": 10,
     "description": "Engineered for the food delivery revolution—our sturdy, eco-friendly paper bags ensure your meals arrive fresh and in style.",
+    "highlights": [
+      "\u267b\ufe0f 100% Eco-Friendly \u2014 Made from recyclable, biodegradable kraft paper",
+      "\ud83d\udccf Custom Sizes Available \u2014 Fit your unique packaging needs",
+      "\ud83d\udcaa Built for Daily Use \u2014 Strong 120 GSM paper holds up to 5kg",
+      "\ud83d\udda8\ufe0f Brandable Surface \u2014 Supports single-color or multi-color printing"
+    ],
+    "specifications": {
+      "Material": "Kraft Paper",
+      "GSM": "120-150",
+      "Size": "Standard",
+      "Print Method": "Flexo"
+    },
+    "assurance": [
+      {
+        "icon": "\u267b\ufe0f",
+        "title": "Eco-Friendly Materials",
+        "desc": "Made from recyclable and biodegradable kraft paper using food-safe ink and glue."
+      },
+      {
+        "icon": "\ud83d\ude9a",
+        "title": "Pan-India Delivery Coordination",
+        "desc": "We deliver across India through trusted third-party logistics partners. Shipping method and cost depend on product type, quantity, and location. We coordinate dispatch and provide tracking details to ensure a smooth and transparent delivery experience."
+      },
+      {
+        "icon": "\u2705",
+        "title": "Quality Checked",
+        "desc": "Each batch is inspected for strength, finish, and print clarity to meet consistent quality standards."
+      },
+      {
+        "icon": "\ud83c\uddee\ud83c\uddf3",
+        "title": "Made in India",
+        "desc": "Proudly made in India using locally sourced materials to support regional suppliers and minimize environmental impact."
+      }
+    ],
     "industry": "Food Delivery, Restaurants, Cloud Kitchens",
-    "usecases" : [
+    "usecases": [
       "🧑‍🍳 Food Delivery",
       "🏪 Retail Stores",
       "📦 Online Packaging"
     ],
+    "customers": [
+      {
+        "name": "Zomato",
+        "logo": "/images/customers/zomato-logo.png",
+        "alt": "Zomato Food Delivery Partner"
+      },
+      {
+        "name": "BigBasket",
+        "logo": "/images/customers/bigbasket-logo.png"
+      },
+      {
+        "name": "Tata 1mg",
+        "logo": "/images/customers/tata1mg-logo.png"
+      }
+    ],
+    "faqs": [
+  {
+    "q": "What is the minimum order quantity (MOQ)?",
+    "a": "Our MOQ varies by size and print type. For example, standard kraft paper bags with 1-color printing start at 500 pcs. Custom printed options may require higher MOQ."
+  },
+  {
+    "q": "Can I customize the design or print on the bags?",
+    "a": "Yes. We support 1-color, 2-color, and full-color custom printing. You can share your artwork or consult our in-house design team for assistance."
+  },
+  {
+    "q": "Do you deliver across India?",
+    "a": "Yes. We coordinate delivery across India via reliable logistics partners like VRL, DTDC, and Porter. Shipping charges depend on quantity and location."
+  },
+  {
+    "q": "What is the typical lead time for delivery?",
+    "a": "Production usually takes 5–10 business days after design approval. Delivery timelines vary between 2–7 days depending on your city and selected shipping method."
+  },
+  {
+    "q": "Are your products eco-friendly?",
+    "a": "Absolutely. Our paper bags are made from biodegradable kraft paper and use food-safe, water-based inks and adhesives."
+  },
+  {
+    "q": "Can I request samples before placing a bulk order?",
+    "a": "Yes. Sample kits are available for a nominal fee, which is refundable upon bulk order confirmation. Contact our sales team to request one."
+  }
+],
     "sizePrices": {
       "6x8\"": 8,
       "8x10\"": 9,
@@ -220,5 +300,612 @@
       200,
       500
     ]
+  },
+  {
+  "name": "Kraft Plain Grocery Paper Coverss",
+  "category": "Paper Covers",
+  "categorySlug": "paper-covers",
+  "subcategory": "Grocery Paper Covers",
+  "subTitle": "Strong and Economical Packaging for Grocery Stores",
+  "category-slug": "paper-covers",
+  "subcategorySlug": "grocery-paper-covers",
+  "slug": "kraft-plain-grocery-paper-covers",
+  "pageLink": "/paper-covers/grocery-paper-covers/kraft-plain-grocery-paper-covers",
+  "image": "images/products/papercovers/6.svg",
+  "featuredImage": "/images/products/papercovers/cover-thumb.svg",
+  "productImages": [
+    "/images/products/papercovers/6.svg",
+    "/images/products/papercovers/12.svg"
+  ],
+  "featuredProduct": "yes",
+  "sizes": [
+    {
+      "sizeIn": "6x10\"",
+      "sizeCm": "15.2x25.4cm",
+      "units": [
+        {
+          "unitType": "1kg",
+          "offeredPrice": 350,
+          "sellingPrice": 420,
+          "moq": 50,
+          "contains": 1000,
+          "containsLabel": "covers"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/papercovers/6.svg"
+      ]
+    },
+    {
+      "sizeIn": "8x12\"",
+      "sizeCm": "20.3x30.5cm",
+      "units": [
+        {
+          "unitType": "1kg",
+          "offeredPrice": 400,
+          "sellingPrice": 480,
+          "moq": 50,
+          "contains": 800,
+          "containsLabel": "covers"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/papercovers/10.svg",
+        "/images/products/papercovers/60.svg"
+      ]
+    }
+  ],
+  "features": [
+    "🟤 Plain & Minimalist Design",
+    "🌾 Made from Virgin Kraft",
+    "💪 Tear-Resistant"
+  ],
+  "shippingInfo": "🚚 Shipping arranged at actuals",
+  "offeredPrice": 8,
+  "sellingPrice": 10,
+  "description": "Ideal for grocery stores and vegetable shops, our unprinted paper covers are made from strong kraft paper—cost-effective and biodegradable.",
+  "highlights": [
+    "♻️ 100% Recyclable — No plastic, no lamination",
+    "🏪 Retail-Ready — Used widely by kiranas, bazaars, and supermarkets",
+    "🇮🇳 Made in India — Locally produced for minimal carbon footprint"
+  ],
+  "specifications": {
+    "Material": "Virgin Kraft Paper",
+    "GSM": "80-100",
+    "Size": "Standard Grocery",
+    "Color": "Natural Brown",
+    "Print Method": "None (Unprinted)"
+  },
+  "assurance": [
+    {
+      "icon": "♻️",
+      "title": "Eco-Friendly Materials",
+      "desc": "No plastic or coatings used. Fully recyclable and compostable kraft paper."
+    },
+    {
+      "icon": "🚚",
+      "title": "Nationwide Delivery",
+      "desc": "Delivered via trusted logistics partners with complete tracking support."
+    },
+    {
+      "icon": "✅",
+      "title": "Batch-Verified",
+      "desc": "Every production batch is checked for GSM, dimensions, and finish quality."
+    },
+    {
+      "icon": "🇮🇳",
+      "title": "Locally Sourced",
+      "desc": "All raw materials and manufacturing take place in India."
+    }
+  ],
+  "industry": "Grocery Stores, Kirana Shops, Supermarkets, Organic Stores",
+  "usecases": [
+    "🛒 Grocery",
+    "🍎 Fruit & Vegetable Wrapping"
+  ],
+  "customers": [
+    {
+      "name": "Reliance Smart",
+      "logo": "/images/customers/reliance-smart-logo.png"
+    },
+    {
+      "name": "Nature's Basket",
+      "logo": "/images/customers/naturesbasket-logo.png"
+    },
+    {
+      "name": "More Retail",
+      "logo": "/images/customers/more-logo.png"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Are these paper covers food-safe?",
+      "a": "Yes. They are made from virgin kraft paper that is safe for dry food packaging."
+    },
+    {
+      "q": "Do you offer bulk discounts?",
+      "a": "Yes. Prices drop significantly at 100kg and 250kg slabs. Contact sales for volume-based quotes."
+    },
+    {
+      "q": "Can these covers be printed with branding?",
+      "a": "This variant is unprinted, but custom printed covers are available under 'Custom Printed Paper Covers'."
+    },
+    {
+      "q": "How are the covers packed?",
+      "a": "Each kg is packed flat in kraft paper sleeves with moisture-proof outer packaging."
+    }
+  ],
+  "sizePrices": {
+    "6x10\"": 8,
+    "8x12\"": 9
+  },
+  "sizeImages": {
+    "6x10\"": [
+      "/images/products/papercovers/cover-6x10.svg"
+    ],
+    "8x12\"": [
+      "/images/products/papercovers/cover-8x12.svg"
+    ]
+  },
+  "paperVariant": [
+    "Kraft"
+  ],
+  "printVariants": [
+    "Plain"
+  ],
+  "minimumQuantities": {
+    "1kg": 50
   }
+},
+{
+  "name": "Kraft Printed Cake Box",
+  "category": "Paper Boxes",
+  "subcategory": "Cake Boxes",
+  "subTitle": "Sturdy and Customizable Boxes for Eco-Conscious Brands",
+  "category-slug":"paper-boxes",
+  "subcategorySlug": "cake-boxes",
+  "slug": "kraft-printed-cake-box",
+  "pageLink": "/paper-boxes/cake-boxes/kraft-printed-cake-box",
+  "image": "/images/products/paperboxes/18.svg",
+  "featuredImage": "/images/products/paperboxes/18.svg",
+  "productImages": [
+    "/images/products/paperboxes/18.svg",
+    "/images/products/paperboxes/burger-boxes.svg"
+  ],
+  "featuredProduct": "yes",
+  "sizes": [
+    {
+      "sizeIn": "6x6x3\"",
+      "sizeCm": "15.2x15.2x7.6cm",
+      "units": [
+        {
+          "unitType": "100 Boxes",
+          "offeredPrice": 1500,
+          "sellingPrice": 1800,
+          "moq": 100,
+          "contains": 100,
+          "containsLabel": "box"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/paperboxes/burger-boxes.svg"
+      ]
+    },
+    {
+      "sizeIn": "8x6x4\"",
+      "sizeCm": "20.3x15.2x10.2cm",
+      "units": [
+        {
+          "unitType": "100 Boxes",
+          "offeredPrice": 1800,
+          "sellingPrice": 2200,
+          "moq": 100,
+          "contains": 100,
+          "containsLabel": "box"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/paperboxes/kraft-cake-boxes.svg"
+      ]
+    }
+  ],
+  "features": [
+    "📦 Rigid Corrugated Walls",
+    "🖨️ Printable Surfaces",
+    "🔁 Recyclable & Reusable"
+  ],
+  "shippingInfo": "🚚 Bulk shipping by surface transport",
+  "offeredPrice": 18,
+  "sellingPrice": 22,
+  "description": "These kraft paper boxes are the perfect eco-friendly alternative for sustainable packaging. Suitable for shipping, gifting, and retail packaging.",
+  "highlights": [
+    "♻️ 100% Recyclable Kraft — Sustainable, biodegradable material",
+    "💼 Brand Ready — Smooth surface for branding via stickers or screen printing",
+    "🪶 Light yet Durable — Double-ply corrugated board with excellent compression strength"
+  ],
+  "specifications": {
+    "Material": "Corrugated Kraft Paper",
+    "GSM": "200-250",
+    "Board Type": "3-ply (single wall)",
+    "Color": "Brown Kraft",
+    "Printing": "Available on request (1-color)"
+  },
+  "assurance": [
+    {
+      "icon": "📦",
+      "title": "Damage-Free Delivery",
+      "desc": "Boxes are packed flat with edge protectors to avoid warping in transit."
+    },
+    {
+      "icon": "♻️",
+      "title": "Eco-Friendly Commitment",
+      "desc": "Made from FSC-certified kraft material with water-based adhesives."
+    },
+    {
+      "icon": "🇮🇳",
+      "title": "Locally Manufactured",
+      "desc": "Produced in India using kraft sourced from sustainable Indian mills."
+    }
+  ],
+  "industry": "E-commerce, Gifts, Apparel, Cosmetics, Subscription Boxes",
+  "usecases": [
+    "📦 Online Packaging",
+    "🎁 Gifting & Hampers",
+    "🛍️ Retail Display"
+  ],
+  "customers": [
+    {
+      "name": "Nykaa",
+      "logo": "/images/customers/nykaa-logo.png"
+    },
+    {
+      "name": "FabIndia",
+      "logo": "/images/customers/fabindia-logo.png"
+    },
+    {
+      "name": "Sugar Cosmetics",
+      "logo": "/images/customers/sugar-logo.png"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Are these boxes strong enough for shipping?",
+      "a": "Yes. The 3-ply corrugated kraft is designed for light to medium shipping and performs well under pressure."
+    },
+    {
+      "q": "Can I get custom sizes or branding?",
+      "a": "Absolutely. We offer custom sizes, die cuts, and 1-color printing for bulk orders. Contact us for more details."
+    },
+    {
+      "q": "Are the boxes delivered flat or assembled?",
+      "a": "They are delivered flat (collapsed) to save space. Easy to fold and assemble without glue or tape."
+    },
+    {
+      "q": "Do you offer bulk pricing tiers?",
+      "a": "Yes. We provide bulk discounts at 500 and 1000 unit slabs. Reach out to our sales team for a custom quote."
+    }
+  ],
+  "sizePrices": {
+    "6x6x3\"": 15,
+    "8x6x4\"": 18
+  },
+  "sizeImages": {
+    "6x6x3\"": [
+      "/images/products/paperboxes/kraft-box-6x6.svg"
+    ],
+    "8x6x4\"": [
+      "/images/products/paperboxes/kraft-box-8x6.svg"
+    ]
+  },
+  "paperVariant": [
+    "Kraft"
+  ],
+  "printVariants": [
+    "1-Color"
+  ],
+  "minimumQuantities": {
+    "100 Boxes": 100
+  }
+},
+{
+  "name": "Kraft Printed Promotion Paper Bagss",
+  "category": "Paper Bags",
+  "subcategory": "Promotion Paper Bags",
+  "subTitle": "Luxury Finish for Retail Stores & Gift Packaging",
+  "category-slug": "paper-bags",
+  "subcategorySlug": "promotion-paper-bags",
+  "slug": "kraft-printed-promotion-paper-bags",
+  "pageLink": "/paper-bags/promotion-paper-bags/kraft-printed-promotion-paper-bags",
+  "image": "/images/products/paperbags/13.svg",
+  "featuredImage": "/images/products/paperbags/13.svg",
+  "productImages": [
+    "/images/products/paperbags/13.svg"
+    
+  ],
+  "featuredProduct": "no",
+  "sizes": [
+    {
+      "sizeIn": "8x10x4\"",
+      "sizeCm": "20.3x25.4x10.2cm",
+      "units": [
+        {
+          "unitType": "100 Bags",
+          "offeredPrice": 1800,
+          "sellingPrice": 2200,
+          "moq": 100,
+          "contains": 100,
+          "containsLabel": "bag"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/paperbags/1.svg"
+      ]
+    },
+    {
+      "sizeIn": "10x12x5\"",
+      "sizeCm": "25.4x30.5x12.7cm",
+      "units": [
+        {
+          "unitType": "100 Bags",
+          "offeredPrice": 2200,
+          "sellingPrice": 2600,
+          "moq": 100,
+          "contains": 100,
+          "containsLabel": "bag"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/paperbags/7.svg",
+        "/images/products/paperbags/13.svg"
+      ]
+    }
+  ],
+  "features": [
+    "🪶 Smooth Finish",
+    "🧵 Twisted Paper Handles",
+    "🛍️ Ideal for Boutiques & Events"
+  ],
+  "shippingInfo": "🚚 Dispatched flat-packed with handle bundles",
+  "offeredPrice": 22,
+  "sellingPrice": 26,
+  "description": "Add elegance to your packaging with our premium kraft shopping bags—perfect for boutiques, gift shops, and events. Features a smooth finish and strong handles.",
+  "highlights": [
+    "🌱 Sustainable & Stylish — 100% recyclable with luxury appeal",
+    "🖨️ Print Ready — Screen print, block print, or label application",
+    "🪢 Strong Handles — Reinforced twisted paper handles glued securely"
+  ],
+  "specifications": {
+    "Material": "Premium Kraft Paper",
+    "GSM": "130-160",
+    "Handle Type": "Twisted Paper Rope",
+    "Color": "Brown/Natural",
+    "Print Method": "Screen, Block, or Label"
+  },
+  "assurance": [
+    {
+      "icon": "🧵",
+      "title": "Reinforced Handle",
+      "desc": "Twisted paper handles are glued with double patching for extra strength."
+    },
+    {
+      "icon": "♻️",
+      "title": "Eco-Friendly Materials",
+      "desc": "No plastic. Made with recyclable paper and water-based adhesives."
+    },
+    {
+      "icon": "🇮🇳",
+      "title": "Made in India",
+      "desc": "Locally produced to support sustainable Indian manufacturing."
+    }
+  ],
+  "industry": "Retail, Events, Boutiques, Gifting",
+  "usecases": [
+    "🎁 Gift Packaging",
+    "👚 Boutique Carry Bags",
+    "🎉 Event Takeaway Bags"
+  ],
+  "customers": [
+    {
+      "name": "FabIndia",
+      "logo": "/images/customers/fabindia-logo.png"
+    },
+    {
+      "name": "Forest Essentials",
+      "logo": "/images/customers/forest-essentials-logo.png"
+    },
+    {
+      "name": "Good Earth",
+      "logo": "/images/customers/goodearth-logo.png"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "Can I get branding or logo printed?",
+      "a": "Yes. We support screen printing and block printing. MOQ applies. Customization may add 3–5 days to delivery timeline."
+    },
+    {
+      "q": "Are these bags reusable?",
+      "a": "Yes. Many customers reuse them for multiple purposes, especially because of the durable handle and rigid structure."
+    },
+    {
+      "q": "How are the handles attached?",
+      "a": "Handles are twisted paper ropes glued internally with double patching for strength."
+    },
+    {
+      "q": "Do these come in other colors?",
+      "a": "Natural brown is standard. On request, white kraft and pastel finishes can be arranged for high-volume orders."
+    }
+  ],
+  "sizePrices": {
+    "8x10x4\"": 18,
+    "10x12x5\"": 22
+  },
+  "sizeImages": {
+    "8x10x4\"": [
+      "/images/products/paperbags/luxury-8x10.svg"
+    ],
+    "10x12x5\"": [
+      "/images/products/paperbags/luxury-10x12.svg"
+    ]
+  },
+  "paperVariant": [
+    "White"
+  ],
+  "printVariants": [
+    "Multi Color"
+  ],
+  "minimumQuantities": {
+    "100 Bags": 100
+  }
+},
+{
+  "name": "Multicolor Promotion Paper Bags",
+  "category": "Paper Bags",
+  "subcategory": "Promotion Paper Bags",
+  "subTitle": "Cost-effective, custom-printed bags for mass giveaways",
+  "category-slug": "paper-bags",
+  "subcategorySlug": "promotion-paper-bags",
+  "slug": "multicolor-promotion-paper-bags",
+  "pageLink": "/paper-bags/promotion-paper-bags/multicolor-promotion-paper-bags",
+  "image": "/images/products/paperbags/1.svg",
+  "featuredImage": "/images/products/paperbags/1.svg",
+  "productImages": [
+    "/images/products/paperbags/1.svg",
+    "/images/products/paperbags/handle-bundle.svg"
+  ],
+  "featuredProduct": "no",
+  "sizes": [
+    {
+      "sizeIn": "7x9x3\"",
+      "sizeCm": "17.8x22.9x7.6cm",
+      "units": [
+        {
+          "unitType": "500 Bags",
+          "offeredPrice": 5000,
+          "sellingPrice": 6500,
+          "moq": 500,
+          "contains": 500,
+          "containsLabel": "bag"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/paperbags/13.svg"
+      ]
+    },
+    {
+      "sizeIn": "9x12x4\"",
+      "sizeCm": "22.9x30.5x10.2cm",
+      "units": [
+        {
+          "unitType": "500 Bags",
+          "offeredPrice": 6000,
+          "sellingPrice": 7800,
+          "moq": 500,
+          "contains": 500,
+          "containsLabel": "bag"
+        }
+      ],
+      "sizeImages": [
+        "/images/products/paperbags/7.svg"
+      ]
+    }
+  ],
+  "features": [
+    "📦 Flat Packed for Bulk Shipping",
+    "🎨 Custom Logo Printing in 1-Color",
+    "🪢 Paper Twine Handles"
+  ],
+  "shippingInfo": "🚚 Shipping coordinated via VRL & Porter. Bulk packed with handle rolls.",
+  "offeredPrice": 12,
+  "sellingPrice": 15,
+  "description": "Affordable and effective, these kraft paper bags are great for exhibitions, events, or product launches where volume matters. Supports 1-color printing.",
+  "highlights": [
+    "🟤 Made from Natural Kraft — Lightweight yet sturdy for short-term use",
+    "🖨️ Supports Block or Flexo Print — Brand name, logo, or message",
+    "🔁 Ideal for Events — Budget-friendly giveaways or brand promotion"
+  ],
+  "specifications": {
+    "Material": "Natural Kraft Paper",
+    "GSM": "80-100",
+    "Handle Type": "Paper Twine",
+    "Color": "Brown Kraft",
+    "Print Method": "1-Color Flexo or Block Print"
+  },
+  "assurance": [
+    {
+      "icon": "♻️",
+      "title": "Eco-Friendly Choice",
+      "desc": "No plastic components. Fully biodegradable and recyclable material."
+    },
+    {
+      "icon": "🛠️",
+      "title": "Flexible MOQ",
+      "desc": "Ideal for high-volume orders with quick turnaround and low minimums."
+    },
+    {
+      "icon": "🇮🇳",
+      "title": "Made in India",
+      "desc": "Sourced and manufactured locally for better control and sustainability."
+    }
+  ],
+  "industry": "Events, FMCG, Pharma, Startups, Education",
+  "usecases": [
+    "🏢 Corporate Events",
+    "🎓 College Fests & Seminars",
+    "📦 Product Sampling Drives"
+  ],
+  "customers": [
+    {
+      "name": "Amul",
+      "logo": "/images/customers/amul-logo.png"
+    },
+    {
+      "name": "IIT Delhi",
+      "logo": "/images/customers/iitd-logo.png"
+    },
+    {
+      "name": "PharmEasy",
+      "logo": "/images/customers/pharmeasy-logo.png"
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What printing options are available?",
+      "a": "We support 1-color flexo or block printing on this variant. It's ideal for logos or text."
+    },
+    {
+      "q": "Can I order below 500 pieces?",
+      "a": "Typically no, but in some cases we offer 250 as a trial MOQ. Please inquire."
+    },
+    {
+      "q": "How fast can these be delivered?",
+      "a": "Production time is 4–6 business days. Delivery depends on your location but typically takes 2–5 days."
+    }
+  ],
+  "sizePrices": {
+    "7x9x3\"": 10,
+    "9x12x4\"": 12
+  },
+  "sizeImages": {
+    "7x9x3\"": [
+      "/images/products/paperbags/handle-bundle.svg"
+    ],
+    "9x12x4\"": [
+      "/images/products/paperbags/8.svg"
+    ]
+  },
+  "paperVariant": [
+    "White"
+  ],
+  "printVariants": [
+    "Multi Color",
+    "1-Color"
+  ],
+  "minimumQuantities": {
+    "500 Bags": 500
+  }
+}
+
+
+
 ]

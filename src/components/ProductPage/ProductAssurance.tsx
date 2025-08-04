@@ -4,8 +4,14 @@ import React from 'react';
 import { Box, Typography, Grid, Divider, useMediaQuery } from '@mui/material';
 import { ItemType } from '../../types/itemTypes';
 
+type AssuranceItem = {
+  icon: React.ReactNode;
+  title: string;
+  desc: string;
+};
+
 type Props = {
-  product: ItemType;
+  product: Omit<ItemType, 'assurance'> & { assurance?: AssuranceItem[] };
 };
 
 const ProductAssurance = ({ product }: Props) => {

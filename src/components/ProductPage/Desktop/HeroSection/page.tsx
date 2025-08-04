@@ -20,7 +20,7 @@ import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip'
 import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
 import DesktopWACTA from '@/components/Common/DesktopWACTA';
 import { WHATSAPP_NUMBER } from '@/components/constants/whatsapp';
-import ProductTitleWithPrice from '../ProductTitleWithPrice';
+import ProductTitleWithPrice from '../../ProductTitleWithPrice';
 
 type Props = {
   product: ItemType;

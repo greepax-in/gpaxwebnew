@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { Box, Typography, Grid, Divider, useMediaQuery } from '@mui/material';
-import ProductCard from '@/components/Home/Products/SimilarProductCard';
+import SimilarProductCard from '@/components/Home/Products/SimilarProductCard';
 import { ItemType } from '@/types/itemTypes';
 import products from '@/data/items.json'; // ✅ Use directly
 
@@ -13,9 +13,10 @@ type Props = {
 const SimilarProducts = ({ currentProduct }: Props) => {
   const isMobile = useMediaQuery('(max-width:600px)');
 
-  // ✅ No normalization needed
+  // Show only items from the same category and not the current product
   const filtered = products.filter(
     (item) =>
+      item.categorySlug === currentProduct.categorySlug &&
       item.subcategorySlug === currentProduct.subcategorySlug &&
       item.slug !== currentProduct.slug
   );
@@ -33,7 +34,7 @@ const SimilarProducts = ({ currentProduct }: Props) => {
       <Grid container spacing={2}>
         {filtered.map((product) => (
           <Grid key={product.slug} size={{ xs: 12, sm: 6, md: 4, lg: 3 }}>
-            <ProductCard
+            <SimilarProductCard
               name={product.name}
               image={product.featuredImage}
               offeredPrice={product.offeredPrice}

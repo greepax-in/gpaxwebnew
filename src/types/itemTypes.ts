@@ -13,11 +13,29 @@ export interface UnitData {
   containsLabel: string;
 }
 
+export interface FAQ {
+  q: string; // Question
+  a: string; // Answer
+}
+
+
 export interface SizeVariant {
   sizeIn: string;
   sizeCm: string;
   sizeImages?: string[];
   units: UnitData[]; // embedded with offeredPrice and sellingPrice
+}
+
+export interface AssuranceInfo {
+  icon: string;    // Emoji or icon string
+  title: string;   // Short headline
+  desc: string;    // Detailed description
+}
+
+export interface Customer {
+  name: string;
+  logo: string;
+  alt?: string;
 }
 
 export interface ItemType {
@@ -33,13 +51,21 @@ export interface ItemType {
   features: string[];
   shippingInfo?: string;
   subTitle?: string;
+  categorySlug: string;
+  subcategorySlug: string;
+  slug: string;
   pageLink?: string;
   offeredPrice?: number;
   sellingPrice?: number;
   description?: string;
+  highlights?: string[];
+  specifications?: string[];
+ assurance?: AssuranceInfo[];
+ customers?: Customer[];
   industry: string;
   printVariants?: string[];
   paperVariant?: string[];
+  faqs: FAQ[];
   usecases: string[];
   minimumQuantities: {
     [unit: string]: number; // e.g., "pc": 100
