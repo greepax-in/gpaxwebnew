@@ -3,6 +3,7 @@
 import React from 'react';
 import { Box, Typography, Chip, Stack, useMediaQuery } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
+import { WhatsApp } from '@mui/icons-material';
 // import { Switch } from '@mui/material';
 
 interface ProductTitleWithPriceProps {
@@ -59,7 +60,7 @@ export default function ProductTitleWithPrice({
       </Typography>
 
       <Typography
-        color="text.secondary"
+        color="text.primary"
         sx={{
           fontSize: isDesktop ? '1.2rem' : '0.75rem',
           mt: -0.5,
@@ -70,7 +71,7 @@ export default function ProductTitleWithPrice({
       </Typography>
 
       <Typography
-        color="text.secondary"
+        color="text.primary"
         sx={{
           mt: 0.75,
           mb: 1,
@@ -191,28 +192,33 @@ export default function ProductTitleWithPrice({
             color="text.secondary"
             sx={{ fontSize: isDesktop ? '1.1rem' : '0.7rem' }}
           >
-            MOQ:&nbsp;
+            MOQ:
             <Box component="span" sx={{ fontWeight: 'bold', display: 'inline' }}>
               {selectedUnit}
             </Box>
             (s)
           </Typography>
 
-          {MOQ >= 500 && (
+         
             <Typography
               variant="caption"
               color="primary"
               sx={{
-                fontSize: isDesktop ? '1.1rem' : '0.7rem',
-                textDecoration: 'underline dotted',
-                textUnderlineOffset: '2px',
-                cursor: 'pointer',
-                whiteSpace: 'nowrap',
+              fontSize: isDesktop ? '1.1rem' : '0.7rem',
+              textDecoration: 'underline dotted',
+              textUnderlineOffset: '2px',
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              display: 'flex',
+              alignItems: 'center',
+              gap: 0.5,
               }}
             >
-              🔖 More units, less cost — let’s chat!
+             🔖Bulk Orders? WhatsApp!
+              <WhatsApp sx={{ fontSize: isDesktop ? 16 : 14, verticalAlign: 'middle', color: '#388e3c' }} color="success" />
+
             </Typography>
-          )}
+          
         </Box>
 
 
@@ -243,10 +249,10 @@ export default function ProductTitleWithPrice({
     sx={{
       color: '#fff',
       fontWeight: 700,
-      fontSize: '0.75rem',
+      fontSize: '0.70rem',
       zIndex: 2,
       ml: sizeUnit === 'IN' ? '25px' : 'auto',
-      mr: sizeUnit === 'CM' ? '24px' : 'auto',
+      mr: sizeUnit === 'CM' ? '21px' : 'auto',
     }}
   >
     {sizeUnit.toUpperCase()}
@@ -257,7 +263,7 @@ export default function ProductTitleWithPrice({
     sx={{
       position: 'absolute',
       top: '0px',
-      left: sizeUnit === 'IN' ? '4px' : 'calc(100% - 20px)',
+      left: sizeUnit === 'IN' ? '1px' : 'calc(100% - 21px)',
       width: 20,
       height: 20,
       borderRadius: '50%',
