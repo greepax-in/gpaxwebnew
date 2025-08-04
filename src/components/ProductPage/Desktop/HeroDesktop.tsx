@@ -6,18 +6,14 @@ import {
   Typography,
   Stack,
   Button,
-  // useMediaQuery,
   Chip,
   IconButton,
   Paper,
   Divider,
-  // Collapse,
-  // Divider,
 } from '@mui/material';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-// import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType } from '@/types/itemTypes';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
@@ -25,7 +21,6 @@ import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip'
 import DesktopWACTA from '@/components/Common/DesktopWACTA';
 import { WHATSAPP_NUMBER } from '@/components/constants/whatsapp';
 import ProductTitleWithPrice from '../ProductTitleWithPrice';
-
 
 type Props = {
   product: ItemType;
@@ -35,7 +30,6 @@ const HeroSection = ({ product }: Props) => {
   const [selectedSize, setSelectedSize] = useState<string>(product.sizes?.[0]?.sizeIn || '');
   const selectedSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);
   const [selectedUnit, setSelectedUnit] = useState<string>(selectedSizeObj?.units?.[0]?.unitType || '');
-    // const [showShippingDetails, setShowShippingDetails] = useState(false);
 
   useEffect(() => {
     const newSizeObj = product.sizes.find(s => s.sizeIn === selectedSize);
@@ -82,14 +76,24 @@ const HeroSection = ({ product }: Props) => {
                   width: '100%',
                   height: '100%',
                   objectFit: 'contain',
-                  pointerEvents: 'none', // prevents scroll interference
+                  pointerEvents: 'none',
                 }}
               />
-            </motion.div>
 
+              {/* Print & Paper Variant Chips overlayed bottom-right */}
+              <Box sx={{ position: 'absolute', bottom: 30, right: 50, zIndex: 3, display: 'flex', gap: 1 }}>
+                {product.printVariants?.[0] && (
+                  <PrintVariantChip label={product.printVariants[0]} size='small' />
+                )}
+                {product.paperVariant?.[0] && (
+                  <PaperVariantChip label={product.paperVariant[0]} size='small' />
+                )}
+              </Box>
+
+            </motion.div>
           </AnimatePresence>
 
-          {/* ✅ Unit price overlay */}
+          {/* Unit price overlay */}
           {selectedUnitData?.sellingPrice && selectedUnitData?.contains && (
             <motion.div
               initial={{ opacity: 0, y: -10 }}
@@ -152,23 +156,23 @@ const HeroSection = ({ product }: Props) => {
             selectedUnit={selectedUnit}
             deviceType='desktop'
             MOQ={selectedUnitData?.moq ?? 0}
-             usecases={product.usecases}
+            usecases={product.usecases}
           />
-          
 
           <Paper
             variant="outlined"
             sx={{
-              p: 2,
+              p: 1,
               bgcolor: 'grey.50',
-              mt:5,
+              mt:4,
               transform: 'translateY(-20%)',
               transition: 'transform 0.3s',
-              minHeight: 200,
+              minHeight: 140,
+              // minWidth: 200,
             }}
           >
             {/* Size Row */}
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt: 0 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt: 0.5 }}>
               <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ minWidth: 64 }}>
                 <span style={{ fontSize: '1rem', color: '#111' }}>📏 Size:</span>
               </Typography>
@@ -207,7 +211,7 @@ const HeroSection = ({ product }: Props) => {
             </Box>
 
             {/* Unit Row */}
-            <Box sx={{ display: 'flex', alignItems: 'center', mb: 2, gap: 2, mt: 4 }}>
+            <Box sx={{ display: 'flex', alignItems: 'center', mb: 0.5, gap: 2, mt: 4 }}>
               <Typography variant="body2" fontWeight={600} color="text.secondary" sx={{ minWidth: 64 }}>
                 <span style={{ fontSize: '1rem', color: '#111' }}>📐 Unit:</span>
               </Typography>
@@ -244,23 +248,7 @@ const HeroSection = ({ product }: Props) => {
               </Box>
             </Box>
 
-            {/* Print / Paper section moved down by 20% */}
-            <Box sx={{ mt: 3, transform: 'translateY(20%)', transition: 'transform 0.3s' }}>
-              <Stack direction="row" spacing={3} alignItems="center">
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="body2" fontWeight={600} color="text.secondary">
-                    Print
-                  </Typography>
-                  <PrintVariantChip label={product.printVariants?.[0] ?? ''} />
-                </Stack>
-                <Stack direction="row" spacing={1} alignItems="center">
-                  <Typography variant="body2" fontWeight={600} color="text.secondary">
-                    Paper
-                  </Typography>
-                  <PaperVariantChip label={product.paperVariant?.[0] ?? ''} />
-                </Stack>
-              </Stack>
-            </Box>
+
           </Paper>
 
   <Box marginTop={-6} sx={{ px: 2 }  }>
