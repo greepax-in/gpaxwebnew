@@ -5,6 +5,7 @@
     "subTitle": "Eco-Friendly and Durable for Food Delivery",
     "subcategory": "Food Delivery Paper Bags",
     "featuredProduct": "yes",
+      "tagtext": "New",
     "categorySlug":"paper-bags",
     "subcategorySlug": "food-delivery-paper-bags",
     "slug": "kraft-printed-food-delivery-paper-bags",
@@ -318,6 +319,7 @@
     "/images/products/papercovers/12.svg"
   ],
   "featuredProduct": "yes",
+        "tagtext": "Hot",
   "sizes": [
     {
       "sizeIn": "6x10\"",
@@ -473,6 +475,7 @@
     "/images/products/paperboxes/burger-boxes.svg"
   ],
   "featuredProduct": "yes",
+          "tagtext": "Popular",
   "sizes": [
     {
       "sizeIn": "6x6x3\"",

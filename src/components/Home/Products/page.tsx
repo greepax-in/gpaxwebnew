@@ -40,7 +40,7 @@ export default function ProductGridSection() {
   };
 
   return (
-    <Box sx={{ position: 'relative', overflow: 'hidden' }}>
+    <Box sx={{ position: 'relative', overflow: 'hidden', marginTop: 0}}>
       {/* Smooth Background Transition */}
       <motion.div
         key={selectedCategory}

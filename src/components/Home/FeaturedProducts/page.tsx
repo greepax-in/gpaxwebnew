@@ -29,7 +29,7 @@ export default function FeaturedProducts() {
       sx={{
         width: '100%',
         backgroundColor: '#fef6e4',
-        height: { xs: '24vh', sm: '50vh' },
+        height: { xs: '27vh', sm: '50vh' },
         px: { xs: 1, sm: 3 },
         py: { xs: 2, sm: 4 },
       }}
@@ -158,7 +158,7 @@ export default function FeaturedProducts() {
                       right: '-4px',
                       backgroundColor: '#34d399',
                       color: '#fff',
-                      fontSize: '0.6rem',
+                      fontSize: '0.75rem',
                       borderRadius: '8px',
                       px: 1,
                       py: 0.2,
