@@ -21,7 +21,7 @@ export default function IndustriesServed({ product }: Props) {
   if (industries.length === 0) return null;
 
   return (
-    <Box component="section" id="industries-served" mt={8} px={isMobile ? 2 : 0}>
+    <Box component="section" id="industries-served" mt={2} px={isMobile ? 2 : 0}>
       <Typography
         variant="h6"
         gutterBottom

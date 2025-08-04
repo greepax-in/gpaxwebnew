@@ -54,6 +54,30 @@ const isMobile = useIsMobile();
         )}
       </div>
 
+      {/* <Box sx={{ border: '2px solid red', mb: 2 }}> */}
+      {/*   <ProductDescription product={product} /> */}
+      {/* </Box> */}
+      {/* <Box sx={{ border: '2px solid blue', mb: 2 }}> */}
+      {/*   <ProductSpecifications product={product} /> */}
+      {/* </Box> */}
+      {/* <Box sx={{ border: '2px solid green', mb: 2 }}> */}
+      {/*   <ProductAssurance product={product} /> */}
+      {/* </Box> */}
+      {/* <Box sx={{ border: '2px solid orange', mb: 2 }}> */}
+      {/*   <IndustriesServed product={product} /> */}
+      {/* </Box> */}
+      {/* <Box sx={{ border: '2px solid purple', mb: 2 }}> */}
+      {/*   <TrustedBy product={product} /> */}
+      {/* </Box> */}
+      {/* <Box sx={{ border: '2px solid brown', mb: 2 }}> */}
+      {/*   <UseCases product={product} /> */}
+      {/* </Box> */}
+      {/* <Box sx={{ border: '2px solid pink', mb: 2 }}> */}
+      {/*   <ProductFAQ product={product} /> */}
+      {/* </Box> */}
+      {/* <Box sx={{ border: '2px solid black', mb: 2 }}> */}
+      {/*   <SimilarProducts currentProduct={product}  /> */}
+      {/* </Box> */}
       <ProductDescription product={product} />
       <ProductSpecifications product={product} />
       <ProductAssurance product={product} />

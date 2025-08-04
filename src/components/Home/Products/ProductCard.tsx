@@ -85,6 +85,15 @@ export default function ProductCard({
             </Typography>
           </Box>
 
+          {/* Print Variant Chips (Mobile) */}
+          {printVariants && printVariants.length > 0 && (
+            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 0.5, mb: 1.2, px: 2 }}>
+              {printVariants.map((variant, i) => (
+                <PrintVariantChip key={i} label={variant} size="small" />
+              ))}
+            </Box>
+          )}
+
           {/* Price Chip Animation */}
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}

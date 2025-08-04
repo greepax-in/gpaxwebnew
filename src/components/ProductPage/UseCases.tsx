@@ -16,7 +16,7 @@ const UseCases = ({ product }: Props) => {
   if (!useCases.length) return null;
 
   return (
-    <Box id="use-cases" component="section" mt={8} px={isMobile ? 2 : 0}>
+    <Box id="use-cases" component="section" mt={2} px={isMobile ? 2 : 0}>
       <Typography variant="h6" gutterBottom display="flex" alignItems="center">
         <Box component="span" mr={1}>🧩</Box> Use Cases
       </Typography>

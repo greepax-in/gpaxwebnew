@@ -25,7 +25,7 @@ const ProductFAQ = ({ product }: Props) => {
   if (!hasFAQs) return null;
 
   return (
-    <Box component="section" id="faqs" mt={8} px={isMobile ? 2 : 0}>
+    <Box component="section" id="faqs" mt={2} px={isMobile ? 2 : 0}>
       <Typography variant="h6" gutterBottom display="flex" alignItems="center">
         <Box component="span" mr={1}>❓</Box>
         Frequently Asked Questions

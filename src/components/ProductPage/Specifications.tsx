@@ -16,7 +16,7 @@ const ProductSpecifications = ({ product }: Props) => {
   if (!hasSpecs) return null;
 
   return (
-    <Box mt={8} component="section" id="specifications" px={isMobile ? 2 : 0}>
+    <Box mt={2} component="section" id="specifications" px={isMobile ? 2 : 0}>
       <Typography variant="h6" gutterBottom display="flex" alignItems="center">
         <Box component="span" mr={1}>📐</Box>
         Specifications

@@ -22,14 +22,14 @@ const ProductAssurance = ({ product }: Props) => {
   if (!hasAssurance) return null;
 
   return (
-    <Box mt={8} component="section" id="assurance" px={isMobile ? 2 : 0}>
+    <Box mt={2} component="section" id="assurance" px={isMobile ? 2 : 0}>
       <Typography variant="h6" gutterBottom display="flex" alignItems="center">
         <Box component="span" mr={1}>🛡️</Box>
         Customer Assurance
       </Typography>
-      <Divider sx={{ mb: 3 }} />
+      <Divider sx={{ mb: 2 }} />
 
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         {list.map((item, index) => (
           <Grid key={index} size={{ xs: 12, sm: 6, md: 6 }}>
             <Box>

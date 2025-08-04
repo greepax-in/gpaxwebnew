@@ -15,7 +15,7 @@ export default function TrustedBy({ product }: Props) {
   if (!product.customers || product.customers.length === 0) return null;
 
   return (
-    <Box component="section" id="trusted-by" mt={8} px={isMobile ? 2 : 0}>
+    <Box component="section" id="trusted-by" mt={2} px={isMobile ? 2 : 0}>
       <Typography
         variant="h6"
         gutterBottom

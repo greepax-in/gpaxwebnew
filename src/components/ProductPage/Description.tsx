@@ -16,10 +16,10 @@ const ProductDetails = ({ product }: Props) => {
   if (!hasHighlights && !hasDescription) return null;
 
   return (
-    <Box mt={8} px={isMobile ? 2 : 0}>
+    <Box mt={2} px={isMobile ? 2 : 0}>
       {/* Description Section */}
       {hasDescription && (
-        <Box component="section" id="description" mb={6}>
+        <Box component="section" id="description" mb={4}>
           <Typography variant="h6" gutterBottom>
             📝 Description
           </Typography>

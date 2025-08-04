@@ -24,7 +24,7 @@ const SimilarProducts = ({ currentProduct }: Props) => {
   if (filtered.length === 0) return null;
 
   return (
-    <Box mt={8} component="section" id="similar-products" px={isMobile ? 2 : 0}>
+    <Box mt={2} component="section" id="similar-products" px={isMobile ? 2 : 0}>
       <Typography variant="h6" gutterBottom display="flex" alignItems="center">
         <Box component="span" mr={1}>🛍️</Box>
         Similar Products
