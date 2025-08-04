@@ -30,7 +30,7 @@ export default function ProductTitleWithPrice({
   containsLabel,
   selectedUnit,
   MOQ,
-  deviceType = 'mobile',
+  // deviceType = 'mobile',
   printVariant,
   usecases = [],
 }: ProductTitleWithPriceProps) {
