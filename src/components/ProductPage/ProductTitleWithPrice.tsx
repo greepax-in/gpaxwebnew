@@ -30,13 +30,13 @@ interface ProductTitleWithPriceProps {
 
 export default function ProductTitleWithPrice({
   title,
-  size,
+  // size,
   offeredPrice,
   sellingPrice,
   contains,
   containsLabel,
   selectedUnit,
-  MOQ,
+  // MOQ,
   // deviceType = 'mobile',
   printVariant,
   usecases = [],
@@ -99,18 +99,18 @@ export default function ProductTitleWithPrice({
           exit={{ opacity: 0, y: -6 }}
           transition={{ duration: 0.25 }}
         >
-          <Stack
+            <Stack
             direction="row"
             spacing={1}
             alignItems="center"
-            sx={{ mb: 0.5, flexWrap: 'wrap', lineHeight: 1.2 }}
-          >
+            sx={{ mb: 0.5, flexWrap: 'wrap', lineHeight: 1.2, fontSize: isDesktop ? '1.25rem' : '0.85rem' }}
+            >
             <Typography
               fontWeight={700}
               color="success.main"
               sx={{
-                fontSize: isDesktop ? '2rem' : '1rem',
-                lineHeight: 1,
+              fontSize: isDesktop ? '2rem' : '1rem',
+              lineHeight: 1,
               }}
             >
               ₹{offeredPrice}
@@ -118,31 +118,34 @@ export default function ProductTitleWithPrice({
 
             {isDiscounted && (
               <Typography
-                sx={{
-                  textDecoration: 'line-through',
-                  fontSize: isDesktop ? '1.5rem' : '0.9rem',
-                  mt: '1px',
-                }}
+              sx={{
+                textDecoration: 'line-through',
+                fontSize: isDesktop ? '1.5rem' : '0.9rem',
+                mt: '1px',
+              }}
               >
-                ₹{sellingPrice}
+              ₹{sellingPrice}
               </Typography>
             )}
 
             {isDiscounted && (
               <Chip
-                label={`-${discount}%`}
-                size="small"
-                sx={{
-                  bgcolor: '#d32f2f',
-                  color: '#fff',
-                  fontWeight: 500,
-                  borderRadius: 1.5,
-                  fontSize: isDesktop ? '1.25rem' : '0.75rem',
-                  height: 22,
-                  px: 0.5,
-                }}
+              label={`-${discount}%`}
+              size="small"
+              sx={{
+                bgcolor: '#d32f2f',
+                color: '#fff',
+                fontWeight: 500,
+                borderRadius: 1.5,
+                fontSize: isDesktop ? '1.25rem' : '0.75rem',
+                height: 22,
+                px: 0.5,
+              }}
               />
             )}
+            <Box component="span" sx={{ fontSize: isDesktop ? '1rem' : '0.7rem', ml: 0.5 }}>
+              (excl. GST)
+            </Box>
           </Stack>
         </motion.div>
       </AnimatePresence>

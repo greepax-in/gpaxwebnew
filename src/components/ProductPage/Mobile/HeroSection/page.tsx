@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import {
   Box,
   Typography,
-  Button,
+  // Button,
   // Chip,
   // Stack,
   IconButton,
@@ -14,20 +14,20 @@ import {
   Stack,
   // Divider,
 } from '@mui/material';
-import WhatsAppIcon from '@mui/icons-material/WhatsApp';
-// import InfoIcon from '@mui/icons-material/Info';
+// import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+
 import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
-// import RecyclingIcon from '@mui/icons-material/Recycling';
+
 import CloseIcon from '@mui/icons-material/Close';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import ChevronRightIcon from '@mui/icons-material/ChevronRight';
-// import TranslateIcon from '@mui/icons-material/Translate';
-// import FactoryIcon from '@mui/icons-material/Factory';
+
 import { motion, AnimatePresence } from 'framer-motion';
 import { ItemType, UnitType } from '@/types/itemTypes';
 import ProductTitleWithPrice from '../../ProductTitleWithPrice';
 import PaperVariantChip from '@/components/Common/VariantChips/PaperVariantChip';
 import PrintVariantChip from '@/components/Common/VariantChips/PrintVariantChip';
+import HeroCTA from '../../HeroCTA';
 
 interface Props {
   product: ItemType;
@@ -42,17 +42,17 @@ export default function ProductMobileUI({ product }: Props) {
   const [isZoomed, setIsZoomed] = useState(false);
 
   const [sizeUnit, setSizeUnit] = useState<'IN' | 'CM'>(() => {
-  if (typeof window !== 'undefined') {
-    return (localStorage.getItem('sizeUnit') as 'IN' | 'CM') || 'IN';
-  }
-  return 'IN';
-});
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('sizeUnit') as 'IN' | 'CM') || 'IN';
+    }
+    return 'IN';
+  });
 
-const toggleSizeUnit = () => {
-  const newUnit = sizeUnit === 'IN' ? 'CM' : 'IN';
-  setSizeUnit(newUnit);
-  localStorage.setItem('sizeUnit', newUnit);
-};
+  const toggleSizeUnit = () => {
+    const newUnit = sizeUnit === 'IN' ? 'CM' : 'IN';
+    setSizeUnit(newUnit);
+    localStorage.setItem('sizeUnit', newUnit);
+  };
 
 
   useEffect(() => {
@@ -206,97 +206,97 @@ const toggleSizeUnit = () => {
         sizeUnit={sizeUnit}
         toggleSizeUnit={toggleSizeUnit}
         GSM={product.GSM || 'N/A'}
-         sizeIn={selectedSize.sizeIn}
-  sizeCm={selectedSize.sizeCm}
+        sizeIn={selectedSize.sizeIn}
+        sizeCm={selectedSize.sizeCm}
       />
 
       {/* Size Chips with Edge Fader and Bounce */}
       <Box sx={{ position: 'relative', px: 0 }}>
-  <Box
-    ref={chipScrollRef}
-    sx={{
-      overflowX: 'auto',
-      display: 'flex',
-      gap: 1,
-      py: 1,
-      pr: 3,
-      scrollBehavior: 'smooth',
-      '::-webkit-scrollbar': { display: 'none' },
-    }}
-  >
-    {product.sizes.map((s) => (
-      <motion.div
-        key={s.sizeIn}
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        animate={{
-          boxShadow:
-            selectedSize.sizeIn === s.sizeIn
-              ? '0 4px 14px rgba(3, 162, 14, 0.18)'
-              : 'none',
-        }}
-        style={{
-          borderRadius: '9999px',
-          display: 'inline-block',
-          flex: '0 0 auto',
-        }}
-      >
         <Box
-          onClick={() => setSelectedSize(s)}
+          ref={chipScrollRef}
           sx={{
-            px: 1.5,
-            py: 0.5,
-            borderRadius: '9999px',
-            border:
-              selectedSize.sizeIn === s.sizeIn
-                ? '1.5px solid #03a20eff'
-                : '1px solid #ebbb29ff',
-            bgcolor:
-              selectedSize.sizeIn === s.sizeIn ? '#fff' : '#fff7ed',
-            color:
-              selectedSize.sizeIn === s.sizeIn
-                ? '#ff5722'
-                : '#8c3a00',
-            fontWeight: 500,
-            fontSize: '0.75rem',
-            minWidth: 64,
-            textAlign: 'center',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease',
+            overflowX: 'auto',
+            display: 'flex',
+            gap: 1,
+            py: 1,
+            pr: 3,
+            scrollBehavior: 'smooth',
+            '::-webkit-scrollbar': { display: 'none' },
           }}
         >
-          {sizeUnit === 'IN' ? s.sizeIn : s.sizeCm}
+          {product.sizes.map((s) => (
+            <motion.div
+              key={s.sizeIn}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow:
+                  selectedSize.sizeIn === s.sizeIn
+                    ? '0 4px 14px rgba(3, 162, 14, 0.18)'
+                    : 'none',
+              }}
+              style={{
+                borderRadius: '9999px',
+                display: 'inline-block',
+                flex: '0 0 auto',
+              }}
+            >
+              <Box
+                onClick={() => setSelectedSize(s)}
+                sx={{
+                  px: 1.5,
+                  py: 0.5,
+                  borderRadius: '9999px',
+                  border:
+                    selectedSize.sizeIn === s.sizeIn
+                      ? '1.5px solid #03a20eff'
+                      : '1px solid #ebbb29ff',
+                  bgcolor:
+                    selectedSize.sizeIn === s.sizeIn ? '#fff' : '#fff7ed',
+                  color:
+                    selectedSize.sizeIn === s.sizeIn
+                      ? '#ff5722'
+                      : '#8c3a00',
+                  fontWeight: 500,
+                  fontSize: '0.75rem',
+                  minWidth: 64,
+                  textAlign: 'center',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                }}
+              >
+                {sizeUnit === 'IN' ? s.sizeIn : s.sizeCm}
+              </Box>
+            </motion.div>
+          ))}
         </Box>
-      </motion.div>
-    ))}
-  </Box>
 
-  {/* Edge Faders */}
-  <Box
-    sx={{
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      left: 0,
-      width: 24,
-      background: 'linear-gradient(to right, #fff, rgba(255,255,255,0))',
-      pointerEvents: 'none',
-      zIndex: 1,
-    }}
-  />
-  <Box
-    sx={{
-      position: 'absolute',
-      top: 0,
-      bottom: 0,
-      right: 0,
-      width: 24,
-      background: 'linear-gradient(to left, #fff, rgba(255,255,255,0))',
-      pointerEvents: 'none',
-      zIndex: 1,
-    }}
-  />
-</Box>
+        {/* Edge Faders */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            left: 0,
+            width: 24,
+            background: 'linear-gradient(to right, #fff, rgba(255,255,255,0))',
+            pointerEvents: 'none',
+            zIndex: 1,
+          }}
+        />
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            bottom: 0,
+            right: 0,
+            width: 24,
+            background: 'linear-gradient(to left, #fff, rgba(255,255,255,0))',
+            pointerEvents: 'none',
+            zIndex: 1,
+          }}
+        />
+      </Box>
 
 
       {/* Unit Chips */}
@@ -356,9 +356,9 @@ const toggleSizeUnit = () => {
           alignItems: 'center',
           gap: 0.5,
         }}
-      > 
-         {/* Features */}
-  {/* <Typography
+      >
+        {/* Features */}
+        {/* <Typography
     variant="body2"
     color="black"
     sx={{
@@ -452,22 +452,13 @@ const toggleSizeUnit = () => {
           // px: 0,
         }}
       >
-        <Button
-          fullWidth
-          variant="contained"
-          color="success"
-          startIcon={<WhatsAppIcon />}
-          sx={{
-            fontWeight: 600,
-            fontSize: '1rem',
-            borderRadius: 2,
-            py: 0.5,
-          }}
-        >
-          Buy via WhatsApp
-        </Button>
+        <HeroCTA
+          title={product.name}
+          size={selectedSize.sizeIn || ''}
+          selectedUnit={selectedUnit}
+          MOQ={selectedUnitData?.moq ?? 0}
+        />
       </Box>
-
 
 
 

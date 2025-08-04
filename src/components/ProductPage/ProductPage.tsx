@@ -5,7 +5,9 @@ import { Box} from '@mui/material';
 import useIsMobile from '@/components/Common/isMobile';
 
 // import HeroMobile from '@/components/ProductPage/Mobile/HeroMobile';
-import HeroDesktop from '@/components/ProductPage/Desktop/HeroSection/page'; // fallback if exists
+import DesktoHero from '@/components/ProductPage/Desktop/HeroSection/page'; // fallback if exists
+import MobileHero from './Mobile/HeroSection/page'
+
 import BackToTopButton from '../Common/BacktoTopButton';
 import ProductDescription from '@/components/ProductPage/Description';
 import ProductSpecifications from './Specifications';
@@ -18,10 +20,9 @@ import IndustriesServed from './IndustryServed';
 import TrustedBy from './TrustedBy';
 import UseCases from './UseCases';
 import { ItemType } from '../../types/itemTypes';
-// import ProductPageMobile from './Mobile/HeroSection/ProductPageMobile';
-import ProductPageMobile3 from './Mobile/HeroSection/page'
-// import DesktopWACTA from '../Common/DesktopWACTA';
-// import products from '@/data/items.json';  
+
+
+
 
 type Props = {
   product: ItemType;
@@ -43,12 +44,12 @@ const isMobile = useIsMobile();
       <div ref={heroRef}>
         {isMobile ? (
           <>
-            <ProductPageMobile3  product={product}/>
+            <MobileHero product={product} />
             <BackToTopButton />
           </>
         ) : (
           <>
-            <HeroDesktop product={product} />
+            <DesktoHero product={product} />
             <BackToTopButton  />
           </>
         )}
