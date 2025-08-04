@@ -44,6 +44,20 @@ const HeroSection = ({ product }: Props) => {
   const handlePrev = () => setIndex((prev) => (prev - 1 + images.length) % images.length);
   const handleThumbnailClick = (i: number) => setIndex(i);
 
+    const [sizeUnit, setSizeUnit] = useState<'IN' | 'CM'>(() => {
+    if (typeof window !== 'undefined') {
+      return (localStorage.getItem('sizeUnit') as 'IN' | 'CM') || 'IN';
+    }
+    return 'IN';
+  });
+  
+  const toggleSizeUnit = () => {
+    const newUnit = sizeUnit === 'IN' ? 'CM' : 'IN';
+    setSizeUnit(newUnit);
+    localStorage.setItem('sizeUnit', newUnit);
+  };
+  
+
   return (
     <Box>
       <Box display="flex" flexDirection="row" gap={4}>
@@ -157,6 +171,9 @@ const HeroSection = ({ product }: Props) => {
             deviceType='desktop'
             MOQ={selectedUnitData?.moq ?? 0}
             usecases={product.usecases}
+              sizeUnit={sizeUnit}
+        toggleSizeUnit={toggleSizeUnit}
+        GSM={product.GSM || 'N/A'}
           />
 
           <Paper

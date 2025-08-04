@@ -12,6 +12,7 @@
     "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
     "image": "/images/products/paperbags/7.svg",
     "featuredImage": "/images/products/paperbags/7.svg",
+    "GSM":"120-150 GSM",
     "productImages": [
       "/images/products/paperbags/7.svg",
       "/images/products/paperbags/13.svg"
@@ -314,6 +315,7 @@
   "pageLink": "/paper-covers/grocery-paper-covers/kraft-plain-grocery-paper-covers",
   "image": "images/products/papercovers/6.svg",
   "featuredImage": "/images/products/papercovers/cover-thumb.svg",
+      "GSM":"120-150",
   "productImages": [
     "/images/products/papercovers/6.svg",
     "/images/products/papercovers/12.svg"
@@ -772,6 +774,7 @@
   "pageLink": "/paper-bags/promotion-paper-bags/multicolor-promotion-paper-bags",
   "image": "/images/products/paperbags/1.svg",
   "featuredImage": "/images/products/paperbags/1.svg",
+      "GSM":"120-150 GSM",
   "productImages": [
     "/images/products/paperbags/1.svg",
     "/images/products/paperbags/handle-bundle.svg"

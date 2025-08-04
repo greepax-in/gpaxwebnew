@@ -41,6 +41,20 @@ export default function ProductMobileUI({ product }: Props) {
   const chipScrollRef = useRef<HTMLDivElement>(null);
   const [isZoomed, setIsZoomed] = useState(false);
 
+  const [sizeUnit, setSizeUnit] = useState<'IN' | 'CM'>(() => {
+  if (typeof window !== 'undefined') {
+    return (localStorage.getItem('sizeUnit') as 'IN' | 'CM') || 'IN';
+  }
+  return 'IN';
+});
+
+const toggleSizeUnit = () => {
+  const newUnit = sizeUnit === 'IN' ? 'CM' : 'IN';
+  setSizeUnit(newUnit);
+  localStorage.setItem('sizeUnit', newUnit);
+};
+
+
   useEffect(() => {
     const availableUnits = selectedSize.units.map(u => u.unitType);
     if (!availableUnits.includes(selectedUnit)) {
@@ -189,98 +203,99 @@ export default function ProductMobileUI({ product }: Props) {
         deviceType='mobile'
         printVariant={product.printVariants?.[0]}
         usecases={product.usecases}
+        sizeUnit={sizeUnit}
+        toggleSizeUnit={toggleSizeUnit}
+        GSM={product.GSM || 'N/A'}
       />
 
       {/* Size Chips with Edge Fader and Bounce */}
       <Box sx={{ position: 'relative', px: 0 }}>
+  <Box
+    ref={chipScrollRef}
+    sx={{
+      overflowX: 'auto',
+      display: 'flex',
+      gap: 1,
+      py: 1,
+      pr: 3,
+      scrollBehavior: 'smooth',
+      '::-webkit-scrollbar': { display: 'none' },
+    }}
+  >
+    {product.sizes.map((s) => (
+      <motion.div
+        key={s.sizeIn}
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        animate={{
+          boxShadow:
+            selectedSize.sizeIn === s.sizeIn
+              ? '0 4px 14px rgba(3, 162, 14, 0.18)'
+              : 'none',
+        }}
+        style={{
+          borderRadius: '9999px',
+          display: 'inline-block',
+          flex: '0 0 auto',
+        }}
+      >
         <Box
-          ref={chipScrollRef}
+          onClick={() => setSelectedSize(s)}
           sx={{
-            overflowX: 'auto',
-            display: 'flex',
-            gap: 1,
-            py: 1,
-            pr: 3,
-            scrollBehavior: 'smooth',
-
-            '::-webkit-scrollbar': { display: 'none' },
+            px: 1.5,
+            py: 0.5,
+            borderRadius: '9999px',
+            border:
+              selectedSize.sizeIn === s.sizeIn
+                ? '1.5px solid #03a20eff'
+                : '1px solid #ebbb29ff',
+            bgcolor:
+              selectedSize.sizeIn === s.sizeIn ? '#fff' : '#fff7ed',
+            color:
+              selectedSize.sizeIn === s.sizeIn
+                ? '#ff5722'
+                : '#8c3a00',
+            fontWeight: 500,
+            fontSize: '0.75rem',
+            minWidth: 64,
+            textAlign: 'center',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease',
           }}
         >
-          {product.sizes.map((s) => (
-            <motion.div
-              key={s.sizeIn}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              animate={{
-                boxShadow:
-                  selectedSize.sizeIn === s.sizeIn
-                    ? '0 4px 14px rgba(3, 162, 14, 0.18)'
-                    : 'none',
-              }}
-              style={{
-                borderRadius: '9999px',
-                display: 'inline-block',
-                flex: '0 0 auto',
-              }}
-            >
-              <Box
-                onClick={() => setSelectedSize(s)}
-                sx={{
-                  px: 1.5,
-                  py: 0.5,
-                  borderRadius: '9999px',
-                  border:
-                    selectedSize.sizeIn === s.sizeIn
-                      ? '1.5px solid #03a20eff'
-                      : '1px solid #ebbb29ff',
-                  bgcolor:
-                    selectedSize.sizeIn === s.sizeIn ? '#fff' : '#fff7ed',
-                  color:
-                    selectedSize.sizeIn === s.sizeIn
-                      ? '#ff5722'
-                      : '#8c3a00',
-                  fontWeight: 500,
-                  fontSize: '0.75rem',
-                  minWidth: 64,
-                  textAlign: 'center',
-                  cursor: 'pointer',
-                  transition: 'all 0.2s ease',
-                }}
-              >
-                {s.sizeIn}
-              </Box>
-            </motion.div>
-          ))}
-
-
+          {sizeUnit === 'IN' ? s.sizeIn : s.sizeCm}
         </Box>
+      </motion.div>
+    ))}
+  </Box>
 
-        {/* Edge Fader */}
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            left: 0,
-            width: 24,
-            background: 'linear-gradient(to right, #fff, rgba(255,255,255,0))',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }}
-        />
-        <Box
-          sx={{
-            position: 'absolute',
-            top: 0,
-            bottom: 0,
-            right: 0,
-            width: 24,
-            background: 'linear-gradient(to left, #fff, rgba(255,255,255,0))',
-            pointerEvents: 'none',
-            zIndex: 1,
-          }}
-        />
-      </Box>
+  {/* Edge Faders */}
+  <Box
+    sx={{
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      left: 0,
+      width: 24,
+      background: 'linear-gradient(to right, #fff, rgba(255,255,255,0))',
+      pointerEvents: 'none',
+      zIndex: 1,
+    }}
+  />
+  <Box
+    sx={{
+      position: 'absolute',
+      top: 0,
+      bottom: 0,
+      right: 0,
+      width: 24,
+      background: 'linear-gradient(to left, #fff, rgba(255,255,255,0))',
+      pointerEvents: 'none',
+      zIndex: 1,
+    }}
+  />
+</Box>
+
 
       {/* Unit Chips */}
       <Box
@@ -315,33 +330,33 @@ export default function ProductMobileUI({ product }: Props) {
       </Box>
 
 
-<Box
-  sx={{
-    width: '100%',
-    height: '1px',
-    background: 'linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.1), rgba(0,0,0,0.05))',
-    my: 0.5,
-  }}
-/>
+      {/* <Box
+        sx={{
+          width: '100%',
+          height: '1px',
+          background: 'linear-gradient(to right, rgba(0,0,0,0.05), rgba(0,0,0,0.1), rgba(0,0,0,0.05))',
+          my: 0.5,
+        }}
+      /> */}
 
 
       {/* <Divider sx={{mt:1}} /> */}
       {/* Features */}
-  <Box
-  sx={{
-    mt: 0.4,
-    px: 1,
-    py: 0.5,
-    borderRadius: 2,
-    backgroundColor: '#f7f7ff',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    gap: 0.5,
-  }}
->
-  {/* Features */}
-  <Typography
+      <Box
+        sx={{
+          mt: 0.6,
+          px: 1,
+          py: 0.5,
+          borderRadius: 2,
+          backgroundColor: '#f7f7ff',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 0.5,
+        }}
+      > 
+         {/* Features */}
+  {/* <Typography
     variant="body2"
     color="black"
     sx={{
@@ -356,30 +371,30 @@ export default function ProductMobileUI({ product }: Props) {
         {f}
       </React.Fragment>
     ))}
-  </Typography>
+  </Typography>  */}
 
-  {/* Info tags */}
-  <Stack
-    direction="row"
-    spacing={1}
-    alignItems="center"
-    justifyContent="center"
-    sx={{ fontSize: '0.75rem' }}
-  >
-    <Typography variant="body2" color="black" fontSize="0.75rem">
-      🌐 Multi-Language Design
-    </Typography>
-    <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
-    <Typography variant="body2" color="black" fontSize="0.75rem">
-      🏭 Manufacture Direct
-    </Typography>
-  </Stack>
-</Box>
-
-
+        {/* Info tags */}
+        <Stack
+          direction="row"
+          spacing={1}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ fontSize: '0.75rem' }}
+        >
+          <Typography variant="body2" color="black" fontSize="0.75rem">
+            🌐 Multi-Language Design
+          </Typography>
+          <Divider orientation="vertical" flexItem sx={{ mx: 0.5 }} />
+          <Typography variant="body2" color="black" fontSize="0.75rem">
+            🏭 Manufacture Direct
+          </Typography>
+        </Stack>
+      </Box>
 
 
-{/* <Divider sx={{ borderColor: 'rgba(0, 0, 0, 0.05)', my: 1 }} /> */}
+
+
+      {/* <Divider sx={{ borderColor: 'rgba(0, 0, 0, 0.05)', my: 1 }} /> */}
       {/* Shipping Info */}
       {/* Shipping Info */}
       <Box sx={{ px: 1, mt: 0.5 }}>
@@ -428,11 +443,11 @@ export default function ProductMobileUI({ product }: Props) {
         sx={{
           position: 'sticky',
           bottom: 0,
-          zIndex: 1300,
+          zIndex: 1200,
           bgcolor: '#fff',
           // borderTop: '1px solid #e0e0e0',
-          py: `calc(env(safe-area-inset-bottom, 0px) + 1px)`,
-          px: 2,
+          // py: `calc(env(safe-area-inset-bottom, 0px) + 1px)`,
+          // px: 0,
         }}
       >
         <Button
@@ -444,7 +459,7 @@ export default function ProductMobileUI({ product }: Props) {
             fontWeight: 600,
             fontSize: '1rem',
             borderRadius: 2,
-            py: 1.25,
+            py: 0.5,
           }}
         >
           Buy via WhatsApp

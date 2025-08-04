@@ -1,8 +1,9 @@
 'use client';
 
 import React from 'react';
-import { Box, Typography, Chip, Stack, useMediaQuery } from '@mui/material';
+import { Box, Typography, Chip, Stack, useMediaQuery, Button, Switch } from '@mui/material';
 import { motion, AnimatePresence } from 'framer-motion';
+// import { Switch } from '@mui/material';
 
 interface ProductTitleWithPriceProps {
   title: string;
@@ -19,6 +20,9 @@ interface ProductTitleWithPriceProps {
   printVariant?: string;
   features?: string[];
   usecases?: string[];
+  sizeUnit: 'IN' | 'CM';
+  GSM: string; // Optional GSM for paper products
+  toggleSizeUnit: () => void;
 }
 
 export default function ProductTitleWithPrice({
@@ -33,6 +37,9 @@ export default function ProductTitleWithPrice({
   // deviceType = 'mobile',
   printVariant,
   usecases = [],
+  sizeUnit,
+  toggleSizeUnit,
+  GSM
 }: ProductTitleWithPriceProps) {
   const derivedPrice = contains ? (offeredPrice / contains).toFixed(2) : undefined;
   const isDiscounted = offeredPrice < sellingPrice;
@@ -59,7 +66,7 @@ export default function ProductTitleWithPrice({
           mb: 0.5,
         }}
       >
-        {size} • {selectedUnit} • {printVariant}
+        {size}  • {GSM} • {selectedUnit} • {printVariant}
       </Typography>
 
       <Typography
@@ -170,44 +177,106 @@ export default function ProductTitleWithPrice({
       <Box
         sx={{
           display: 'flex',
-          justifyContent: 'left',
+          justifyContent: 'space-between',
           alignItems: 'center',
-          gap: 1,
           mt: 0.75,
-          px: 0,
           flexWrap: 'wrap',
+          gap: 1,
         }}
       >
-        <Typography
-          variant="caption"
-          color="text.secondary"
-          sx={{
-            fontSize: isDesktop ? '1.1rem' : '0.7rem',
-          }}
-        >
-          MOQ:&nbsp;
-          <Box component="span" sx={{ fontWeight: 'bold', display: 'inline' }}>
-            {selectedUnit}
-          </Box>
-          (s)
-        </Typography>
-
-        {MOQ >= 500 && (
+        {/* Left content */}
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 1, flexWrap: 'wrap' }}>
           <Typography
             variant="caption"
-            color="primary"
-            sx={{
-              fontSize: isDesktop ? '1.1rem' : '0.7rem',
-              textDecoration: 'underline dotted',
-              textUnderlineOffset: '2px',
-              cursor: 'pointer',
-              whiteSpace: 'nowrap',
-            }}
+            color="text.secondary"
+            sx={{ fontSize: isDesktop ? '1.1rem' : '0.7rem' }}
           >
-            🔖 More units, less cost — let’s chat!
+            MOQ:&nbsp;
+            <Box component="span" sx={{ fontWeight: 'bold', display: 'inline' }}>
+              {selectedUnit}
+            </Box>
+            (s)
           </Typography>
-        )}
-      </Box>
-    </Box>
+
+          {MOQ >= 500 && (
+            <Typography
+              variant="caption"
+              color="primary"
+              sx={{
+                fontSize: isDesktop ? '1.1rem' : '0.7rem',
+                textDecoration: 'underline dotted',
+                textUnderlineOffset: '2px',
+                cursor: 'pointer',
+                whiteSpace: 'nowrap',
+              }}
+            >
+              🔖 More units, less cost — let’s chat!
+            </Typography>
+          )}
+        </Box>
+
+
+  {/* Right label when CM is active */}
+
+
+
+  {/* Toggle Button Right */}
+ <Box
+  onClick={toggleSizeUnit}
+  sx={{
+    width: 44,
+    height: 20,
+    borderRadius: '999px',
+    bgcolor: sizeUnit === 'IN' ? '#4caf50' : '#4caf50',
+    position: 'relative',
+    cursor: 'pointer',
+    display: 'flex',
+    alignItems: 'center',
+    px: '2px',
+  
+    // transition: 'all 0.3s ease-in-out',
+  }}
+>
+  {/* Text Label */}
+  <Typography
+    variant="caption"
+    sx={{
+      color: '#fff',
+      fontWeight: 700,
+      fontSize: '0.75rem',
+      zIndex: 2,
+      ml: sizeUnit === 'IN' ? '25px' : 'auto',
+      mr: sizeUnit === 'CM' ? '24px' : 'auto',
+    }}
+  >
+    {sizeUnit.toUpperCase()}
+  </Typography>
+
+  {/* White Toggle Ball */}
+  <Box
+    sx={{
+      position: 'absolute',
+      top: '0px',
+      left: sizeUnit === 'IN' ? '4px' : 'calc(100% - 20px)',
+      width: 20,
+      height: 20,
+      borderRadius: '50%',
+      bgcolor: '#fff',
+      transition: 'left 0.3s ease-in-out',
+    }}
+  />
+</Box>
+
+  </Box>
+
+
+
+
+
+
+
+
+</Box>
+  
   );
 }

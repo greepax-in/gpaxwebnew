@@ -55,6 +55,7 @@ export interface ItemType {
   subcategorySlug: string;
   slug: string;
   pageLink?: string;
+  GSM?: string; // Optional GSM for paper products
   offeredPrice?: number;
   sellingPrice?: number;
   description?: string;
