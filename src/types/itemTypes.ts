@@ -38,8 +38,34 @@ export interface Customer {
   alt?: string;
 }
 
+export interface VariantInfo {
+  type: 'plain' | 'printed' | 'multicolor';
+  printColors?: number;
+}
+
+export interface MaterialInfo {
+  paperType: string[];
+  gsmRange: string;
+  foodSafe: boolean;
+}
+
+export interface TaxonomyInfo {
+  industries: string[];
+  useCases: string[];
+  foodSafe: boolean;
+}
+
 export interface ItemType {
+  id?: string;
   name: string;
+  category?: string;
+  subcategory?: string;
+  productType?: 'bag' | 'cover' | 'box';
+  variant?: VariantInfo;
+  material?: MaterialInfo;
+  taxonomy?: TaxonomyInfo;
+  tag?: string;
+  featured?: boolean;
   image: string;
   productImages?: string[];
   featuredImage?: string;
@@ -53,32 +79,17 @@ export interface ItemType {
   subTitle?: string;
   categorySlug: string;
   subcategorySlug: string;
+  baseSlug?: string;
   slug: string;
   pageLink?: string;
   GSM?: string; // Optional GSM for paper products
-  offeredPrice?: number;
-  sellingPrice?: number;
   description?: string;
   highlights?: string[];
-  specifications?: string[];
+  specifications?: Record<string, string>;
  assurance?: AssuranceInfo[];
  customers?: Customer[];
-  industry: string;
-  printVariants?: string[];
-  paperVariant?: string[];
   faqs: FAQ[];
-  usecases: string[];
   minimumQuantities: {
     [unit: string]: number; // e.g., "pc": 100
-  };
-  sizePrices?: {
-    [size: string]: number;
-  };
-  variantPrices?: {
-    [size: string]: {
-      [unit: string]: {
-        [quantity: string]: number;
-      };
-    };
   };
 }

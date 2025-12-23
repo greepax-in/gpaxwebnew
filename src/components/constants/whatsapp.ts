@@ -1,11 +1,17 @@
-export const WHATSAPP_NUMBER = '917207907222'; // without + sign
-export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}`;
-export const facebookURL = 'https://www.facebook.com/greenpax.in';
-export const instagramURL = 'https://www.instagram.com/greenpax.in/';
-export const twitterURL = 'https://twitter.com/greenpax_in';
-export const youtubeURL = 'https://www.youtube.com/@greenpax.in';
+// CODEX_PATCH_BEGIN
+// FILE: src/components/constants/whatsapp.ts
 
+/**
+ * Global WhatsApp configuration
+ * Used across AppBar, CTA buttons, and structured data
+ */
 
-export const getWhatsAppLink = (message: string) =>
-  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+export const WHATSAPP_NUMBER = '91XXXXXXXXXX';
 
+/**
+ * Pre-filled WhatsApp enquiry message
+ * URL-encoded usage recommended when composing links
+ */
+export const WHATSAPP_DEFAULT_MESSAGE =
+  'Hello GreenPax, I would like to enquire about eco-friendly paper packaging.';
+// CODEX_PATCH_END

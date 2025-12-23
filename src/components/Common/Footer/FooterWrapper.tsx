@@ -1,17 +1,27 @@
+// CODEX_PATCH_BEGIN
+// FILE: src/components/Common/Footer/FooterWrapper.tsx
+
 'use client';
 
-import { useEffect, useState } from 'react';
-import Footer from '../../Home/Footer/page';
+import { Box, Typography } from '@mui/material';
 
-export default function FooterWrapper() {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    // Wait a short delay to let main content hydrate
-    const timeout = setTimeout(() => setReady(true), 30);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (!ready) return null;
-  return <Footer />;
+export default function FooterWrapper(): JSX.Element {
+  return (
+    <Box
+      component="footer"
+      sx={{
+        mt: 'auto',
+        py: 3,
+        px: 2,
+        backgroundColor: '#f5f5f5',
+        borderTop: '1px solid #e0e0e0',
+        textAlign: 'center',
+      }}
+    >
+      <Typography variant="body2" color="text.secondary">
+        © {new Date().getFullYear()} GreenPax. All rights reserved.
+      </Typography>
+    </Box>
+  );
 }
+// CODEX_PATCH_END

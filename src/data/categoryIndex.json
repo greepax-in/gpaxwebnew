@@ -1,0 +1,42 @@
+{
+  "paper-bags": {
+    "category": "Paper Bags",
+    "subcategories": {
+      "food-delivery-paper-bags": {
+        "subcategory": "Food Delivery Paper Bags",
+        "productIds": [
+          "paper-bags_food-delivery_kraft-printed_001"
+        ]
+      },
+      "promotion-paper-bags": {
+        "subcategory": "Promotion Paper Bags",
+        "productIds": [
+          "paper-bags_promotion_kraft-printed_001",
+          "paper-bags_promotion_multicolor_001"
+        ]
+      }
+    }
+  },
+  "paper-covers": {
+    "category": "Paper Covers",
+    "subcategories": {
+      "grocery-paper-covers": {
+        "subcategory": "Grocery Paper Covers",
+        "productIds": [
+          "paper-covers_grocery_kraft-plain_001"
+        ]
+      }
+    }
+  },
+  "paper-boxes": {
+    "category": "Paper Boxes",
+    "subcategories": {
+      "cake-boxes": {
+        "subcategory": "Cake Boxes",
+        "productIds": [
+          "paper-boxes_cake_kraft-printed_001"
+        ]
+      }
+    }
+  }
+}

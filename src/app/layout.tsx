@@ -1,22 +1,18 @@
-'use client';
-
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
-import dynamic from "next/dynamic";
-import { useMediaQuery } from "@mui/material";
-import MobileMenu from "@/components/AppBar/MobileMenu";
-import FooterWrapper from "@/components/Common/Footer/FooterWrapper"; // ✅ Import Footer
+import FooterWrapper from "@/components/Common/Footer/FooterWrapper"; // ?. Import Footer
+import ThemeRegistry from "@/theme/ThemeRegistry";
 
-const AppBar = dynamic(() => import('@/components/AppBar/DeskMenu'), { ssr: false });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const sora = Sora({
+  variable: "--font-display",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const manrope = Manrope({
+  variable: "--font-body",
   subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 export default function RootLayout({
@@ -24,31 +20,29 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const isDesktop = useMediaQuery('(min-width:600px)');
-
   return (
     <html lang="en">
       <head>
         <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#2e7d32" />
+        <meta name="theme-color" content="#1f7a52" />
         <link rel="icon" href="/images/greenpax-logo.svg" />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable}`}
+        className={`${sora.variable} ${manrope.variable}`}
         style={{ margin: 0, padding: 0 }}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-          }}
-        >
-          {isDesktop && <AppBar />}
-          <main style={{ flexGrow: 1 }}>{children}</main>
-          <FooterWrapper />
-        </div>
-        <MobileMenu />
+        <ThemeRegistry>
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              minHeight: "100vh",
+            }}
+          >
+            <main style={{ flexGrow: 1 }}>{children}</main>
+            <FooterWrapper />
+          </div>
+        </ThemeRegistry>
       </body>
     </html>
   );

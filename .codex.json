@@ -1,0 +1,120 @@
+{
+  "instructions_file": "docs/website_instructions.md",
+
+  "version": "1.0",
+  "project": "GreenPax Website Revamp",
+  "enforce": true,
+
+  "rules": {
+    "node_version": {
+      "required": true,
+      "match_package_json": true,
+      "reason": "ChatGPT and Codex must use identical Node/Next versions to prevent drift."
+    },
+
+    "next_version": {
+      "allowed": ["16.0.4"],
+      "reason": "All code must be generated for Next.js 16 only."
+    },
+
+    "react_version": {
+      "allowed": ["19.2.0"],
+      "reason": "Consistency between ChatGPT and Codex."
+    },
+
+    "prevent_structure_drift": {
+      "required": true,
+      "allowed_folders": [
+        "src",
+        "src/app",
+        "src/components",
+        "src/data",
+        "src/lib",
+        "public",
+        "public/images",
+        "public/icons"
+      ],
+      "reason": "Folder structure must never change unless explicitly updated in website_instructions.md."
+    },
+
+    "cta_flow": {
+      "single_whatsapp_cta": true,
+      "no_add_to_quote": true,
+      "unified_whatsapp_helper": true,
+      "reason": "WhatsApp must be the only consistent order CTA across desktop & mobile."
+    },
+
+    "text_safety": {
+      "forbid_garbled_characters": true,
+      "reason": "Garbled characters break trust, SEO, and brand quality."
+    },
+
+    "typescript": {
+      "strict": true,
+      "forbid_ignore_build_errors": true,
+      "sync_with_items_json": true,
+      "reason": "Data in items.json is the source of truth; type drift must not happen."
+    },
+
+    "items_json_source_of_truth": {
+      "enforced": true,
+      "reason": "All pricing, units, features, specs, and CTAs must derive from items.json."
+    },
+
+    "seo_metadata": {
+      "required_generateMetadata": true,
+      "require_json_ld_product": true,
+      "require_open_graph": true,
+      "require_canonical": true,
+      "reason": "SEO must be correct from day one."
+    },
+
+    "ssr_navigation": {
+      "required": true,
+      "reason": "Navigation and layout must be SSR for SEO + performance."
+    },
+
+    "pwa_strategy": {
+      "allowed_modes": ["app-router-pwa", "static-export-no-pwa"],
+      "reason": "Prevent broken PWA builds with unsupported hybrid configs."
+    },
+
+    "performance": {
+      "limit_framer_motion": true,
+      "lazy_load_images": true,
+      "priority_first_hero_image": true,
+      "no_ssr_false_on_layout": true,
+      "reason": "Website must be mobile-first and extremely fast."
+    },
+
+    "product_card_rules": {
+      "required": [
+        "image",
+        "name",
+        "subtitle",
+        "from_price",
+        "pack_info",
+        "eco_badges",
+        "variant_badges",
+        "bulk_hint"
+      ],
+      "reason": "All product cards must have a consistent ecommerce look."
+    },
+
+    "api_hardening": {
+      "required_post_only_for_mutations": true,
+      "required_zod_validation": true,
+      "rate_limit_required": true,
+      "escape_and_sanitize": true,
+      "never_log_sensitive_data": true
+    }
+  },
+
+  "block_any_violation": true,
+
+  "notes": [
+    "This codex.json binds ChatGPT and VSCode Codex to the rulebook defined in website_instructions.md.",
+    "Any code generation must comply with all rules listed here.",
+    "Any deviation or violation must trigger warnings or blocking behavior in development."
+  ]
+}
