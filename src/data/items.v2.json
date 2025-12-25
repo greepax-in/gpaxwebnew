@@ -30,20 +30,24 @@
         "sizeCm": "15.2x15.5x20.3cm",
         "units": [
           {
-            "unitType": "500 Bags",
-            "offeredPrice": 4000,
-            "sellingPrice": 7000,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 7000,
+              "offered": 4000,
+              "priceType": "order"
+            }
           },
           {
-            "unitType": "1000 Bags",
-            "offeredPrice": 7500,
-            "sellingPrice": 10000,
+            "uom": "pcs",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 10000,
+              "offered": 7500,
+              "priceType": "order"
+            }
           }
         ]
       },
@@ -52,20 +56,24 @@
         "sizeCm": "15.2x15.5x20.3cm",
         "units": [
           {
-            "unitType": "500 Bags",
-            "offeredPrice": 2000,
-            "sellingPrice": 3000,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 3000,
+              "offered": 2000,
+              "priceType": "order"
+            }
           },
           {
-            "unitType": "2000 Bags",
-            "offeredPrice": 7500,
-            "sellingPrice": 10000,
+            "uom": "pcs",
+            "quantity": 2000,
             "moq": 50,
-            "contains": 2000,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 10000,
+              "offered": 7500,
+              "priceType": "order"
+            }
           }
         ]
       },
@@ -74,20 +82,24 @@
         "sizeCm": "15.2x15.5x20.3cm",
         "units": [
           {
-            "unitType": "500 Bags",
-            "offeredPrice": 4000,
-            "sellingPrice": 7000,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 7000,
+              "offered": 4000,
+              "priceType": "order"
+            }
           },
           {
-            "unitType": "1000 Bags",
-            "offeredPrice": 7500,
-            "sellingPrice": 10000,
+            "uom": "pcs",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 10000,
+              "offered": 7500,
+              "priceType": "order"
+            }
           }
         ]
       },
@@ -96,12 +108,14 @@
         "sizeCm": "20.3x25.4x30.5cm",
         "units": [
           {
-            "unitType": "1 Bag",
-            "offeredPrice": 4,
-            "sellingPrice": 6,
+            "uom": "pcs",
+            "quantity": 1,
             "moq": 500,
-            "contains": 1,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 6,
+              "offered": 4,
+              "priceType": "order"
+            }
           }
         ]
       },
@@ -110,12 +124,14 @@
         "sizeCm": "25.4x30.5cm",
         "units": [
           {
-            "unitType": "Kg",
-            "offeredPrice": 350,
-            "sellingPrice": 420,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "cover"
+            "price": {
+              "selling": 420,
+              "offered": 350,
+              "priceType": "order"
+            }
           }
         ]
       }
@@ -128,7 +144,13 @@
         "packaging"
       ],
       "foodSafe": true
-    }
+    },
+    "baseUOMs": [
+      "pcs",
+      "kg"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "fixed"
   },
   {
     "id": "paper-covers_grocery_kraft-plain_001",
@@ -160,12 +182,14 @@
         "sizeCm": "15.2x25.4cm",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 350,
-            "sellingPrice": 420,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "covers"
+            "price": {
+              "selling": 420,
+              "offered": 350,
+              "priceType": "order"
+            }
           }
         ]
       },
@@ -174,12 +198,14 @@
         "sizeCm": "20.3x30.5cm",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 400,
-            "sellingPrice": 480,
+            "uom": "kg",
+            "quantity": 800,
             "moq": 50,
-            "contains": 800,
-            "containsLabel": "covers"
+            "price": {
+              "selling": 480,
+              "offered": 400,
+              "priceType": "order"
+            }
           }
         ]
       }
@@ -192,7 +218,12 @@
         "packaging"
       ],
       "foodSafe": true
-    }
+    },
+    "baseUOMs": [
+      "kg"
+    ],
+    "categoryDisplayUOM": "kg",
+    "pricingMode": "fixed"
   },
   {
     "id": "paper-boxes_cake_kraft-printed_001",
@@ -225,12 +256,14 @@
         "sizeCm": "15.2x15.2x7.6cm",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 1500,
-            "sellingPrice": 1800,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": {
+              "selling": 1800,
+              "offered": 1500,
+              "priceType": "order"
+            }
           }
         ]
       },
@@ -239,12 +272,14 @@
         "sizeCm": "20.3x15.2x10.2cm",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 1800,
-            "sellingPrice": 2200,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": {
+              "selling": 2200,
+              "offered": 1800,
+              "priceType": "order"
+            }
           }
         ]
       }
@@ -257,7 +292,12 @@
         "packaging"
       ],
       "foodSafe": true
-    }
+    },
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "fixed"
   },
   {
     "id": "paper-bags_promotion_kraft-printed_001",
@@ -297,16 +337,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "unit"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-bags_promotion_multicolor_001",
@@ -346,16 +392,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "unit"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-bags_food-delivery_plain_001",
@@ -395,17 +447,23 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
     ],
-    "featured": true
+    "featured": true,
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-bags_cake-box_plain_001",
@@ -443,16 +501,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 300,
             "moq": 300,
-            "contains": 300,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-bags_cake-box_printed_001",
@@ -492,16 +556,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 300,
             "moq": 300,
-            "contains": 300,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-bags_gift_printed_001",
@@ -541,16 +611,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 200,
             "moq": 200,
-            "contains": 200,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-bags_garment_multicolor_001",
@@ -590,16 +666,22 @@
         "sizeIn": "Large",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 200,
             "moq": 200,
-            "contains": 200,
-            "containsLabel": "bag"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-covers_medical_plain_001",
@@ -639,16 +721,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "covers"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "kg"
+    ],
+    "categoryDisplayUOM": "kg",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-covers_medical_printed_001",
@@ -689,16 +777,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "covers"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "kg"
+    ],
+    "categoryDisplayUOM": "kg",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-covers_bakery_plain_001",
@@ -736,16 +830,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 900,
             "moq": 50,
-            "contains": 900,
-            "containsLabel": "covers"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "kg"
+    ],
+    "categoryDisplayUOM": "kg",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-covers_bakery_printed_001",
@@ -785,16 +885,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 900,
             "moq": 50,
-            "contains": 900,
-            "containsLabel": "covers"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "kg"
+    ],
+    "categoryDisplayUOM": "kg",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-boxes_burger_plain_001",
@@ -833,16 +939,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-boxes_burger_printed_001",
@@ -883,16 +995,22 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   },
   {
     "id": "paper-boxes_custom_plain_001",
@@ -931,15 +1049,21 @@
         "sizeIn": "Custom",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": {
+              "selling": 0,
+              "offered": 0
+            }
           }
         ]
       }
-    ]
+    ],
+    "baseUOMs": [
+      "pcs"
+    ],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry"
   }
 ]

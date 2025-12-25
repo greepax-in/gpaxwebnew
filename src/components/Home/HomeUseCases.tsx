@@ -3,6 +3,11 @@
 import items from "@/data/items.json";
 
 const CATEGORY_ORDER = ["Paper Bags", "Paper Covers", "Paper Boxes"];
+const CATEGORY_DESCRIPTIONS: Record<string, string> = {
+  "Paper Bags": "Commonly used for takeaway, carry-out, and in-store packaging.",
+  "Paper Covers": "Used where lightweight, hygienic outer protection is required.",
+  "Paper Boxes": "Suitable for structured food and retail packaging formats.",
+};
 const formatLabel = (value: string) =>
   value
     .split("-")
@@ -64,22 +69,26 @@ export default function HomeUseCases() {
           <p className="section-kicker">Industries</p>
           <h2>Industries by product category</h2>
           <p className="section-lede">
-            Find your category, then explore the industries we build for.
+            See where each packaging format is commonly used.
           </p>
         </div>
 
         <div className="usecase-grid">
-          {useCases.map((useCase) => (
-            <div key={useCase.category} className="usecase-card card">
-              <h3>{useCase.category}</h3>
-              {/* <p className="usecase-packaging">Industries served</p> */}
-              <ul className="usecase-list">
-                {useCase.industries.map((industry) => (
-                  <li key={industry}>{industry}</li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {useCases
+            .filter((useCase) => useCase.industries.length > 0)
+            .map((useCase) => (
+              <div key={useCase.category} className="usecase-card card">
+                <h3>{useCase.category}</h3>
+                {CATEGORY_DESCRIPTIONS[useCase.category] && (
+                  <p className="usecase-desc">{CATEGORY_DESCRIPTIONS[useCase.category]}</p>
+                )}
+                <ul className="usecase-list">
+                  {useCase.industries.map((industry) => (
+                    <li key={industry}>{industry}</li>
+                  ))}
+                </ul>
+              </div>
+            ))}
         </div>
       </div>
     </section>

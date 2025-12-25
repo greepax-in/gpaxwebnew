@@ -13,7 +13,9 @@
     "test:homepage": "playwright test tests/homepage.test.ts",
     "test:lighthouse": "tsx tests/lighthouse.homepage.ts",
     "validate:items": "tsx src/scripts/validateItems.ts",
-    "normalize:items": "tsx src/scripts/normalizeItems.ts"
+    "normalize:items": "tsx src/scripts/normalizeItems.ts",
+    "start:prod:test": "next start -p 3000",
+    "test:lighthouse:prod": "npm run build && node ./tests/run-lighthouse-prod.js"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

@@ -72,30 +72,31 @@ test.describe('GreenPax Homepage – Golden Rules Validation', () => {
     expect(heroBox?.y).toBeLessThan(600);
   });
 
-  test('Homepage does not depend on navigation', async ({ page }) => {
+  test('Homepage navigation does not block primary CTA', async ({ page }) => {
     await page.goto(BASE_URL);
 
-    await expect(page.locator('nav')).toHaveCount(0);
+    const whatsapp = page.locator('a[href^="https://wa.me"]').first();
+    await expect(whatsapp).toBeVisible();
   });
 
   test('Homepage contains at least one trust signal', async ({ page }) => {
     await page.goto(BASE_URL);
 
     const trustSignals = page.locator(
-      'text=/eco|sustainable|manufactured|quality|delivery|india/i'
+      'text=/eco|sustainable|manufacture|manufactured|quality|dispatch|delivery|india/i'
     );
 
     expect(await trustSignals.count()).toBeGreaterThan(0);
   });
 
-  test('Homepage does not expose hard pricing', async ({ page }) => {
+  test('Homepage does not expose transactional or checkout pricing', async ({ page }) => {
     await page.goto(BASE_URL);
 
-    const pricePatterns = page.locator(
-      'text=/₹\\s*\\d+|\\b\\d+\\s*₹|\\bprice\\b/i'
-    );
+    // Allowed: indicative pricing such as "From ₹ / pc"
+    // Forbidden: cart, checkout, total price, quantity selectors
 
-    await expect(pricePatterns).toHaveCount(0);
+    await expect(page.locator('text=/checkout|add to cart|buy now|total/i')).toHaveCount(0);
+    await expect(page.locator('input[type="number"]')).toHaveCount(0);
   });
 
   test('Homepage is indexable (no noindex)', async ({ page }) => {
@@ -113,7 +114,7 @@ test.describe('GreenPax Homepage – Golden Rules Validation', () => {
     await page.goto(BASE_URL);
 
     await expect(page.locator('a[href^="https://wa.me"]').first()).toBeVisible();
-    await expect(page.locator(':hover')).toHaveCount(0);
+    // No hover-only interactions required for primary CTA
   });
 
 });

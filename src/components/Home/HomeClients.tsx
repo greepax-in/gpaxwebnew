@@ -11,12 +11,12 @@ export default function HomeClients() {
   return (
     <section className="section section-clients" id="clients">
       <div className="container">
-        <div className="section-header fade-up">
+          <div className="section-header fade-up">
           <p className="section-kicker">Credibility</p>
           <h2>Trusted by growing Indian brands</h2>
           <p className="section-lede">
-            Credibility built through recurring bulk orders and consistent
-            dispatches.
+            Credibility built through recurring bulk orders, repeat manufacturing
+            schedules, and consistent, on-time dispatches across India.
           </p>
         </div>
         <div className="client-panel">

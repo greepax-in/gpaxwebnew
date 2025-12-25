@@ -52,6 +52,15 @@ h3 {
   margin: 0 0 12px;
 }
 
+/* Constrain long editorial headlines for better line balance */
+@media (min-width: 1200px) {
+  h1,
+  h2 {
+    max-width: 920px;
+    text-wrap: balance;
+  }
+}
+
 h1 {
   font-size: clamp(2.4rem, 5vw, 4rem);
   line-height: 1.05;
@@ -85,6 +94,19 @@ section {
   padding: 0 clamp(20px, 4vw, 40px);
 }
 
+/* Limit readable width for large section headings */
+.container > h1,
+.container > h2 {
+  max-width: 880px;
+}
+
+@media (max-width: 900px) {
+  .container > h1,
+  .container > h2 {
+    max-width: 100%;
+  }
+}
+
 .home {
   background:
     radial-gradient(900px 500px at 85% -10%, rgba(31, 122, 82, 0.18) 0%, rgba(31, 122, 82, 0) 60%),
@@ -94,8 +116,65 @@ section {
 }
 
 .section-header {
-  max-width: 640px;
+  max-width: 720px;
   margin-bottom: 32px;
+}
+
+/* WHY GREENPAX — tighten editorial headline width */
+.section-why .section-header {
+  max-width: 720px;
+}
+
+.section-why .section-header h2 {
+  line-height: 1.08;
+  max-width: 720px;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .section-why .section-header,
+  .section-why .section-header h2 {
+    max-width: 100%;
+  }
+}
+
+.section-header h2 {
+  line-height: 1.1;
+  white-space: normal;
+}
+
+@media (min-width: 1200px) {
+  .section-header h2 {
+    white-space: normal;
+    font-size: clamp(40px, 4vw, 56px);
+    max-width: 920px;
+    text-wrap: balance;
+  }
+}
+
+/* WHY GREENPAX — constrain long headline width explicitly */
+.home section h2 {
+  max-width: 920px;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .home section h2 {
+    max-width: 100%;
+  }
+}
+
+/* WHY GREENPAX — editorial headline control */
+.home section h1 {
+  max-width: 720px;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+@media (max-width: 900px) {
+  .home section h1 {
+    max-width: 100%;
+  }
 }
 
 .section-kicker {
@@ -413,6 +492,10 @@ section {
   gap: 16px;
 }
 
+.product-card {
+  min-height: 100%;
+}
+
 .product-card__header {
   display: flex;
   gap: 16px;
@@ -422,10 +505,40 @@ section {
 .product-card__image {
   border-radius: 16px;
   background: var(--surface-muted);
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .product-card__sub {
   margin: 6px 0 0;
+  line-height: 1.55;
+  max-width: 42ch;
+}
+
+.product-card__image img {
+  max-height: 140px;
+  width: auto;
+  object-fit: contain;
+}
+
+/* Slightly de-emphasize WhatsApp CTA in featured section */
+.home .featured-grid .ghost-cta {
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.home .featured-grid .ghost-cta:hover {
+  opacity: 1;
+}
+
+/* Improve intent-validation disclaimer clarity */
+.home #featured .caption,
+.home #featured .MuiTypography-caption {
+  letter-spacing: 0.01em;
+  font-size: 0.82rem;
+  opacity: 0.85;
 }
 
 .product-card__details {
@@ -471,6 +584,8 @@ section {
   padding: 6px 12px;
   font-size: 0.85rem;
   color: var(--muted);
+  cursor: default;
+  user-select: none;
 }
 
 /* Why */

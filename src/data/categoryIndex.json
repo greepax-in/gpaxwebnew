@@ -5,15 +5,95 @@
       "food-delivery-paper-bags": {
         "subcategory": "Food Delivery Paper Bags",
         "productIds": [
-          "paper-bags_food-delivery_kraft-printed_001"
-        ]
+          "paper-bags_food-delivery_kraft-printed_001",
+          "paper-bags_food-delivery_plain_001"
+        ],
+        "chips": {
+          "line1": "Food Delivery",
+          "line2": [
+            "Printed",
+            "Plain"
+          ],
+          "line3": {
+            "moq": "500+",
+            "price": "From ₹6",
+            "uom": "pcs",
+            "secondaryUOMs": [
+              "kg"
+            ]
+          }
+        }
       },
       "promotion-paper-bags": {
         "subcategory": "Promotion Paper Bags",
         "productIds": [
           "paper-bags_promotion_kraft-printed_001",
           "paper-bags_promotion_multicolor_001"
-        ]
+        ],
+        "chips": {
+          "line1": "Promotion",
+          "line2": [
+            "Printed"
+          ],
+          "line3": {
+            "moq": "100+",
+            "price": "",
+            "uom": "pcs"
+          }
+        }
+      },
+      "cake-box-paper-bags": {
+        "subcategory": "Cake Box Paper Bags",
+        "productIds": [
+          "paper-bags_cake-box_plain_001",
+          "paper-bags_cake-box_printed_001"
+        ],
+        "chips": {
+          "line1": "Cake Box",
+          "line2": [
+            "Plain",
+            "Printed"
+          ],
+          "line3": {
+            "moq": "300+",
+            "price": "",
+            "uom": "pcs"
+          }
+        }
+      },
+      "gift-paper-bags": {
+        "subcategory": "Gift Paper Bags",
+        "productIds": [
+          "paper-bags_gift_printed_001"
+        ],
+        "chips": {
+          "line1": "Gift",
+          "line2": [
+            "Printed"
+          ],
+          "line3": {
+            "moq": "200+",
+            "price": "",
+            "uom": "pcs"
+          }
+        }
+      },
+      "garment-paper-bags": {
+        "subcategory": "Garment Paper Bags",
+        "productIds": [
+          "paper-bags_garment_multicolor_001"
+        ],
+        "chips": {
+          "line1": "Garment",
+          "line2": [
+            "Multicolor"
+          ],
+          "line3": {
+            "moq": "200+",
+            "price": "",
+            "uom": "pcs"
+          }
+        }
       }
     }
   },
@@ -24,7 +104,56 @@
         "subcategory": "Grocery Paper Covers",
         "productIds": [
           "paper-covers_grocery_kraft-plain_001"
-        ]
+        ],
+        "chips": {
+          "line1": "Grocery",
+          "line2": [
+            "Plain"
+          ],
+          "line3": {
+            "moq": "50+",
+            "price": "From ₹420",
+            "uom": "kg"
+          }
+        }
+      },
+      "medical-paper-covers": {
+        "subcategory": "Medical & Pharmaceutical",
+        "productIds": [
+          "paper-covers_medical_plain_001",
+          "paper-covers_medical_printed_001"
+        ],
+        "chips": {
+          "line1": "Medical & Pharmaceutical",
+          "line2": [
+            "Plain",
+            "Printed"
+          ],
+          "line3": {
+            "moq": "50+",
+            "price": "",
+            "uom": "kg"
+          }
+        }
+      },
+      "bakery-paper-covers": {
+        "subcategory": "Bakery Paper Covers",
+        "productIds": [
+          "paper-covers_bakery_plain_001",
+          "paper-covers_bakery_printed_001"
+        ],
+        "chips": {
+          "line1": "Bakery",
+          "line2": [
+            "Plain",
+            "Printed"
+          ],
+          "line3": {
+            "moq": "50+",
+            "price": "",
+            "uom": "kg"
+          }
+        }
       }
     }
   },
@@ -35,7 +164,54 @@
         "subcategory": "Cake Boxes",
         "productIds": [
           "paper-boxes_cake_kraft-printed_001"
-        ]
+        ],
+        "chips": {
+          "line1": "Cake Boxes",
+          "line2": [
+            "Printed"
+          ],
+          "line3": {
+            "moq": "100+",
+            "price": "From ₹1800",
+            "uom": "pcs"
+          }
+        }
+      },
+      "burger-boxes": {
+        "subcategory": "Burger Boxes",
+        "productIds": [
+          "paper-boxes_burger_plain_001",
+          "paper-boxes_burger_printed_001"
+        ],
+        "chips": {
+          "line1": "Burger Boxes",
+          "line2": [
+            "Plain",
+            "Printed"
+          ],
+          "line3": {
+            "moq": "100+",
+            "price": "",
+            "uom": "pcs"
+          }
+        }
+      },
+      "custom-paper-boxes": {
+        "subcategory": "Custom Paper Boxes",
+        "productIds": [
+          "paper-boxes_custom_plain_001"
+        ],
+        "chips": {
+          "line1": "Custom",
+          "line2": [
+            "Plain"
+          ],
+          "line3": {
+            "moq": "100+",
+            "price": "",
+            "uom": "pcs"
+          }
+        }
       }
     }
   }

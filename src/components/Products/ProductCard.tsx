@@ -6,17 +6,29 @@ import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
 export default function ProductCard({ item }: { item: any }) {
   const gsm = item?.GSM ? `GSM ${item.GSM}` : "Custom GSM";
   const subTitle = item?.subTitle ?? "Plain or custom printed options";
+  const imageSrc =
+    typeof item?.image === "string" && item.image.trim().length > 0
+      ? item.image
+      : null;
 
   return (
     <div className="product-card card">
       <div className="product-card__header">
-        <Image
-          src={item.image}
-          alt={item.name}
-          width={160}
-          height={160}
-          className="product-card__image"
-        />
+        {imageSrc ? (
+          <Image
+            src={imageSrc}
+            alt={item?.name ?? "Product image"}
+            width={160}
+            height={160}
+            className="product-card__image"
+          />
+        ) : (
+          <div
+            className="product-card__image"
+            style={{ width: 160, height: 160 }}
+            aria-hidden="true"
+          />
+        )}
         <div>
           <h3>{item.name}</h3>
           <p className="product-card__sub">{subTitle}</p>
