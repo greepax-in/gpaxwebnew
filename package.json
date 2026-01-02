@@ -6,16 +6,30 @@
     "node": ">=20.0.0"
   },
   "scripts": {
+
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test:homepage": "playwright test tests/homepage.test.ts",
-    "test:lighthouse": "tsx tests/lighthouse.homepage.ts",
+
+
+    "test:contracts": "playwright test tests/contracts",
+    "test:contract:home": "playwright test tests/contracts/home.contract.spec.ts",
+
+   
+    "test:smoke": "playwright test tests/smoke",
+    "test:lighthouse:local": "playwright test tests/smoke/lighthouse.homepage.spec.ts",
+
+   
+    "start:prod:test": "next start -p 3000",
+    "test:lighthouse:prod": "npm run build && node tests/tools/run-lighthouse-prod.js",
+
+
     "validate:items": "tsx src/scripts/validateItems.ts",
     "normalize:items": "tsx src/scripts/normalizeItems.ts",
-    "start:prod:test": "next start -p 3000",
-    "test:lighthouse:prod": "npm run build && node ./tests/run-lighthouse-prod.js"
+
+
+    "validate": "npm run lint && npm run test:contracts && npm run test:smoke"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

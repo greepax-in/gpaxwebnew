@@ -334,7 +334,7 @@ export default function HomeCategories() {
                           </Box>
                         </Box>
 
-                        {/* PRICE BLOCK */}
+                        {/* PRICE BLOCK — INDICATIVE ONLY (NON-TRANSACTIONAL) */}
                         <Box
                           sx={{
                             px: 1.75,
@@ -347,9 +347,9 @@ export default function HomeCategories() {
                             alignItems: "center",
                           }}
                         >
-                          From&nbsp;
+                          Indicative&nbsp;
                           <Box component="span" sx={{ fontWeight: 700 }}>
-                            {minPrice ? `₹${minPrice} / pc` : `Enquiry`}
+                            {minPrice ? `₹${minPrice}+ (bulk)` : `On enquiry`}
                           </Box>
                         </Box>
                       </Box>

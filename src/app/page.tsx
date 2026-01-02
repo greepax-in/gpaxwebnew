@@ -51,11 +51,11 @@ export const metadata: Metadata = {
 };
 
 /* ------------------------------------------------------------------ */
-/* STRUCTURED DATA (ORGANIZATION + OFFER CATALOG)                      */
+/* STRUCTURED DATA (ORGANIZATION ONLY — HOMEPAGE LOCK)                 */
 /* ------------------------------------------------------------------ */
 
 function HomePageStructuredData(): JSX.Element {
-  const jsonLd: Record<string, unknown> = {
+  const org: Record<string, unknown> = {
     "@context": "https://schema.org",
     "@type": "Organization",
     "@id": "https://www.greenpax.in/#organization",
@@ -64,6 +64,21 @@ function HomePageStructuredData(): JSX.Element {
     logo: "https://www.greenpax.in/logo.png",
     description:
       "GreenPax is an Indian manufacturer of eco-friendly paper bags, paper covers, and kraft packaging for food delivery, retail, and brands.",
+    industry: "Paper Packaging Manufacturing",
+    // Optional: use a real NAICS if you want classification (otherwise remove)
+    // naics: "3222",
+    knowsAbout: [
+      "Paper bag manufacturing",
+      "Kraft packaging",
+      "Food-safe paper packaging",
+      "Bulk packaging production",
+      "Custom printed paper bags",
+      "MOQ-based manufacturing",
+    ],
+    areaServed: {
+      "@type": "Country",
+      name: "India",
+    },
     address: {
       "@type": "PostalAddress",
       addressCountry: "IN",
@@ -95,12 +110,22 @@ function HomePageStructuredData(): JSX.Element {
     },
   };
 
+  const website: Record<string, unknown> = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": "https://www.greenpax.in/#website",
+    url: "https://www.greenpax.in/",
+    name: "GreenPax",
+    publisher: { "@id": "https://www.greenpax.in/#organization" },
+    inLanguage: "en-IN",
+  };
+
+  const graph = { "@context": "https://schema.org", "@graph": [org, website] };
+
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{
-        __html: JSON.stringify(jsonLd),
-      }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(graph) }}
     />
   );
 }
