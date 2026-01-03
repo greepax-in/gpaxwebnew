@@ -1,0 +1,15 @@
+[
+  {
+    "id": "BUNDLE-01",
+    "result": "FAIL",
+    "value": 280,
+    "threshold": 180,
+    "units": "KB (gzip)",
+    "evidence": {
+      "baselineKb": 150,
+      "regressionKb": 130,
+      "reason": "regression beyond allowance"
+    },
+    "at": "2026-01-03T12:57:45.833Z"
+  }
+]

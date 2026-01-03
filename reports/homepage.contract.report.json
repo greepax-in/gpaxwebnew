@@ -1,0 +1,406 @@
+{
+  "contract": "homepage",
+  "workspace": "VSCODE",
+  "status": "PASSED",
+  "locked": true,
+  "summary": {
+    "totalTests": 1,
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0,
+    "durationMs": 10740
+  },
+  "pillars": {
+    "seo": "PASS",
+    "schema": "PASS",
+    "intent": "PASS",
+    "cta_flow": "PASS"
+  },
+  "checks": {
+    "seo": [
+      {
+        "id": "SEO-01",
+        "pillar": "seo",
+        "label": "Title length ≤ 60 characters",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "SEO-02",
+        "pillar": "seo",
+        "label": "Meta description ≤ 160 characters",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "SEO-03",
+        "pillar": "seo",
+        "label": "Single H1 present",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "SEO-04",
+        "pillar": "seo",
+        "label": "Canonical URL defined",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "SEO-05",
+        "pillar": "seo",
+        "label": "OpenGraph tags present",
+        "severity": "warn",
+        "result": "NOT_RUN",
+        "source": "registry"
+      }
+    ],
+    "schema": [
+      {
+        "id": "SCHEMA-01",
+        "pillar": "schema",
+        "label": "Organization schema present",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "SCHEMA-02",
+        "pillar": "schema",
+        "label": "Organization has name and url",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "SCHEMA-03",
+        "pillar": "schema",
+        "label": "WebSite schema allowed",
+        "severity": "info",
+        "result": "NOT_RUN",
+        "source": "registry"
+      },
+      {
+        "id": "SCHEMA-04",
+        "pillar": "schema",
+        "label": "Product schema forbidden on homepage",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      }
+    ],
+    "intent": [
+      {
+        "id": "INTENT-01",
+        "pillar": "intent",
+        "label": "Manufacturer / bulk intent detected",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "INTENT-02",
+        "pillar": "intent",
+        "label": "MOQ language allowed",
+        "severity": "warn",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "INTENT-03",
+        "pillar": "intent",
+        "label": "No ecommerce flows present",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      }
+    ],
+    "cta_flow": [
+      {
+        "id": "CTA-01",
+        "pillar": "cta_flow",
+        "label": "Exactly one primary WhatsApp CTA above the fold",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "CTA-02",
+        "pillar": "cta_flow",
+        "label": "Contextual WhatsApp CTAs allowed below",
+        "severity": "info",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "CTA-03",
+        "pillar": "cta_flow",
+        "label": "Trust-first layout respected",
+        "severity": "error",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "CTA-04",
+        "pillar": "cta_flow",
+        "label": "Hero image uses priority loading, fixed dimensions, and alt text (Mobile LCP guard)",
+        "severity": "warn",
+        "result": "FAIL",
+        "source": "evidence"
+      }
+    ],
+    "perf": [
+      {
+        "id": "PERF-01",
+        "pillar": "perf",
+        "label": "Mobile Largest Contentful Paint (LCP) ≤ 2500 ms",
+        "severity": "warn",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "PERF-02",
+        "pillar": "perf",
+        "label": "Cumulative Layout Shift (CLS) ≤ 0.1",
+        "severity": "error",
+        "result": "PASS",
+        "value": 0,
+        "threshold": 0.1,
+        "units": "score",
+        "source": "evidence"
+      },
+      {
+        "id": "PERF-03",
+        "pillar": "perf",
+        "label": "Interaction to Next Paint (INP) ≤ 200 ms",
+        "severity": "info",
+        "result": "PASS",
+        "source": "evidence"
+      },
+      {
+        "id": "PERF-04",
+        "pillar": "perf",
+        "label": "Homepage JS bundle size within regression budget (gzip)",
+        "severity": "warn",
+        "result": "NOT_RUN",
+        "source": "registry"
+      }
+    ]
+  },
+  "resolvedEvidence": [
+    {
+      "id": "CTA-01",
+      "pillar": "cta_flow",
+      "label": "Exactly one primary WhatsApp CTA above the fold",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "CTA-02",
+      "pillar": "cta_flow",
+      "label": "Contextual WhatsApp CTAs allowed below",
+      "severity": "info",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "CTA-03",
+      "pillar": "cta_flow",
+      "label": "Trust-first layout respected",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "CTA-04",
+      "pillar": "cta_flow",
+      "label": "Hero image uses priority loading, fixed dimensions, and alt text (Mobile LCP guard)",
+      "severity": "warn",
+      "result": "FAIL",
+      "source": "evidence"
+    },
+    {
+      "id": "INTENT-01",
+      "pillar": "intent",
+      "label": "Manufacturer / bulk intent detected",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "INTENT-02",
+      "pillar": "intent",
+      "label": "MOQ language allowed",
+      "severity": "warn",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "INTENT-03",
+      "pillar": "intent",
+      "label": "No ecommerce flows present",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "PERF-01",
+      "pillar": "perf",
+      "label": "Mobile Largest Contentful Paint (LCP) ≤ 2500 ms",
+      "severity": "warn",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "PERF-02",
+      "pillar": "perf",
+      "label": "Cumulative Layout Shift (CLS) ≤ 0.1",
+      "severity": "error",
+      "result": "PASS",
+      "value": 0,
+      "threshold": 0.1,
+      "units": "score",
+      "source": "evidence"
+    },
+    {
+      "id": "PERF-03",
+      "pillar": "perf",
+      "label": "Interaction to Next Paint (INP) ≤ 200 ms",
+      "severity": "info",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "PERF-04",
+      "pillar": "perf",
+      "label": "Homepage JS bundle size within regression budget (gzip)",
+      "severity": "warn",
+      "result": "NOT_RUN",
+      "source": "registry"
+    },
+    {
+      "id": "SCHEMA-01",
+      "pillar": "schema",
+      "label": "Organization schema present",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "SCHEMA-02",
+      "pillar": "schema",
+      "label": "Organization has name and url",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "SCHEMA-03",
+      "pillar": "schema",
+      "label": "WebSite schema allowed",
+      "severity": "info",
+      "result": "NOT_RUN",
+      "source": "registry"
+    },
+    {
+      "id": "SCHEMA-04",
+      "pillar": "schema",
+      "label": "Product schema forbidden on homepage",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "SEO-01",
+      "pillar": "seo",
+      "label": "Title length ≤ 60 characters",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "SEO-02",
+      "pillar": "seo",
+      "label": "Meta description ≤ 160 characters",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "SEO-03",
+      "pillar": "seo",
+      "label": "Single H1 present",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "SEO-04",
+      "pillar": "seo",
+      "label": "Canonical URL defined",
+      "severity": "error",
+      "result": "PASS",
+      "source": "evidence"
+    },
+    {
+      "id": "SEO-05",
+      "pillar": "seo",
+      "label": "OpenGraph tags present",
+      "severity": "warn",
+      "result": "NOT_RUN",
+      "source": "registry"
+    }
+  ],
+  "perf": {
+    "lcpMs": null,
+    "cls": 0,
+    "inpMs": null
+  },
+  "lighthouse": {
+    "mobile": {
+      "meta": {
+        "workspace": "UNKNOWN",
+        "url": "http://localhost:3000",
+        "host": "localhost",
+        "port": "3000",
+        "mode": "mobile",
+        "collectedAt": "2026-01-03T10:14:13.272Z"
+      },
+      "scores": {
+        "performance": 59,
+        "seo": 100
+      },
+      "vitals": {
+        "lcpMs": 7368,
+        "cls": 0,
+        "inpMs": 601.3648750000002
+      }
+    },
+    "desktop": {
+      "meta": {
+        "workspace": "UNKNOWN",
+        "url": "http://localhost:3000",
+        "host": "localhost",
+        "port": "3000",
+        "mode": "desktop",
+        "collectedAt": "2026-01-03T10:15:21.381Z"
+      },
+      "scores": {
+        "performance": 67,
+        "seo": 100
+      },
+      "vitals": {
+        "lcpMs": 7370,
+        "cls": 0,
+        "inpMs": 351.8435249999998
+      }
+    }
+  },
+  "generatedAt": "2026-01-03T10:16:23.768Z"
+}

@@ -4,8 +4,15 @@ import Image from "next/image";
 import items from "@/data/items.json";
 import rawCategoryIndex from "@/data/categoryIndex.json";
 import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
-import { Card, CardContent, Box, Stack, Typography, Link, Chip } from "@mui/material";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Link from "@mui/material/Link";
+import Chip from "@mui/material/Chip";
 import WhatsAppIcon from "@mui/icons-material/WhatsApp";
+
 
 /* =========================================================
    CATEGORY INDEX TYPES (runtime-safe boundary)

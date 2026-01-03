@@ -18,9 +18,9 @@ import HomeCTA from "@/components/Home/HomeCTA";
 
 export const metadata: Metadata = {
   title:
-    "GreenPax | Eco-Friendly Paper Bags & Packaging Manufacturer in India",
+    "GreenPax | Eco-Friendly Paper Packaging Manufacturer, India",
   description:
-    "GreenPax manufactures eco-friendly paper bags, paper covers, and paper boxes for food delivery, grocery, retail, and e-commerce businesses across India. Bulk supply with MOQ. Enquire via WhatsApp.",
+    "Eco-friendly paper packaging manufacturer in India. Bulk paper bags, covers, and boxes with MOQ-based production. Enquire on WhatsApp.",
   alternates: {
     canonical: "https://www.greenpax.in/",
   },

@@ -1,0 +1,101 @@
+[
+  {
+    "at": "2026-01-03T07:20:56.488Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T07:38:57.163Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T07:44:23.184Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T07:44:32.762Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T07:48:28.332Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T07:53:30.623Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T08:05:38.102Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T08:10:16.725Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T09:51:00.568Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T09:52:33.448Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T10:16:23.768Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "cls": 0,
+      "inpMs": null
+    }
+  }
+]

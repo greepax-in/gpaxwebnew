@@ -1,9 +1,9 @@
 
-
-import { spawn } from "node:child_process";
-import lighthouse from "lighthouse";
-import { launch } from "chrome-launcher";
-import fs from "node:fs";
+const { spawn } = require("child_process");
+const lighthouse = require("lighthouse").default;
+const { launch } = require("chrome-launcher");
+const fs = require("fs");
+const path = require("path");
 
 /* --------------------------------------------------
    Target URL (homepage by default, page-level optional)
@@ -12,6 +12,7 @@ import fs from "node:fs";
 const BASE_URL =
   process.env.LH_URL?.trim() || "http://localhost:3000";
 
+const WORKSPACE = process.env.WORKSPACE || "UNKNOWN";
 /* --------------------------------------------------
    Thresholds (LOCKED by governance)
 -------------------------------------------------- */
@@ -25,28 +26,52 @@ const CLS_THRESHOLD = 0.1;  // unitless
 const INP_THRESHOLD = 200;  // ms
 const FCP_THRESHOLD = 1800; // ms (advisory only)
 
+// Use Chromium via chrome-launcher (VPS / CI safe)
+// chrome-launcher will auto-resolve or download Chromium as needed
+
+// NOTE:
+// Lighthouse runner does NOT own server lifecycle.
+// Server is expected to be started externally via:
+//   - `next build`
+//   - `next start` (or equivalent production runner)
+//
+// This script ONLY:
+//   - waits for the server to be reachable
+//   - runs Lighthouse against LH_URL
+//   - never assumes responsibility for ports or process startup
+//
+// In local dev, CI, or VPS:
+//   - Port conflicts must be resolved by the caller
+//   - LH_URL must point to an already-running server
+//
+// Historical note:
+// Earlier versions spawned `next start` internally, but this caused
+// port conflicts (EADDRINUSE) and non-deterministic shutdown behavior,
+// especially on Windows. This is intentionally avoided.
+
+let server; // legacy placeholder (not used when server is externally managed)
+let chromeInstance;
+
 /* --------------------------------------------------
-   Resolve Chrome path (Windows-safe)
+   Deterministic server shutdown (Windows-safe)
 -------------------------------------------------- */
 
-function resolveChromePath() {
-  const candidates = [
-    "C:/Program Files/Google/Chrome/Application/chrome.exe",
-    "C:/Program Files (x86)/Google/Chrome/Application/chrome.exe",
-  ];
+async function stopServer(proc) {
+  if (!proc || proc.killed) return;
 
-  for (const p of candidates) {
-    if (fs.existsSync(p)) return p;
-  }
+  try {
+    proc.kill("SIGTERM");
+  } catch {}
 
-  throw new Error(
-    "Chrome not found. Install Google Chrome or update resolveChromePath()."
-  );
+  // Windows / stubborn process safety net
+  await new Promise((r) => setTimeout(r, 1500));
+
+  try {
+    if (!proc.killed) {
+      proc.kill("SIGKILL");
+    }
+  } catch {}
 }
-
-const CHROME_PATH = resolveChromePath();
-
-let server;
 
 /* --------------------------------------------------
    Wait for server to be ready
@@ -70,30 +95,89 @@ async function waitForServer(url, timeoutMs = 15000) {
 
 (async () => {
   try {
-    console.log("▶ Starting production server...");
-    server = spawn("npm", ["run", "start:prod:test"], {
-      stdio: "inherit",
-      shell: true,
-    });
+    // IMPORTANT:
+    // Server startup is handled OUTSIDE this script.
+    // Expected flow:
+    //   1. `next build`
+    //   2. `next start` (or platform equivalent)
+    //   3. Run this Lighthouse script
+    //
+    // This avoids:
+    //   - double-binding ports
+    //   - orphaned processes
+    //   - Windows SIGTERM/SIGKILL edge cases
+    //
+    // LH_URL defaults to http://localhost:3000
+    // Override via env if needed (CI, VPS, alternate ports).
 
     const ready = await waitForServer(BASE_URL);
     if (!ready) {
       throw new Error("Production server did not start");
     }
 
-    console.log(`▶ Running Lighthouse on ${BASE_URL}`);
+    const mode = process.argv[2] === "mobile" ? "mobile" : "desktop";
+    console.log(`▶ Running Lighthouse (${mode}) on ${BASE_URL}`);
 
-    const chrome = await launch({
-      chromePath: CHROME_PATH,
+    chromeInstance = await launch({
       chromeFlags: ["--headless", "--disable-gpu"],
     });
 
-    const result = await lighthouse(BASE_URL, {
-      port: chrome.port,
-      onlyCategories: ["performance", "seo"],
-      output: "json",
-      logLevel: "error",
-    });
+    const lighthouseConfig =
+      mode === "mobile"
+        ? {
+            port: chromeInstance.port,
+            onlyCategories: ["performance", "seo"],
+            formFactor: "mobile",
+            screenEmulation: {
+              mobile: true,
+              width: 375,
+              height: 667,
+              deviceScaleFactor: 2,
+              disabled: false,
+            },
+            throttlingMethod: "simulate",
+            output: "json",
+            logLevel: "error",
+          }
+        : {
+            port: chromeInstance.port,
+            onlyCategories: ["performance", "seo"],
+            output: "json",
+            logLevel: "error",
+          };
+
+    const result = await lighthouse(BASE_URL, lighthouseConfig);
+
+    const url = new URL(BASE_URL);
+    const serverMeta = {
+      workspace: WORKSPACE,
+      url: BASE_URL,
+      host: url.hostname,
+      port: url.port || (url.protocol === "https:" ? "443" : "80"),
+      mode,
+      collectedAt: new Date().toISOString(),
+    };
+
+    /* --------------------------------------------------
+       Persist Lighthouse JSON (Phase-2.2 ingestion)
+    -------------------------------------------------- */
+
+    const reportsDir = path.resolve("reports");
+    if (!fs.existsSync(reportsDir)) {
+      fs.mkdirSync(reportsDir, { recursive: true });
+    }
+
+    fs.writeFileSync(
+      path.join(reportsDir, `lighthouse.home.${mode}.json`),
+      JSON.stringify(
+        {
+          meta: serverMeta,
+          lhr: result.lhr,
+        },
+        null,
+        2
+      )
+    );
 
     const { performance, seo } = result.lhr.categories;
     const audits = result.lhr.audits;
@@ -109,6 +193,8 @@ async function waitForServer(url, timeoutMs = 15000) {
       audits["total-blocking-time"]?.numericValue ??
       null;
     const fcp = audits["first-contentful-paint"]?.numericValue ?? null;
+    const ttfb =
+      audits["server-response-time"]?.numericValue ?? null;
 
     /* --------------------------------------------------
        Performance score (informational only)
@@ -152,15 +238,34 @@ CWV → LCP=${lcp ? Math.round(lcp) + "ms" : "n/a"}, CLS=${
         cls ?? "n/a"
       }, INP=${inp ? Math.round(inp) + "ms" : "n/a"}, FCP=${
         fcp ? Math.round(fcp) + "ms" : "n/a"
-      }`
+      }, TTFB=${ttfb ? Math.round(ttfb) + "ms" : "n/a"}`
     );
 
-    await chrome.kill();
     process.exit(0);
   } catch (err) {
     console.error(err);
     process.exit(1);
-  } finally {
-    if (server) server.kill();
+    } finally {
+    if (chromeInstance) {
+      try {
+        await chromeInstance.kill();
+      } catch {}
+    }
+
+    // No-op if server is externally managed
+    await stopServer(server);
   }
 })();
+
+// Ensure cleanup on Ctrl+C / hard exits
+process.on("SIGINT", async () => {
+  // Lighthouse cleanup only; server lifecycle is external
+  await stopServer(server);
+  process.exit(1);
+});
+
+process.on("SIGTERM", async () => {
+  // Lighthouse cleanup only; server lifecycle is external
+  await stopServer(server);
+  process.exit(1);
+});

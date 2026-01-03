@@ -22,6 +22,7 @@ export type SeoRules = {
   canonical?: boolean;
   singleH1?: boolean;
   requireH2?: boolean;
+  requireCrawlableLinks?: boolean;
 };
 
 /* ======================================================
@@ -43,7 +44,10 @@ export type IntentRules = {
 export type FlowRules = {
   heroFirst?: boolean;
   trustBeforeCTA?: boolean;
+  requireHeroLCPGuard?: boolean;
+  requireLCPBudgetMs?: number;
   maxPrimaryCTAs?: number;
+  requireCLSBudget?: boolean;
 };
 
 /* ======================================================
@@ -53,4 +57,12 @@ export type FlowRules = {
 export type SchemaRules = {
   requireOrganization?: boolean;
   forbidProduct?: boolean;
+};
+
+/* ======================================================
+   PERFORMANCE RULES
+====================================================== */
+
+export type PerformanceRules = {
+  lcp?: number;
 };

@@ -7,9 +7,14 @@ import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
 import items from "@/data/items";
 import { selectHomeFeaturedItems } from "@/lib/home/HomeFeatured.selector";
 import { validateHomeFeatured } from "@/lib/home/HomeFeatured.validator";
-import { Container, Box, Stack, Typography, Button } from "@mui/material";
+// import { Container, Box, Stack, Typography, Button } from "@mui/material";
 import { useState } from "react";
 import { buildProductSubtitle } from "@/lib/productSubtitle";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 /**
  * HomeFeatured

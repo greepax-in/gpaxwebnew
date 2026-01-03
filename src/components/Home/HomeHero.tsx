@@ -1,7 +1,11 @@
 // FILE: src/components/Home/HomeHero.tsx
 import Image from "next/image";
 import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
-import { Container, Box, Stack, Typography, Button } from "@mui/material";
+import Container from "@mui/material/Container";
+import Box from "@mui/material/Box";
+import Stack from "@mui/material/Stack";
+import Typography from "@mui/material/Typography";
+import Button from "@mui/material/Button";
 
 export default function HomeHero() {
   return (

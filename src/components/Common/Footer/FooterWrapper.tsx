@@ -3,7 +3,7 @@
 
 'use client';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, Link, Stack } from '@mui/material';
 
 export default function FooterWrapper(): JSX.Element {
   return (
@@ -18,6 +18,23 @@ export default function FooterWrapper(): JSX.Element {
         textAlign: 'center',
       }}
     >
+      <Stack
+        direction="row"
+        spacing={2}
+        justifyContent="center"
+        sx={{ mb: 1 }}
+      >
+        <Link href="/paper-bags" underline="hover" color="text.secondary">
+          Paper Bags
+        </Link>
+        <Link href="/paper-covers" underline="hover" color="text.secondary">
+          Paper Covers
+        </Link>
+        <Link href="/paper-boxes" underline="hover" color="text.secondary">
+          Paper Boxes
+        </Link>
+      </Stack>
+
       <Typography variant="body2" color="text.secondary">
         © {new Date().getFullYear()} GreenPax. All rights reserved.
       </Typography>

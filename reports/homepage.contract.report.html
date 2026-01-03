@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>GreenPax Homepage Contract Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #f8fafc;
+      margin: 0;
+      padding: 24px;
+      color: #0f172a;
+    }
+    .container {
+      max-width: 960px;
+      margin: auto;
+      background: #ffffff;
+      padding: 24px 32px;
+      border-radius: 10px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+    }
+    h1 {
+      margin-top: 0;
+    }
+    .status {
+      font-size: 20px;
+      font-weight: 700;
+      color: #16a34a;
+    }
+    .meta {
+      color: #475569;
+      font-size: 14px;
+      margin-bottom: 24px;
+    }
+    .workspace-note {
+      font-size: 13px;
+      color: #475569;
+      margin-top: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+      text-align: left;
+    }
+    th {
+      background: #f1f5f9;
+      font-weight: 600;
+    }
+    .pass {
+      color: #16a34a;
+      font-weight: 600;
+    }
+    .fail {
+      color: #dc2626;
+      font-weight: 600;
+    }
+    .section {
+      margin-top: 32px;
+    }
+    .pillars span {
+      display: inline-block;
+      margin-right: 16px;
+      font-weight: 600;
+    }
+    .evidence-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 16px;
+    }
+    .evidence-table th,
+    .evidence-table td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #e5e7eb;
+    }
+    .evidence-table th {
+      background: #f8fafc;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>GreenPax Homepage — Contract Validation Report</h1>
+    
+    <div class="meta">
+      <b>Workspace:</b>
+      <span style="
+        display:inline-block;
+        padding:4px 10px;
+        border-radius:999px;
+        background:#0f172a;
+        color:#ffffff;
+        font-weight:600;
+        margin-left:6px;
+      ">
+        VSCODE
+      </span>
+    </div>
+
+    
+    <section>
+      <h2>Execution Status</h2>
+      <p class="status completed">COMPLETED</p>
+      <p class="muted">
+        All contract checks executed. Results below reflect audit findings,
+        not execution failures.
+      </p>
+    </section>
+  
+    <div class="meta">
+      Contract: <b>homepage</b><br/>
+      Generated at: 2026-01-03T10:16:23.768Z
+    </div>
+
+    <div class="section">
+      <h2>Contract Checks (Resolved)</h2>
+      <p style="color:#475569;font-size:14px;margin-top:8px;margin-bottom:0;">
+        This table is the authoritative merge of registry checks × runtime evidence.
+        Result <code>NOT_RUN</code> means no runtime evidence was emitted for that check.
+      </p>
+
+      
+            <h3>SEO</h3>
+            <table class="evidence-table">
+              <tr>
+                <th>Check ID</th>
+                <th>Description</th>
+                <th>Result</th>
+                <th>Severity</th>
+                <th>Source</th>
+              </tr>
+              
+                <tr>
+                  <td>SEO-01</td>
+                  <td>Title length ≤ 60 characters</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>SEO-02</td>
+                  <td>Meta description ≤ 160 characters</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>SEO-03</td>
+                  <td>Single H1 present</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>SEO-04</td>
+                  <td>Canonical URL defined</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>SEO-05</td>
+                  <td>OpenGraph tags present</td>
+                  <td class="">NOT_RUN</td>
+                  <td>WARN</td>
+                  <td style="color:#64748b;">registry</td>
+                </tr>
+              
+            </table>
+          
+            <h3>SCHEMA</h3>
+            <table class="evidence-table">
+              <tr>
+                <th>Check ID</th>
+                <th>Description</th>
+                <th>Result</th>
+                <th>Severity</th>
+                <th>Source</th>
+              </tr>
+              
+                <tr>
+                  <td>SCHEMA-01</td>
+                  <td>Organization schema present</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>SCHEMA-02</td>
+                  <td>Organization has name and url</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>SCHEMA-03</td>
+                  <td>WebSite schema allowed</td>
+                  <td class="">NOT_RUN</td>
+                  <td>INFO</td>
+                  <td style="color:#64748b;">registry</td>
+                </tr>
+              
+                <tr>
+                  <td>SCHEMA-04</td>
+                  <td>Product schema forbidden on homepage</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+            </table>
+          
+            <h3>INTENT</h3>
+            <table class="evidence-table">
+              <tr>
+                <th>Check ID</th>
+                <th>Description</th>
+                <th>Result</th>
+                <th>Severity</th>
+                <th>Source</th>
+              </tr>
+              
+                <tr>
+                  <td>INTENT-01</td>
+                  <td>Manufacturer / bulk intent detected</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>INTENT-02</td>
+                  <td>MOQ language allowed</td>
+                  <td class="pass">PASS</td>
+                  <td>WARN</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>INTENT-03</td>
+                  <td>No ecommerce flows present</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+            </table>
+          
+            <h3>CTA_FLOW</h3>
+            <table class="evidence-table">
+              <tr>
+                <th>Check ID</th>
+                <th>Description</th>
+                <th>Result</th>
+                <th>Severity</th>
+                <th>Source</th>
+              </tr>
+              
+                <tr>
+                  <td>CTA-01</td>
+                  <td>Exactly one primary WhatsApp CTA above the fold</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>CTA-02</td>
+                  <td>Contextual WhatsApp CTAs allowed below</td>
+                  <td class="pass">PASS</td>
+                  <td>INFO</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>CTA-03</td>
+                  <td>Trust-first layout respected</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>CTA-04</td>
+                  <td>Hero image uses priority loading, fixed dimensions, and alt text (Mobile LCP guard)</td>
+                  <td class="fail">FAIL</td>
+                  <td>WARN</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+            </table>
+          
+            <h3>PERF</h3>
+            <table class="evidence-table">
+              <tr>
+                <th>Check ID</th>
+                <th>Description</th>
+                <th>Result</th>
+                <th>Severity</th>
+                <th>Source</th>
+              </tr>
+              
+                <tr>
+                  <td>PERF-01</td>
+                  <td>Mobile Largest Contentful Paint (LCP) ≤ 2500 ms</td>
+                  <td class="pass">PASS</td>
+                  <td>WARN</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>PERF-02</td>
+                  <td>Cumulative Layout Shift (CLS) ≤ 0.1</td>
+                  <td class="pass">PASS</td>
+                  <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>PERF-03</td>
+                  <td>Interaction to Next Paint (INP) ≤ 200 ms</td>
+                  <td class="pass">PASS</td>
+                  <td>INFO</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>PERF-04</td>
+                  <td>Homepage JS bundle size within regression budget (gzip)</td>
+                  <td class="">NOT_RUN</td>
+                  <td>WARN</td>
+                  <td style="color:#64748b;">registry</td>
+                </tr>
+              
+            </table>
+          
+    </div>
+
+    <!-- Legacy flat Contract Evidence section removed. Canonical source is now "Contract Checks (Resolved)". -->
+    
+    <section>
+      <h2>Performance (Playwright Audit)</h2>
+      <p class="muted">
+        These metrics are best-effort signals captured during Playwright runs.
+        Values may be <code>n/a</code> and are <strong>not</strong> used for
+        performance budget enforcement.
+      </p>
+    </section>
+  
+    <section>
+      <h2>Performance (Lighthouse)</h2>
+      <p class="muted">
+        Lighthouse results are reported separately for mobile and desktop.
+        Only <b>mobile</b> Lighthouse is authoritative for release gating.
+      </p>
+
+      
+      <h3>Mobile (Authoritative)</h3>
+      
+      <div style="
+        background:#f1f5f9;
+        padding:12px 14px;
+        border-radius:8px;
+        margin-bottom:16px;
+        font-size:14px;
+        color:#0f172a;
+      ">
+        <b>Workspace:</b> UNKNOWN<br/>
+        <b>Server:</b> localhost:3000<br/>
+        <b>URL:</b> http://localhost:3000<br/>
+        <b>Collected:</b> 2026-01-03T10:14:13.272Z
+      </div>
+    
+      <table class="perf-table">
+        <tr><th>LCP</th><td>7368 ms</td></tr>
+        <tr><th>CLS</th><td>0</td></tr>
+        <tr><th>INP / TBT</th><td>601.3648750000002 ms</td></tr>
+        <tr><th>Performance Score</th><td>59</td></tr>
+        <tr><th>SEO Score</th><td>100</td></tr>
+      </table>
+      <p class="muted">
+        Mode: <b>AUTHORITATIVE (Release-gating)</b>
+      </p>
+    
+      
+      <h3>Desktop (Advisory)</h3>
+      
+      <div style="
+        background:#f1f5f9;
+        padding:12px 14px;
+        border-radius:8px;
+        margin-bottom:16px;
+        font-size:14px;
+        color:#0f172a;
+      ">
+        <b>Workspace:</b> UNKNOWN<br/>
+        <b>Server:</b> localhost:3000<br/>
+        <b>URL:</b> http://localhost:3000<br/>
+        <b>Collected:</b> 2026-01-03T10:15:21.381Z
+      </div>
+    
+      <table class="perf-table">
+        <tr><th>LCP</th><td>7370 ms</td></tr>
+        <tr><th>CLS</th><td>0</td></tr>
+        <tr><th>INP / TBT</th><td>351.8435249999998 ms</td></tr>
+        <tr><th>Performance Score</th><td>67</td></tr>
+        <tr><th>SEO Score</th><td>100</td></tr>
+      </table>
+      <p class="muted">
+        Mode: <b>ADVISORY (Diagnostic only)</b>
+      </p>
+    
+    </section>
+  
+
+    <section class="workspace-note">
+      <p>
+        Interpretation context:
+        <b>VSCODE</b> workspace.
+        Performance and Lighthouse signals may be advisory or authoritative
+        depending on workspace policy.
+      </p>
+    </section>
+
+    <div class="section">
+      <h2>Performance (Playwright Audit)</h2>
+      <p style="color:#475569;font-size:14px;margin-top:8px;margin-bottom:0;">
+        These are best-effort metrics captured during Playwright runs. Values may be <code>n/a</code>.
+        Performance decisions should be based on Lighthouse (mobile-first).
+      </p>
+      <table class="evidence-table">
+        <tr>
+          <th>Metric</th>
+          <th>Measured</th>
+          <th>Budget</th>
+        </tr>
+        <tr>
+          <td>LCP</td>
+          <td>n/a</td>
+          <td>≤ 2500 ms</td>
+        </tr>
+        <tr>
+          <td>CLS</td>
+          <td>0</td>
+          <td>≤ 0.1</td>
+        </tr>
+        <tr>
+          <td>INP</td>
+          <td>n/a</td>
+          <td>≤ 200 ms</td>
+        </tr>
+      </table>
+
+      <p style="color:#475569;font-size:14px;margin-top:10px;">
+        Trend file: <code>homepage.perf.trend.json</code>
+         | Drift vs previous: LCP n/a ms, CLS 0, INP n/a ms
+      </p>
+    </div>
+
+    <div class="section">
+      <h2>Summary</h2>
+      <table>
+        <tr><th>Total Tests</th><td>1</td></tr>
+        <tr><th>Passed</th><td class="pass">1</td></tr>
+        <tr><th>Failed</th><td class="pass">0</td></tr>
+        <tr><th>Skipped</th><td>0</td></tr>
+        <tr><th>Flaky</th><td>0</td></tr>
+        <tr><th>Duration</th><td>10740 ms</td></tr>
+      </table>
+    </div>
+
+    <div class="section">
+      <h2>Validation Pillars</h2>
+      <div class="pillars">
+        <span>SEO: <span class="pass">PASS</span></span>
+        <span>Schema: <span class="pass">PASS</span></span>
+        <span>Intent: <span class="pass">PASS</span></span>
+        <span>CTA Flow: <span class="pass">PASS</span></span>
+      </div>
+    </div>
+
+    <section>
+      <h2>Contract Verdict</h2>
+      <p class="verdict approved_with_warnings">APPROVED_WITH_WARNINGS</p>
+      <p class="muted">
+        Verdict is derived from failed checks weighted by severity
+        (error / warn / info).
+      </p>
+    </section>
+
+  </div>
+</body>
+</html>
