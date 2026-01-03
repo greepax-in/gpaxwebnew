@@ -1,0 +1,37 @@
+/* CODEX_PATCH_BEGIN */
+/* FILE: src/components/Common/Footer/FooterWrapper.module.css */
+
+.footer {
+  margin-top: auto;
+  padding: 24px 16px;
+  background: #f5f5f5;
+  border-top: 1px solid #e0e0e0;
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+}
+
+.link {
+  color: rgba(0, 0, 0, 0.6);
+  text-decoration: none;
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+.link:hover {
+  text-decoration: underline;
+}
+
+.copy {
+  margin: 0;
+  font-size: 12px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* CODEX_PATCH_END */

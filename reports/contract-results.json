@@ -56,9 +56,9 @@
     "version": "1.57.0",
     "workers": 1,
     "webServer": {
-      "command": "npm run dev",
+      "command": "npm run start",
       "port": 3000,
-      "reuseExistingServer": true,
+      "reuseExistingServer": false,
       "timeout": 120000
     }
   },
@@ -92,12 +92,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 8143,
+                      "duration": 5757,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-03T10:13:47.179Z",
+                      "startTime": "2026-01-03T20:48:53.388Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -117,8 +117,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-01-03T10:13:45.171Z",
-    "duration": 10739.902,
+    "startTime": "2026-01-03T20:48:48.989Z",
+    "duration": 10999.891,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

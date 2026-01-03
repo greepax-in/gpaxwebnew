@@ -1,6 +1,6 @@
 // FILE: src/components/Home/HomeCTA.tsx
 
-import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
+import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
 
 export default function HomeCTA() {
   return (
@@ -16,7 +16,7 @@ export default function HomeCTA() {
         </div>
         <div className="cta-actions">
           <a
-            href={getHomepageWhatsAppLink("Primary CTA strip")}
+            href={buildHomepageWhatsAppLink("Primary CTA strip")}
             target="_blank"
             rel="noopener noreferrer"
             className="primary-cta"

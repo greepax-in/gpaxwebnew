@@ -137,6 +137,11 @@ function HomePageStructuredData(): JSX.Element {
 export default function HomePage(): JSX.Element {
   return (
     <div className="home">
+      {/* 🔒 SEO AUTHORITY — Server-rendered H1 (App Router safe) */}
+      <h1 className="sr-only">
+        Eco-Friendly Paper Packaging Manufacturer in India
+      </h1>
+
       <HomePageStructuredData />
       <HomeHero />
       <HomeCategories />

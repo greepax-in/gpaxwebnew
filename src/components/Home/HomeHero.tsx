@@ -1,114 +1,56 @@
-// FILE: src/components/Home/HomeHero.tsx
+"use client";
 import Image from "next/image";
-import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
+import styles from "./HomeHero.module.css";
+
+function HeroImage() {
+  return (
+    <div className={styles.heroVisual}>
+      <Image
+        src="/images/home/hero/gpax-hero-final-400x500.webp"
+        alt="Printed eco-friendly paper bags and boxes manufactured by GreenPax"
+        width={900}
+        height={500}
+        priority
+        fetchPriority="high"
+        sizes="(max-width: 900px) 94vw, 640px"
+        className={styles.heroImage}
+      />
+    </div>
+  );
+}
 
 export default function HomeHero() {
   return (
-    <section>
-      <Container
-        maxWidth="lg"
-        sx={{
-          minHeight: { xs: "80vh", md: "85vh" },
-          display: "flex",
-          alignItems: "center",
-          py: { xs: 5, md: 7 },
-        }}
-      >
-        <Box
-          display="flex"
-          flexDirection={{ xs: "column", md: "row" }}
-          gap={{ xs: 4, md: 6 }}
-          alignItems="center"
-          width="100%"
-        >
-          {/* Copy */}
-          <Box component="div" sx={{ flex: { xs: "0 0 100%", md: "0 0 55%" } }}>
-            <Stack spacing={2}>
-              <Typography variant="overline" sx={{ letterSpacing: "0.12em", fontWeight: 600 }}>
-                India's Eco-Friendly Paper Packaging Manufacturer
-              </Typography>
+    <section className="home-hero hero-fold-safe">
+      <div className="hero-content">
+        {/* HERO HEADING — use H2 so homepage keeps a single H1 for SEO authority */}
+        <h2>Eco-Friendly Paper Packaging Manufacturer</h2>
 
-              <Typography
-                variant="h1"
-                sx={{
-                  fontSize: { xs: "2.4rem", md: "3.6rem" },
-                  fontWeight: 700,
-                  lineHeight: 1.1,
-                  letterSpacing: "-0.02em",
-                }}
-              >
-                Custom Paper Bags, Boxes & Food Packaging - Built for Bulk
-                Production
-              </Typography>
+        {/* PRIMARY CTA — ABOVE THE FOLD (LOCKED) */}
+        <div className="hero-primary-cta hero-primary-cta--abovefold">
+          <a
+            href={buildHomepageWhatsAppLink("Homepage hero")}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="primary-cta"
+            data-cta="primary-whatsapp"
+            aria-label="Talk to GreenPax on WhatsApp"
+          >
+            Talk to GreenPax on WhatsApp
+          </a>
+        </div>
 
-              <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 520 }}>
-                We manufacture paper packaging for retail, QSR, and FMCG brands.
-                Food-safe inks, controlled MOQs, and planned Pan-India dispatch
-                support consistent, large-scale production.
-              </Typography>
+        <p>
+          Bulk paper bags, covers, and boxes manufactured in India with
+          MOQ-based production.
+        </p>
 
-              <Stack direction="row" spacing={2} alignItems="center" flexWrap="wrap">
-                <Button
-                  variant="contained"
-                  size="large"
-                  component="a"
-                  href={getHomepageWhatsAppLink("Homepage hero")}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Talk to a packaging specialist about bulk paper packaging requirements"
-                >
-                  Talk to a Packaging Specialist
-                </Button>
-              </Stack>
-
-              <Typography variant="caption" color="text.secondary">
-                Share packaging type, quantity band, and delivery timeline.
-                Responses during business hours.
-              </Typography>
-            </Stack>
-          </Box>
-
-          {/* Visual */}
-          <Box component="div" sx={{ flex: { xs: "0 0 100%", md: "0 0 45%" } }}>
-            <Box
-              sx={{
-                maxWidth: { xs: 520, md: 640 },
-                width: "100%",
-                height: { xs: 300, md: 420 },
-                marginInline: "auto",
-                borderRadius: { xs: 20, md: 28 },
-                border: "1px solid rgba(15, 23, 42, 0.08)",
-                boxShadow: "0 20px 48px rgba(15, 23, 42, 0.14)",
-                backgroundColor: "#fff",
-                overflow: "hidden",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                padding: 2,
-              }}
-            >
-              <Image
-                src="/images/home/hero/printed-multi-color.svg"
-                alt="Printed eco-friendly paper bags and boxes from GreenPax"
-                width={900}
-                height={500}
-                sizes="(max-width: 900px) 94vw, 640px"
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "contain",
-                }}
-                priority
-              />
-            </Box>
-          </Box>
-        </Box>
-      </Container>
+        {/* VISUAL — MUST NOT AFFECT ABOVE-FOLD CTA */}
+        <div className="hero-visual-wrap">
+          <HeroImage />
+        </div>
+      </div>
     </section>
   );
 }

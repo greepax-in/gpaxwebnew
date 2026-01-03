@@ -5,6 +5,17 @@
   "engines": {
     "node": ">=20.0.0"
   },
+  "browserslist": {
+    "production": [
+      "last 2 Chrome versions",
+      "last 2 Edge versions",
+      "last 2 Safari versions",
+      "last 2 Firefox versions"
+    ],
+    "development": [
+      "last 1 Chrome version"
+    ]
+  },
   "scripts": {
     "dev": "next dev --turbopack",
     "build": "next build",
@@ -22,13 +33,17 @@
     "test:lighthouse:prod": "npm run build && node tests/tools/run-lighthouse-prod.js",
     "validate:items": "tsx src/scripts/validateItems.ts",
     "normalize:items": "tsx src/scripts/normalizeItems.ts",
-    "validate:contract:home": "npm run build && npm run check:bundle && npm run test:contract:home && npm run lighthouse:home:mobile && npm run lighthouse:home:desktop && npm run report:contract:home"
+    "start:lighthouse": "next start -p 3000",
+
+    "lighthouse:home:mobile:prod": "npx concurrently --success first -k \"npm run start:lighthouse\" \"npx wait-on http://localhost:3000 && npm run lighthouse:home:mobile\"",
+
+    "lighthouse:home:desktop:prod": "npx concurrently --success first -k \"npm run start:lighthouse\" \"npx wait-on http://localhost:3000 && npm run lighthouse:home:desktop\"",
+
+    "validate:contract:home":
+      "npm run build && npm run check:bundle && npm run test:contract:home && npm run lighthouse:home:mobile:prod && npm run lighthouse:home:desktop:prod && npm run report:contract:home",
+    "analyze:bundle": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next build && npx source-map-explorer \".next/static/chunks/**/*.js\" --html bundle-report.html"
   },
   "dependencies": {
-    "@emotion/react": "11.14.0",
-    "@emotion/styled": "11.14.1",
-    "@mui/icons-material": "7.3.5",
-    "@mui/material": "7.3.5",
     "dotenv": "^17.2.3",
     "framer-motion": "12.23.24",
     "gray-matter": "4.0.3",
@@ -39,19 +54,20 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "3.3.1",
-    "@next/bundle-analyzer": "^16.1.1",
     "@playwright/test": "1.57.0",
     "@types/marked": "6.0.0",
     "@types/node": "24.10.1",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
-    "baseline-browser-mapping": "^2.9.11",
     "chrome-launcher": "0.15.2",
+    "concurrently": "^9.1.0",
     "eslint": "9.39.1",
     "eslint-config-next": "16.0.4",
     "lighthouse": "12.3.0",
     "playwright": "1.57.0",
+    "source-map-explorer": "^2.5.3",
     "tsx": "^4.21.0",
-    "typescript": "5.9.3"
+    "typescript": "5.9.3",
+    "wait-on": "^7.2.0"
   }
 }

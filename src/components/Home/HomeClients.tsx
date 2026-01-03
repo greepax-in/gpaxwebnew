@@ -1,6 +1,6 @@
 // FILE: src/components/Home/HomeClients.tsx
 
-import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
+import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
 
 export default function HomeClients() {
   const proofPoints = [
@@ -32,7 +32,7 @@ export default function HomeClients() {
               on WhatsApp.
             </p>
             <a
-              href={getHomepageWhatsAppLink("Client samples request")}
+              href={buildHomepageWhatsAppLink("Client samples request")}
               target="_blank"
               rel="noopener noreferrer"
               className="primary-cta"

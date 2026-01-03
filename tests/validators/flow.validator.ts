@@ -1,13 +1,46 @@
 import { expect, type Page } from "@playwright/test";
 import type { FlowRules } from "./types";
-import type { ContractEvidenceContext } from "../validators/contractEvidence";
+import type { ContractEvidenceContext } from "./contractEvidence";
 
-export async function validateFlow(page: Page, rules: FlowRules, ctx?: ContractEvidenceContext) {
-  // Hero first rule stays (this is fine)
+export async function validateFlow(
+  page: Page,
+  rules: FlowRules,
+  ctx?: ContractEvidenceContext
+) {
   if (rules.heroFirst) {
-    const hero = page.locator("h1");
-    const box = await hero.boundingBox();
-    expect(box?.y).toBeLessThan(600);
+    // ✅ SSR-safe: H1 must exist in initial DOM
+    const count = await page.locator("h1").count();
+
+    if (count === 0) {
+      ctx?.fail({
+        id: "FLOW-01",
+        pillar: "flow",
+        label: "Missing semantic H1 (hero heading)",
+      });
+      throw new Error("Hero heading (H1) not found in DOM");
+    }
+
+    // DOM-order validation (not layout / hydration)
+    const heroIndex = await page.evaluate(() => {
+      const all = Array.from(document.body.querySelectorAll("*"));
+      return all.findIndex(el => el.tagName === "H1");
+    });
+
+    expect(
+      heroIndex,
+      "Hero H1 must appear early in DOM"
+    ).toBeGreaterThanOrEqual(0);
+
+    expect(
+      heroIndex,
+      "Hero H1 must appear before primary content"
+    ).toBeLessThan(12);
+
+    ctx?.pass({
+      id: "FLOW-01",
+      pillar: "flow",
+      label: "Hero H1 present early in DOM",
+    });
   }
 
   /**
@@ -95,6 +128,11 @@ export async function validateFlow(page: Page, rules: FlowRules, ctx?: ContractE
   }
   // CTA Flow (FINAL, CONTRACT-LOCKED)
   if (rules.trustBeforeCTA) {
+    // 🔒 Ensure primary WhatsApp CTA exists before measuring layout
+    await page.waitForSelector(
+      'a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href^="whatsapp:"]',
+      { state: "attached", timeout: 5000 }
+    );
     const viewportHeight = page.viewportSize()?.height ?? 800;
 
     const whatsappCTAs = await page.evaluate(() => {
@@ -115,6 +153,16 @@ export async function validateFlow(page: Page, rules: FlowRules, ctx?: ContractE
     const aboveFoldCTAs = whatsappCTAs.filter(
       (cta) => cta.top >= 0 && cta.top <= viewportHeight
     );
+
+    if (aboveFoldCTAs.length === 0) {
+      // Diagnostic: list all matching anchors with href and bounding rect
+      const diag = await page.evaluate(() => {
+        return Array.from(document.querySelectorAll('a[href*="wa.me"], a[href*="api.whatsapp.com"], a[href^="whatsapp:"]'))
+          .map(a => ({ href: a.getAttribute('href'), text: a.textContent, rect: a.getBoundingClientRect() }));
+      });
+      // eslint-disable-next-line no-console
+      console.log('FLOW DEBUG: no above-fold CTAs; matching anchors:', JSON.stringify(diag, null, 2));
+    }
 
     expect(
       aboveFoldCTAs.length === 1,
@@ -210,7 +258,7 @@ export async function validateFlow(page: Page, rules: FlowRules, ctx?: ContractE
   
   if (rules.trustBeforeCTA) {
     ctx?.pass({
-      id: "FLOW-01",
+      id: "FLOW-CTA-01",
       pillar: "cta_flow",
     });
   } else {

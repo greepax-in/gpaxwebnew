@@ -1,24 +1,34 @@
 // FILE: src/components/Common/WhatsAppCTA.tsx
 
-const BASE_URL = "https://wa.me/919999999999";
+"use client";
 
-/**
- * Returns a WhatsApp deep link with a guided, consultative prompt.
- * Accepts optional context to pre-fill the packaging type or section of origin.
- */
-export function getHomepageWhatsAppLink(context?: string): string {
-  const message = `
-Hi GreenPax team,
+import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
 
-I need eco-friendly paper packaging.
+type WhatsAppCTAProps = {
+  context?: string;
+};
 
-Packaging type: ${context ?? "Not specified"}
-Quantity and timeline:
-Printing needs:
-City:
+export function WhatsAppCTA({ context }: WhatsAppCTAProps) {
+  const href = buildHomepageWhatsAppLink(context);
 
-Please share MOQ options, materials, and sample photos.
-`.trim();
-
-  return `${BASE_URL}?text=${encodeURIComponent(message)}`;
+  return (
+    <a
+      href={href}
+      data-cta="whatsapp"
+      aria-label="Contact GreenPax on WhatsApp"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "12px 16px",
+        borderRadius: "8px",
+        backgroundColor: "#25D366",
+        color: "#ffffff",
+        fontWeight: 600,
+        textDecoration: "none",
+      }}
+    >
+      WhatsApp Us
+    </a>
+  );
 }

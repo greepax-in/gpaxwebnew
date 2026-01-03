@@ -114,7 +114,7 @@
   
     <div class="meta">
       Contract: <b>homepage</b><br/>
-      Generated at: 2026-01-03T10:16:23.768Z
+      Generated at: 2026-01-03T21:04:45.510Z
     </div>
 
     <div class="section">
@@ -314,9 +314,9 @@
                 <tr>
                   <td>PERF-01</td>
                   <td>Mobile Largest Contentful Paint (LCP) ≤ 2500 ms</td>
-                  <td class="pass">PASS</td>
+                  <td class="">NOT_RUN</td>
                   <td>WARN</td>
-                  <td style="color:#64748b;">evidence</td>
+                  <td style="color:#64748b;">registry</td>
                 </tr>
               
                 <tr>
@@ -338,7 +338,7 @@
                 <tr>
                   <td>PERF-04</td>
                   <td>Homepage JS bundle size within regression budget (gzip)</td>
-                  <td class="">NOT_RUN</td>
+                  <td class="pass">PASS</td>
                   <td>WARN</td>
                   <td style="color:#64748b;">registry</td>
                 </tr>
@@ -379,18 +379,25 @@
         <b>Workspace:</b> UNKNOWN<br/>
         <b>Server:</b> localhost:3000<br/>
         <b>URL:</b> http://localhost:3000<br/>
-        <b>Collected:</b> 2026-01-03T10:14:13.272Z
+        <b>Collected:</b> 2026-01-03T20:49:25.058Z
       </div>
     
       <table class="perf-table">
-        <tr><th>LCP</th><td>7368 ms</td></tr>
-        <tr><th>CLS</th><td>0</td></tr>
-        <tr><th>INP / TBT</th><td>601.3648750000002 ms</td></tr>
-        <tr><th>Performance Score</th><td>59</td></tr>
+        <tr><th>LCP</th><td><span class="muted">not triggered</span></td></tr>
+        <tr><th>CLS</th><td>0 </td></tr>
+        <tr><th>INP</th><td><span class="muted">not triggered</span></td></tr>
+        <tr><th>TTFB</th><td><b>7 ms</b></td></tr>
+        <tr><th>Performance Score</th><td>n/a</td></tr>
         <tr><th>SEO Score</th><td>100</td></tr>
       </table>
       <p class="muted">
         Mode: <b>AUTHORITATIVE (Release-gating)</b>
+      </p>
+      <p class="muted">
+        <i>
+          Note: “not triggered” means Lighthouse did not emit this metric in this mode.
+          This is common on mobile when LCP/INP observers do not fire.
+        </i>
       </p>
     
       
@@ -407,18 +414,25 @@
         <b>Workspace:</b> UNKNOWN<br/>
         <b>Server:</b> localhost:3000<br/>
         <b>URL:</b> http://localhost:3000<br/>
-        <b>Collected:</b> 2026-01-03T10:15:21.381Z
+        <b>Collected:</b> 2026-01-03T20:49:55.693Z
       </div>
     
       <table class="perf-table">
-        <tr><th>LCP</th><td>7370 ms</td></tr>
-        <tr><th>CLS</th><td>0</td></tr>
-        <tr><th>INP / TBT</th><td>351.8435249999998 ms</td></tr>
-        <tr><th>Performance Score</th><td>67</td></tr>
+        <tr><th>LCP</th><td>5086 ms</td></tr>
+        <tr><th>CLS</th><td>0 </td></tr>
+        <tr><th>INP</th><td>993.444 ms</td></tr>
+        <tr><th>TTFB</th><td><b>16 ms</b></td></tr>
+        <tr><th>Performance Score</th><td>58</td></tr>
         <tr><th>SEO Score</th><td>100</td></tr>
       </table>
       <p class="muted">
         Mode: <b>ADVISORY (Diagnostic only)</b>
+      </p>
+      <p class="muted">
+        <i>
+          Note: “not triggered” means Lighthouse did not emit this metric in this mode.
+          This is common on mobile when LCP/INP observers do not fire.
+        </i>
       </p>
     
     </section>
@@ -476,7 +490,7 @@
         <tr><th>Failed</th><td class="pass">0</td></tr>
         <tr><th>Skipped</th><td>0</td></tr>
         <tr><th>Flaky</th><td>0</td></tr>
-        <tr><th>Duration</th><td>10740 ms</td></tr>
+        <tr><th>Duration</th><td>11000 ms</td></tr>
       </table>
     </div>
 

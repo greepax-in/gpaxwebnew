@@ -1,7 +1,6 @@
 import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
 import FooterWrapper from "@/components/Common/Footer/FooterWrapper"; // ?. Import Footer
-import ThemeRegistry from "@/theme/ThemeRegistry";
 
 const sora = Sora({
   variable: "--font-display",
@@ -31,18 +30,16 @@ export default function RootLayout({
         className={`${sora.variable} ${manrope.variable}`}
         style={{ margin: 0, padding: 0 }}
       >
-        <ThemeRegistry>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              minHeight: "100vh",
-            }}
-          >
-            <main style={{ flexGrow: 1 }}>{children}</main>
-            <FooterWrapper />
-          </div>
-        </ThemeRegistry>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            minHeight: "100vh",
+          }}
+        >
+          <main style={{ flexGrow: 1 }}>{children}</main>
+          <FooterWrapper />
+        </div>
       </body>
     </html>
   );

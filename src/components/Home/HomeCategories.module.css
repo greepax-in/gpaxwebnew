@@ -1,0 +1,202 @@
+.categoryGrid {
+  gap: 20px;
+}
+
+.card {
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.06);
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+}
+
+.imageWrap {
+  padding: 16px;
+  background-color: #f7f8f2;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.categoryImage {
+  width: 100%;
+  height: auto;
+  max-height: 200px;
+  object-fit: contain;
+}
+
+.cardBody {
+  padding: 18px 20px 22px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.categoryTitle {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.categorySummary {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.metaBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.subcategoryChips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-height: 56px;
+  max-height: 56px;
+  overflow: hidden;
+  align-content: flex-start;
+}
+
+.subcategoryChip {
+  display: inline-flex;
+  align-items: center;
+  height: 26px;
+  padding: 6px 10px;
+  border-radius: 12px;
+  border: 1px solid #dcded6;
+  background-color: #f7f7f2;
+  color: #2f3a45;
+  font-size: 0.82rem;
+  font-weight: 500;
+}
+
+.variantRow {
+  min-height: 32px;
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.variantChip {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 26px;
+  min-width: 80px;
+  padding: 0 12px;
+  border-radius: 14px;
+  font-weight: 600;
+  font-size: 12px;
+  letter-spacing: 0.2px;
+}
+
+.variantPlain {
+  background-color: #eef2f7;
+  color: #334155;
+  border: 1px solid #cfd6dd;
+}
+
+.variantPrinted {
+  background-color: #2f7a4f;
+  color: #ffffff;
+}
+
+.variantMulti {
+  background: linear-gradient(90deg, #7c6cff, #5cb176, #f3b04a);
+  color: #ffffff;
+}
+
+.moqPriceRow {
+  display: flex;
+  justify-content: center;
+}
+
+.moqPrice {
+  display: flex;
+  overflow: hidden;
+  border-radius: 10px;
+  border: 1px solid #dfe5ec;
+}
+
+.moq {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 8px 12px;
+  background-color: #f4f6f9;
+  font-size: 13px;
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.moqValue {
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  background-color: #e8f4ee;
+  font-size: 13px;
+  color: #1f6f46;
+  font-weight: 500;
+}
+
+.priceValue {
+  font-weight: 700;
+}
+
+.ctaRow {
+  display: flex;
+  justify-content: center;
+  min-height: 30px;
+  margin-top: 4px;
+}
+
+.whatsappCta {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 500;
+  font-size: 13px;
+  color: #1f6f46;
+  background-color: #f1f8f4;
+  transition: background-color 0.2s ease;
+}
+
+.whatsappCta:hover {
+  background-color: #e6f3ec;
+}
+
+.whatsappCta:focus-visible {
+  outline: 2px solid #1f6f46;
+  outline-offset: 3px;
+}
+
+.whatsappIcon {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background-color: #25d366;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  flex-shrink: 0;
+  margin-left: -6px;
+}

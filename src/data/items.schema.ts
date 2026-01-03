@@ -64,7 +64,13 @@ export const ItemSchema = z
 
     variant: z.object({
       type: z.enum(VARIANT_TYPES),
-      printColors: z.number().int().positive().optional(),
+      printColors: z
+        .number()
+        .positive()
+        .refine(Number.isInteger, {
+          message: "printColors must be an integer",
+        })
+        .optional(),
     }),
 
     material: z.object({

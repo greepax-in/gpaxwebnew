@@ -3,16 +3,8 @@
 import Image from "next/image";
 import items from "@/data/items.json";
 import rawCategoryIndex from "@/data/categoryIndex.json";
-import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Link from "@mui/material/Link";
-import Chip from "@mui/material/Chip";
-import WhatsAppIcon from "@mui/icons-material/WhatsApp";
-
+import { buildHomepageWhatsAppLink } from "@/lib/whatsapp"
+import styles from "./HomeCategories.module.css";
 
 /* =========================================================
    CATEGORY INDEX TYPES (runtime-safe boundary)
@@ -95,7 +87,7 @@ export default function HomeCategories() {
           </p>
         </div>
 
-        <div className="category-grid">
+        <div className={`category-grid ${styles.categoryGrid}`}>
           {categories.map((group: any) => {
             const categorySlug = group.slug || toSlug(group.category);
             const categoryData =
@@ -133,26 +125,9 @@ export default function HomeCategories() {
             const minMOQ = moqs.length ? Math.min(...moqs) : null;
             const minPrice = prices.length ? Math.min(...prices) : null;
 
-            const uom =
-              subcats.find((d: any) => d.chips.line3.uom === "pcs")?.chips.line3.uom ??
-              subcats[0]?.chips.line3.uom;
-
             return (
-              <Card
-                key={group.category}
-                elevation={0}
-                sx={{
-                  borderRadius: 1,
-                  transition: "transform 0.2s ease, box-shadow 0.2s ease",
-                  "@media (hover: hover)": {
-                    "&:hover": {
-                      transform: "translateY(-2px)",
-                      boxShadow: "0 6px 20px rgba(0,0,0,0.06)",
-                    },
-                  },
-                }}
-              >
-                <Box sx={{ p: 2, backgroundColor: "#f7f8f2", borderRadius: 1 }}>
+              <article className={`${styles.card} card`} key={group.category}>
+                <div className={styles.imageWrap}>
                   {image ? (
                     <Image
                       src={image}
@@ -160,262 +135,123 @@ export default function HomeCategories() {
                       width={320}
                       height={220}
                       sizes="(max-width: 900px) 100vw, 33vw"
-                      className="category-image"
+                      className={`${styles.categoryImage} category-image`}
                     />
                   ) : (
                     <span className="category-placeholder">{group.category}</span>
                   )}
-                </Box>
+                </div>
 
-                <CardContent sx={{ pt: 2.5 }}>
-                  <Typography variant="h6" fontWeight={600}>
-                    {group.category}
-                  </Typography>
+                <div className={styles.cardBody}>
+                  <h3 className={styles.categoryTitle}>{group.category}</h3>
 
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    sx={{ mb: 2 }}
-                  >
+                  <p className={styles.categorySummary}>
                     Bulk-ready {group.category.toLowerCase()} built to spec.
-                  </Typography>
+                  </p>
 
-                  <Box
-                    sx={{
-                      mb: 2,
-                      display: "flex",
-                      flexDirection: "column",
-                    }}
-                  >
+                  <div className={styles.metaBlock}>
                     {/* LINE 1 - SUBCATEGORY CHIPS */}
-                    <Stack
-                      direction="row"
-                      spacing={1}
-                      flexWrap="wrap"
-                      sx={{
-                        mb: 1,
-                        minHeight: 56,
-                        maxHeight: 56,
-                        overflow: "hidden",
-                        alignContent: "flex-start",
-                        justifyContent: "flex-start",
-                      }}
-                    >
+                    <div className={styles.subcategoryChips}>
                       {visibleChips.map((label: string) => (
-                        <Chip
-                          key={label}
-                          label={label}
-                          size="small"
-                          variant="outlined"
-                          sx={{
-                            fontWeight: 500,
-                            borderRadius: 1.5,
-                            height: 26,
-                            backgroundColor: "#f7f7f2",
-                            borderColor: "#dcded6",
-                            color: "#2f3a45",
-                          }}
-                        />
+                        <span key={label} className={styles.subcategoryChip}>
+                          {label}
+                        </span>
                       ))}
 
                       {remainingCount > 0 && (
-                        <Chip
-                          label={`+ ${remainingCount} more`}
-                          size="small"
-                          variant="outlined"
-                          sx={{
-                            height: 26,
-                            fontWeight: 500,
-                            borderRadius: 1.5,
-                            color: "text.secondary",
-                          }}
-                        />
+                        <span className={styles.subcategoryChip}>
+                          + {remainingCount} more
+                        </span>
                       )}
-                    </Stack>
+                    </div>
 
-                    {/* LINE 2 — VARIANT CHIPS (FIXED ROW) */}
-                    <Box sx={{ minHeight: 32, mb: 0.75 }}>
-                      <Stack direction="row" spacing={1} flexWrap="nowrap">
-                        {[...variantSet].map((variant: string) => {
-                          const key = variant.toLowerCase();
+                    {/* LINE 2 - VARIANT CHIPS (FIXED ROW) */}
+                    <div className={styles.variantRow}>
+                      {[...variantSet].map((variant: string) => {
+                        const key = variant.toLowerCase();
 
-                          if (key.includes("plain")) {
-                            return (
-                              <Chip
-                                key={variant}
-                                label="Plain"
-                                size="small"
-                                sx={{
-                                  height: 26,
-                                  minWidth: 80,
-                                  justifyContent: "center",
-                                  fontWeight: 600,
-                                  fontSize: 12,
-                                  letterSpacing: 0.2,
-                                  backgroundColor: "#eef2f7",
-                                  color: "#334155",
-                                  border: "1px solid #cfd6dd",
-                                }}
-                              />
-                            );
-                          }
+                        if (key.includes("plain")) {
+                          return (
+                            <span
+                              key={variant}
+                              className={`${styles.variantChip} ${styles.variantPlain}`}
+                            >
+                              Plain
+                            </span>
+                          );
+                        }
 
-                          if (key.includes("printed")) {
-                            return (
-                              <Chip
-                                key={variant}
-                                label="Printed (1C)"
-                                size="small"
-                                sx={{
-                                  height: 26,
-                                  minWidth: 110,
-                                  justifyContent: "center",
-                                  fontWeight: 600,
-                                  fontSize: 12,
-                                  letterSpacing: 0.2,
-                                  color: "#ffffff",
-                                  backgroundColor: "#2f7a4f",
-                                }}
-                              />
-                            );
-                          }
+                        if (key.includes("printed")) {
+                          return (
+                            <span
+                              key={variant}
+                              className={`${styles.variantChip} ${styles.variantPrinted}`}
+                            >
+                              Printed (1C)
+                            </span>
+                          );
+                        }
 
-                          if (key.includes("multi")) {
-                            return (
-                              <Chip
-                                key={variant}
-                                label="Multicolor"
-                                size="small"
-                                sx={{
-                                  height: 26,
-                                  minWidth: 110,
-                                  justifyContent: "center",
-                                  fontWeight: 600,
-                                  fontSize: 12,
-                                  letterSpacing: 0.2,
-                                  color: "#ffffff",
-                                  background:
-                                    "linear-gradient(90deg, #7c6cff, #5cb176, #f3b04a)",
-                                }}
-                              />
-                            );
-                          }
+                        if (key.includes("multi")) {
+                          return (
+                            <span
+                              key={variant}
+                              className={`${styles.variantChip} ${styles.variantMulti}`}
+                            >
+                              Multicolor
+                            </span>
+                          );
+                        }
 
-                          return null;
-                        })}
-                      </Stack>
-                    </Box>
+                        return null;
+                      })}
+                    </div>
 
-                    {/* LINE 3 — MOQ + PRICE (JOINED BLOCK, CENTERED) */}
-                    <Box
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        mt: 0.75,
-                      }}
-                    >
-                      <Box
-                        sx={{
-                          display: "flex",
-                          overflow: "hidden",
-                          borderRadius: 1,
-                          border: "1px solid #dfe5ec",
-                        }}
-                      >
-                        {/* MOQ BLOCK */}
-                        <Box
-                          sx={{
-                            px: 1.5,
-                            py: 0.5,
-                            backgroundColor: "#f4f6f9",
-                            fontSize: 13,
-                            color: "text.secondary",
-                            fontWeight: 500,
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          MOQ&nbsp;
-                          <Box component="span" sx={{ fontWeight: 700, color: "text.primary" }}>
-                            {minMOQ ? `${minMOQ}+` : ""}
-                          </Box>
-                        </Box>
+                    {/* LINE 3 - MOQ + PRICE (JOINED BLOCK, CENTERED) */}
+                    <div className={styles.moqPriceRow}>
+                      <div className={styles.moqPrice}>
+                        <div className={styles.moq}>
+                          MOQ<span className={styles.moqValue}>{minMOQ ? `${minMOQ}+` : ""}</span>
+                        </div>
 
-                        {/* PRICE BLOCK — INDICATIVE ONLY (NON-TRANSACTIONAL) */}
-                        <Box
-                          sx={{
-                            px: 1.75,
-                            py: 0.5,
-                            backgroundColor: "#e8f4ee",
-                            fontSize: 13,
-                            color: "#1f6f46",
-                            fontWeight: 500,
-                            display: "flex",
-                            alignItems: "center",
-                          }}
-                        >
-                          Indicative&nbsp;
-                          <Box component="span" sx={{ fontWeight: 700 }}>
-                            {minPrice ? `₹${minPrice}+ (bulk)` : `On enquiry`}
-                          </Box>
-                        </Box>
-                      </Box>
-                    </Box>
+                        <div className={styles.price}>
+                          Indicative
+                          <span className={styles.priceValue}>
+                            {minPrice ? `?${minPrice}+ (bulk)` : `On enquiry`}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
-                  </Box>
-
-                  {/* CTA — CENTERED WHATSAPP ACTION */}
-                  <Box
-                    sx={{
-                      minHeight: 30,
-                      display: "flex",
-                      justifyContent: "center",
-                      mt: 1
-                    }}
-                  >
-                    <Link
-                      href={getHomepageWhatsAppLink(group.category)}
+                  {/* CTA - CENTERED WHATSAPP ACTION */}
+                  <div className={styles.ctaRow}>
+                    <a
+                      href={buildHomepageWhatsAppLink(group.category)}
                       target="_blank"
-                      underline="none"
-                      sx={{
-                        display: "inline-flex",
-                        alignItems: "center",
-                        gap: 1.25,
-                        px: 2.25,
-                        py: 0.75,
-                        borderRadius: 999,
-                        fontWeight: 500,
-                        fontSize: 13,
-                        color: "#1f6f46",
-                        backgroundColor: "#f1f8f4",
-                        transition: "background-color 0.2s ease",
-                        "&:hover": {
-                          backgroundColor: "#e6f3ec",
-                        },
-                      }}
+                      rel="noopener noreferrer"
+                      className={styles.whatsappCta}
                     >
-                      {/* LEFT ICON — OFFICIAL WHATSAPP ICON */}
-                      <Box
-                        sx={{
-                          width: 32,
-                          height: 32,
-                          borderRadius: "50%",
-                          backgroundColor: "#25D366",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          flexShrink: 0,
-                          ml: -1.5,
-                        }}
-                      >
-                        <WhatsAppIcon sx={{ color: "#fff", fontSize: 24 }} />
-                      </Box>
+                      <span className={styles.whatsappIcon} aria-hidden="true">
+                        <svg
+                          width="18"
+                          height="18"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M12 2.002c-5.514 0-10 4.486-10 10 0 1.761.465 3.467 1.343 4.977L2 22l5.154-1.327C8.61 21.554 10.29 22 12 22c5.514 0 10-4.486 10-10s-4.486-9.998-10-9.998Zm0 1.8c4.514 0 8.2 3.686 8.2 8.2s-3.686 8.2-8.2 8.2c-1.522 0-3.01-.422-4.302-1.222l-.307-.184-3.055.787.812-2.984-.2-.317C4.483 14.8 4 13.423 4 12.002c0-4.514 3.686-8.2 8-8.2Zm-3.28 3.341c-.182 0-.468.067-.71.348-.243.282-.932.911-.932 2.223 0 1.312.954 2.58 1.086 2.756.133.177 1.82 2.92 4.495 3.977 2.222.877 2.673.703 3.154.664.48-.04 1.554-.636 1.773-1.252.218-.617.218-1.146.154-1.252-.063-.106-.245-.172-.511-.301-.267-.129-1.58-.777-1.825-.866-.244-.089-.422-.133-.6.133-.178.267-.689.866-.844 1.044-.156.177-.311.2-.578.072-.267-.129-1.125-.414-2.142-1.32-.792-.703-1.327-1.57-1.483-1.836-.155-.267-.017-.411.117-.538.12-.116.267-.3.4-.45.133-.15.178-.267.267-.445.089-.178.045-.333-.022-.462-.067-.128-.6-1.455-.822-1.994-.216-.534-.434-.461-.6-.468Z"
+                            fill="currentColor"
+                          />
+                        </svg>
+                      </span>
 
                       Enquire on WhatsApp
-                    </Link>
-                  </Box>
-                </CardContent>
-              </Card>
+                    </a>
+                  </div>
+                </div>
+              </article>
             );
           })}
         </div>

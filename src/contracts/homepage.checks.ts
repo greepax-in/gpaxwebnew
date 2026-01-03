@@ -53,6 +53,12 @@ export const HOMEPAGE_CHECKS = {
    */
   perf: [
     {
+      id: "PERF-00",
+      label: "MUI Emotion SSR styles present at first paint",
+      severity: "info",
+      deprecated: true
+    },
+    {
       id: "PERF-01",
       label: "Mobile Largest Contentful Paint (LCP) ≤ 2500 ms"
       ,

@@ -1,0 +1,127 @@
+.section {
+  padding: clamp(24px, 4vw, 64px) 0;
+}
+
+.inner {
+  display: flex;
+  flex-direction: column;
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: clamp(24px, 4vw, 36px);
+}
+
+.kicker {
+  margin: 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+.title {
+  margin: 0;
+  font-weight: 700;
+}
+
+.lede {
+  margin: 0;
+  max-width: 800px;
+  color: var(--muted);
+  font-size: 1.05rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: clamp(16px, 3vw, 24px);
+}
+
+.card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: clamp(20px, 3vw, 28px);
+  border-radius: 18px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background-color: #ffffff;
+  box-shadow: 0 16px 40px rgba(15, 23, 42, 0.08);
+}
+
+.imageSurface {
+  width: 100%;
+  height: clamp(160px, 28vw, 180px);
+  border-radius: 16px;
+  border: 1px solid rgba(15, 23, 42, 0.06);
+  background: linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(237, 242, 247, 0.95));
+  background-color: rgba(240, 244, 248, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: clamp(12px, 2vw, 16px);
+}
+
+.copyBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.productName {
+  margin: 0;
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.productSubtitle {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.ctaRow {
+  margin-top: 8px;
+}
+
+.outlineButton {
+  display: inline-flex;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  border: 1px solid #d2d9de;
+  background: #ffffff;
+  color: var(--ink);
+  font-weight: 600;
+  text-align: center;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.outlineButton:hover {
+  border-color: var(--accent);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+  transform: translateY(-1px);
+}
+
+.outlineButton:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.caption {
+  margin: 8px 0 0;
+  color: var(--muted);
+  font-size: 0.82rem;
+  letter-spacing: 0.01em;
+  opacity: 0.85;
+}

@@ -120,81 +120,10 @@ if (lighthouse.mobile?.vitals?.ttfbMs != null) {
 const WORKSPACE =
   process.env.WORKSPACE?.trim() || "UNKNOWN";
 
-function renderLighthouseSection(lighthouse: any) {
-  if (!lighthouse?.mobile && !lighthouse?.desktop) {
-    return `
-      <div class="section">
-        <h2>Performance (Lighthouse)</h2>
-        <p class="muted">
-          Lighthouse results not available for this run.
-          Performance budgets are evaluated using Lighthouse (mobile-first).
-        </p>
-      </div>
-    `;
-  }
-
-  const renderTable = (title: string, data: any, budgets: any, authoritative: boolean) => {
-    if (!data) return '';
-
-    const rows = ['lcp', 'cls', 'inp'].map((metric) => {
-      const value = data[metric === 'lcp' ? 'lcpMs' : metric === 'cls' ? 'cls' : 'tbtMs'] ?? 'n/a';
-      const budget = budgets[metric];
-
-      let status = 'PASS';
-      if (value === 'n/a') status = 'INFO';
-      else if (value > budget) status = authoritative ? 'FAIL' : 'WARN';
-
-      return `
-        <tr>
-          <td>${metric.toUpperCase()}</td>
-          <td>${value}</td>
-          <td>≤ ${budget}</td>
-          <td class="${status.toLowerCase()}">${status}</td>
-        </tr>
-      `;
-    }).join('');
-
-    return `
-      <h3>${title}</h3>
-      <table class="perf-table">
-        <thead>
-          <tr>
-            <th>Metric</th>
-            <th>Measured</th>
-            <th>Budget</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>${rows}</tbody>
-      </table>
-    `;
-  };
-
-  return `
-    <div class="section">
-      <h2>Performance (Lighthouse)</h2>
-
-      <p class="muted">
-        Lighthouse metrics are authoritative for performance decisions.
-        Mobile results are release-gating; desktop results are advisory.
-      </p>
-
-      ${renderTable(
-        'Mobile (Authoritative)',
-        lighthouse.mobile,
-        { lcp: 2500, cls: 0.1, inp: 200 },
-        true
-      )}
-
-      ${renderTable(
-        'Desktop (Advisory)',
-        lighthouse.desktop,
-        { lcp: 1800, cls: 0.05, inp: 150 },
-        false
-      )}
-    </div>
-  `;
-}
+// NOTE:
+// Removed legacy renderLighthouseSection().
+// Canonical Lighthouse rendering is handled by renderLighthousePerformance()
+// to avoid duplicate budget logic and governance drift.
 
 if (!fs.existsSync(inputPath)) {
   console.error("❌ Playwright JSON report not found:", inputPath);
@@ -359,6 +288,38 @@ function resolveEvidence(
 const registry = buildRegistry();
 const resolvedEvidence = resolveEvidence(registry, evidenceById);
 
+/* ---------------- PERF GOVERNANCE ENFORCEMENT ----------------
+   Every PERF-* check must have exactly ONE evidence source.
+   Prevents silent double-binding (e.g. Playwright + Lighthouse).
+--------------------------------------------------------------- */
+
+const perfChecks = resolvedEvidence.filter((r) => r.id.startsWith("PERF-"));
+
+for (const check of perfChecks) {
+  if (!check.source) {
+    console.error(
+      `❌ PERF check ${check.id} has no evidence source (NOT_RUN is allowed, but source must be explicit)`
+    );
+    process.exit(1);
+  }
+
+  if (!["registry", "evidence", "alias"].includes(check.source)) {
+    console.error(
+      `❌ PERF check ${check.id} has invalid source: ${check.source}`
+    );
+    process.exit(1);
+  }
+}
+
+// Enforce uniqueness (no duplicate PERF IDs after resolution)
+const perfIds = perfChecks.map((c) => c.id);
+const dupes = perfIds.filter((id, idx) => perfIds.indexOf(id) !== idx);
+
+if (dupes.length > 0) {
+  console.error("❌ Duplicate PERF checks detected after resolution:", dupes);
+  process.exit(1);
+}
+
 // Group for UI sections (single source of truth)
 const checks = Object.fromEntries(
   Object.entries(HOMEPAGE_CHECKS).map(([pillar]) => [
@@ -445,20 +406,32 @@ function renderLighthousePerformance(lighthouse: any) {
       return `<p class="muted">${title}: not available</p>`;
     }
 
-    const { vitals, scores } = data;
+    // FIX: vitals may exist but contain nulls (mobile runs esp. locally)
+    const vitals = data.vitals ?? {};
+    const scores = data.scores ?? {};
+
+    const fmt = (v: any, unit = "ms") =>
+      v == null ? `<span class="muted">not triggered</span>` : `${v} ${unit}`;
 
     return `
       <h3>${title}</h3>
       ${renderMeta(data.meta)}
       <table class="perf-table">
-        <tr><th>LCP</th><td>${vitals.lcpMs ?? "n/a"} ms</td></tr>
-        <tr><th>CLS</th><td>${vitals.cls ?? "n/a"}</td></tr>
-        <tr><th>INP / TBT</th><td>${vitals.inpMs ?? "n/a"} ms</td></tr>
-        <tr><th>Performance Score</th><td>${scores.performance ?? "n/a"}</td></tr>
-        <tr><th>SEO Score</th><td>${scores.seo ?? "n/a"}</td></tr>
+        <tr><th>LCP</th><td>${fmt(vitals.lcpMs)}</td></tr>
+        <tr><th>CLS</th><td>${fmt(vitals.cls, "")}</td></tr>
+        <tr><th>INP</th><td>${fmt(vitals.inpMs)}</td></tr>
+        <tr><th>TTFB</th><td><b>${fmt(vitals.ttfbMs)}</b></td></tr>
+        <tr><th>Performance Score</th><td>${scores.performance != null ? scores.performance : "n/a"}</td></tr>
+        <tr><th>SEO Score</th><td>${scores.seo != null ? scores.seo : "n/a"}</td></tr>
       </table>
       <p class="muted">
         Mode: <b>${authoritative ? "AUTHORITATIVE (Release-gating)" : "ADVISORY (Diagnostic only)"}</b>
+      </p>
+      <p class="muted">
+        <i>
+          Note: “not triggered” means Lighthouse did not emit this metric in this mode.
+          This is common on mobile when LCP/INP observers do not fire.
+        </i>
       </p>
     `;
   };

@@ -1,7 +1,13 @@
-const withBundleAnalyzer = require("@next/bundle-analyzer")({
-  enabled: process.env.ANALYZE === "true",
-});
+// CODEX_PATCH_BEGIN
+// FILE: next.config.js
 
-module.exports = withBundleAnalyzer({
-  reactStrictMode: true,
-});
+/** @type {import('next').NextConfig} */
+const nextConfig = {
+  // TEMP: Force maps ON so bundle analysis works.
+  // Once analysis is done, switch back to env-gated if you prefer.
+  productionBrowserSourceMaps: true,
+};
+
+module.exports = nextConfig;
+
+// CODEX_PATCH_END

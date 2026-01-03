@@ -9,7 +9,7 @@
     "failed": 0,
     "skipped": 0,
     "flaky": 0,
-    "durationMs": 10740
+    "durationMs": 11000
   },
   "pillars": {
     "seo": "PASS",
@@ -160,8 +160,12 @@
         "pillar": "perf",
         "label": "Mobile Largest Contentful Paint (LCP) ≤ 2500 ms",
         "severity": "warn",
-        "result": "PASS",
-        "source": "evidence"
+        "result": "NOT_RUN",
+        "value": null,
+        "threshold": 2500,
+        "units": "ms",
+        "evidence": "lighthouse.mobile.lcp",
+        "source": "registry"
       },
       {
         "id": "PERF-02",
@@ -187,7 +191,11 @@
         "pillar": "perf",
         "label": "Homepage JS bundle size within regression budget (gzip)",
         "severity": "warn",
-        "result": "NOT_RUN",
+        "result": "PASS",
+        "value": 7,
+        "threshold": 800,
+        "units": "ms",
+        "evidence": "lighthouse.mobile.ttfb",
         "source": "registry"
       }
     ]
@@ -254,8 +262,12 @@
       "pillar": "perf",
       "label": "Mobile Largest Contentful Paint (LCP) ≤ 2500 ms",
       "severity": "warn",
-      "result": "PASS",
-      "source": "evidence"
+      "result": "NOT_RUN",
+      "value": null,
+      "threshold": 2500,
+      "units": "ms",
+      "evidence": "lighthouse.mobile.lcp",
+      "source": "registry"
     },
     {
       "id": "PERF-02",
@@ -281,7 +293,11 @@
       "pillar": "perf",
       "label": "Homepage JS bundle size within regression budget (gzip)",
       "severity": "warn",
-      "result": "NOT_RUN",
+      "result": "PASS",
+      "value": 7,
+      "threshold": 800,
+      "units": "ms",
+      "evidence": "lighthouse.mobile.ttfb",
       "source": "registry"
     },
     {
@@ -359,6 +375,7 @@
   ],
   "perf": {
     "lcpMs": null,
+    "ttfbMs": 7,
     "cls": 0,
     "inpMs": null
   },
@@ -370,16 +387,17 @@
         "host": "localhost",
         "port": "3000",
         "mode": "mobile",
-        "collectedAt": "2026-01-03T10:14:13.272Z"
+        "collectedAt": "2026-01-03T20:49:25.058Z"
       },
       "scores": {
-        "performance": 59,
+        "performance": null,
         "seo": 100
       },
       "vitals": {
-        "lcpMs": 7368,
+        "lcpMs": null,
         "cls": 0,
-        "inpMs": 601.3648750000002
+        "inpMs": null,
+        "ttfbMs": 7
       }
     },
     "desktop": {
@@ -389,18 +407,19 @@
         "host": "localhost",
         "port": "3000",
         "mode": "desktop",
-        "collectedAt": "2026-01-03T10:15:21.381Z"
+        "collectedAt": "2026-01-03T20:49:55.693Z"
       },
       "scores": {
-        "performance": 67,
+        "performance": 58,
         "seo": 100
       },
       "vitals": {
-        "lcpMs": 7370,
+        "lcpMs": 5086,
         "cls": 0,
-        "inpMs": 351.8435249999998
+        "inpMs": 993.444,
+        "ttfbMs": 16
       }
     }
   },
-  "generatedAt": "2026-01-03T10:16:23.768Z"
+  "generatedAt": "2026-01-03T21:04:45.510Z"
 }

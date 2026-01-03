@@ -1,7 +1,8 @@
 // FILE: src/components/Products/ProductCard.tsx
 
 import Image from "next/image";
-import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
+
+import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
 
 export default function ProductCard({ item }: { item: any }) {
   const gsm = item?.GSM ? `GSM ${item.GSM}` : "Custom GSM";
@@ -42,7 +43,7 @@ export default function ProductCard({ item }: { item: any }) {
       </ul>
 
       <a
-        href={getHomepageWhatsAppLink(item.name)}
+        href={buildHomepageWhatsAppLink(item.name)}
         target="_blank"
         rel="noopener noreferrer"
         className="secondary-cta"

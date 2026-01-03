@@ -3,18 +3,14 @@
 "use client";
 
 import Image from "next/image";
-import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
+// import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
 import items from "@/data/items";
 import { selectHomeFeaturedItems } from "@/lib/home/HomeFeatured.selector";
 import { validateHomeFeatured } from "@/lib/home/HomeFeatured.validator";
-// import { Container, Box, Stack, Typography, Button } from "@mui/material";
 import { useState } from "react";
 import { buildProductSubtitle } from "@/lib/productSubtitle";
-import Container from "@mui/material/Container";
-import Box from "@mui/material/Box";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import styles from "./HomeFeatured.module.css";
+import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
 
 /**
  * HomeFeatured
@@ -36,99 +32,51 @@ export default function HomeFeatured() {
   }
 
   return (
-    <section id="featured">
-      <Container maxWidth="lg" sx={{ py: { xs: 6, md: 9 } }}>
-        <Stack spacing={2} mb={{ xs: 4, md: 6 }}>
-          <Typography
-            variant="overline"
-            sx={{ letterSpacing: "0.12em", fontWeight: 600 }}
-          >
-            Buyer demand signals
-          </Typography>
-          <Typography variant="h2" fontWeight={700}>
-            Most Requested Packaging
-          </Typography>
-          <Typography variant="body1" color="text.secondary" sx={{ maxWidth: 800 }}>
+    <section id="featured" className={styles.section}>
+      <div className={`container ${styles.inner}`}>
+        <div className={styles.header}>
+          <p className={styles.kicker}>Buyer demand signals</p>
+          <h2 className={styles.title}>Most Requested Packaging</h2>
+          <p className={styles.lede}>
             These formats validate the most common enquiries we handle for retail, QSR, and FMCG brands across India.
-          </Typography>
-        </Stack>
+          </p>
+        </div>
 
-        <Box
-          sx={{
-            display: "grid",
-            gridTemplateColumns: { xs: "1fr", sm: "repeat(2, 1fr)", md: "repeat(3, 1fr)" },
-            gap: { xs: 2, md: 3 },
-          }}
-        >
+        <div className={styles.grid}>
           {featuredItems.map((item) => (
-            <Box key={item.id}>
-              <Box
-                sx={{
-                  height: "100%",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 2,
-                  p: { xs: 2.5, md: 3 },
-                  borderRadius: { xs: 3, md: 4 },
-                  border: "1px solid rgba(15, 23, 42, 0.08)",
-                  backgroundColor: "#fff",
-                  boxShadow: "0 16px 40px rgba(15, 23, 42, 0.08)",
-                }}
-              >
-                <Box
-                  sx={{
-                    width: "100%",
-                    height: { xs: 160, md: 180 },
-                    borderRadius: { xs: 2, md: 3 },
-                    border: "1px solid rgba(15, 23, 42, 0.06)",
-                    background:
-                      "linear-gradient(160deg, rgba(255, 255, 255, 0.95), rgba(237, 242, 247, 0.95))",
-                    backgroundColor: "rgba(240, 244, 248, 0.6)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    overflow: "hidden",
-                    padding: { xs: 1.5, md: 2 },
-                  }}
+            <article className={styles.card} key={item.id}>
+              <div className={styles.imageSurface}>
+                <FeaturedImage
+                  src={item.image}
+                  alt={`${item.name} by GreenPax`}
+                />
+              </div>
+
+              <div className={styles.copyBlock}>
+                <p className={styles.productName}>{item.name}</p>
+                <p className={styles.productSubtitle}>{buildProductSubtitle(item)}</p>
+              </div>
+
+              <div className={styles.ctaRow}>
+                <a
+                  className={styles.outlineButton}
+                  href={buildHomepageWhatsAppLink(`Homepage featured: ${item.name}`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Enquire about ${item.name}`}
                 >
-                  <FeaturedImage
-                    src={item.image}
-                    alt={`${item.name} by GreenPax`}
-                  />
-                </Box>
-
-                <Stack spacing={0.6}>
-                  <Typography variant="subtitle1" fontWeight={600}>
-                    {item.name}
-                  </Typography>
-                  <Typography variant="body2" color="text.secondary">
-                    {buildProductSubtitle(item)}
-                  </Typography>
-                </Stack>
-
-                <Box mt={3}>
-                  <Button
-                    variant="outlined"
-                    fullWidth
-                    component="a"
-                    href={getHomepageWhatsAppLink(`Homepage featured: ${item.name}`)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`Enquire about ${item.name}`}
-                  >
-                      Request specs on WhatsApp
-                  </Button>
-                </Box>
-              </Box>
-            </Box>
+                  Request specs on WhatsApp
+                </a>
+              </div>
+            </article>
           ))}
-        </Box>
+        </div>
 
-        <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 3 }}>
+        <p className={styles.caption}>
           Intent validation only. Share size, GSM, quantity band, and delivery timeline for
           accurate quotes.
-        </Typography>
-      </Container>
+        </p>
+      </div>
     </section>
   );
 }

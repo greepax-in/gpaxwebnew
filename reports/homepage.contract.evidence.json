@@ -1,98 +1,86 @@
 [
   {
-    "id": "PERF-00",
-    "pillar": "perf",
-    "label": "MUI Emotion SSR styles present at first paint (FOUC guard)",
-    "result": "PASS",
-    "at": "2026-01-03T10:13:49.151Z"
-  },
-  {
     "id": "PERF-03",
     "pillar": "perf",
     "result": "PASS",
-    "at": "2026-01-03T10:13:49.193Z"
-  },
-  {
-    "id": "INTENT-01",
-    "pillar": "intent",
-    "label": "Manufacturer intent detected",
-    "result": "PASS",
-    "at": "2026-01-03T10:13:49.251Z"
-  },
-  {
-    "id": "INTENT-02",
-    "pillar": "intent",
-    "label": "India context present",
-    "result": "PASS",
-    "at": "2026-01-03T10:13:49.251Z"
-  },
-  {
-    "id": "INTENT-03",
-    "pillar": "intent",
-    "label": "Bulk / MOQ intent detected",
-    "result": "PASS",
-    "at": "2026-01-03T10:13:49.253Z"
-  },
-  {
-    "id": "INTENT-04",
-    "pillar": "intent",
-    "label": "Ecommerce language absent",
-    "result": "PASS",
-    "at": "2026-01-03T10:13:49.278Z"
-  },
-  {
-    "id": "INTENT-05",
-    "pillar": "intent",
-    "label": "Primary WhatsApp CTA present",
-    "result": "PASS",
-    "at": "2026-01-03T10:13:49.304Z"
+    "at": "2026-01-03T20:48:54.935Z"
   },
   {
     "id": "SEO-01",
     "pillar": "seo",
     "label": "Title length within bounds",
     "result": "PASS",
-    "at": "2026-01-03T10:13:49.316Z"
+    "at": "2026-01-03T20:48:55.061Z"
   },
   {
     "id": "SEO-02",
     "pillar": "seo",
     "label": "Meta description within bounds",
     "result": "PASS",
-    "at": "2026-01-03T10:13:49.337Z"
+    "at": "2026-01-03T20:48:55.067Z"
   },
   {
     "id": "SEO-03",
     "pillar": "seo",
     "label": "Single H1 present",
     "result": "PASS",
-    "at": "2026-01-03T10:13:49.344Z"
+    "at": "2026-01-03T20:48:55.175Z"
   },
   {
     "id": "SEO-04",
     "pillar": "seo",
     "label": "Canonical URL defined",
     "result": "PASS",
-    "at": "2026-01-03T10:13:49.354Z"
+    "at": "2026-01-03T20:48:55.175Z"
   },
   {
     "id": "SEO-07",
     "pillar": "seo",
+    "label": "Crawlable internal links present",
     "result": "PASS",
-    "at": "2026-01-03T10:13:49.359Z"
+    "at": "2026-01-03T20:48:55.186Z"
+  },
+  {
+    "id": "SEO-08",
+    "pillar": "seo",
+    "label": "At least one H2 present",
+    "result": "PASS",
+    "at": "2026-01-03T20:48:55.194Z"
   },
   {
     "id": "SEO-06",
     "pillar": "seo",
-    "label": "At least one H2 present",
+    "label": "Homepage is indexable",
     "result": "PASS",
-    "at": "2026-01-03T10:13:49.365Z"
+    "at": "2026-01-03T20:48:55.219Z"
   },
   {
-    "id": "PERF-01",
-    "pillar": "perf",
+    "id": "INTENT-01",
+    "pillar": "intent",
+    "label": "Manufacturer / bulk intent detected",
     "result": "PASS",
-    "at": "2026-01-03T10:13:52.490Z"
+    "at": "2026-01-03T20:48:55.239Z"
+  },
+  {
+    "id": "INTENT-02",
+    "pillar": "intent",
+    "label": "India context present",
+    "result": "PASS",
+    "at": "2026-01-03T20:48:55.239Z"
+  },
+  {
+    "id": "INTENT-03",
+    "pillar": "intent",
+    "label": "Ecommerce language absent",
+    "result": "PASS",
+    "at": "2026-01-03T20:48:55.240Z"
+  },
+  {
+    "id": "FLOW-01",
+    "pillar": "flow",
+    "label": "Hero H1 present early in DOM",
+    "result": "PASS",
+    "at": "2026-01-03T20:48:56.326Z"
   },
   {
     "id": "PERF-02",
@@ -102,67 +90,60 @@
     "threshold": 0.1,
     "units": "score",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.506Z"
+    "at": "2026-01-03T20:48:59.349Z"
   },
   {
     "id": "CTA-01",
     "pillar": "cta_flow",
     "label": "Exactly one primary WhatsApp CTA above the fold",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.535Z"
+    "at": "2026-01-03T20:48:59.366Z"
   },
   {
     "id": "CTA-02",
     "pillar": "cta_flow",
     "label": "Contextual WhatsApp CTAs allowed below the fold",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.535Z"
+    "at": "2026-01-03T20:48:59.366Z"
   },
   {
     "id": "CTA-03",
     "pillar": "cta_flow",
     "label": "Trust-first CTA layout respected",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.535Z"
+    "at": "2026-01-03T20:48:59.366Z"
   },
   {
     "id": "CTA-04",
     "pillar": "cta_flow",
     "result": "FAIL",
-    "at": "2026-01-03T10:13:55.574Z"
+    "at": "2026-01-03T20:48:59.405Z"
   },
   {
-    "id": "FLOW-01",
+    "id": "FLOW-CTA-01",
     "pillar": "cta_flow",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.574Z"
+    "at": "2026-01-03T20:48:59.405Z"
   },
   {
     "id": "SCHEMA-01",
     "pillar": "schema",
     "label": "Organization schema present",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.585Z"
+    "at": "2026-01-03T20:48:59.418Z"
   },
   {
     "id": "SCHEMA-02",
     "pillar": "schema",
     "label": "Organization has name and url",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.585Z"
+    "at": "2026-01-03T20:48:59.418Z"
   },
   {
     "id": "SCHEMA-04",
     "pillar": "schema",
     "label": "Product schema forbidden on homepage",
     "result": "PASS",
-    "at": "2026-01-03T10:13:55.585Z"
-  },
-  {
-    "id": "SCHEMA-01",
-    "pillar": "schema",
-    "label": "Organization schema present",
-    "result": "PASS",
-    "at": "2026-01-03T10:13:55.585Z"
+    "at": "2026-01-03T20:48:59.418Z"
   }
 ]

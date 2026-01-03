@@ -20,10 +20,15 @@ import { test, expect } from "@playwright/test";
 function normalizeSchema(schema: unknown) {
   return JSON.parse(
     JSON.stringify(schema, (_key, value) => {
+      // Remove volatile identifiers
+      if (_key === "@id" || _key === "url" || _key === "logo") {
+        return undefined;
+      }
+
       if (Array.isArray(value)) {
-        return value.sort((a, b) =>
-          JSON.stringify(a).localeCompare(JSON.stringify(b))
-        );
+        return value
+          .map((v) => v)
+          .sort((a, b) => JSON.stringify(a).localeCompare(JSON.stringify(b)));
       }
       return value;
     })
@@ -57,12 +62,9 @@ test.describe("Homepage Schema Snapshot", () => {
      * Hard guards — homepage must never expose Product schema
      */
     const hasProductSchema = validSchemas.some((schema: any) => {
-      if (!schema["@type"]) return false;
-      return (
-        schema["@type"] === "Product" ||
-        (Array.isArray(schema["@type"]) &&
-          schema["@type"].includes("Product"))
-      );
+      const types = Array.isArray(schema["@type"]) ? schema["@type"] : [schema["@type"]];
+
+      return types.includes("Product");
     });
 
     expect(

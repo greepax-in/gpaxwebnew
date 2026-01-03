@@ -1,0 +1,38 @@
+/* FILE: src/components/Home/HomeHero.module.css */
+
+/* --- MOBILE-FIRST LCP OPTIMIZATION --- */
+
+.heroContainer {
+  min-height: auto; /* remove layout delay for LCP */
+  justify-content: flex-start; /* allow image to paint first */
+  padding-top: clamp(20px, 6vw, 40px);
+}
+
+.heroVisual {
+  order: 1;
+}
+
+/* Ensure image paints immediately */
+.heroImage {
+  display: block;
+}
+
+/* --- DESKTOP LAYOUT (UNCHANGED VISUALLY) --- */
+@media (min-width: 900px) {
+  .heroContainer {
+    min-height: 85vh;
+    flex-direction: row;
+    gap: clamp(32px, 5vw, 48px);
+    align-items: center;
+    justify-content: center; /* restore desktop centering */
+  }
+
+  .heroCopy {
+    order: 1;
+  }
+
+  .heroVisual {
+    order: 2;
+  }
+}
+

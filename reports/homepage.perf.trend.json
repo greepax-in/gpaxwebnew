@@ -97,5 +97,85 @@
       "cls": 0,
       "inpMs": null
     }
+  },
+  {
+    "at": "2026-01-03T15:55:06.144Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": 6991,
+      "ttfbMs": 8,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T16:01:30.266Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": 6988,
+      "ttfbMs": 7,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T16:12:57.399Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": 6987,
+      "ttfbMs": 8,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T16:20:12.806Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": 6987,
+      "ttfbMs": 8,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T20:49:58.241Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "ttfbMs": 7,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T20:52:17.343Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "ttfbMs": 7,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T20:59:06.063Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "ttfbMs": 7,
+      "cls": 0,
+      "inpMs": null
+    }
+  },
+  {
+    "at": "2026-01-03T21:04:45.510Z",
+    "status": "PASSED",
+    "perf": {
+      "lcpMs": null,
+      "ttfbMs": 7,
+      "cls": 0,
+      "inpMs": null
+    }
   }
 ]

@@ -10,9 +10,9 @@ export default defineConfig({
   ],
 
   webServer: {
-    command: "npm run dev",
+    command: "npm run start",
     port: 3000,
-    reuseExistingServer: !process.env.CI,
+    reuseExistingServer: false, // 🔒 Never reuse for contract tests
     timeout: 120_000,
   },
 
