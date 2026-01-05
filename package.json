@@ -20,29 +20,28 @@
     "dev": "next dev --turbopack",
     "build:prod": "next build",
     "start:prod": "next start -p 3000",
+    "start:prod:bg": "next start -p 3000",
     "lint": "next lint",
+
+    "wait:prod": "wait-on http://localhost:3000",
+
     "check:bundle": "tsx src/scripts/checkBundleSize.ts",
     "analyze:bundle": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next build && npx source-map-explorer \".next/static/chunks/**/*.js\" --html bundle-report.html",
-    "test:contracts": "playwright test tests/contracts",
+
     "test:contract:home": "playwright test tests/contracts/home.contract.spec.ts",
-    "test:smoke": "playwright test tests/smoke",
-    "test:lighthouse:local": "playwright test tests/smoke/lighthouse.homepage.spec.ts",
     "lighthouse:home:mobile": "node tests/tools/run-lighthouse-prod.js mobile",
     "lighthouse:home:desktop": "node tests/tools/run-lighthouse-prod.js desktop",
-    "report:contract:home": "tsx src/scripts/generateContractReport.ts",
-    "validate:contract:home": "npm run build:prod && npm run check:bundle && npm run test:contract:home && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:mobile && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:desktop && npm run report:contract:home",
+
     "validate:items": "tsx src/scripts/validateItems.ts",
-    "normalize:items": "tsx src/scripts/normalizeItems.ts"
-  },
-  "scriptsHelp": {
-    "core lifecycle": "dev, build:prod, start:prod",
-    "lint": "linting via next lint",
-    "bundle": "check:bundle, analyze:bundle",
-    "tests": "test:contracts, test:contract:home, test:smoke, test:lighthouse:local",
-    "lighthouse": "lighthouse:home:mobile, lighthouse:home:desktop — requires LH_URL to point at a running server",
-    "reports": "report:contract:home",
-    "validation": "validate:contract:home runs build, bundle check, contract tests, lighthouse against LH_URL and report",
-    "data hygiene": "validate:items, normalize:items"
+    "normalize:items": "tsx src/scripts/normalizeItems.ts",
+
+    "validate:home:runtime": "npm run wait:prod && npm run check:bundle && npm run test:contract:home && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:mobile && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:desktop",
+
+    "validate:home:run": "npm run build:prod && concurrently --kill-others --success first -n SERVER,VALIDATE \"npm run start:prod:bg\" \"npm run validate:home:runtime\"",
+
+    "validate:home": "npm run validate:home:run",
+
+    "validate:home:report": "tsx src/scripts/runVerdictHome.ts"
   },
   "dependencies": {
     "dotenv": "^17.2.3",

@@ -1,0 +1,11 @@
+{
+  "lcpMs": 1847,
+  "cls": 0,
+  "inp": null,
+  "fcp": 923.53,
+  "ttfb": 7.449999999999999,
+  "renderDelayMs": null,
+  "resourceLoadDelay": null,
+  "resourceLoadTime": null,
+  "isRenderDominated": null
+}

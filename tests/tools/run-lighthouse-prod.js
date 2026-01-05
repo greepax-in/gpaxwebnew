@@ -3,12 +3,147 @@ const lighthouse = require("lighthouse").default;
 const { launch } = require("chrome-launcher");
 const fs = require("fs");
 const path = require("path");
+
+function firstDetailsItem(details) {
+  if (!details || typeof details !== "object") return null;
+  const items = details.items;
+  return Array.isArray(items) ? items[0] ?? null : null;
+}
+/* --------------------------------------------------
+   Debug artifact writer (NON-CONTRACTUAL)
+-------------------------------------------------- */
+
+function writeDebugArtifact(mode, name, data) {
+  const baseDir = path.resolve(
+    process.cwd(),
+    "reports",
+    "lighthouse",
+    mode
+  );
+
+  fs.mkdirSync(baseDir, { recursive: true });
+
+  fs.writeFileSync(
+    path.join(baseDir, name),
+    JSON.stringify(data, null, 2),
+    "utf8"
+  );
+}
+/* --------------------------------------------------
+   Lighthouse HTML writers (NON-CONTRACTUAL)
+-------------------------------------------------- */
+
+const LIGHTHOUSE_ROOT = path.resolve(
+  process.cwd(),
+  "reports",
+  "lighthouse"
+);
+
+function writeRawLighthouseHtml(mode, html) {
+  if (!html || typeof html !== "string") return;
+
+  const outPath = path.join(
+    LIGHTHOUSE_ROOT,
+    mode,
+    "lighthouse.html"
+  );
+
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, html, "utf8");
+}
+
+function writeComparisonShell({ generatedAt }) {
+  const outPath = path.join(
+    LIGHTHOUSE_ROOT,
+    "lighthouse-report.html"
+  );
+
+  const html = `<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Lighthouse Comparison Report</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <style>
+    body {
+      margin: 24px;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #fff;
+      color: #111;
+    }
+    h1, h2 {
+      margin-top: 32px;
+    }
+    section {
+      margin-top: 24px;
+    }
+    iframe {
+      width: 100%;
+      height: 90vh;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #fff;
+    }
+    .meta {
+      color: #666;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Lighthouse Comparison Report</h1>
+  <p class="meta">Generated at ${generatedAt}</p>
+
+  <section>
+    <h2>Mobile Lighthouse Report</h2>
+    <iframe src="./mobile/lighthouse.html"></iframe>
+  </section>
+
+  <section>
+    <h2>Desktop Lighthouse Report</h2>
+    <iframe src="./desktop/lighthouse.html"></iframe>
+  </section>
+</body>
+</html>`;
+
+  fs.mkdirSync(LIGHTHOUSE_ROOT, { recursive: true });
+  fs.writeFileSync(outPath, html, "utf8");
+}
 const fetch = globalThis.fetch;
 
 if (typeof fetch !== "function") {
   throw new Error(
     "Global fetch is not available in this Node runtime. Install 'node-fetch' or run on Node >=18."
   );
+}
+
+// NOTE:
+// Lighthouse is a TOOL, not a validator.
+// It writes evidence directly to the evidence report file.
+
+
+const EVIDENCE_FILE =
+  process.env.EVIDENCE_FILE ||
+  path.resolve(process.cwd(), "reports/homepage.contract.evidence.json");
+
+function emitEvidence(entry) {
+  let report = { page: BASE_URL, evidence: [] };
+
+  if (fs.existsSync(EVIDENCE_FILE)) {
+    try {
+      report = JSON.parse(fs.readFileSync(EVIDENCE_FILE, "utf8"));
+    } catch {
+      report = { page: BASE_URL, evidence: [] };
+    }
+  }
+
+  report.evidence.push({
+    ...entry,
+    timestamp: new Date().toISOString(),
+  });
+
+  fs.mkdirSync(path.dirname(EVIDENCE_FILE), { recursive: true });
+  fs.writeFileSync(EVIDENCE_FILE, JSON.stringify(report, null, 2));
 }
 
 /* --------------------------------------------------
@@ -21,7 +156,7 @@ function ms(n) {
 
 function clampStr(s, max = 140) {
   if (!s || typeof s !== "string") return null;
-  return s.length > max ? s.slice(0, max - 1) + "…" : s;
+  return s.length > max ? s.slice(0, max - 1) + "..." : s;
 }
 
 function normalizeUrl(u) {
@@ -210,6 +345,10 @@ async function waitForServer(url, timeoutMs = 15000) {
 
 (async () => {
   try {
+    // NOTE:
+    // Lighthouse is a TOOL.
+    // It MUST NOT use ContractEvidenceContext or validator semantics.
+    // Evidence is written directly via emitEvidence().
     // IMPORTANT:
     // Server startup is handled OUTSIDE this script.
     // Expected flow:
@@ -251,12 +390,14 @@ async function waitForServer(url, timeoutMs = 15000) {
     const diagnostics = [];
 
     for (let i = 0; i < RUNS; i++) {
+      /** @type {import("lighthouse").Flags} */
       const flags = {
         port: chromeInstance.port,
-        output: "json",
+        output: ["json", "html"],   // ✅ REQUIRED
         logLevel: "error",
       };
 
+      /** @type {import("lighthouse/types/config").default} */
       const config =
         mode === "mobile"
           ? {
@@ -300,7 +441,21 @@ async function waitForServer(url, timeoutMs = 15000) {
 
       const run = await lighthouse(BASE_URL, flags, config);
       const audit = run?.lhr?.audits;
-      const metrics = audit?.metrics?.details?.items?.[0];
+      const htmlReport = run?.report?.[1]; // index 1 = html
+
+      if (typeof htmlReport === "string") {
+        const htmlPath = path.resolve(
+          process.cwd(),
+          "reports",
+          "lighthouse",
+          mode,
+          "lighthouse.html"
+        );
+
+        fs.mkdirSync(path.dirname(htmlPath), { recursive: true });
+        fs.writeFileSync(htmlPath, htmlReport, "utf8");
+      }
+      const metrics = firstDetailsItem(audit?.metrics?.details);
       const lcpAudit = audit?.["largest-contentful-paint"];
       const hasRuntimeError = Boolean(run?.lhr?.runtimeError);
       const hasTrace = Boolean(run?.lhr?.audits?.["trace-of-tab"]?.details);
@@ -345,6 +500,9 @@ async function waitForServer(url, timeoutMs = 15000) {
       runs.push({
         runIndex: i + 1,
         lhr: run.lhr,
+        reportHtml: Array.isArray(run.report)
+          ? run.report.find(r => typeof r === "string")
+          : run.report,
         lcp: lcpValue,
         cls: audit?.["cumulative-layout-shift"]?.numericValue ?? null,
         inp: audit?.["interaction-to-next-paint"]?.numericValue ?? null,
@@ -372,7 +530,10 @@ async function waitForServer(url, timeoutMs = 15000) {
 
     const medianRun = sorted[Math.floor(sorted.length / 2)] ?? runs[0];
 
-    const result = { lhr: medianRun.lhr };
+    const result = {
+      lhr: medianRun.lhr,
+      reportHtml: medianRun.reportHtml,
+    };
 
     const url = new URL(BASE_URL);
     const serverMeta = {
@@ -388,6 +549,12 @@ async function waitForServer(url, timeoutMs = 15000) {
     const audits = result.lhr.audits;
 
     /* --------------------------------------------------
+       Lighthouse HTML outputs (NON-CONTRACTUAL)
+    -------------------------------------------------- */
+
+    writeRawLighthouseHtml(mode, result.lhr.reportResult);
+
+    /* --------------------------------------------------
        Core Web Vitals extraction
     -------------------------------------------------- */
 
@@ -399,15 +566,102 @@ async function waitForServer(url, timeoutMs = 15000) {
         ? lcpAudit.numericValue
         : null;
 
+    /* --------------------------------------------------
+       PERF-02 - Largest Contentful Paint (Lighthouse)
+       Evidence-only emission
+    -------------------------------------------------- */
+
+    const lcpItem = firstDetailsItem(lcpAudit?.details);
+    const lcpNodeName = lcpItem?.node?.nodeName ?? null;
+
+    if (mode === "desktop") {
+      // Desktop: numeric LCP REQUIRED
+      if (typeof lcp === "number") {
+        const entry = {
+          id: "PERF-02",
+          pillar: "performance",
+          severity: "warn",
+          source: "lighthouse",
+          observed: {
+            lcpMs: Math.round(lcp),
+            elementTag: lcpNodeName,
+            mode: "desktop",
+          },
+          expected: {
+            max: LCP_THRESHOLD,
+          },
+        };
+
+        emitEvidence(entry);
+      } else {
+        const entry = {
+          id: "PERF-02",
+          pillar: "performance",
+          severity: "warn",
+          source: "lighthouse",
+          observed: {
+            missing: true,
+            mode: "desktop",
+          },
+          expected: {
+            max: LCP_THRESHOLD,
+          },
+        };
+
+        emitEvidence(entry);
+      }
+    }
+
+    if (mode === "mobile") {
+      // Mobile: text-first allowed, BUT timing is still authoritative
+      if (typeof lcp === "number") {
+        const entry = {
+          id: "PERF-02",
+          pillar: "performance",
+          severity: "warn",
+          source: "lighthouse",
+          observed: {
+            lcpMs: Math.round(lcp),
+            elementTag: lcpNodeName,
+            mode: "mobile",
+          },
+          expected: {
+            max: LCP_THRESHOLD,
+            policy: "text-first-allowed",
+          },
+        };
+
+        emitEvidence(entry);
+      } else {
+        // Legitimate NOT_RUN only if Lighthouse truly did not emit LCP
+        const entry = {
+          id: "PERF-02",
+          pillar: "performance",
+          severity: "warn",
+          source: "lighthouse",
+          observed: {
+            missing: true,
+            mode: "mobile",
+            observation_reason: "lcp-not-emitted-by-lighthouse",
+          },
+          expected: {
+            policy: "text-first-allowed",
+          },
+        };
+
+        emitEvidence(entry);
+      }
+    }
+
     // Diagnostic note (non-fatal): mobile pages may emit text-only LCP
     if (mode === "mobile" && lcp === null) {
       console.log(
-        "ℹ Diagnostic: Mobile text-only LCP (numeric value not emitted by Lighthouse)"
+        "Info: Mobile text-only LCP (numeric value not emitted by Lighthouse)"
       );
     }
 
     // Phase-aware metrics (from metrics audit)
-    const metrics = audits?.metrics?.details?.items?.[0] ?? null;
+    const metrics = firstDetailsItem(audits?.metrics?.details) ?? null;
     const lcpLoadStart = metrics?.lcpLoadStart ?? null;
     const lcpLoadEnd = metrics?.lcpLoadEnd ?? null;
     const ttfbMs = metrics?.timeToFirstByte ?? null;
@@ -430,7 +684,7 @@ async function waitForServer(url, timeoutMs = 15000) {
 
     if (isRenderDominated) {
       console.log(
-        `ℹ Diagnostic: render-delay dominates LCP (renderDelay=${renderDelayMs}ms, LCP=${Math.round(lcp)}ms)`
+        `Info: render-delay dominates LCP (renderDelay=${renderDelayMs}ms, LCP=${Math.round(lcp)}ms)`
       );
     }
 
@@ -447,16 +701,47 @@ async function waitForServer(url, timeoutMs = 15000) {
     const ttfb = audits["server-response-time"]?.numericValue ?? null;
 
     /* --------------------------------------------------
+       DEBUG ARTIFACTS (NON-CONTRACTUAL)
+       These files are for human inspection only.
+       They MUST NOT influence verdict logic.
+    -------------------------------------------------- */
+
+    writeDebugArtifact(mode, "lhr.json", result.lhr);
+
+    writeDebugArtifact(mode, "metrics.json", {
+      lcpMs: typeof lcp === "number" ? Math.round(lcp) : null,
+      cls,
+      inp,
+      fcp,
+      ttfb,
+      renderDelayMs,
+      resourceLoadDelay,
+      resourceLoadTime,
+      isRenderDominated
+    });
+
+    writeDebugArtifact(mode, "long-tasks.json", longTasks);
+
+    writeDebugArtifact(mode, "diagnostics.json", {
+      discardedRuns: discarded,
+      diagnostics,
+      totalRuns: RUNS,
+      validRuns: runs.length,
+      selectedRunIndex: medianRun.runIndex,
+      mode
+    });
+
+    /* --------------------------------------------------
        Performance score (informational only)
     -------------------------------------------------- */
 
     if (performance.score === null) {
       console.warn(
-        "⚠ Lighthouse performance score is null (acceptable locally)"
+        "Warning: Lighthouse performance score is null (acceptable locally)"
       );
     } else {
       console.log(
-        `ℹ Lighthouse performance score (informational): ${performance.score}`
+        `Info: Lighthouse performance score (informational): ${performance.score}`
       );
     }
 
@@ -473,7 +758,7 @@ async function waitForServer(url, timeoutMs = 15000) {
       // Mobile LCP contract:
       // - LCP emission is optional (text-only hero)
       // - IF emitted, LCP MUST NOT be an image
-      const lcpItem = lcpAudit?.details?.items?.[0];
+      const lcpItem = firstDetailsItem(lcpAudit?.details);
       const lcpNodeName = lcpItem?.node?.nodeName;
 
       if (
@@ -481,7 +766,7 @@ async function waitForServer(url, timeoutMs = 15000) {
         ["IMG", "PICTURE", "SVG"].includes(lcpNodeName)
       ) {
         throw new Error(
-          `❌ Mobile LCP contract violation: image-based LCP detected (${lcpNodeName})`
+          `FAIL: Mobile LCP contract violation: image-based LCP detected (${lcpNodeName})`
         );
       }
 
@@ -498,32 +783,25 @@ async function waitForServer(url, timeoutMs = 15000) {
 
       if (!inpNotApplicable && inp === null) {
         throw new Error(
-          `❌ Mobile Lighthouse invalid: INP expected but not emitted (scoreDisplayMode=${inpAudit?.scoreDisplayMode})`
+          `FAIL: Mobile Lighthouse invalid: INP expected but not emitted (scoreDisplayMode=${inpAudit?.scoreDisplayMode})`
         );
       }
     }
 
-    if (lcp !== null && lcp > LCP_THRESHOLD) {
-      console.warn(`⚠ LCP exceeded: ${Math.round(lcp)}ms (threshold ${LCP_THRESHOLD}ms)`);
-    }
-
-    if (cls !== null && cls > CLS_THRESHOLD) {
-      console.warn(`⚠ CLS exceeded: ${cls} (threshold ${CLS_THRESHOLD})`);
-    }
-
-    if (inp !== null && inp > INP_THRESHOLD) {
-      console.warn(`⚠ INP/TBT exceeded: ${Math.round(inp)}ms (threshold ${INP_THRESHOLD}ms)`);
-    }
+    // NOTE:
+    // Threshold comparisons are NOT verdict logic.
+    // Lighthouse runner emits facts only.
+    // PASS/WARN/FAIL decisions are made by executeVerdictEngine.ts.
 
     if (seo.score < SEO_THRESHOLD) {
-      console.warn(`⚠ SEO score ${seo.score} < ${SEO_THRESHOLD}`);
+      console.warn(`Warning: SEO score ${seo.score} < ${SEO_THRESHOLD}`);
     }
 
     console.log(
-      `✅ Lighthouse passed
+      `Lighthouse passed
 SEO: ${seo.score}
 Perf score: ${performance.score ?? "n/a"}
-CWV → LCP=${lcp ? Math.round(lcp) + "ms" : "n/a"}, CLS=${
+CWV -> LCP=${lcp ? Math.round(lcp) + "ms" : "n/a"}, CLS=${
         cls ?? "n/a"
       }, INP=${inp ? Math.round(inp) + "ms" : "n/a"}, FCP=${
         fcp ? Math.round(fcp) + "ms" : "n/a"
@@ -532,7 +810,12 @@ LCP renderDelay=${renderDelayMs ?? "n/a"}ms
 LongTasks(before LCP): count=${longTasks.totals.countBeforeLcp}, max=${longTasks.totals.maxTaskMsBeforeLcp}ms`
     );
 
-    process.exit(0);
+    // Generate comparison shell (idempotent)
+    writeComparisonShell({
+      generatedAt: new Date().toISOString()
+    });
+
+    return;
   } catch (err) {
     console.error(err);
     process.exit(1);

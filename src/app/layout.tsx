@@ -1,22 +1,7 @@
-import { Manrope, Sora } from "next/font/google";
 import "./globals.css";
 import FooterWrapper from "@/components/Common/Footer/FooterWrapper"; // ?. Import Footer
 import * as fs from "fs";
 import * as path from "path";
-
-const sora = Sora({
-  variable: "--font-display",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
-
-const manrope = Manrope({
-  variable: "--font-body",
-  subsets: ["latin"],
-  display: "swap",
-  weight: ["400", "500", "600", "700"],
-});
 
 export default function RootLayout({
   children,
@@ -33,23 +18,26 @@ export default function RootLayout({
         <style
           dangerouslySetInnerHTML={{ __html: heroCriticalCSS }}
         />
-        {/* CRITICAL HERO CSS — inline to unblock LCP */}
+        {/* CRITICAL HERO CSS - inline to unblock LCP */}
         <style
           dangerouslySetInnerHTML={{
             __html: `
+              /* LCP CRITICAL — TEXT ONLY */
               .home-hero {
-                padding-top: clamp(28px, 6vw, 72px);
-                padding-bottom: clamp(32px, 6vw, 72px);
+                padding-top: 20px;
               }
               .hero-content {
                 max-width: 560px;
               }
-              .heroImage {
-                display: block;
-                border-radius: 20px;
+              .heroTitle {
+                font-size: clamp(2.6rem, 6.8vw, 3.1rem);
+                line-height: 1.04;
+                margin: 0 0 8px;
               }
-              .hero-primary-cta {
-                margin-top: 16px;
+              .heroLead {
+                font-size: 1.05rem;
+                line-height: 1.6;
+                margin: 0;
               }
 
               @media (max-width: 768px) {
@@ -75,32 +63,47 @@ export default function RootLayout({
           }}
         />
         {/* LCP HERO PRELOAD — authoritative mobile hint */}
+        {/* Desktop-only hero image preload */}
         <link
           rel="preload"
           as="image"
           href="/images/home/hero/gpax-hero-final-400x500.avif"
+          media="(min-width: 900px)"
           fetchPriority="high"
-          imageSizes="(max-width: 900px) 94vw, 640px"
           type="image/avif"
         />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#1f7a52" />
         <link rel="icon" href="/images/greenpax-logo.svg" />
       </head>
-      <body
-        className={`${sora.variable} ${manrope.variable}`}
-        style={{ margin: 0, padding: 0 }}
-      >
-        <script
+      <body>
+        <style
           dangerouslySetInnerHTML={{
             __html: `
-              new PerformanceObserver((entryList) => {
-                for (const entry of entryList.getEntries()) {
-                  if (entry.entryType === 'largest-contentful-paint') {
-                    document.documentElement.dataset.lcpPainted = 'true';
-                  }
+              /* === MOBILE LCP HARD LOCK (TEXT ONLY) === */
+              @media (max-width: 768px) {
+                .home-hero {
+                  padding-top: 16px;
                 }
-              }).observe({ type: 'largest-contentful-paint', buffered: true });
+
+                .hero-content {
+                  max-width: 560px;
+                }
+
+                .heroTitle {
+                  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                  font-size: clamp(2.4rem, 7vw, 3rem);
+                  line-height: 1.04;
+                  letter-spacing: -0.02em;
+                  margin: 0 0 8px;
+                }
+
+                .heroLead {
+                  font-size: 1.05rem;
+                  line-height: 1.6;
+                  margin: 0;
+                }
+              }
             `,
           }}
         />

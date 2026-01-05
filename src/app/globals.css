@@ -15,38 +15,8 @@ html:not([data-lcp-painted="true"]) .home .why-list .card {
   transform: none !important;
 }
 
-/* --- LCP SAFETY: Disable animation for hero only --- */
-.home-hero,
-.home-hero * {
-  animation: none !important;
-  transition: none !important;
-}
 
-/* -------------------------------------------------- */
-/* LCP-SAFE MODE: Disable hero animations until paint */
-/* -------------------------------------------------- */
 
-/* Default: NO animations during initial render */
-.hero-media-frame,
-.fade-up,
-.home .category-grid .card,
-.home .featured-grid .card,
-.home .usecase-grid .card,
-.home .why-list .card {
-  animation: none !important;
-  transition: none !important;
-}
-
-/* Enable animations ONLY after first paint */
-html[data-lcp-painted="true"] .hero-media-frame,
-html[data-lcp-painted="true"] .fade-up,
-html[data-lcp-painted="true"] .home .category-grid .card,
-html[data-lcp-painted="true"] .home .featured-grid .card,
-html[data-lcp-painted="true"] .home .usecase-grid .card,
-html[data-lcp-painted="true"] .home .why-list .card {
-  animation: inherit;
-  transition: inherit;
-}
 
 :root {
   --ink: #0f1b14;
@@ -70,7 +40,7 @@ html[data-lcp-painted="true"] .home .why-list .card {
 
 body {
   margin: 0;
-  font-family: var(--font-body), sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   background: #f6f5f0;
 }
@@ -95,7 +65,7 @@ p {
 h1,
 h2,
 h3 {
-  font-family: var(--font-display), var(--font-body), sans-serif;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--ink);
   margin: 0 0 12px;
 }
@@ -109,7 +79,7 @@ h3 {
   }
 }
 
-h1 {
+h1:not(.heroTitle) {
   font-size: clamp(2.4rem, 5vw, 4rem);
   line-height: 1.05;
   letter-spacing: -0.02em;

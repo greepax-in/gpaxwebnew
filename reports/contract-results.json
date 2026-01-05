@@ -72,7 +72,7 @@
           "column": 6,
           "specs": [
             {
-              "title": "Homepage satisfies Google intent, SEO, flow and trust",
+              "title": "Homepage — collect contract evidence (Google-first)",
               "ok": true,
               "tags": [],
               "tests": [
@@ -87,12 +87,12 @@
                       "workerIndex": 0,
                       "parallelIndex": 0,
                       "status": "passed",
-                      "duration": 5359,
+                      "duration": 5427,
                       "errors": [],
                       "stdout": [],
                       "stderr": [],
                       "retry": 0,
-                      "startTime": "2026-01-05T07:42:42.075Z",
+                      "startTime": "2026-01-05T17:46:06.479Z",
                       "annotations": [],
                       "attachments": []
                     }
@@ -100,7 +100,7 @@
                   "status": "expected"
                 }
               ],
-              "id": "0760991002da0c961ace-e8f01b8fdf474b9c4dcc",
+              "id": "0760991002da0c961ace-670dddb27c3e19cd9ffa",
               "file": "tests/contracts/home.contract.spec.ts",
               "line": 16,
               "column": 7
@@ -112,8 +112,8 @@
   ],
   "errors": [],
   "stats": {
-    "startTime": "2026-01-05T07:42:40.160Z",
-    "duration": 7670.421,
+    "startTime": "2026-01-05T17:46:04.432Z",
+    "duration": 9196.784,
     "expected": 1,
     "skipped": 0,
     "unexpected": 0,

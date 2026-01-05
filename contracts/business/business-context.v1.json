@@ -1,0 +1,161 @@
+{
+  "abi_version": "1.0",
+  "business_id": "greenpax",
+  "brand": {
+    "name": "GreenPax",
+    "domain": "https://www.greenpax.in",
+    "country": "IN",
+    "language": "en-IN"
+  },
+
+  "business_identity": {
+    "type": "manufacturer",
+    "industry": "eco_friendly_paper_packaging",
+    "description": "Eco-friendly paper packaging manufacturer based in India producing paper bags, paper covers, and paper boxes in bulk quantities for commercial use.",
+    "not_a": [
+      "marketplace",
+      "reseller",
+      "dropshipper",
+      "d2c_ecommerce_brand",
+      "price_comparison_site"
+    ]
+  },
+
+  "products": {
+    "primary": [
+      "paper bags",
+      "paper covers",
+      "paper boxes"
+    ],
+    "attributes": [
+      "eco-friendly",
+      "kraft",
+      "food-safe",
+      "custom-printable",
+      "bulk-production"
+    ],
+    "sales_model": {
+      "mode": "b2b_only",
+      "order_type": "bulk",
+      "pricing_visibility": "indicative_only",
+      "checkout": false,
+      "online_payment": false
+    }
+  },
+
+  "audience": {
+    "buyer_type": "b2b",
+    "roles": [
+      "procurement_manager",
+      "supply_chain_manager",
+      "business_owner",
+      "operations_head",
+      "brand_manager"
+    ],
+    "industries": [
+      "food_delivery",
+      "retail_chains",
+      "grocery",
+      "fmcg",
+      "hospitality",
+      "quick_service_restaurants"
+    ]
+  },
+
+  "search_intent_profile": {
+    "intent_class": "commercial_evaluation",
+    "primary_queries": [
+      "paper bag manufacturer in india",
+      "bulk paper packaging supplier",
+      "custom paper bags wholesale",
+      "eco friendly paper covers manufacturer",
+      "paper box manufacturer india"
+    ],
+    "user_mindset": [
+      "credibility_check",
+      "manufacturing_capability_validation",
+      "compliance_and_quality_check",
+      "contact_decision"
+    ],
+    "not_searching_for": [
+      "buy_now",
+      "add_to_cart",
+      "discounts",
+      "retail_prices",
+      "offers"
+    ]
+  },
+
+  "conversion": {
+    "primary_goal": "direct_contact",
+    "primary_channel": "whatsapp",
+    "secondary_channels": [
+      "contact_form",
+      "phone_call"
+    ],
+    "rules": {
+      "cta_visible": true,
+      "cta_style": "non_aggressive",
+      "cta_repetition": "restricted",
+      "cta_positioning": "after_trust_signals",
+      "no_transactional_language": true
+    }
+  },
+
+  "content_governance": {
+    "allowed_language": [
+      "manufacturer",
+      "bulk",
+      "custom",
+      "wholesale",
+      "supply",
+      "production_capacity",
+      "certifications",
+      "quality_control"
+    ],
+    "forbidden_language": [
+      "buy now",
+      "add to cart",
+      "checkout",
+      "discount",
+      "sale",
+      "price list",
+      "limited offer"
+    ]
+  },
+
+  "seo_governance": {
+    "homepage_role": "business_identity_and_trust",
+    "category_pages_role": "capability_and_range",
+    "product_pages_role": "specification_and_use_case",
+    "blog_role": "authority_and_education",
+    "schema_policy": {
+      "homepage": [
+        "Organization",
+        "WebSite"
+      ],
+      "forbidden_on_homepage": [
+        "Product",
+        "Offer",
+        "AggregateOffer"
+      ]
+    }
+  },
+
+  "trust_signals": {
+    "expected": [
+      "manufacturing_claims",
+      "client_types",
+      "quality_statements",
+      "eco_certification_mentions",
+      "india_location"
+    ],
+    "must_precede_cta": true
+  },
+
+  "versioning": {
+    "status": "locked",
+    "created_at": "2026-01-05",
+    "change_policy": "new_version_only"
+  }
+}

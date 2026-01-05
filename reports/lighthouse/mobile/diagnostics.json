@@ -1,0 +1,29 @@
+{
+  "discardedRuns": [],
+  "diagnostics": [
+    {
+      "id": "PERF-LCP-NO-TRACE",
+      "message": "Mobile text-based LCP emitted without trace attribution (expected)"
+    },
+    {
+      "id": "PERF-LCP-NO-TRACE",
+      "message": "Mobile text-based LCP emitted without trace attribution (expected)"
+    },
+    {
+      "id": "PERF-LCP-NO-TRACE",
+      "message": "Mobile text-based LCP emitted without trace attribution (expected)"
+    },
+    {
+      "id": "PERF-LCP-NO-TRACE",
+      "message": "Mobile text-based LCP emitted without trace attribution (expected)"
+    },
+    {
+      "id": "PERF-LCP-NO-TRACE",
+      "message": "Mobile text-based LCP emitted without trace attribution (expected)"
+    }
+  ],
+  "totalRuns": 5,
+  "validRuns": 5,
+  "selectedRunIndex": 3,
+  "mode": "mobile"
+}

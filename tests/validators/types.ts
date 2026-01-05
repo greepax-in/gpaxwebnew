@@ -1,3 +1,4 @@
+
 import type { Page } from "@playwright/test";
 
 /* ======================================================
@@ -7,7 +8,15 @@ import type { Page } from "@playwright/test";
 export type ValidatorPage = Page;
 
 /* ======================================================
-   SEO RULES
+   CANONICAL TOGGLE TYPE (LOCKED)
+====================================================== */
+
+export type ToggleRule = {
+  enabled: boolean;
+};
+
+/* ======================================================
+   SEO RULES - feature toggles + data bounds
 ====================================================== */
 
 export type SeoRules = {
@@ -19,50 +28,59 @@ export type SeoRules = {
     min: number;
     max: number;
   };
-  canonical?: boolean;
-  singleH1?: boolean;
-  requireH2?: boolean;
-  requireCrawlableLinks?: boolean;
+  canonical?: ToggleRule;
+  singleH1?: ToggleRule;
+  requireH2?: ToggleRule;
+  requireCrawlableLinks?: ToggleRule;
 };
 
 /* ======================================================
-   INTENT RULES
+   INTENT RULES - feature toggles only
 ====================================================== */
 
 export type IntentRules = {
-  manufacturer?: boolean;
-  requireIndia?: boolean;
-  bulkIntent?: boolean;
-  forbidEcommerce?: boolean;
-  requireWhatsAppCTA?: boolean;
+  manufacturer?: ToggleRule;
+  requireIndia?: ToggleRule;
+  bulkIntent?: ToggleRule;
+  forbidEcommerce?: ToggleRule;
+  requireWhatsAppCTA?: ToggleRule;
 };
 
 /* ======================================================
-   FLOW RULES
+   FLOW RULES - feature toggles only
 ====================================================== */
 
 export type FlowRules = {
-  heroFirst?: boolean;
-  trustBeforeCTA?: boolean;
-  requireHeroLCPGuard?: boolean;
-  requireLCPBudgetMs?: number;
-  maxPrimaryCTAs?: number;
-  requireCLSBudget?: boolean;
+  heroFirst?: ToggleRule;
+  trustBeforeCTA?: ToggleRule;
+  requireHeroLCPGuard?: ToggleRule;
+  maxPrimaryCTAs?: { enabled: boolean; max: number };
+
+  /**
+   * Enable CLS observation (PerformanceObserver).
+   * Threshold comparison is NOT done here.
+   */
+  requireCLSBudget?: ToggleRule;
+
+  /**
+   * Enable LCP observation (policy-based, not threshold-based).
+   */
+  requireLCPObservation?: ToggleRule;
 };
 
 /* ======================================================
-   SCHEMA RULES
+   SCHEMA RULES - feature toggles only
 ====================================================== */
 
 export type SchemaRules = {
-  requireOrganization?: boolean;
-  forbidProduct?: boolean;
+  requireOrganization?: ToggleRule;
+  forbidProduct?: ToggleRule;
 };
 
 /* ======================================================
-   PERFORMANCE RULES
+   PERFORMANCE RULES - feature toggles only
 ====================================================== */
 
 export type PerformanceRules = {
-  lcp?: number;
+  observeINP?: ToggleRule;
 };

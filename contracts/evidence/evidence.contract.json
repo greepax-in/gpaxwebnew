@@ -1,0 +1,197 @@
+{
+  "$schema": "https://greenpax.in/contracts/evidence.contract.schema.json",
+  "contract": {
+    "id": "greenpax-homepage-evidence",
+    "version": "1.0.0",
+    "status": "LOCKED",
+    "page": "homepage",
+    "depends_on": [
+      "greenpax.business_context@1.x",
+      "greenpax.contract.homepage@1.x",
+      "greenpax.evidence@1.1"
+    ]
+  },
+
+  "principles": {
+    "evidence_only": true,
+    "no_verdicts": true,
+    "no_scoring": true,
+    "no_pass_fail_flags": true,
+    "observational_only": true
+  },
+
+  "required_evidence": [
+
+
+    {
+      "id": "INTENT-01",
+      "pillar": "intent",
+      "rule": "Manufacturer identity present",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "keywords": ["manufacturer"]
+      }
+    },
+    {
+      "id": "INTENT-02",
+      "pillar": "intent",
+      "rule": "India context present",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "keywords": ["india", "indian"]
+      }
+    },
+    {
+      "id": "INTENT-03",
+      "pillar": "intent",
+      "rule": "Bulk / MOQ context present",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "keywords": ["bulk", "moq"]
+      }
+    },
+
+
+    {
+      "id": "FLOW-01",
+      "pillar": "flow",
+      "rule": "Hero message appears before CTA",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "order": ["hero", "cta"]
+      }
+    },
+    {
+      "id": "FLOW-02",
+      "pillar": "flow",
+      "rule": "Trust signals present before or with CTA",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "trust_required": true
+      }
+    },
+
+
+
+    {
+      "id": "CTA-01",
+      "pillar": "flow",
+      "rule": "Single primary WhatsApp CTA above the fold",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "type": "whatsapp",
+        "max_count": 1
+      }
+    },
+    {
+      "id": "CTA-02",
+      "pillar": "flow",
+      "rule": "CTA language is non-transactional",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "forbidden_terms": ["buy", "order", "price", "discount"]
+      }
+    },
+
+
+    {
+      "id": "SEO-01",
+      "pillar": "seo",
+      "rule": "Title length within range",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "min": 30,
+        "max": 60
+      }
+    },
+    {
+      "id": "SEO-02",
+      "pillar": "seo",
+      "rule": "Meta description length within range",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "min": 70,
+        "max": 160
+      }
+    },
+    {
+      "id": "SEO-03",
+      "pillar": "seo",
+      "rule": "Single H1 present",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "count": 1
+      }
+    },
+    {
+      "id": "SEO-04",
+      "pillar": "seo",
+      "rule": "Canonical link present",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "required": true
+      }
+    },
+
+
+
+    {
+      "id": "SCHEMA-01",
+      "pillar": "schema",
+      "rule": "Organization schema present",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "types": ["Organization"]
+      }
+    },
+    {
+      "id": "SCHEMA-02",
+      "pillar": "schema",
+      "rule": "Forbidden ecommerce schema not present",
+      "severity": "error",
+      "source": "dom",
+      "expected": {
+        "forbidden_types": [
+          "Product",
+          "Offer",
+          "AggregateOffer",
+          "ProductGroup"
+        ]
+      }
+    },
+
+
+    {
+      "id": "PERF-01",
+      "pillar": "performance",
+      "rule": "Cumulative Layout Shift",
+      "severity": "error",
+      "source": "lighthouse",
+      "expected": {
+        "max": 0.1
+      }
+    },
+    {
+      "id": "PERF-02",
+      "pillar": "performance",
+      "rule": "Largest Contentful Paint observation",
+      "severity": "warn",
+      "source": "lighthouse",
+      "expected": {
+        "policy": "text-first-allowed"
+      }
+    }
+  ]
+}

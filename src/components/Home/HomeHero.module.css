@@ -17,6 +17,13 @@
 
 .heroTitle {
   margin-bottom: 8px;
+  /* LCP text lock - prevent font resolution delays */
+  /* LCP text lock - avoid font swap before paint */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+html[data-lcp-painted="true"] .heroTitle {
+  font-family: var(--font-display), var(--font-body), sans-serif;
 }
 
 .heroLead {
@@ -29,7 +36,7 @@
 .heroImage {
   display: block;
   aspect-ratio: 4 / 5;
-  will-change: transform;
+  /* will-change: transform; */
 }
 
 .heroCTAContainer {
@@ -38,15 +45,20 @@
   justify-content: flex-start;
 }
 
-.heroVisual {
-  contain: layout paint;
-  isolation: isolate;
-  contain-intrinsic-size: 400px 500px;
-  aspect-ratio: 4 / 5;
-  max-width: 220px;
-  margin: 18px auto 0;
+.heroVisualDesktop {
+  display: none;
 }
 
+@media (min-width: 900px) {
+  .heroVisualDesktop {
+    display: block;
+    contain: layout paint;
+    isolation: isolate;
+    contain-intrinsic-size: 400px 500px;
+    aspect-ratio: 4 / 5;
+    margin: 0;
+  }
+}
 /* --- DESKTOP LAYOUT (UNCHANGED VISUALLY) --- */
 @media (min-width: 900px) {
   .heroContainer {

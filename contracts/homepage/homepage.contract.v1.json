@@ -1,0 +1,177 @@
+{
+  "$schema": "https://greenpax.in/contracts/homepage.contract.schema.json",
+  "contract": {
+    "id": "greenpax-homepage",
+    "version": "1.0.0",
+    "status": "LOCKED",
+    "page_type": "homepage",
+    "audience": "B2B procurement buyers",
+    "business_model": "manufacturer",
+    "locale": "en-IN"
+  },
+
+  "intent": {
+    "primary": [
+      "eco-friendly paper packaging manufacturer",
+      "bulk paper bags manufacturer",
+      "paper packaging supplier India"
+    ],
+    "qualifiers": [
+      "bulk",
+      "MOQ-based",
+      "custom manufacturing",
+      "India"
+    ],
+    "forbidden_intents": [
+      "online purchase",
+      "retail pricing",
+      "marketplace",
+      "reseller"
+    ],
+    "language_expectations": {
+      "tone": "professional",
+      "claims": "verifiable",
+      "sales_aggression": "low"
+    }
+  },
+
+  "flow": {
+    "above_the_fold": {
+      "required_order": [
+        "hero_identity",
+        "trust_signals",
+        "primary_cta"
+      ],
+      "hero_identity": {
+        "element": "h1",
+        "must_exist": true,
+        "must_describe": [
+          "manufacturer",
+          "paper packaging",
+          "India"
+        ]
+      },
+      "trust_signals": {
+        "must_exist": true,
+        "examples": [
+          "manufacturing capability",
+          "bulk supply",
+          "business use cases",
+          "client categories"
+        ]
+      },
+      "primary_cta": {
+        "type": "whatsapp",
+        "visibility": "above_fold",
+        "count": 1,
+        "copy_style": "enquiry",
+        "aggression": "low"
+      }
+    },
+    "cta_rules": {
+      "repeat_before_trust_end": false,
+      "contextual_ctas_allowed": true,
+      "purchase_language_forbidden": true
+    }
+  },
+
+  "seo": {
+    "title": {
+      "required": true,
+      "min_length": 30,
+      "max_length": 60
+    },
+    "meta_description": {
+      "required": true,
+      "min_length": 70,
+      "max_length": 160
+    },
+    "headings": {
+      "single_h1": true,
+      "h2_allowed": true
+    },
+    "canonical": {
+      "required": true
+    },
+    "crawlability": {
+      "internal_links_required": true
+    }
+  },
+
+  "schema": {
+    "allowed": [
+      "Organization",
+      "WebSite"
+    ],
+    "required": [
+      "Organization"
+    ],
+    "forbidden": [
+      "Product",
+      "Offer",
+      "AggregateOffer",
+      "ProductGroup"
+    ]
+  },
+
+  "performance_policy": {
+    "mobile": {
+      "lcp": {
+        "emission": "optional",
+        "if_emitted": {
+          "element_type_forbidden": ["IMG"]
+        }
+      },
+      "cls": {
+        "max": 0.1,
+        "severity": "BLOCKING"
+      },
+      "inp": {
+        "required": false
+      }
+    },
+    "desktop": {
+      "lcp": {
+        "required": true,
+        "target_ms": 2500
+      },
+      "cls": {
+        "max": 0.1
+      }
+    },
+    "rendering": {
+      "text_visible_before_media": true,
+      "layout_shift_after_paint": false
+    }
+  },
+
+  "ui_principles": {
+    "reference": "apple.com",
+    "rules": [
+      "message_before_media",
+      "mobile_does_less",
+      "no_layout_jank",
+      "no_visual_dependency_for_meaning",
+      "no_animation_before_first_paint"
+    ]
+  },
+
+  "verdict_policy": {
+    "blocking_conditions": [
+      "missing_h1",
+      "intent_mismatch",
+      "forbidden_schema_detected",
+      "cls_exceeded",
+      "no_primary_cta"
+    ],
+    "warning_conditions": [
+      "meta_length_violation",
+      "og_tags_missing",
+      "lcp_not_emitted_mobile"
+    ],
+    "informational_only": [
+      "render_delay",
+      "diagnostic_lighthouse_metrics"
+    ]
+  }
+}

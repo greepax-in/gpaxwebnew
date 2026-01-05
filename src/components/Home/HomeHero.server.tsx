@@ -17,24 +17,18 @@ export default function HomeHeroServer({ children }: { children?: React.ReactNod
           MOQ-based production.
         </p>
 
-        <figure className={styles.heroVisual}>
-          <picture>
-            <source
-              srcSet="/images/home/hero/gpax-hero-final-400x500.webp"
-              type="image/webp"
-            />
-            <Image
-              src="/images/home/hero/gpax-hero-final-400x500.webp"
-              alt="Eco-friendly paper packaging manufacturer in India"
-              width={400}
-              height={500}
-              priority
-              fetchPriority="high"
-              sizes="(max-width: 480px) 320px, 400px"
-              className={styles.heroImage}
-              data-hero="true"
-            />
-          </picture>
+        <figure className={styles.heroVisualDesktop}>
+          <Image
+            src="/images/home/hero/gpax-hero-final-400x500.webp"
+            alt="Eco-friendly paper packaging manufacturer in India"
+            width={400}
+            height={500}
+            priority
+            fetchPriority="high"
+            sizes="(max-width: 480px) 320px, 400px"
+            className={styles.heroImage}
+            data-hero="true"
+          />
         </figure>
       </div>
       {/* CTA is now rendered inside `.hero-content` */}

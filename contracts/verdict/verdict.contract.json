@@ -1,0 +1,112 @@
+{
+  "$schema": "https://greenpax.in/contracts/verdict.contract.schema.json",
+
+  "contract": {
+    "id": "greenpax-homepage-verdict",
+    "version": "1.0.0",
+    "status": "LOCKED",
+    "page": "homepage",
+    "depends_on": [
+      "greenpax.business_context@1.x",
+      "greenpax.contract.homepage@1.x",
+      "greenpax.evidence@1.1",
+      "verdict-contract@1.0"
+    ]
+  },
+
+  "principles": {
+    "deterministic": true,
+    "side_effect_free": true,
+    "evidence_only": true,
+    "no_dom_access": true,
+    "no_lighthouse_execution": true,
+    "no_ui_logic": true,
+    "no_scoring": true,
+    "no_weights": true
+  },
+
+  "verdict_levels": ["PASS", "WARNED", "BLOCKED"],
+
+  "blocking_policy": {
+    "description": "Any error-severity evidence mapped to a blocking rule results in BLOCKED verdict",
+    "rule": {
+      "severity": "error",
+      "blocking": true
+    }
+  },
+
+  "warning_policy": {
+    "description": "Warn-severity evidence without blocking errors results in WARNED verdict",
+    "rule": {
+      "severity": "warn"
+    }
+  },
+
+  "pass_policy": {
+    "description": "No error or warn evidence results in PASS verdict",
+    "rule": {
+      "allowed_severity": ["info"]
+    }
+  },
+
+  "blocking_rule_map": [
+    "INTENT-01",
+    "INTENT-02",
+    "INTENT-03",
+    "FLOW-01",
+    "FLOW-02",
+    "CTA-01",
+    "CTA-02",
+    "SEO-01",
+    "SEO-02",
+    "SEO-03",
+    "SEO-04",
+    "SCHEMA-01",
+    "SCHEMA-02",
+    "PERF-01"
+  ],
+
+  "warning_rule_map": [
+    "PERF-02"
+  ],
+
+  "output_schema": {
+    "abi_version": "1.0",
+    "page": "homepage",
+    "verdict": "PASS | WARNED | BLOCKED",
+    "blocking_rules": {
+      "type": "array",
+      "items": "EvidenceRuleID"
+    },
+    "warnings": {
+      "type": "array",
+      "items": "EvidenceRuleID"
+    },
+    "evidence_digest": "sha256",
+    "computed_at": "ISO-8601"
+  },
+
+  "determinism_guarantees": {
+    "order_independent": true,
+    "time_invariant": true,
+    "input_sensitive_only": [
+      "homepage_contract",
+      "evidence_payload"
+    ]
+  },
+
+  "non_goals": [
+    "explain_verdict",
+    "suggest_fixes",
+    "render_ui",
+    "run_validators",
+    "score_pages"
+  ],
+
+  "policy": {
+  "substitutions": {
+    "PERF-01": ["PERF-RUNTIME-01"],
+    "PERF-02": ["PERF-RUNTIME-02"]
+  }
+}
+}
