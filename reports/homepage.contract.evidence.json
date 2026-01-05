@@ -3,84 +3,92 @@
     "id": "PERF-03",
     "pillar": "perf",
     "result": "PASS",
-    "at": "2026-01-03T20:48:54.935Z"
+    "at": "2026-01-05T07:42:43.098Z"
+  },
+  {
+    "id": "PERF-MOBILE-LCP-EMISSION",
+    "pillar": "Performance",
+    "label": "Mobile LCP emission",
+    "evidence": "This contract run uses a mobile viewport. On mobile devices, the homepage hero image is intentionally excluded from rendering to guarantee text-first Largest Contentful Paint (LCP). As a result, Lighthouse may legitimately not emit an LCP event on mobile runs. This is expected behavior and not a performance regression. If an LCP element is emitted on mobile, it must not be an image. Desktop LCP behavior remains unchanged.",
+    "result": "NOT_RUN",
+    "at": "2026-01-05T07:42:43.100Z"
   },
   {
     "id": "SEO-01",
     "pillar": "seo",
     "label": "Title length within bounds",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.061Z"
+    "at": "2026-01-05T07:42:43.203Z"
   },
   {
     "id": "SEO-02",
     "pillar": "seo",
     "label": "Meta description within bounds",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.067Z"
+    "at": "2026-01-05T07:42:43.212Z"
   },
   {
     "id": "SEO-03",
     "pillar": "seo",
     "label": "Single H1 present",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.175Z"
+    "at": "2026-01-05T07:42:43.330Z"
   },
   {
     "id": "SEO-04",
     "pillar": "seo",
     "label": "Canonical URL defined",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.175Z"
+    "at": "2026-01-05T07:42:43.330Z"
   },
   {
     "id": "SEO-07",
     "pillar": "seo",
     "label": "Crawlable internal links present",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.186Z"
+    "at": "2026-01-05T07:42:43.365Z"
   },
   {
     "id": "SEO-08",
     "pillar": "seo",
     "label": "At least one H2 present",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.194Z"
+    "at": "2026-01-05T07:42:43.376Z"
   },
   {
     "id": "SEO-06",
     "pillar": "seo",
     "label": "Homepage is indexable",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.219Z"
+    "at": "2026-01-05T07:42:43.398Z"
   },
   {
     "id": "INTENT-01",
     "pillar": "intent",
     "label": "Manufacturer / bulk intent detected",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.239Z"
+    "at": "2026-01-05T07:42:43.423Z"
   },
   {
     "id": "INTENT-02",
     "pillar": "intent",
     "label": "India context present",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.239Z"
+    "at": "2026-01-05T07:42:43.423Z"
   },
   {
     "id": "INTENT-03",
     "pillar": "intent",
     "label": "Ecommerce language absent",
     "result": "PASS",
-    "at": "2026-01-03T20:48:55.240Z"
+    "at": "2026-01-05T07:42:43.423Z"
   },
   {
     "id": "FLOW-01",
     "pillar": "flow",
     "label": "Hero H1 present early in DOM",
     "result": "PASS",
-    "at": "2026-01-03T20:48:56.326Z"
+    "at": "2026-01-05T07:42:44.564Z"
   },
   {
     "id": "PERF-02",
@@ -90,60 +98,69 @@
     "threshold": 0.1,
     "units": "score",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.349Z"
+    "at": "2026-01-05T07:42:47.581Z"
   },
   {
     "id": "CTA-01",
     "pillar": "cta_flow",
     "label": "Exactly one primary WhatsApp CTA above the fold",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.366Z"
+    "at": "2026-01-05T07:42:47.609Z"
   },
   {
     "id": "CTA-02",
     "pillar": "cta_flow",
     "label": "Contextual WhatsApp CTAs allowed below the fold",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.366Z"
+    "at": "2026-01-05T07:42:47.609Z"
   },
   {
     "id": "CTA-03",
     "pillar": "cta_flow",
     "label": "Trust-first CTA layout respected",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.366Z"
+    "at": "2026-01-05T07:42:47.609Z"
   },
   {
     "id": "CTA-04",
     "pillar": "cta_flow",
-    "result": "FAIL",
-    "at": "2026-01-03T20:48:59.405Z"
+    "label": "Hero image optimized for mobile LCP",
+    "result": "PASS",
+    "at": "2026-01-05T07:42:47.644Z"
+  },
+  {
+    "id": "DIAG-LCP-01",
+    "pillar": "diagnostic",
+    "label": "Mobile LCP candidate is text (expected)",
+    "evidence": "LCP element: H1",
+    "result": "NOT_RUN",
+    "at": "2026-01-05T07:42:47.647Z"
   },
   {
     "id": "FLOW-CTA-01",
     "pillar": "cta_flow",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.405Z"
+    "at": "2026-01-05T07:42:47.647Z"
   },
   {
     "id": "SCHEMA-01",
     "pillar": "schema",
     "label": "Organization schema present",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.418Z"
+    "at": "2026-01-05T07:42:47.655Z"
   },
   {
     "id": "SCHEMA-02",
     "pillar": "schema",
     "label": "Organization has name and url",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.418Z"
+    "at": "2026-01-05T07:42:47.655Z"
   },
   {
     "id": "SCHEMA-04",
     "pillar": "schema",
     "label": "Product schema forbidden on homepage",
     "result": "PASS",
-    "at": "2026-01-03T20:48:59.418Z"
+    "at": "2026-01-05T07:42:47.655Z"
   }
 ]

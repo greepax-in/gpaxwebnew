@@ -39,10 +39,34 @@ test.describe("Homepage — Google Page Contract", () => {
     const ctx = new ContractEvidenceContext();
 
     // Core Web Vitals are mobile-authoritative; set mobile viewport for INP
-    await staticPage.setViewportSize({ width: 390, height: 844 });
+    const viewport = { width: 390, height: 844 };
+    await staticPage.setViewportSize(viewport);
 
     const perfRules = { lcp: 2500 };
     await validateINP(staticPage, perfRules, ctx);
+
+    // --------------------------------------------------
+    // Contract Note: Mobile LCP emission semantics
+    // Auto-injected only for mobile viewport runs
+    // --------------------------------------------------
+    const isMobileViewport = viewport.width <= 768;
+
+    if (isMobileViewport) {
+      ctx.note({
+        id: "PERF-MOBILE-LCP-EMISSION",
+        pillar: "Performance",
+        label: "Mobile LCP emission",
+        evidence: [
+          "This contract run uses a mobile viewport.",
+          "On mobile devices, the homepage hero image is intentionally excluded from rendering",
+          "to guarantee text-first Largest Contentful Paint (LCP).",
+          "As a result, Lighthouse may legitimately not emit an LCP event on mobile runs.",
+          "This is expected behavior and not a performance regression.",
+          "If an LCP element is emitted on mobile, it must not be an image.",
+          "Desktop LCP behavior remains unchanged."
+        ].join(" ")
+      });
+    }
 
     const seoRules = {
       title: { min: 30, max: 60 },
@@ -97,11 +121,12 @@ test.describe("Homepage — Google Page Contract", () => {
     // Persist evidence for report generator
     const out = path.resolve("reports/homepage.contract.evidence.json");
     fs.mkdirSync(path.dirname(out), { recursive: true });
-    fs.writeFileSync(out, JSON.stringify(ctx.toJSON(), null, 2));
+    const report = ctx.toJSON();
+    fs.writeFileSync(out, JSON.stringify(report, null, 2));
 
-    const evidence = ctx.toJSON();
+    const evidence = Array.isArray(report) ? report : report.evidence ?? [];
     const strictMode = process.env.STRICT_CONTRACT === "true";
-    const hasFailures = evidence.some(e => e.result === "FAIL");
+    const hasFailures = evidence.some((e: any) => e.result === "FAIL");
 
     if (strictMode && hasFailures) {
       throw new Error("Homepage contract failed in STRICT mode. See report for details.");

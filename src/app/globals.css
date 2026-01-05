@@ -1,5 +1,53 @@
 /* FILE: src/app/globals.css */
 
+/* -------------------------------------------------- */
+/* LCP GATE — Disable animations until LCP is painted */
+/* -------------------------------------------------- */
+
+html:not([data-lcp-painted="true"]) .fade-up,
+html:not([data-lcp-painted="true"]) .hero-media-frame,
+html:not([data-lcp-painted="true"]) .home .category-grid .card,
+html:not([data-lcp-painted="true"]) .home .featured-grid .card,
+html:not([data-lcp-painted="true"]) .home .usecase-grid .card,
+html:not([data-lcp-painted="true"]) .home .why-list .card {
+  animation: none !important;
+  transition: none !important;
+  transform: none !important;
+}
+
+/* --- LCP SAFETY: Disable animation for hero only --- */
+.home-hero,
+.home-hero * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* -------------------------------------------------- */
+/* LCP-SAFE MODE: Disable hero animations until paint */
+/* -------------------------------------------------- */
+
+/* Default: NO animations during initial render */
+.hero-media-frame,
+.fade-up,
+.home .category-grid .card,
+.home .featured-grid .card,
+.home .usecase-grid .card,
+.home .why-list .card {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Enable animations ONLY after first paint */
+html[data-lcp-painted="true"] .hero-media-frame,
+html[data-lcp-painted="true"] .fade-up,
+html[data-lcp-painted="true"] .home .category-grid .card,
+html[data-lcp-painted="true"] .home .featured-grid .card,
+html[data-lcp-painted="true"] .home .usecase-grid .card,
+html[data-lcp-painted="true"] .home .why-list .card {
+  animation: inherit;
+  transition: inherit;
+}
+
 :root {
   --ink: #0f1b14;
   --muted: #44564c;
@@ -269,26 +317,6 @@ section {
 }
 
 /* Hero */
-.hero {
-  padding-top: clamp(28px, 6vw, 72px);
-  padding-bottom: clamp(32px, 6vw, 72px);
-}
-
-.hero-grid {
-  display: grid;
-  gap: clamp(24px, 6vw, 72px);
-  align-items: center;
-}
-
-.hero-copy {
-  max-width: 560px;
-}
-
-.hero-media {
-  display: flex;
-  justify-content: center;
-}
-
 .hero-eyebrow {
   font-size: 0.8rem;
   letter-spacing: 0.18em;

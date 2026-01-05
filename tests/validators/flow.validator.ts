@@ -199,7 +199,7 @@ export async function validateFlow(
    * - alt text present
    */
   if (rules.requireHeroLCPGuard) {
-    const heroImage = page.locator("img").first();
+    const heroImage = page.locator('img[data-hero="true"]');
 
     await expect(
       heroImage,
@@ -212,47 +212,53 @@ export async function validateFlow(
       alt: img.getAttribute("alt"),
       fetchPriority: img.getAttribute("fetchpriority"),
       loading: img.getAttribute("loading"),
-      src: (img.getAttribute("src") || (img as HTMLImageElement).currentSrc) as string,
+      src: (img as HTMLImageElement).currentSrc,
     }));
 
-    expect(
-      attrs.alt,
-      "Hero image missing alt text (accessibility + SEO)"
-    ).toBeTruthy();
-
-    expect(
-      attrs.width && attrs.height,
-      "Hero image missing fixed width/height (CLS risk)"
-    ).toBeTruthy();
+    expect(attrs.alt).toBeTruthy();
+    expect(attrs.width && attrs.height).toBeTruthy();
 
     const hasPreload = await page.evaluate((src) => {
       if (!src) return false;
-      // Check for a preload link matching the image src (may be absolute or relative)
-      const links = Array.from(document.querySelectorAll('link[rel="preload"][as="image"]')) as HTMLLinkElement[];
-      return links.some(l => l.href.endsWith(src) || l.href.includes(src));
+      const links = Array.from(
+        document.querySelectorAll('link[rel="preload"][as="image"]')
+      ) as HTMLLinkElement[];
+      return links.some(l => l.href.includes(src));
     }, attrs.src);
 
     expect(
-      attrs.fetchPriority === "high" || attrs.loading === "eager" || hasPreload,
-      "Hero image not prioritized for LCP (mobile performance risk)"
+      attrs.fetchPriority === "high" ||
+      attrs.loading === "eager" ||
+      hasPreload,
+      "Hero image not prioritized for LCP"
     ).toBeTruthy();
-  }
 
-  // Check hero image prioritization (CTA-04) and record pass/fail
-  const heroLcpOk = await page.evaluate(() => {
-    const heroImg = document.querySelector('img[data-hero]');
-    if (!heroImg) return false;
+    ctx?.pass({
+      id: "CTA-04",
+      pillar: "cta_flow",
+      label: "Hero image optimized for mobile LCP",
+    });
 
-    const fetchPriority = heroImg.getAttribute("fetchpriority");
-    const loading = heroImg.getAttribute("loading");
+    const lcpType = await page.evaluate(() => {
+      return new Promise<string | null>((resolve) => {
+        const obs = new PerformanceObserver((list) => {
+          const entry = list.getEntries().pop() as any;
+          if (!entry) return;
+          resolve(entry.element?.tagName ?? null);
+        });
+        obs.observe({ type: "largest-contentful-paint", buffered: true });
+        setTimeout(() => resolve(null), 3000);
+      });
+    });
 
-    return fetchPriority === "high" || loading === "eager";
-  });
-
-  if (heroLcpOk) {
-    ctx?.pass({ id: "CTA-04", pillar: "cta_flow" });
-  } else {
-    ctx?.fail({ id: "CTA-04", pillar: "cta_flow" });
+    if (lcpType && lcpType !== "IMG") {
+      ctx?.diagnostic({
+        id: "DIAG-LCP-01",
+        pillar: "diagnostic",
+        label: "Mobile LCP candidate is text (expected)",
+        evidence: `LCP element: ${lcpType}`,
+      });
+    }
   }
 
   

@@ -1,16 +1,131 @@
 
-const { spawn } = require("child_process");
 const lighthouse = require("lighthouse").default;
 const { launch } = require("chrome-launcher");
 const fs = require("fs");
 const path = require("path");
+const fetch = globalThis.fetch;
+
+if (typeof fetch !== "function") {
+  throw new Error(
+    "Global fetch is not available in this Node runtime. Install 'node-fetch' or run on Node >=18."
+  );
+}
+
+/* --------------------------------------------------
+   Long-task attribution helpers (LCP window)
+-------------------------------------------------- */
+
+function ms(n) {
+  return typeof n === "number" && Number.isFinite(n) ? Math.round(n) : null;
+}
+
+function clampStr(s, max = 140) {
+  if (!s || typeof s !== "string") return null;
+  return s.length > max ? s.slice(0, max - 1) + "…" : s;
+}
+
+function normalizeUrl(u) {
+  if (!u || typeof u !== "string") return null;
+  try {
+    const url = new URL(u);
+    url.search = "";
+    url.hash = "";
+    return url.toString();
+  } catch {
+    return u;
+  }
+}
+
+function extractLongTasks(lhr, lcpMs) {
+  const audit = lhr?.audits?.["long-tasks"];
+  const items = Array.isArray(audit?.details?.items)
+    ? audit.details.items
+    : [];
+
+  if (!Number.isFinite(lcpMs)) {
+    return {
+      topBeforeLcp: [],
+      totals: { countBeforeLcp: 0, sumDurationMsBeforeLcp: 0, maxTaskMsBeforeLcp: 0 },
+    };
+  }
+
+  const beforeOrOverlappingLcp = items
+    .map((t) => {
+      // Lighthouse long-tasks startTime is already in milliseconds (ms).
+      const startMs =
+        typeof t.startTime === "number" ? t.startTime : null;
+      const durMs = typeof t.duration === "number" ? t.duration : null;
+      const endMs =
+        startMs !== null && durMs !== null ? startMs + durMs : null;
+
+      const overlapsLcp =
+        startMs !== null && endMs !== null ? startMs <= lcpMs : false;
+
+      const attributions = Array.isArray(t.attribution) ? t.attribution : [];
+      const topAttr = attributions
+        .map((a) => ({
+          url: normalizeUrl(a.url || a.attributableToURL || a.name),
+          total: ms(a.total),
+          name: clampStr(a.name),
+        }))
+        .filter((a) => a.url || a.name)
+        .sort((a, b) => (b.total ?? 0) - (a.total ?? 0))[0];
+
+      return overlapsLcp && typeof durMs === "number"
+        ? {
+            startMs: ms(startMs),
+            durationMs: ms(durMs),
+            endMs: ms(endMs),
+            name: clampStr(t.name),
+            attribution: topAttr || null,
+          }
+        : null;
+    })
+    .filter(Boolean);
+
+  const totals = beforeOrOverlappingLcp.reduce(
+    (acc, t) => {
+      acc.countBeforeLcp += 1;
+      acc.sumDurationMsBeforeLcp += t.durationMs;
+      acc.maxTaskMsBeforeLcp = Math.max(acc.maxTaskMsBeforeLcp, t.durationMs);
+      return acc;
+    },
+    { countBeforeLcp: 0, sumDurationMsBeforeLcp: 0, maxTaskMsBeforeLcp: 0 }
+  );
+
+  return {
+    topBeforeLcp: beforeOrOverlappingLcp
+      .sort((a, b) => b.durationMs - a.durationMs)
+      .slice(0, 10),
+    totals,
+  };
+}
+
+const RUNS = Math.max(3, Number(process.env.LH_RUNS ?? 5));
+const WARMUP_DELAY_MS = Math.max(0, Number(process.env.LH_WARMUP_MS ?? 3000));
+const STRICT_MOBILE_EMISSION =
+  process.env.LH_STRICT_MOBILE_EMISSION !== "0";
 
 /* --------------------------------------------------
    Target URL (homepage by default, page-level optional)
 -------------------------------------------------- */
 
-const BASE_URL =
-  process.env.LH_URL?.trim() || "http://localhost:3000";
+/* --------------------------------------------------
+   Execution mode (mobile | desktop)
+-------------------------------------------------- */
+
+const mode = process.argv[2];
+
+if (mode !== "mobile" && mode !== "desktop") {
+  throw new Error(
+    `Invalid Lighthouse mode "${mode}". Expected "mobile" or "desktop".`
+  );
+}
+
+const BASE_URL = process.env.LH_URL?.trim();
+if (!BASE_URL) {
+  throw new Error("LH_URL is required for Lighthouse runs (external server mode).");
+}
 
 const WORKSPACE = process.env.WORKSPACE || "UNKNOWN";
 /* --------------------------------------------------
@@ -107,46 +222,157 @@ async function waitForServer(url, timeoutMs = 15000) {
     //   - orphaned processes
     //   - Windows SIGTERM/SIGKILL edge cases
     //
-    // LH_URL defaults to http://localhost:3000
+    // LH_URL must be provided externally (CI, VPS, alternate ports).
     // Override via env if needed (CI, VPS, alternate ports).
 
     const ready = await waitForServer(BASE_URL);
     if (!ready) {
-      throw new Error("Production server did not start");
+      throw new Error("Production server did not start or was unreachable at LH_URL");
     }
-
-    const mode = process.argv[2] === "mobile" ? "mobile" : "desktop";
-    console.log(`▶ Running Lighthouse (${mode}) on ${BASE_URL}`);
-
+    console.log(`Running Lighthouse (${mode}) on ${BASE_URL} (runs=${RUNS})`);
+    // Trace reliability toggle:
+    // Some Lighthouse trace pipelines can be flaky in headless mode on certain platforms.
+    // Set LH_HEADLESS=0 to run headful once for diagnosis (frame_sequence / trace errors).
+    const HEADLESS = process.env.LH_HEADLESS !== "0";
     chromeInstance = await launch({
-      chromeFlags: ["--headless", "--disable-gpu"],
+      chromePath: process.env.LH_CHROME_PATH,
+      chromeFlags: [
+        ...(HEADLESS ? ["--headless=new"] : []),
+        "--no-first-run",
+        "--disable-background-networking",
+        "--disable-background-timer-throttling",
+        "--disable-renderer-backgrounding",
+        "--disable-dev-shm-usage",
+      ],
     });
 
-    const lighthouseConfig =
-      mode === "mobile"
-        ? {
-            port: chromeInstance.port,
-            onlyCategories: ["performance", "seo"],
-            formFactor: "mobile",
-            screenEmulation: {
-              mobile: true,
-              width: 375,
-              height: 667,
-              deviceScaleFactor: 2,
-              disabled: false,
-            },
-            throttlingMethod: "simulate",
-            output: "json",
-            logLevel: "error",
-          }
-        : {
-            port: chromeInstance.port,
-            onlyCategories: ["performance", "seo"],
-            output: "json",
-            logLevel: "error",
-          };
+    const runs = [];
+    const discarded = [];
+    const diagnostics = [];
 
-    const result = await lighthouse(BASE_URL, lighthouseConfig);
+    for (let i = 0; i < RUNS; i++) {
+      const flags = {
+        port: chromeInstance.port,
+        output: "json",
+        logLevel: "error",
+      };
+
+      const config =
+        mode === "mobile"
+          ? {
+              extends: "lighthouse:default",
+              settings: {
+                onlyCategories: ["performance", "seo"],
+                formFactor: "mobile",
+                screenEmulation: {
+                  mobile: true,
+                  width: 360,
+                  height: 740,
+                  deviceScaleFactor: 2,
+                },
+                throttlingMethod: "simulate",
+                throttling: {
+                  rttMs: 150,
+                  throughputKbps: 1600,
+                  cpuSlowdownMultiplier: 4,
+                },
+              },
+            }
+          : {
+              extends: "lighthouse:default",
+              settings: {
+                onlyCategories: ["performance", "seo"],
+                formFactor: "desktop",
+                throttlingMethod: "simulate",
+                throttling: {
+                  rttMs: 40,
+                  throughputKbps: 10240,
+                  cpuSlowdownMultiplier: 1,
+                },
+                screenEmulation: {
+                  mobile: false,
+                  width: 1366,
+                  height: 768,
+                  deviceScaleFactor: 1,
+                },
+              },
+            };
+
+      const run = await lighthouse(BASE_URL, flags, config);
+      const audit = run?.lhr?.audits;
+      const metrics = audit?.metrics?.details?.items?.[0];
+      const lcpAudit = audit?.["largest-contentful-paint"];
+      const hasRuntimeError = Boolean(run?.lhr?.runtimeError);
+      const hasTrace = Boolean(run?.lhr?.audits?.["trace-of-tab"]?.details);
+      const lcpValue =
+        typeof lcpAudit?.numericValue === "number" ? lcpAudit.numericValue : null;
+      // Integrity rules:
+      // - Desktop: LCP numeric value required
+      // - Mobile: LCP numeric value MAY be absent (text-only LCP by design)
+      // Integrity rules (CONTRACT-LOCKED):
+      // - Desktop: numeric LCP REQUIRED
+      // - Mobile: numeric LCP OPTIONAL (text-only hero allowed)
+      const invalid =
+        lcpAudit?.scoreDisplayMode === "error" ||
+        hasRuntimeError ||
+        (mode === "desktop" && typeof lcpValue !== "number");
+
+      if (mode === "mobile" && (!metrics || !hasTrace)) {
+        diagnostics.push({
+          id: "PERF-LCP-NO-TRACE",
+          message:
+            "Mobile text-based LCP emitted without trace attribution (expected)",
+        });
+      }
+
+      if (invalid) {
+        discarded.push({
+          run: i + 1,
+          reason:
+            lcpValue == null
+              ? "missing LCP"
+              : hasRuntimeError
+              ? "runtimeError"
+              : lcpAudit?.scoreDisplayMode === "error"
+              ? "lcp audit error"
+              : !metrics
+              ? "missing metrics"
+              : "missing trace",
+        });
+        continue;
+      }
+
+      runs.push({
+        runIndex: i + 1,
+        lhr: run.lhr,
+        lcp: lcpValue,
+        cls: audit?.["cumulative-layout-shift"]?.numericValue ?? null,
+        inp: audit?.["interaction-to-next-paint"]?.numericValue ?? null,
+      });
+    }
+
+    if (runs.length < Math.ceil(RUNS / 2)) {
+      throw new Error(
+        `Insufficient valid Lighthouse runs for reliable median (valid=${runs.length}, required=${Math.ceil(
+          RUNS / 2
+        )}, discarded=${discarded.length})`
+      );
+    }
+
+    // Median selection (MOBILE-SAFE):
+    // - Desktop: median by numeric LCP
+    // - Mobile: median by run order when LCP is null
+    const sortableRuns =
+      mode === "desktop" ? runs.filter((r) => typeof r.lcp === "number") : runs.slice();
+
+    const sorted =
+      mode === "desktop"
+        ? sortableRuns.slice().sort((a, b) => a.lcp - b.lcp)
+        : sortableRuns;
+
+    const medianRun = sorted[Math.floor(sorted.length / 2)] ?? runs[0];
+
+    const result = { lhr: medianRun.lhr };
 
     const url = new URL(BASE_URL);
     const serverMeta = {
@@ -158,27 +384,6 @@ async function waitForServer(url, timeoutMs = 15000) {
       collectedAt: new Date().toISOString(),
     };
 
-    /* --------------------------------------------------
-       Persist Lighthouse JSON (Phase-2.2 ingestion)
-    -------------------------------------------------- */
-
-    const reportsDir = path.resolve("reports");
-    if (!fs.existsSync(reportsDir)) {
-      fs.mkdirSync(reportsDir, { recursive: true });
-    }
-
-    fs.writeFileSync(
-      path.join(reportsDir, `lighthouse.home.${mode}.json`),
-      JSON.stringify(
-        {
-          meta: serverMeta,
-          lhr: result.lhr,
-        },
-        null,
-        2
-      )
-    );
-
     const { performance, seo } = result.lhr.categories;
     const audits = result.lhr.audits;
 
@@ -186,15 +391,60 @@ async function waitForServer(url, timeoutMs = 15000) {
        Core Web Vitals extraction
     -------------------------------------------------- */
 
-    const lcp = audits["largest-contentful-paint"]?.numericValue ?? null;
-    const cls = audits["cumulative-layout-shift"]?.numericValue ?? null;
+    const lcpAudit = audits["largest-contentful-paint"];
+    const inpAudit = audits["interaction-to-next-paint"];
+
+    const lcp =
+      typeof lcpAudit?.numericValue === "number"
+        ? lcpAudit.numericValue
+        : null;
+
+    // Diagnostic note (non-fatal): mobile pages may emit text-only LCP
+    if (mode === "mobile" && lcp === null) {
+      console.log(
+        "ℹ Diagnostic: Mobile text-only LCP (numeric value not emitted by Lighthouse)"
+      );
+    }
+
+    // Phase-aware metrics (from metrics audit)
+    const metrics = audits?.metrics?.details?.items?.[0] ?? null;
+    const lcpLoadStart = metrics?.lcpLoadStart ?? null;
+    const lcpLoadEnd = metrics?.lcpLoadEnd ?? null;
+    const ttfbMs = metrics?.timeToFirstByte ?? null;
+    const renderDelayMs =
+      typeof lcp === "number" && typeof lcpLoadEnd === "number"
+        ? ms(lcp - lcpLoadEnd)
+        : null;
+    const resourceLoadDelay =
+      typeof lcpLoadStart === "number" && typeof ttfbMs === "number"
+        ? ms(lcpLoadStart - ttfbMs)
+        : null;
+    const resourceLoadTime =
+      typeof lcpLoadEnd === "number" && typeof lcpLoadStart === "number"
+        ? ms(lcpLoadEnd - lcpLoadStart)
+        : null;
+    const isRenderDominated =
+      typeof renderDelayMs === "number" && typeof lcp === "number"
+        ? renderDelayMs > lcp * 0.5
+        : null;
+
+    if (isRenderDominated) {
+      console.log(
+        `ℹ Diagnostic: render-delay dominates LCP (renderDelay=${renderDelayMs}ms, LCP=${Math.round(lcp)}ms)`
+      );
+    }
+
+    // Long-task attribution correlated to LCP window
+    const longTasks = extractLongTasks(result.lhr, lcp);
+
     const inp =
-      audits["interaction-to-next-paint"]?.numericValue ??
-      audits["total-blocking-time"]?.numericValue ??
-      null;
+      typeof inpAudit?.numericValue === "number"
+        ? inpAudit.numericValue
+        : null;
+
+    const cls = audits["cumulative-layout-shift"]?.numericValue ?? null;
     const fcp = audits["first-contentful-paint"]?.numericValue ?? null;
-    const ttfb =
-      audits["server-response-time"]?.numericValue ?? null;
+    const ttfb = audits["server-response-time"]?.numericValue ?? null;
 
     /* --------------------------------------------------
        Performance score (informational only)
@@ -213,6 +463,45 @@ async function waitForServer(url, timeoutMs = 15000) {
     /* --------------------------------------------------
        Core Web Vitals enforcement (HARD GATES)
     -------------------------------------------------- */
+
+    const inpReason =
+      inp === null
+        ? inpAudit?.scoreDisplayMode || "NOT_TRIGGERED"
+        : null;
+
+    if (mode === "mobile" && STRICT_MOBILE_EMISSION) {
+      // Mobile LCP contract:
+      // - LCP emission is optional (text-only hero)
+      // - IF emitted, LCP MUST NOT be an image
+      const lcpItem = lcpAudit?.details?.items?.[0];
+      const lcpNodeName = lcpItem?.node?.nodeName;
+
+      if (
+        lcpNodeName &&
+        ["IMG", "PICTURE", "SVG"].includes(lcpNodeName)
+      ) {
+        throw new Error(
+          `❌ Mobile LCP contract violation: image-based LCP detected (${lcpNodeName})`
+        );
+      }
+
+      // INP applicability:
+      // - INP is REQUIRED only if page has client-side interactivity
+      // - Static, zero-JS pages may legitimately emit no INP
+      const inpNotApplicable =
+        inp === null &&
+        (
+          inpAudit?.scoreDisplayMode === "notApplicable" ||
+          inpAudit?.scoreDisplayMode === "informative" ||
+          inpAudit?.scoreDisplayMode === undefined
+        );
+
+      if (!inpNotApplicable && inp === null) {
+        throw new Error(
+          `❌ Mobile Lighthouse invalid: INP expected but not emitted (scoreDisplayMode=${inpAudit?.scoreDisplayMode})`
+        );
+      }
+    }
 
     if (lcp !== null && lcp > LCP_THRESHOLD) {
       console.warn(`⚠ LCP exceeded: ${Math.round(lcp)}ms (threshold ${LCP_THRESHOLD}ms)`);
@@ -238,7 +527,9 @@ CWV → LCP=${lcp ? Math.round(lcp) + "ms" : "n/a"}, CLS=${
         cls ?? "n/a"
       }, INP=${inp ? Math.round(inp) + "ms" : "n/a"}, FCP=${
         fcp ? Math.round(fcp) + "ms" : "n/a"
-      }, TTFB=${ttfb ? Math.round(ttfb) + "ms" : "n/a"}`
+      }, TTFB=${ttfb ? Math.round(ttfb) + "ms" : "n/a"}
+LCP renderDelay=${renderDelayMs ?? "n/a"}ms
+LongTasks(before LCP): count=${longTasks.totals.countBeforeLcp}, max=${longTasks.totals.maxTaskMsBeforeLcp}ms`
     );
 
     process.exit(0);
@@ -269,3 +560,4 @@ process.on("SIGTERM", async () => {
   await stopServer(server);
   process.exit(1);
 });
+

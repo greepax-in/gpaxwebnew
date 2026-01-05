@@ -9,13 +9,6 @@ export default defineConfig({
     ["json", { outputFile: "reports/contract-results.json" }]
   ],
 
-  webServer: {
-    command: "npm run start",
-    port: 3000,
-    reuseExistingServer: false, // 🔒 Never reuse for contract tests
-    timeout: 120_000,
-  },
-
   use: {
     baseURL: "http://localhost:3000",
   },

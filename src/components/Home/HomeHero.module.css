@@ -6,15 +6,45 @@
   min-height: auto; /* remove layout delay for LCP */
   justify-content: flex-start; /* allow image to paint first */
   padding-top: clamp(20px, 6vw, 40px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(14px, 4vw, 18px);
 }
 
-.heroVisual {
-  order: 1;
+.heroContent {
+  width: 100%;
+}
+
+.heroTitle {
+  margin-bottom: 8px;
+}
+
+.heroLead {
+  margin: 0;
+  color: var(--muted);
+  max-width: 52ch;
 }
 
 /* Ensure image paints immediately */
 .heroImage {
   display: block;
+  aspect-ratio: 4 / 5;
+  will-change: transform;
+}
+
+.heroCTAContainer {
+  margin-top: clamp(10px, 3vw, 20px);
+  display: flex;
+  justify-content: flex-start;
+}
+
+.heroVisual {
+  contain: layout paint;
+  isolation: isolate;
+  contain-intrinsic-size: 400px 500px;
+  aspect-ratio: 4 / 5;
+  max-width: 220px;
+  margin: 18px auto 0;
 }
 
 /* --- DESKTOP LAYOUT (UNCHANGED VISUALLY) --- */
@@ -33,6 +63,38 @@
 
   .heroVisual {
     order: 2;
+    max-width: none;
+    margin: 0;
+    contain-intrinsic-size: 400px 500px;
   }
 }
 
+/* --- MOBILE-FIRST TEXT DOMINANCE --- */
+@media (max-width: 780px) {
+  .heroTitle {
+    font-size: clamp(2.6rem, 6.8vw, 3.1rem);
+    line-height: 1.04;
+  }
+
+  .heroLead {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 44ch;
+  }
+
+  .heroVisual {
+    max-width: min(56vw, 170px);
+    contain-intrinsic-size: 200px 260px;
+    margin-top: 12px;
+  }
+}
+
+/* --------------------------------------------------
+   Mobile LCP guarantee
+   Image must NOT participate in LCP on mobile
+-------------------------------------------------- */
+@media (max-width: 768px) {
+  .heroVisual {
+    display: none;
+  }
+}

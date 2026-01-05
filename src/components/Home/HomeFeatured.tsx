@@ -3,14 +3,13 @@
 "use client";
 
 import Image from "next/image";
-// import { getHomepageWhatsAppLink } from "@/components/Common/WhatsAppCTA";
+import { getHomepageWhatsAppLink } from "@/lib/whatsapp/links";
 import items from "@/data/items";
 import { selectHomeFeaturedItems } from "@/lib/home/HomeFeatured.selector";
 import { validateHomeFeatured } from "@/lib/home/HomeFeatured.validator";
 import { useState } from "react";
 import { buildProductSubtitle } from "@/lib/productSubtitle";
 import styles from "./HomeFeatured.module.css";
-import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
 
 /**
  * HomeFeatured
@@ -60,7 +59,7 @@ export default function HomeFeatured() {
               <div className={styles.ctaRow}>
                 <a
                   className={styles.outlineButton}
-                  href={buildHomepageWhatsAppLink(`Homepage featured: ${item.name}`)}
+                  href={getHomepageWhatsAppLink(`Homepage featured: ${item.name}`)}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Enquire about ${item.name}`}

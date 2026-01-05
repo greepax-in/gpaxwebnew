@@ -18,30 +18,31 @@
   },
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build",
-    "check:bundle": "tsx src/scripts/checkBundleSize.ts",
-    "start": "next start",
+    "build:prod": "next build",
+    "start:prod": "next start -p 3000",
     "lint": "next lint",
+    "check:bundle": "tsx src/scripts/checkBundleSize.ts",
+    "analyze:bundle": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next build && npx source-map-explorer \".next/static/chunks/**/*.js\" --html bundle-report.html",
     "test:contracts": "playwright test tests/contracts",
-    "lighthouse:home:mobile": "node tests/tools/run-lighthouse-prod.js mobile",
-    "lighthouse:home:desktop": "node tests/tools/run-lighthouse-prod.js desktop",
     "test:contract:home": "playwright test tests/contracts/home.contract.spec.ts",
-    "report:contract:home": "tsx src/scripts/generateContractReport.ts",
     "test:smoke": "playwright test tests/smoke",
     "test:lighthouse:local": "playwright test tests/smoke/lighthouse.homepage.spec.ts",
-    "start:prod:test": "next start -p 3000",
-    "test:lighthouse:prod": "npm run build && node tests/tools/run-lighthouse-prod.js",
+    "lighthouse:home:mobile": "node tests/tools/run-lighthouse-prod.js mobile",
+    "lighthouse:home:desktop": "node tests/tools/run-lighthouse-prod.js desktop",
+    "report:contract:home": "tsx src/scripts/generateContractReport.ts",
+    "validate:contract:home": "npm run build:prod && npm run check:bundle && npm run test:contract:home && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:mobile && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:desktop && npm run report:contract:home",
     "validate:items": "tsx src/scripts/validateItems.ts",
-    "normalize:items": "tsx src/scripts/normalizeItems.ts",
-    "start:lighthouse": "next start -p 3000",
-
-    "lighthouse:home:mobile:prod": "npx concurrently --success first -k \"npm run start:lighthouse\" \"npx wait-on http://localhost:3000 && npm run lighthouse:home:mobile\"",
-
-    "lighthouse:home:desktop:prod": "npx concurrently --success first -k \"npm run start:lighthouse\" \"npx wait-on http://localhost:3000 && npm run lighthouse:home:desktop\"",
-
-    "validate:contract:home":
-      "npm run build && npm run check:bundle && npm run test:contract:home && npm run lighthouse:home:mobile:prod && npm run lighthouse:home:desktop:prod && npm run report:contract:home",
-    "analyze:bundle": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next build && npx source-map-explorer \".next/static/chunks/**/*.js\" --html bundle-report.html"
+    "normalize:items": "tsx src/scripts/normalizeItems.ts"
+  },
+  "scriptsHelp": {
+    "core lifecycle": "dev, build:prod, start:prod",
+    "lint": "linting via next lint",
+    "bundle": "check:bundle, analyze:bundle",
+    "tests": "test:contracts, test:contract:home, test:smoke, test:lighthouse:local",
+    "lighthouse": "lighthouse:home:mobile, lighthouse:home:desktop — requires LH_URL to point at a running server",
+    "reports": "report:contract:home",
+    "validation": "validate:contract:home runs build, bundle check, contract tests, lighthouse against LH_URL and report",
+    "data hygiene": "validate:items, normalize:items"
   },
   "dependencies": {
     "dotenv": "^17.2.3",
@@ -61,6 +62,7 @@
     "@types/react-dom": "18.3.1",
     "chrome-launcher": "0.15.2",
     "concurrently": "^9.1.0",
+    "cross-env": "^10.1.0",
     "eslint": "9.39.1",
     "eslint-config-next": "16.0.4",
     "lighthouse": "12.3.0",

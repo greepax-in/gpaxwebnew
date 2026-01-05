@@ -1,0 +1,24 @@
+/* === LCP CRITICAL CSS ONLY === */
+
+.home-hero {
+  padding-top: clamp(28px, 6vw, 72px);
+  padding-bottom: clamp(32px, 6vw, 72px);
+}
+
+.hero-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.heroImage {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+/* Disable animations/transitions for the hero during initial render to protect LCP */
+.home-hero,
+.home-hero * {
+  animation: none !important;
+  transition: none !important;
+}

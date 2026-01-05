@@ -147,7 +147,7 @@
   
     <div class="meta">
       Contract: <b>homepage</b><br/>
-      Generated at: 2026-01-05T07:44:41.433Z
+      Generated at: 2026-01-04T17:56:13.976Z
     </div>
 
     <div class="section">
@@ -230,7 +230,7 @@
               
                 <tr>
                   <td>SCHEMA-02</td>
-                  <td>Organization schema has name and url</td>
+                  <td>Organization has name and url</td>
                   <td class="pass">PASS</td>
                   <td>ERROR</td>
                   <td style="color:#64748b;">evidence</td>
@@ -238,7 +238,7 @@
               
                 <tr>
                   <td>SCHEMA-03</td>
-                  <td>WebSite schema allowed on homepage</td>
+                  <td>WebSite schema allowed</td>
                   <td class="">NOT_RUN</td>
                   <td>INFO</td>
                   <td style="color:#64748b;">registry</td>
@@ -266,7 +266,7 @@
               
                 <tr>
                   <td>INTENT-01</td>
-                  <td>Manufacturer / bulk business intent detected</td>
+                  <td>Manufacturer / bulk intent detected</td>
                   <td class="pass">PASS</td>
                   <td>ERROR</td>
                   <td style="color:#64748b;">evidence</td>
@@ -274,7 +274,7 @@
               
                 <tr>
                   <td>INTENT-02</td>
-                  <td>India geographic context present</td>
+                  <td>MOQ language allowed</td>
                   <td class="pass">PASS</td>
                   <td>WARN</td>
                   <td style="color:#64748b;">evidence</td>
@@ -282,7 +282,7 @@
               
                 <tr>
                   <td>INTENT-03</td>
-                  <td>No ecommerce purchase flows present</td>
+                  <td>No ecommerce flows present</td>
                   <td class="pass">PASS</td>
                   <td>ERROR</td>
                   <td style="color:#64748b;">evidence</td>
@@ -310,7 +310,7 @@
               
                 <tr>
                   <td>CTA-02</td>
-                  <td>Contextual WhatsApp CTAs allowed below the fold</td>
+                  <td>Contextual WhatsApp CTAs allowed below</td>
                   <td class="pass">PASS</td>
                   <td>INFO</td>
                   <td style="color:#64748b;">evidence</td>
@@ -318,9 +318,17 @@
               
                 <tr>
                   <td>CTA-03</td>
-                  <td>Trust-first layout respected (no aggressive CTA before trust signals)</td>
+                  <td>Trust-first layout respected</td>
                   <td class="pass">PASS</td>
                   <td>ERROR</td>
+                  <td style="color:#64748b;">evidence</td>
+                </tr>
+              
+                <tr>
+                  <td>CTA-04</td>
+                  <td>Hero image uses priority loading, fixed dimensions, and alt text (Mobile LCP guard)</td>
+                  <td class="pass">PASS</td>
+                  <td>WARN</td>
                   <td style="color:#64748b;">evidence</td>
                 </tr>
               
@@ -368,14 +376,6 @@
                   <td style="color:#64748b;">registry</td>
                 </tr>
               
-                <tr>
-                  <td>PERF-05</td>
-                  <td>Hero image optimized for LCP (priority, fixed dimensions, modern format)</td>
-                  <td class="">NOT_RUN</td>
-                  <td>WARN</td>
-                  <td style="color:#64748b;">registry</td>
-                </tr>
-              
             </table>
           
     </div>
@@ -391,49 +391,134 @@
       </p>
     </section>
   
-      <section>
-        <h2>Performance (Lighthouse)</h2>
-        <p class="muted">
-          Lighthouse was not executed in this run.
-          Performance decisions must be based on Lighthouse (mobile-first).
-        </p>
-      </section>
+    <section>
+      <h2>Performance (Lighthouse)</h2>
+      <p class="muted">
+        Lighthouse results are reported separately for mobile and desktop.
+        Only <b>mobile</b> Lighthouse is authoritative for release gating.
+      </p>
+
+      
+      <h3>Mobile (Authoritative)</h3>
+      
+      <div style="
+        background:#f1f5f9;
+        padding:12px 14px;
+        border-radius:8px;
+        margin-bottom:16px;
+        font-size:14px;
+        color:#0f172a;
+      ">
+        <b>Workspace:</b> UNKNOWN<br/>
+        <b>Server:</b> localhost:3000<br/>
+        <b>URL:</b> http://localhost:3000<br/>
+        <b>Collected:</b> 2026-01-04T17:55:15.976Z
+      </div>
     
+      <table class="perf-table">
+        <tr><th>LCP</th><td>3810 ms</td></tr>
+        <tr><th>CLS</th><td>0 </td></tr>
+        <tr><th>INP</th><td>2455.9999999999995 ms</td></tr>
+        <tr><th>TTFB</th><td><b>104 ms</b></td></tr>
+        <tr><th>Performance Score</th><td>57</td></tr>
+        <tr><th>SEO Score</th><td>100</td></tr>
+      </table>
+
+      <h3>LCP Ownership</h3>
+      <ul>
+        <li><strong>Component:</strong> HomeHero</li>
+        <li><strong>File:</strong> <code>src/components/Home/HomeHero.tsx</code></li>
+        <li><strong>Type:</strong> component + client hydration</li>
+        <li><strong>Above the fold:</strong> Yes</li>
+      </ul>
+      
+        <h3>Long Tasks (Main Thread)</h3>
+        <table class="perf-table">
+          <thead>
+            <tr><th>Start (ms)</th><th>Duration (ms)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>995</td><td>1453</td></tr><tr><td>4423</td><td>1337</td></tr><tr><td>6135</td><td>376</td></tr><tr><td>3247</td><td>308</td></tr><tr><td>2523</td><td>250</td></tr><tr><td>3034</td><td>213</td></tr><tr><td>5931</td><td>204</td></tr><tr><td>2773</td><td>151</td></tr><tr><td>808</td><td>129</td></tr><tr><td>2448</td><td>75</td></tr><tr><td>5856</td><td>75</td></tr><tr><td>6511</td><td>65</td></tr><tr><td>2924</td><td>59</td></tr><tr><td>937</td><td>58</td></tr><tr><td>674</td><td>57</td></tr><tr><td>5760</td><td>52</td></tr><tr><td>2983</td><td>51</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">Note: long tasks are main-thread tasks longer than 50ms captured by Lighthouse.</p>
+      
+      <p class="muted">
+        Mode: <b>AUTHORITATIVE (Release-gating)</b>
+      </p>
+      <p class="muted">
+        <i>
+          Note: “not triggered” means Lighthouse did not emit this metric in this mode.
+          This is common on mobile when LCP/INP observers do not fire.
+        </i>
+      </p>
+    
+      
+      <h3>Desktop (Advisory)</h3>
+      
+      <div style="
+        background:#f1f5f9;
+        padding:12px 14px;
+        border-radius:8px;
+        margin-bottom:16px;
+        font-size:14px;
+        color:#0f172a;
+      ">
+        <b>Workspace:</b> UNKNOWN<br/>
+        <b>Server:</b> localhost:3000<br/>
+        <b>URL:</b> http://localhost:3000<br/>
+        <b>Collected:</b> 2026-01-04T17:56:10.313Z
+      </div>
+    
+      <table class="perf-table">
+        <tr><th>LCP</th><td>702 ms</td></tr>
+        <tr><th>CLS</th><td>0 </td></tr>
+        <tr><th>INP</th><td>39.50000000000006 ms</td></tr>
+        <tr><th>TTFB</th><td><b>9 ms</b></td></tr>
+        <tr><th>Performance Score</th><td>100</td></tr>
+        <tr><th>SEO Score</th><td>100</td></tr>
+      </table>
+
+      <h3>LCP Ownership</h3>
+      <ul>
+        <li><strong>Component:</strong> HomeHero</li>
+        <li><strong>File:</strong> <code>src/components/Home/HomeHero.tsx</code></li>
+        <li><strong>Type:</strong> component + client hydration</li>
+        <li><strong>Above the fold:</strong> Yes</li>
+      </ul>
+      
+      <p class="muted">
+        Mode: <b>ADVISORY (Diagnostic only)</b>
+      </p>
+      <p class="muted">
+        <i>
+          Note: “not triggered” means Lighthouse did not emit this metric in this mode.
+          This is common on mobile when LCP/INP observers do not fire.
+        </i>
+      </p>
+    
+    </section>
+  
 
     
     <section id="performance">
       <h2>Performance</h2>
-      <table class="perf-table">
-        <thead>
-          <tr><th></th><th>LCP</th><th>CLS</th><th>INP</th><th>TTFB</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Mobile</strong></td>
-            <td>3165 ms</td>
-            <td>0</td>
-            <td>868.4618499999999 ms</td>
-            <td>11 ms</td>
-          </tr>
-          <tr>
-            <td><strong>Desktop</strong></td>
-            <td>712 ms</td>
-            <td>0</td>
-            <td>23 ms</td>
-            <td>14 ms</td>
-          </tr>
-        </tbody>
-      </table>
+      <ul>
+        <li><strong>LCP:</strong> n/a ms</li>
+        <li><strong>CLS:</strong> n/a</li>
+        <li><strong>INP:</strong> n/a</li>
+      </ul>
+      
     </section>
   
 
-  
+    
     <section id="lcp-breakdown">
       <h2>⏱ LCP Breakdown (Mobile – Authoritative)</h2>
 
       <p>
         <strong>Total LCP:</strong>
-        3165 ms
+        3810 ms
       </p>
 
       <table>
@@ -446,7 +531,7 @@
         <tbody>
           <tr>
             <td>TTFB</td>
-            <td>11</td>
+            <td>104</td>
           </tr>
           <tr>
             <td>Resource request delay</td>
@@ -458,7 +543,7 @@
           </tr>
           <tr>
             <td><strong>Render / decode delay</strong></td>
-            <td class="dominant">3154</td>
+            <td class="dominant">3706</td>
           </tr>
         </tbody>
       </table>
@@ -481,50 +566,13 @@
 
       <p class="interpretation">
         <em>
-          Interpretation: Render-phase time is reported separately from TTFB and resource load based on Lighthouse metrics.
+          Interpretation: LCP is dominated by render/decode delay rather
+          than server response time. This typically indicates hero image
+          priority, render-blocking CSS, or font loading before paint.
         </em>
       </p>
     </section>
     
-    
-    <section id="lcp-phase-breakdown">
-      <h2>Phase Breakdown (Mobile vs Desktop)</h2>
-      <table>
-        <thead>
-          <tr>
-            <th></th>
-            <th>LCP</th>
-            <th>TTFB</th>
-            <th>Resource load</th>
-            <th>Render-phase delay</th>
-            <th>Dominant phase</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Mobile</strong></td>
-            <td>3165 ms</td>
-            <td>472 ms</td>
-            <td>104 ms</td>
-            <td>2589 ms</td>
-            <td>render</td>
-          </tr>
-          
-          <tr>
-            <td><strong>Desktop</strong></td>
-            <td>712 ms</td>
-            <td>141 ms</td>
-            <td>63 ms</td>
-            <td>508 ms</td>
-            <td>render</td>
-          </tr>
-        </tbody>
-      </table>
-      <p class="interpretation"><em>LCP is dominated by render-phase work occurring after resource load completion.</em></p>
-    </section>
-    
-  
-  
   
     <section id="long-tasks">
       <h2>🧵 Main-Thread Long Tasks (Mobile)</h2>
@@ -543,6 +591,10 @@
         </thead>
         <tbody>
           
+      <tr>
+        <td>unknown</td>
+        <td>4913 ms</td>
+      </tr>
         </tbody>
       </table>
 
@@ -557,63 +609,105 @@
         <tbody>
           
             <tr>
-              <td>400</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>1453</td>
+              <td>995</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>390</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>1337</td>
+              <td>4423</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>326</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>376</td>
+              <td>6135</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>185</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>308</td>
+              <td>3247</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>163</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>250</td>
+              <td>2523</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>133</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>213</td>
+              <td>3034</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>92</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>204</td>
+              <td>5931</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>83</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>151</td>
+              <td>2773</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>64</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>129</td>
+              <td>808</td>
+              <td>unknown</td>
             </tr>
           
             <tr>
-              <td>60</td>
-              <td>undefined</td>
-              <td>undefined</td>
+              <td>75</td>
+              <td>2448</td>
+              <td>unknown</td>
+            </tr>
+          
+            <tr>
+              <td>75</td>
+              <td>5856</td>
+              <td>unknown</td>
+            </tr>
+          
+            <tr>
+              <td>65</td>
+              <td>6511</td>
+              <td>unknown</td>
+            </tr>
+          
+            <tr>
+              <td>59</td>
+              <td>2924</td>
+              <td>unknown</td>
+            </tr>
+          
+            <tr>
+              <td>58</td>
+              <td>937</td>
+              <td>unknown</td>
+            </tr>
+          
+            <tr>
+              <td>57</td>
+              <td>674</td>
+              <td>unknown</td>
+            </tr>
+          
+            <tr>
+              <td>52</td>
+              <td>5760</td>
+              <td>unknown</td>
+            </tr>
+          
+            <tr>
+              <td>51</td>
+              <td>2983</td>
+              <td>unknown</td>
             </tr>
           
         </tbody>
@@ -627,6 +721,88 @@
     
 
   
+      <section>
+        <h3>🚨 Tasks Blocking LCP Paint</h3>
+        <table>
+          <thead>
+            <tr>
+              <th>Start</th>
+              <th>Duration</th>
+              <th>Top script</th>
+            </tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>995 ms</td>
+                <td>1453 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>3247 ms</td>
+                <td>308 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>2523 ms</td>
+                <td>250 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>3034 ms</td>
+                <td>213 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>2773 ms</td>
+                <td>151 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>808 ms</td>
+                <td>129 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>2448 ms</td>
+                <td>75 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>2924 ms</td>
+                <td>59 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>937 ms</td>
+                <td>58 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>674 ms</td>
+                <td>57 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+              <tr>
+                <td>2983 ms</td>
+                <td>51 ms</td>
+                <td>unknown</td>
+              </tr>
+            
+          </tbody>
+        </table>
+      </section>
+    
     <section class="workspace-note">
       <p>
         Interpretation context:
@@ -650,7 +826,7 @@
         </tr>
         <tr>
           <td>LCP</td>
-          <td>3165 ms</td>
+          <td>3810 ms</td>
           <td>≤ 2500 ms</td>
         </tr>
         <tr>
@@ -669,7 +845,7 @@
 
       <p style="color:#475569;font-size:14px;margin-top:10px;">
         Trend file: <code>homepage.perf.trend.json</code>
-         | Drift vs previous: LCP 0 ms, CLS 0, INP n/a ms
+         | Drift vs previous: LCP 970 ms, CLS 0, INP n/a ms
       </p>
     </div>
 
@@ -681,7 +857,7 @@
         <tr><th>Failed</th><td class="pass">0</td></tr>
         <tr><th>Skipped</th><td>0</td></tr>
         <tr><th>Flaky</th><td>0</td></tr>
-        <tr><th>Duration</th><td>7670 ms</td></tr>
+        <tr><th>Duration</th><td>11860 ms</td></tr>
       </table>
     </div>
 
@@ -697,245 +873,11 @@
 
     <section>
       <h2>Contract Verdict</h2>
-      <p class="verdict blocked">BLOCKED</p>
+      <p class="verdict approved_with_warnings">APPROVED_WITH_WARNINGS</p>
       <p class="muted">
-        Verdict is derived ONLY from <code>indicators[]</code>.
-        Diagnostics never affect pass/fail.
+        Verdict is derived from failed checks weighted by severity
+        (error / warn / info).
       </p>
-
-    <section class="section">
-      <h2>Indicators (Authoritative)</h2>
-      <table class="evidence-table">
-        <tr>
-          <th>ID</th><th>Domain</th><th>Severity</th><th>Status</th><th>Message</th>
-        </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code></code></td>
-            <td>[object Object]</td>
-            <td></td>
-            <td class="fail">FAIL</td>
-            <td></td>
-          </tr>
-        
-          <tr>
-            <td><code>PERF-01:EMISSION</code></td>
-            <td>performance</td>
-            <td>INFO</td>
-            <td class="pass">PASS</td>
-            <td>Mobile LCP emitted</td>
-          </tr>
-        
-          <tr>
-            <td><code>PERF_LCP_THRESHOLD</code></td>
-            <td>performance</td>
-            <td>ERROR</td>
-            <td class="fail">FAIL</td>
-            <td>LCP exceeded: 3165ms</td>
-          </tr>
-        
-          <tr>
-            <td><code>PERF_LCP_RENDER_DELAY</code></td>
-            <td>performance</td>
-            <td>WARN</td>
-            <td class="fail">FAIL</td>
-            <td>Render delay dominates LCP (3154ms)</td>
-          </tr>
-        
-          <tr>
-            <td><code>SEO_PRIMARY_H1_INTENT</code></td>
-            <td>seo</td>
-            <td>ERROR</td>
-            <td class="fail">FAIL</td>
-            <td>Primary H1 expresses business role</td>
-          </tr>
-        
-          <tr>
-            <td><code>SEO_H1_BUSINESS_ROLE</code></td>
-            <td>seo</td>
-            <td>ERROR</td>
-            <td class="fail">FAIL</td>
-            <td>H1 must describe business role clearly</td>
-          </tr>
-        
-          <tr>
-            <td><code>SEO_ABOVE_FOLD_CLARITY</code></td>
-            <td>seo</td>
-            <td>WARN</td>
-            <td class="fail">FAIL</td>
-            <td>Above-fold copy should state offering + geography</td>
-          </tr>
-        
-          <tr>
-            <td><code>PERF_LCP_RENDER_DELAY_EXCEEDED</code></td>
-            <td>performance</td>
-            <td>WARN</td>
-            <td class="fail">FAIL</td>
-            <td>Render delay dominates mobile LCP (>50%). Informational only.</td>
-          </tr>
-        
-          <tr>
-            <td><code>PERF-01-MOBILE-LCP-NOT-IMAGE</code></td>
-            <td>performance</td>
-            <td>ERROR</td>
-            <td class="pass">PASS</td>
-            <td>Mobile LCP element is non-image (compliant)</td>
-          </tr>
-        
-      </table>
-    </section>
     </section>
 
   </div>
