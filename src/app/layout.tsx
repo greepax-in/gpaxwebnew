@@ -22,7 +22,7 @@ export default function RootLayout({
         />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#1f7a52" />
-        <link rel="icon" href="/images/greenpax-logo.svg" />
+        <link rel="icon" href="/images/greenpax-logo.mini.svg" />
       </head>
       <body>
         <div

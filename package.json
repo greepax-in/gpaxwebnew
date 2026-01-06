@@ -22,25 +22,17 @@
     "start:prod": "next start -p 3000",
     "start:prod:bg": "next start -p 3000",
     "lint": "next lint",
-
     "wait:prod": "wait-on http://localhost:3000",
-
     "check:bundle": "tsx src/scripts/checkBundleSize.ts",
     "analyze:bundle": "node -e \"require('fs').rmSync('.next',{recursive:true,force:true})\" && next build && npx source-map-explorer \".next/static/chunks/**/*.js\" --html bundle-report.html",
-
     "test:contract:home": "playwright test tests/contracts/home.contract.spec.ts",
     "lighthouse:home:mobile": "node tests/tools/run-lighthouse-prod.js mobile",
     "lighthouse:home:desktop": "node tests/tools/run-lighthouse-prod.js desktop",
-
     "validate:items": "tsx src/scripts/validateItems.ts",
     "normalize:items": "tsx src/scripts/normalizeItems.ts",
-
     "validate:home:runtime": "npm run wait:prod && npm run check:bundle && npm run test:contract:home && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:mobile && cross-env LH_URL=http://localhost:3000 npm run lighthouse:home:desktop",
-
     "validate:home:run": "npm run build:prod && concurrently --kill-others --success first -n SERVER,VALIDATE \"npm run start:prod:bg\" \"npm run validate:home:runtime\"",
-
     "validate:home": "npm run validate:home:run",
-
     "validate:home:report": "tsx src/scripts/runVerdictHome.ts"
   },
   "dependencies": {
@@ -59,12 +51,12 @@
     "@types/node": "24.10.1",
     "@types/react": "18.3.12",
     "@types/react-dom": "18.3.1",
-    "chrome-launcher": "0.15.2",
+    "chrome-launcher": "^1.2.1",
     "concurrently": "^9.1.0",
     "cross-env": "^10.1.0",
     "eslint": "9.39.1",
     "eslint-config-next": "16.0.4",
-    "lighthouse": "12.3.0",
+    "lighthouse": "^13.0.1",
     "playwright": "1.57.0",
     "source-map-explorer": "^2.5.3",
     "tsx": "^4.21.0",

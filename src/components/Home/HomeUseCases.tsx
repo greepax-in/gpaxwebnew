@@ -1,6 +1,7 @@
 // FILE: src/components/Home/HomeUseCases.tsx
 
 import items from "@/data/items.json";
+import styles from "./HomeUseCases.module.css";
 
 const CATEGORY_ORDER = ["Paper Bags", "Paper Covers", "Paper Boxes"];
 const CATEGORY_DESCRIPTIONS: Record<string, string> = {
@@ -63,31 +64,31 @@ const useCases = Object.values(
 
 export default function HomeUseCases() {
   return (
-    <section className="section section-usecases" id="use-cases">
-      <div className="container">
-        <div className="section-header fade-up">
-          <p className="section-kicker">Industries</p>
-          <h2>Industries by product category</h2>
-          <p className="section-lede">
-            See where each packaging format is commonly used.
-          </p>
+    <section className={styles.section} id="use-cases">
+      <div className={styles.inner}>
+        <div className={styles.header}>
+          <p className={styles.kicker}>Industries</p>
+          <h2 className={styles.title}>Industries by product category</h2>
+          <p className={styles.lede}>See where each packaging format is commonly used.</p>
         </div>
 
-        <div className="usecase-grid">
+        <div className={styles.grid}>
           {useCases
             .filter((useCase) => useCase.industries.length > 0)
             .map((useCase) => (
-              <div key={useCase.category} className="usecase-card card">
-                <h3>{useCase.category}</h3>
-                {CATEGORY_DESCRIPTIONS[useCase.category] && (
-                  <p className="usecase-desc">{CATEGORY_DESCRIPTIONS[useCase.category]}</p>
-                )}
-                <ul className="usecase-list">
+              <article key={useCase.category} className={styles.card}>
+                <h3 className={styles.category}>{useCase.category}</h3>
+                {CATEGORY_DESCRIPTIONS[useCase.category] ? (
+                  <p className={styles.description}>{CATEGORY_DESCRIPTIONS[useCase.category]}</p>
+                ) : null}
+                <ul className={`${styles.list} ${styles.usecaseList}`}>
                   {useCase.industries.map((industry) => (
-                    <li key={industry}>{industry}</li>
+                    <li key={industry} className={styles.listItem}>
+                      {industry}
+                    </li>
                   ))}
                 </ul>
-              </div>
+              </article>
             ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 // FILE: src/components/Home/HomeClients.tsx
 
 import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
+import styles from "./HomeClients.module.css";
 
 export default function HomeClients() {
   const proofPoints = [
@@ -9,36 +10,40 @@ export default function HomeClients() {
   ];
 
   return (
-    <section className="section section-clients" id="clients">
-      <div className="container">
-          <div className="section-header fade-up">
-          <p className="section-kicker">Credibility</p>
-          <h2>Trusted by growing Indian brands</h2>
-          <p className="section-lede">
+    <section className={styles.section} id="clients">
+      <div className={styles.inner}>
+        <header className={styles.header}>
+          <p className={styles.kicker}>Credibility</p>
+          <h2 className={styles.title}>Trusted by growing Indian brands</h2>
+          <p className={styles.lede}>
             Credibility built through recurring bulk orders, repeat manufacturing
             schedules, and consistent, on-time dispatches across India.
           </p>
-        </div>
-        <div className="client-panel">
-          <ul className="client-list">
+        </header>
+        <div className={styles.panel}>
+          <ul className={styles.list}>
             {proofPoints.map((point) => (
-              <li key={point}>{point}</li>
+              <li className={styles.listItem} key={point}>
+                {point}
+              </li>
             ))}
           </ul>
-          <div className="client-callout card">
-            <p className="client-callout-title">Want to see sample work?</p>
-            <p className="client-callout-text">
-              Request recent print proofs, dispatch photos, and finish options
-              on WhatsApp.
-            </p>
-            <a
-              href={buildHomepageWhatsAppLink("Client samples request")}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="primary-cta"
-            >
-              Request samples on WhatsApp
-            </a>
+          <div className={styles.callout}>
+            <p className={styles.calloutTitle}>Want to see sample work?</p>
+            <div className={styles.sampleCtaRow}>
+              <p className={`${styles.calloutText} ${styles.sampleCtaText}`}>
+                Request recent print proofs, dispatch photos, and finish options on
+                WhatsApp.
+              </p>
+              <a
+                href={buildHomepageWhatsAppLink("Client samples request")}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`${styles.cta} ${styles.sampleCtaButton}`}
+              >
+                Request samples on WhatsApp
+              </a>
+            </div>
           </div>
         </div>
       </div>

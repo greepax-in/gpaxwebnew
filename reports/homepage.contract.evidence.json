@@ -1,14 +1,14 @@
 {
   "abi_version": "1.1",
   "page": "homepage",
-  "generated_at": "2026-01-06T09:56:10.111Z",
+  "generated_at": "2026-01-06T14:24:34.339Z",
   "evidence": [
     {
       "id": "PERF-03",
       "pillar": "performance",
       "severity": "info",
       "observed": {
-        "inpMs": 93,
+        "inpMs": 23,
         "selector": "a[href*=\"wa.me\"], a[href*=\"whatsapp\"]",
         "measured": true
       },
@@ -18,7 +18,7 @@
       },
       "source": "runtime",
       "location": "a[href*=\"wa.me\"], a[href*=\"whatsapp\"]",
-      "timestamp": "2026-01-06T09:56:06.196Z"
+      "timestamp": "2026-01-06T14:24:30.613Z"
     },
     {
       "id": "SEO-01",
@@ -35,7 +35,7 @@
       },
       "source": "dom",
       "location": "head<title> or meta[property='og:title']",
-      "timestamp": "2026-01-06T09:56:06.309Z"
+      "timestamp": "2026-01-06T14:24:30.668Z"
     },
     {
       "id": "SEO-02",
@@ -52,7 +52,7 @@
       },
       "source": "dom",
       "location": "meta[name='description']",
-      "timestamp": "2026-01-06T09:56:06.309Z"
+      "timestamp": "2026-01-06T14:24:30.668Z"
     },
     {
       "id": "SEO-03",
@@ -66,7 +66,7 @@
       },
       "source": "dom",
       "location": "h1",
-      "timestamp": "2026-01-06T09:56:06.358Z"
+      "timestamp": "2026-01-06T14:24:30.700Z"
     },
     {
       "id": "SEO-04",
@@ -81,7 +81,7 @@
       },
       "source": "dom",
       "location": "link[rel='canonical']",
-      "timestamp": "2026-01-06T09:56:06.358Z"
+      "timestamp": "2026-01-06T14:24:30.700Z"
     },
     {
       "id": "INTENT-01",
@@ -105,7 +105,7 @@
       },
       "source": "dom",
       "location": "body text",
-      "timestamp": "2026-01-06T09:56:06.372Z"
+      "timestamp": "2026-01-06T14:24:30.712Z"
     },
     {
       "id": "INTENT-02",
@@ -122,7 +122,7 @@
       },
       "source": "dom",
       "location": "body text",
-      "timestamp": "2026-01-06T09:56:06.372Z"
+      "timestamp": "2026-01-06T14:24:30.712Z"
     },
     {
       "id": "INTENT-03",
@@ -150,7 +150,7 @@
       },
       "source": "dom",
       "location": "body text",
-      "timestamp": "2026-01-06T09:56:06.373Z"
+      "timestamp": "2026-01-06T14:24:30.712Z"
     },
     {
       "id": "FLOW-01",
@@ -166,7 +166,7 @@
       },
       "source": "dom",
       "location": "h1",
-      "timestamp": "2026-01-06T09:56:06.997Z"
+      "timestamp": "2026-01-06T14:24:31.221Z"
     },
     {
       "id": "CTA-02",
@@ -186,7 +186,7 @@
       },
       "source": "dom",
       "location": "CTA text (a[href*=\"wa.me\"], a[href*=\"api.whatsapp.com\"], a[href^=\"whatsapp:\"])",
-      "timestamp": "2026-01-06T09:56:07.025Z"
+      "timestamp": "2026-01-06T14:24:31.249Z"
     },
     {
       "id": "CTA-01",
@@ -203,7 +203,7 @@
       },
       "source": "dom",
       "location": "Viewport vs CTA (a[href*=\"wa.me\"], a[href*=\"api.whatsapp.com\"], a[href^=\"whatsapp:\"])",
-      "timestamp": "2026-01-06T09:56:07.025Z"
+      "timestamp": "2026-01-06T14:24:31.249Z"
     },
     {
       "id": "FLOW-02",
@@ -221,7 +221,7 @@
       },
       "source": "dom",
       "location": "heuristic:text vs first WhatsApp CTA",
-      "timestamp": "2026-01-06T09:56:07.071Z"
+      "timestamp": "2026-01-06T14:24:31.282Z"
     },
     {
       "id": "PERF-RUNTIME-01",
@@ -235,7 +235,7 @@
       },
       "source": "runtime",
       "location": "CLS (PerformanceObserver)",
-      "timestamp": "2026-01-06T09:56:10.089Z"
+      "timestamp": "2026-01-06T14:24:34.298Z"
     },
     {
       "id": "SCHEMA-01",
@@ -255,7 +255,7 @@
       },
       "source": "dom",
       "location": "JSON-LD",
-      "timestamp": "2026-01-06T09:56:10.099Z"
+      "timestamp": "2026-01-06T14:24:34.319Z"
     },
     {
       "id": "SCHEMA-02",
@@ -278,7 +278,7 @@
       },
       "source": "dom",
       "location": "JSON-LD",
-      "timestamp": "2026-01-06T09:56:10.099Z"
+      "timestamp": "2026-01-06T14:24:34.319Z"
     },
     {
       "id": "PERF-02",
@@ -286,7 +286,7 @@
       "severity": "warn",
       "source": "lighthouse",
       "observed": {
-        "lcpMs": 2072,
+        "lcpMs": 1707,
         "elementTag": null,
         "mode": "mobile"
       },
@@ -294,7 +294,7 @@
         "max": 2500,
         "policy": "text-first-allowed"
       },
-      "timestamp": "2026-01-06T09:57:00.656Z"
+      "timestamp": "2026-01-06T14:25:24.496Z"
     },
     {
       "id": "PERF-02",
@@ -302,14 +302,14 @@
       "severity": "warn",
       "source": "lighthouse",
       "observed": {
-        "lcpMs": 606,
+        "lcpMs": 422,
         "elementTag": null,
         "mode": "desktop"
       },
       "expected": {
         "max": 2500
       },
-      "timestamp": "2026-01-06T09:57:54.366Z"
+      "timestamp": "2026-01-06T14:26:19.202Z"
     }
   ]
 }

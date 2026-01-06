@@ -1,11 +1,11 @@
 {
-  "lcpMs": 606,
+  "lcpMs": 422,
   "cls": 0,
   "inp": null,
-  "fcp": 267.5137,
-  "ttfb": 5.558999999999999,
-  "renderDelayMs": 472,
-  "resourceLoadDelay": 0,
-  "resourceLoadTime": 0,
-  "isRenderDominated": true
+  "fcp": 268.3614,
+  "ttfb": 8,
+  "renderDelayMs": null,
+  "resourceLoadDelay": null,
+  "resourceLoadTime": null,
+  "isRenderDominated": null
 }

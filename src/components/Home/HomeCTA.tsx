@@ -1,5 +1,11 @@
 // FILE: src/components/Home/HomeCTA.tsx
 
+/**
+ * HomeCTA is design-locked.
+ * - Canonical strongest CTA for homepage; do not restyle or add variants.
+ * - Keep copy, layout, and CTA weight unchanged to preserve hierarchy and CWV.
+ * - No additional interactivity, effects, or secondary actions allowed.
+ */
 import { buildHomepageWhatsAppLink } from "@/lib/whatsapp";
 
 export default function HomeCTA() {

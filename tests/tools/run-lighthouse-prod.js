@@ -1,8 +1,28 @@
 
 const lighthouse = require("lighthouse").default;
 const { launch } = require("chrome-launcher");
+const os = require("os");
 const fs = require("fs");
 const path = require("path");
+
+function envInt(name, fallback) {
+  const v = process.env[name];
+  if (v == null || v === "") return fallback;
+  const n = Number.parseInt(v, 10);
+  return Number.isFinite(n) ? n : fallback;
+}
+
+function envStr(name, fallback) {
+  const v = process.env[name];
+  return v == null || v === "" ? fallback : v;
+}
+
+// Helpful runtime sanity: confirms the Lighthouse version actually being used.
+let LH_VERSION = "unknown";
+try {
+  // eslint-disable-next-line import/no-extraneous-dependencies
+  LH_VERSION = require("lighthouse/package.json").version;
+} catch {}
 
 function firstDetailsItem(details) {
   if (!details || typeof details !== "object") return null;
@@ -186,9 +206,9 @@ function extractLongTasks(lhr, lcpMs) {
 
   const beforeOrOverlappingLcp = items
     .map((t) => {
-      // Lighthouse long-tasks startTime is already in milliseconds (ms).
+      // LH v13: long-tasks.startTime is in SECONDS from navStart; duration is in MILLISECONDS.
       const startMs =
-        typeof t.startTime === "number" ? t.startTime : null;
+        typeof t.startTime === "number" ? Math.round(t.startTime * 1000) : null;
       const durMs = typeof t.duration === "number" ? t.duration : null;
       const endMs =
         startMs !== null && durMs !== null ? startMs + durMs : null;
@@ -236,10 +256,40 @@ function extractLongTasks(lhr, lcpMs) {
   };
 }
 
-const RUNS = Math.max(3, Number(process.env.LH_RUNS ?? 5));
-const WARMUP_DELAY_MS = Math.max(0, Number(process.env.LH_WARMUP_MS ?? 3000));
+/* --------------------------------------------------
+   LH v13 LCP breakdown (render delay, etc.)
+-------------------------------------------------- */
+
+function extractLcpBreakdown(lhr) {
+  const breakdownItems =
+    lhr?.audits?.["lcp-breakdown-insight"]?.details?.items?.[0]?.items;
+
+  const items = Array.isArray(breakdownItems) ? breakdownItems : [];
+  const get = (subpart) => {
+    const found = items.find((x) => x && x.subpart === subpart);
+    const timing = found?.timing;
+    return typeof timing === "number" ? ms(timing) : null;
+  };
+
+  return {
+    ttfbMs: get("ttfb"),
+    resourceLoadDelayMs: get("resourceLoadDelay"),
+    resourceLoadTimeMs: get("resourceLoadTime"),
+    renderDelayMs: get("elementRenderDelay"),
+  };
+}
+
+const RUNS = Math.max(3, envInt("LH_RUNS", 5));
+const WARMUP_DELAY_MS = Math.max(0, envInt("LH_WARMUP_MS", 3000));
 const STRICT_MOBILE_EMISSION =
   process.env.LH_STRICT_MOBILE_EMISSION !== "0";
+
+// Extra Chrome flags (VPS/CI often needs "--no-sandbox" if running as root)
+const EXTRA_CHROME_FLAGS = String(process.env.LH_CHROME_FLAGS || "")
+  .split(" ")
+  .map((s) => s.trim())
+  .filter(Boolean);
+const CHROME_PATH = envStr("LH_CHROME_PATH", envStr("CHROME_PATH", ""));
 
 /* --------------------------------------------------
    Target URL (homepage by default, page-level optional)
@@ -257,12 +307,12 @@ if (mode !== "mobile" && mode !== "desktop") {
   );
 }
 
-const BASE_URL = process.env.LH_URL?.trim();
+const BASE_URL = envStr("LH_URL", "").trim();
 if (!BASE_URL) {
   throw new Error("LH_URL is required for Lighthouse runs (external server mode).");
 }
 
-const WORKSPACE = process.env.WORKSPACE || "UNKNOWN";
+const WORKSPACE = envStr("WORKSPACE", process.env.CI ? "CI" : "LOCAL");
 /* --------------------------------------------------
    Thresholds (LOCKED by governance)
 -------------------------------------------------- */
@@ -301,6 +351,7 @@ const FCP_THRESHOLD = 1800; // ms (advisory only)
 
 let server; // legacy placeholder (not used when server is externally managed)
 let chromeInstance;
+let userDataDir;
 
 /* --------------------------------------------------
    Deterministic server shutdown (Windows-safe)
@@ -368,20 +419,41 @@ async function waitForServer(url, timeoutMs = 15000) {
     if (!ready) {
       throw new Error("Production server did not start or was unreachable at LH_URL");
     }
-    console.log(`Running Lighthouse (${mode}) on ${BASE_URL} (runs=${RUNS})`);
+    console.log(
+      `Running Lighthouse v${LH_VERSION} (${mode}) on ${BASE_URL} (runs=${RUNS})`
+    );
     // Trace reliability toggle:
     // Some Lighthouse trace pipelines can be flaky in headless mode on certain platforms.
     // Set LH_HEADLESS=0 to run headful once for diagnosis (frame_sequence / trace errors).
     const HEADLESS = process.env.LH_HEADLESS !== "0";
+
+    // VPS/Linux stability:
+    // - Use a fresh Chrome profile (helps trace reliability and avoids extension/profile noise)
+    // - Add Linux sandbox flags when needed (common on VPS/CI)
+    userDataDir = fs.mkdtempSync(
+      path.join(os.tmpdir(), `lh-profile-${mode}-`)
+    );
+
+    const LINUX_SANDBOX_FLAGS =
+      process.platform === "linux"
+        ? ["--no-sandbox", "--disable-setuid-sandbox"]
+        : [];
+
     chromeInstance = await launch({
-      chromePath: process.env.LH_CHROME_PATH,
+      // Prefer LH_CHROME_PATH; fall back to CHROME_PATH for local/dev convenience.
+      ...(CHROME_PATH ? { chromePath: CHROME_PATH } : {}),
       chromeFlags: [
         ...(HEADLESS ? ["--headless=new"] : []),
         "--no-first-run",
+        "--no-default-browser-check",
+        "--disable-extensions",
+        `--user-data-dir=${userDataDir}`,
+        ...LINUX_SANDBOX_FLAGS,
         "--disable-background-networking",
         "--disable-background-timer-throttling",
         "--disable-renderer-backgrounding",
         "--disable-dev-shm-usage",
+        ...EXTRA_CHROME_FLAGS,
       ],
     });
 
@@ -441,7 +513,8 @@ async function waitForServer(url, timeoutMs = 15000) {
 
       const run = await lighthouse(BASE_URL, flags, config);
       const audit = run?.lhr?.audits;
-      const htmlReport = run?.report?.[1]; // index 1 = html
+      const jsonReport = Array.isArray(run?.report) ? run.report[0] : null; // index 0 = json
+      const htmlReport = Array.isArray(run?.report) ? run.report[1] : null; // index 1 = html
 
       if (typeof htmlReport === "string") {
         const htmlPath = path.resolve(
@@ -500,9 +573,8 @@ async function waitForServer(url, timeoutMs = 15000) {
       runs.push({
         runIndex: i + 1,
         lhr: run.lhr,
-        reportHtml: Array.isArray(run.report)
-          ? run.report.find(r => typeof r === "string")
-          : run.report,
+        reportJson: typeof jsonReport === "string" ? jsonReport : null,
+        reportHtml: typeof htmlReport === "string" ? htmlReport : null,
         lcp: lcpValue,
         cls: audit?.["cumulative-layout-shift"]?.numericValue ?? null,
         inp: audit?.["interaction-to-next-paint"]?.numericValue ?? null,
@@ -533,6 +605,7 @@ async function waitForServer(url, timeoutMs = 15000) {
     const result = {
       lhr: medianRun.lhr,
       reportHtml: medianRun.reportHtml,
+      reportJson: medianRun.reportJson,
     };
 
     const url = new URL(BASE_URL);
@@ -552,7 +625,10 @@ async function waitForServer(url, timeoutMs = 15000) {
        Lighthouse HTML outputs (NON-CONTRACTUAL)
     -------------------------------------------------- */
 
-    writeRawLighthouseHtml(mode, result.lhr.reportResult);
+    // Write the selected median HTML report (if available)
+    if (typeof result.reportHtml === "string") {
+      writeRawLighthouseHtml(mode, result.reportHtml);
+    }
 
     /* --------------------------------------------------
        Core Web Vitals extraction
@@ -660,23 +736,11 @@ async function waitForServer(url, timeoutMs = 15000) {
       );
     }
 
-    // Phase-aware metrics (from metrics audit)
-    const metrics = firstDetailsItem(audits?.metrics?.details) ?? null;
-    const lcpLoadStart = metrics?.lcpLoadStart ?? null;
-    const lcpLoadEnd = metrics?.lcpLoadEnd ?? null;
-    const ttfbMs = metrics?.timeToFirstByte ?? null;
-    const renderDelayMs =
-      typeof lcp === "number" && typeof lcpLoadEnd === "number"
-        ? ms(lcp - lcpLoadEnd)
-        : null;
-    const resourceLoadDelay =
-      typeof lcpLoadStart === "number" && typeof ttfbMs === "number"
-        ? ms(lcpLoadStart - ttfbMs)
-        : null;
-    const resourceLoadTime =
-      typeof lcpLoadEnd === "number" && typeof lcpLoadStart === "number"
-        ? ms(lcpLoadEnd - lcpLoadStart)
-        : null;
+    // LH v13: use "lcp-breakdown-insight" when available
+    const lcpBreakdown = extractLcpBreakdown(result.lhr);
+    const renderDelayMs = lcpBreakdown.renderDelayMs;
+    const resourceLoadDelay = lcpBreakdown.resourceLoadDelayMs;
+    const resourceLoadTime = lcpBreakdown.resourceLoadTimeMs;
     const isRenderDominated =
       typeof renderDelayMs === "number" && typeof lcp === "number"
         ? renderDelayMs > lcp * 0.5
@@ -819,10 +883,16 @@ LongTasks(before LCP): count=${longTasks.totals.countBeforeLcp}, max=${longTasks
   } catch (err) {
     console.error(err);
     process.exit(1);
-    } finally {
+  } finally {
     if (chromeInstance) {
       try {
         await chromeInstance.kill();
+      } catch {}
+    }
+
+    if (userDataDir) {
+      try {
+        fs.rmSync(userDataDir, { recursive: true, force: true });
       } catch {}
     }
 

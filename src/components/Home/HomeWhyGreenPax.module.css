@@ -1,0 +1,96 @@
+.section {
+  padding: 64px 0;
+  background-color: #f7f7f5;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.header {
+  max-width: 720px;
+  margin: 0 auto 32px;
+}
+
+.kicker {
+  margin: 0 0 12px;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6b7280;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(24px, 3vw, 32px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #0f172a;
+}
+
+.lede {
+  margin: 12px 0 0;
+  font-size: 16px;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+/* -------------------------------------------------
+   WHY GREENPAX — Micro structural refinement
+   Purpose: subtle grouping cue between intro and list
+   Safe: no CWV / CLS / LCP impact
+-------------------------------------------------- */
+.whyGrid {
+  border-top: 1px solid rgba(15, 23, 42, 0.06);
+  padding-top: clamp(20px, 4vw, 28px);
+}
+
+.list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  padding: 0;
+  margin: 32px 0 0;
+}
+
+.item {
+  padding: 18px 18px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  background-color: #fdfdfb;
+}
+
+.reasonTitle {
+  margin: 0 0 6px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111827;
+}
+
+.reasonDetail {
+  margin: 0;
+  font-size: 15px;
+  line-height: 1.5;
+  color: #4b5563;
+}
+
+@media (min-width: 900px) {
+  .section {
+    padding: 80px 0;
+  }
+
+  .list {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .item:hover {
+    border-color: #d5d8de;
+    background-color: #ffffff;
+  }
+}

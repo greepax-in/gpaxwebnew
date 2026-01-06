@@ -27,7 +27,7 @@
     "slug": "kraft-printed-food-delivery-paper-bags",
     "baseSlug": "kraft-food-delivery-paper-bags",
     "pageLink": "/paper-bags/food-delivery-paper-bags/kraft-printed-food-delivery-paper-bags",
-    "image": "/images/products/paperbags/7.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "sizes": [
       {
         "sizeIn": "6x8\"",
@@ -136,7 +136,7 @@
     "slug": "kraft-plain-grocery-paper-covers",
     "baseSlug": "kraft-grocery-paper-covers",
     "pageLink": "/paper-covers/grocery-paper-covers/kraft-plain-grocery-paper-covers",
-    "image": "/images/products/papercovers/6.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "featured": true,
     "tag": "Hot",
     "material": {
@@ -201,7 +201,7 @@
     "slug": "kraft-printed-cake-box",
     "baseSlug": "kraft-cake-box",
     "pageLink": "/paper-boxes/cake-boxes/kraft-printed-cake-box",
-    "image": "/images/products/paperboxes/18.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "featured": true,
     "tag": "Popular",
     "material": {
@@ -266,7 +266,7 @@
     "slug": "kraft-printed-promotion-paper-bags",
     "baseSlug": "kraft-promotion-paper-bags",
     "pageLink": "/paper-bags/promotion-paper-bags/kraft-printed-promotion-paper-bags",
-    "image": "/images/products/paperbags/13.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "featured": false,
     "material": {
       "paperType": [
@@ -317,7 +317,7 @@
     "slug": "multicolor-promotion-paper-bags",
     "baseSlug": "promotion-paper-bags",
     "pageLink": "/paper-bags/promotion-paper-bags/multicolor-promotion-paper-bags",
-    "image": "/images/products/paperbags/1.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "featured": false,
     "material": {
       "paperType": [
@@ -351,7 +351,7 @@
   },
   {
     "id": "paper-bags_food-delivery_plain_001",
-    "image": "/images/products/paperbags/food-delivery-plain.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Plain Food Delivery Paper Bags",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -403,7 +403,7 @@
   },
   {
     "id": "paper-bags_cake-box_plain_001",
-    "image": "/images/products/paperbags/cake-box-plain.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Plain Cake Box Paper Bags",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -452,7 +452,7 @@
   },
   {
     "id": "paper-bags_cake-box_printed_001",
-    "image": "/images/products/paperbags/cake-box-printed.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Printed Cake Box Paper Bags",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -503,7 +503,7 @@
   },
   {
     "id": "paper-bags_gift_printed_001",
-    "image": "/images/products/paperbags/gift-printed.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Printed Gift Paper Bags",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -554,7 +554,7 @@
   },
   {
     "id": "paper-bags_garment_multicolor_001",
-    "image": "/images/products/paperbags/garment-multicolor.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Multicolor Garment Paper Bags",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -605,7 +605,7 @@
   },
   {
     "id": "paper-covers_medical_plain_001",
-    "image": "/images/products/papercovers/medical-plain.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Plain Medical Paper Covers",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -656,7 +656,7 @@
   },
   {
     "id": "paper-covers_medical_printed_001",
-    "image": "/images/products/papercovers/medical-printed.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Printed Medical Paper Covers",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -708,7 +708,7 @@
   },
   {
     "id": "paper-covers_bakery_plain_001",
-    "image": "/images/products/papercovers/bakery-plain.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Bakery Plain Paper Covers",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -757,7 +757,7 @@
   },
   {
     "id": "paper-covers_bakery_printed_001",
-    "image": "/images/products/papercovers/bakery-printed.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Bakery Printed Paper Covers",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -808,7 +808,7 @@
   },
   {
     "id": "paper-boxes_burger_plain_001",
-    "image": "/images/products/paperboxes/burger-plain.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Plain Burger Box",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -858,7 +858,7 @@
   },
   {
     "id": "paper-boxes_burger_printed_001",
-    "image": "/images/products/paperboxes/burger-printed.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Kraft Printed Burger Box",
     "kind": "product",
     "pricingMode": "enquiry",
@@ -910,7 +910,7 @@
   },
   {
     "id": "paper-boxes_custom_plain_001",
-    "image": "/images/products/paperboxes/custom-plain.svg",
+    "image": "/images/placeholders/placeholder.avif",
     "name": "Custom Plain Paper Boxes",
     "kind": "product",
     "pricingMode": "enquiry",

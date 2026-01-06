@@ -1,13 +1,10 @@
 // FILE: src/components/Home/HomeFeatured.tsx
 
-"use client";
-
 import Image from "next/image";
 import { getHomepageWhatsAppLink } from "@/lib/whatsapp/links";
 import items from "@/data/items";
 import { selectHomeFeaturedItems } from "@/lib/home/HomeFeatured.selector";
 import { validateHomeFeatured } from "@/lib/home/HomeFeatured.validator";
-import { useState } from "react";
 import { buildProductSubtitle } from "@/lib/productSubtitle";
 import styles from "./HomeFeatured.module.css";
 
@@ -91,9 +88,7 @@ function FeaturedImage({
   src?: string;
   alt: string;
 }) {
-  const [error, setError] = useState(false);
-
-  const imageSrc = !src || error ? FALLBACK_FEATURED_IMAGE : src;
+  const imageSrc = src || FALLBACK_FEATURED_IMAGE;
 
   return (
     <Image
@@ -103,7 +98,6 @@ function FeaturedImage({
       height={240}
       sizes="(max-width: 600px) 88vw, (max-width: 900px) 42vw, 320px"
       loading="lazy"
-      onError={() => setError(true)}
       style={{
         width: "100%",
         height: "100%",

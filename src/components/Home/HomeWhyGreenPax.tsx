@@ -1,5 +1,7 @@
 // FILE: src/components/Home/HomeWhyGreenPax.tsx
 
+import styles from "./HomeWhyGreenPax.module.css";
+
 export default function HomeWhyGreenPax() {
   const reasons = [
     {
@@ -21,25 +23,25 @@ export default function HomeWhyGreenPax() {
   ];
 
   return (
-    <section className="section section-why" id="why-greenpax">
-      <div className="container">
-        <div className="section-header fade-up">
-          <p className="section-kicker">Why GreenPax</p>
-          <h2>
+    <section className={styles.section} id="why-greenpax">
+      <div className={styles.container}>
+        <header className={styles.header}>
+          <p className={styles.kicker}>Why GreenPax</p>
+          <h2 className={styles.title}>
             Manufacturing partnership,
             <br />
             not a marketplace
           </h2>
-          <p className="section-lede">
-            Trust-first collaboration for MOQ-based packaging with clear
-            production planning and consistent dispatch schedules.
+          <p className={styles.lede}>
+            Trust-first collaboration for MOQ-based packaging with clear production planning and
+            consistent dispatch schedules.
           </p>
-        </div>
-        <ul className="why-list">
+        </header>
+        <ul className={`${styles.list} ${styles.whyGrid}`}>
           {reasons.map((reason) => (
-            <li key={reason.title} className="card">
-              <span className="why-title">{reason.title} </span>
-              <span className="why-detail">{reason.detail}</span>
+            <li key={reason.title} className={styles.item}>
+              <p className={styles.reasonTitle}>{reason.title}</p>
+              <p className={styles.reasonDetail}>{reason.detail}</p>
             </li>
           ))}
         </ul>

@@ -1,0 +1,111 @@
+.section {
+  padding: clamp(28px, 5vw, 60px) 0;
+  background: #f8fafc;
+}
+
+.inner {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 clamp(16px, 4vw, 28px);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(20px, 3vw, 28px);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 760px;
+}
+
+.kicker {
+  margin: 0;
+  font-size: 0.78rem;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.45rem, 3vw, 1.8rem);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--ink);
+}
+
+.lede {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.7);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: clamp(14px, 3vw, 20px);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: clamp(16px, 3vw, 20px);
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  background: #ffffff;
+}
+
+.category {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+}
+
+.description {
+  margin: 0;
+  color: rgba(15, 23, 42, 0.64);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+/* -------------------------------------------------
+   Industry list micro-refinement (optional)
+   Purpose: Improve scan rhythm without visual weight
+   ------------------------------------------------- */
+.usecaseList {
+  font-size: 0.92rem; /* slightly quieter than body */
+  line-height: 1.55; /* improves multi-line scan */
+  column-gap: 32px; /* clearer separation */
+}
+
+.usecaseList li {
+  color: var(--ink-muted); /* softer than headings */
+  break-inside: avoid; /* prevent awkward column breaks */
+}
+
+.list {
+  margin: 2px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 6px 12px;
+}
+
+.listItem {
+  color: rgba(15, 23, 42, 0.74);
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+@media (hover: hover) {
+  .card:hover {
+    border-color: rgba(15, 23, 42, 0.18);
+  }
+}

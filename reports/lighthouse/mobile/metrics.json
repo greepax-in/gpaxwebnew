@@ -1,9 +1,9 @@
 {
-  "lcpMs": 2072,
+  "lcpMs": 1707,
   "cls": 0,
   "inp": null,
-  "fcp": 921.0301999999998,
-  "ttfb": 6.077,
+  "fcp": 920.711,
+  "ttfb": 7,
   "renderDelayMs": null,
   "resourceLoadDelay": null,
   "resourceLoadTime": null,

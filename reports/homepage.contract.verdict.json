@@ -1,0 +1,341 @@
+{
+  "contract": {
+    "id": "greenpax-homepage-verdict",
+    "version": "1.0.0"
+  },
+  "inputs": {
+    "evidence_contract_id": "greenpax-homepage-evidence",
+    "evidence_contract_version": "1.0.0",
+    "evidence_file": "C:\\Ananda\\projects\\greenpax.in\\gpaxwebnew\\reports\\homepage.contract.evidence.json",
+    "verdict_contract_file": "C:\\Ananda\\projects\\greenpax.in\\gpaxwebnew\\contracts\\verdict\\verdict.contract.json"
+  },
+  "coverage": {
+    "required": 15,
+    "executed": 14,
+    "missing": 1,
+    "execution_status": "INCOMPLETE",
+    "missing_rules": [
+      "PERF-02"
+    ],
+    "by_pillar": {
+      "intent": {
+        "required": 3,
+        "executed": 3,
+        "missing": 0
+      },
+      "flow": {
+        "required": 4,
+        "executed": 4,
+        "missing": 0
+      },
+      "seo": {
+        "required": 4,
+        "executed": 4,
+        "missing": 0
+      },
+      "schema": {
+        "required": 2,
+        "executed": 2,
+        "missing": 0
+      },
+      "performance": {
+        "required": 2,
+        "executed": 1,
+        "missing": 1
+      }
+    }
+  },
+  "status": "WARN",
+  "summary": {
+    "total_required": 15,
+    "passed": 13,
+    "failed": 0,
+    "warned": 1,
+    "missing": 1
+  },
+  "results": [
+    {
+      "id": "INTENT-01",
+      "pillar": "intent",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "hasManufacturerIntent": true,
+        "matchedKeywords": [
+          "manufacturer",
+          "manufactur",
+          "bulk",
+          "moq"
+        ]
+      },
+      "expected": {
+        "keywords": [
+          "manufacturer"
+        ]
+      },
+      "reason": "Manufacturer intent keywords present",
+      "evidence_timestamp": "2026-01-06T13:02:30.988Z"
+    },
+    {
+      "id": "INTENT-02",
+      "pillar": "intent",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "hasIndiaContext": true
+      },
+      "expected": {
+        "keywords": [
+          "india",
+          "indian"
+        ]
+      },
+      "reason": "India business context clearly established",
+      "evidence_timestamp": "2026-01-06T13:02:30.988Z"
+    },
+    {
+      "id": "INTENT-03",
+      "pillar": "intent",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "hasEcommerceLanguage": false,
+        "matchedTerms": []
+      },
+      "expected": {
+        "keywords": [
+          "bulk",
+          "moq"
+        ]
+      },
+      "reason": "No ecommerce language detected",
+      "evidence_timestamp": "2026-01-06T13:02:30.988Z"
+    },
+    {
+      "id": "CTA-01",
+      "pillar": "flow",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "aboveFoldCTAcount": 1,
+        "totalVisibleCtaCount": 12,
+        "viewportHeight": 844
+      },
+      "expected": {
+        "type": "whatsapp",
+        "max_count": 1
+      },
+      "reason": "Primary WhatsApp CTA count within limit",
+      "evidence_timestamp": "2026-01-06T13:02:31.414Z"
+    },
+    {
+      "id": "CTA-02",
+      "pillar": "flow",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "visibleCtaCount": 12,
+        "forbiddenTermsFound": []
+      },
+      "expected": {
+        "forbidden_terms": [
+          "buy",
+          "order",
+          "price",
+          "discount"
+        ]
+      },
+      "reason": "CTA language non-transactional",
+      "evidence_timestamp": "2026-01-06T13:02:31.413Z"
+    },
+    {
+      "id": "FLOW-01",
+      "pillar": "flow",
+      "severity": "error",
+      "status": "WARN",
+      "source": "dom",
+      "observed": {
+        "h1Count": 1,
+        "h1DomIndex": 7
+      },
+      "expected": {
+        "order": [
+          "hero",
+          "cta"
+        ]
+      },
+      "reason": "Could not compute DOM order (missing indices)",
+      "evidence_timestamp": "2026-01-06T13:02:31.391Z"
+    },
+    {
+      "id": "FLOW-02",
+      "pillar": "flow",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "trustSelector": "heuristic:text",
+        "trustDomIndex": 1,
+        "ctaDomIndex": 10,
+        "h1DomIndex": 7
+      },
+      "expected": {
+        "trust_required": true
+      },
+      "reason": "Trust appears before or with CTA",
+      "evidence_timestamp": "2026-01-06T13:02:31.441Z"
+    },
+    {
+      "id": "SEO-01",
+      "pillar": "seo",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "title": "GreenPax | Eco-Friendly Paper Packaging Manufacturer, India",
+        "length": 59,
+        "source": "title_or_og:title"
+      },
+      "expected": {
+        "min": 30,
+        "max": 60
+      },
+      "reason": "Title length within range",
+      "evidence_timestamp": "2026-01-06T13:02:30.946Z"
+    },
+    {
+      "id": "SEO-02",
+      "pillar": "seo",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "metaDescription": "Eco-friendly paper packaging manufacturer in India. Bulk paper bags, covers, and boxes with MOQ-based production. Enquire on WhatsApp.",
+        "length": 134,
+        "source": "raw_html"
+      },
+      "expected": {
+        "min": 70,
+        "max": 160
+      },
+      "reason": "Meta description length within range",
+      "evidence_timestamp": "2026-01-06T13:02:30.946Z"
+    },
+    {
+      "id": "SEO-03",
+      "pillar": "seo",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "h1Count": 1
+      },
+      "expected": {
+        "count": 1
+      },
+      "reason": "Single H1 present",
+      "evidence_timestamp": "2026-01-06T13:02:30.977Z"
+    },
+    {
+      "id": "SEO-04",
+      "pillar": "seo",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "canonicalHref": "https://www.greenpax.in/",
+        "present": true
+      },
+      "expected": {
+        "required": true
+      },
+      "reason": "Canonical present",
+      "evidence_timestamp": "2026-01-06T13:02:30.978Z"
+    },
+    {
+      "id": "SCHEMA-01",
+      "pillar": "schema",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "organizationDetected": true,
+        "detectedTypes": [
+          "Organization",
+          "WebSite"
+        ]
+      },
+      "expected": {
+        "types": [
+          "Organization"
+        ]
+      },
+      "reason": "Organization schema detected",
+      "evidence_timestamp": "2026-01-06T13:02:34.486Z"
+    },
+    {
+      "id": "SCHEMA-02",
+      "pillar": "schema",
+      "severity": "error",
+      "status": "PASS",
+      "source": "dom",
+      "observed": {
+        "forbiddenSchemaDetected": false,
+        "detectedTypes": [
+          "Organization",
+          "WebSite"
+        ]
+      },
+      "expected": {
+        "forbidden_types": [
+          "Product",
+          "Offer",
+          "AggregateOffer",
+          "ProductGroup"
+        ]
+      },
+      "reason": "No forbidden ecommerce schema detected",
+      "evidence_timestamp": "2026-01-06T13:02:34.486Z"
+    },
+    {
+      "id": "PERF-01",
+      "pillar": "performance",
+      "severity": "error",
+      "status": "PASS",
+      "source": "runtime",
+      "observed": {
+        "cls": 0
+      },
+      "expected": {
+        "max": 0.1
+      },
+      "reason": "CLS within budget (substituted from PERF-RUNTIME-01)",
+      "evidence_timestamp": "2026-01-06T13:02:34.455Z"
+    },
+    {
+      "id": "PERF-02",
+      "pillar": "performance",
+      "severity": "warn",
+      "status": "NOT_RUN",
+      "source": "lighthouse",
+      "observed": {
+        "missing": true,
+        "tried": [
+          "PERF-02",
+          "PERF-RUNTIME-02"
+        ]
+      },
+      "expected": {
+        "policy": "text-first-allowed"
+      },
+      "reason": "Evidence missing (treated as warning by policy)"
+    }
+  ],
+  "evidence_digest": "85a635706629bbea7633dda336c4590c15346ade08b019cdd9568e8ecaf8e8df",
+  "computed_at": "2026-01-06T13:21:01.303Z"
+}

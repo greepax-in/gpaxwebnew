@@ -1,0 +1,22 @@
+{
+  "contract": {
+    "id": "greenpax-homepage-verdict",
+    "version": "1.0.0"
+  },
+  "verdict": "WARN",
+  "explanations": [
+    {
+      "id": "FLOW-01",
+      "pillar": "flow",
+      "status": "WARN",
+      "message": "Could not compute DOM order (missing indices)"
+    },
+    {
+      "id": "PERF-02",
+      "pillar": "performance",
+      "status": "NOT_EXECUTED",
+      "message": "Required evidence was not emitted by any validator"
+    }
+  ],
+  "generated_at": "2026-01-06T13:21:01.303Z"
+}
