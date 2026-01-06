@@ -5,6 +5,7 @@ export type Items = z.infer<typeof ItemsSchema>;
 
 export const VARIANT_TYPES = ["plain", "printed", "multicolor"] as const;
 export const PRODUCT_TYPES = ["bag", "cover", "box"] as const;
+export const ITEM_KINDS = ["product", "category-anchor"] as const;
 
 /* =======================
    UNIT / SIZE SCHEMAS
@@ -12,16 +13,50 @@ export const PRODUCT_TYPES = ["bag", "cover", "box"] as const;
 
 export const UnitSchema = z
   .object({
-    uom: z.enum(["pcs", "kg"]),
-    quantity: z.number().positive(),
-    moq: z.number().positive(),
+    /* ---------------------------
+       Canonical fields (final)
+       --------------------------- */
+    uom: z.enum(["pcs", "kg"]).optional(),
+    quantity: z.number().positive().optional(),
+    moq: z.number().positive().optional(),
 
-    price: z.object({
-      offered: z.number().min(0).optional(),
-      selling: z.number().min(0),
-    }),
+    price: z
+      .object({
+        offered: z.number().min(0).optional(),
+        selling: z.number().min(0),
+      })
+      .optional(),
+
+    /* ---------------------------
+       Legacy / temporary fields
+       --------------------------- */
+    unitType: z.enum(["pcs", "kg"]).optional(),
+    sellingPrice: z.number().min(0).optional(),
+    offeredPrice: z.number().min(0).optional(),
+    contains: z.number().positive().optional(),
+    containsLabel: z.string().optional(),
   })
-  .strict();
+  .transform((unit) => {
+    const uom = unit.uom ?? unit.unitType;
+
+    return {
+      uom,
+      quantity: unit.quantity ?? unit.contains ?? 1,
+      moq: unit.moq ?? unit.contains ?? 1,
+      price: {
+        selling:
+          unit.price?.selling ??
+          unit.sellingPrice ??
+          0,
+        offered:
+          unit.price?.offered ??
+          unit.offeredPrice,
+      },
+    };
+  })
+  .refine((u) => u.uom === "pcs" || u.uom === "kg", {
+    message: "Unit must resolve to valid uom",
+  });
 
 export const SizeSchema = z.object({
   sizeIn: z.string().min(1),
@@ -37,6 +72,12 @@ export const ItemSchema = z
   .object({
     id: z.string().min(1),
     name: z.string().min(1),
+
+     /* =======================
+       ITEM KIND (PRODUCT / CATEGORY)
+       ======================= */
+
+     kind: z.enum(["product", "category-anchor"]),
 
     productType: z.enum(PRODUCT_TYPES),
 
@@ -57,6 +98,7 @@ export const ItemSchema = z
     subcategorySlug: z.string().min(1),
 
     image: z.string().min(1),
+    imageFallback: z.string().min(1).optional(),
 
     baseSlug: z.string().min(1),
     slug: z.string().min(1),
@@ -95,6 +137,32 @@ export const ItemSchema = z
   .superRefine((item, ctx) => {
     const allUnits = item.sizes.flatMap((s) => s.units);
 
+    /* =========================================================
+       CATEGORY ANCHOR RULES
+       ========================================================= */
+
+    if (item.kind === "category-anchor") {
+      if (item.pricingMode !== "enquiry") {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `category-anchor items must use pricingMode 'enquiry'`,
+          path: ["pricingMode"],
+        });
+      }
+
+      const hasPricedUnit = allUnits.some(
+        (u) => typeof u.price?.selling === "number" && u.price.selling > 0
+      );
+
+      if (hasPricedUnit) {
+        ctx.addIssue({
+          code: z.ZodIssueCode.custom,
+          message: `category-anchor items must not declare priced units`,
+          path: ["sizes"],
+        });
+      }
+    }
+
     /* ---------- Base UOMs must exist ---------- */
     for (const uom of item.baseUOMs) {
       if (!allUnits.some((u) => u.uom === uom)) {
@@ -127,7 +195,7 @@ export const ItemSchema = z
        PRICING MODE ENFORCEMENT
        ========================================================= */
 
-    if (item.pricingMode === "fixed") {
+    if (item.pricingMode === "fixed" && item.kind !== "category-anchor") {
       if (!item.categoryDisplayUOM) {
         ctx.addIssue({
           code: z.ZodIssueCode.custom,

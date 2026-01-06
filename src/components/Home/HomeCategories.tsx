@@ -1,6 +1,6 @@
 // FILE: src/components/Home/HomeCategories.tsx
 
-import Image from "next/image";
+// image rendering uses <picture> with fallbacks
 import items from "@/data/items.json";
 import rawCategoryIndex from "@/data/categoryIndex.json";
 import { buildHomepageWhatsAppLink } from "@/lib/whatsapp"
@@ -36,6 +36,7 @@ type CategoryIndex = {
 const categoryIndex = rawCategoryIndex as CategoryIndex;
 
 const CATEGORY_ORDER = ["Paper Bags", "Paper Covers", "Paper Boxes"];
+const VARIANT_ORDER = ["plain", "printed", "multicolor"] as const;
 
 const toSlug = (value: string): string =>
   value
@@ -49,15 +50,22 @@ const categories = Object.values(
     const slug = item.categorySlug || toSlug(category);
 
     if (!acc[slug]) {
-      acc[slug] = { category, slug, items: [] as any[] };
+      acc[slug] = { category, slug, items: [] as any[], anchor: null as any };
     }
 
-    acc[slug].items.push(item);
+    if (item.kind === "category-anchor") {
+      acc[slug].anchor = item;
+    } else {
+      acc[slug].items.push(item);
+    }
     return acc;
   }, {} as Record<string, any>)
 )
   .map((group: any) => {
-    const featured = group.items.find((entry: any) => entry.featured === true) ?? group.items[0];
+    const featured =
+      group.anchor ??
+      group.items.find((entry: any) => entry.featured === true) ??
+      group.items[0];
 
     return {
       category: group.category,
@@ -95,6 +103,7 @@ export default function HomeCategories() {
 
             const featured = group.featured;
             const image = featured?.image;
+            const imageFallback = featured?.imageFallback;
 
             // derive subcategory-level signals before returning JSX
             const subcats = Object.values(categoryData);
@@ -105,9 +114,17 @@ export default function HomeCategories() {
             const visibleChips = subcategoryLabels.slice(0, MAX_VISIBLE_CHIPS);
             const remainingCount = subcategoryLabels.length - visibleChips.length;
 
-            // LINE 2 - variants (union)
+            // LINE 2 - variants (union) + normalized order (plain → printed → multicolor)
             const variantSet = new Set<string>();
-            subcats.forEach((d: any) => d.chips.line2.forEach((v: string) => variantSet.add(v)));
+            subcats.forEach((d: any) =>
+              (d.chips.line2 ?? []).forEach((v: string) => variantSet.add(v))
+            );
+
+            const variantFlags = {
+              plain: Array.from(variantSet).some((v) => v.toLowerCase().includes("plain")),
+              printed: Array.from(variantSet).some((v) => v.toLowerCase().includes("printed")),
+              multicolor: Array.from(variantSet).some((v) => v.toLowerCase().includes("multi")),
+            };
 
             // LINE 3 - MOQ + price (min)
             const moqs = subcats
@@ -129,14 +146,26 @@ export default function HomeCategories() {
               <article className={`${styles.card} card`} key={group.category}>
                 <div className={styles.imageWrap}>
                   {image ? (
-                    <Image
-                      src={image}
-                      alt={`${group.category} packaging by GreenPax`}
-                      width={320}
-                      height={220}
-                      sizes="(max-width: 900px) 100vw, 33vw"
-                      className={`${styles.categoryImage} category-image`}
-                    />
+                    <picture className={styles.picture}>
+                      {/* AVIF primary */}
+                      <source srcSet={image} type="image/avif" />
+
+                      {/* WEBP fallback */}
+                      {imageFallback ? (
+                        <source srcSet={imageFallback} type="image/webp" />
+                      ) : null}
+
+                      {/* Final safety net (keeps layout stable; avoids chip/CTA shift) */}
+                      <img
+                        src={imageFallback || image}
+                        alt={`${group.category} packaging by GreenPax`}
+                        width={360}
+                        height={260}
+                        loading="lazy"
+                        decoding="async"
+                        className={`${styles.categoryImage} category-image`}
+                      />
+                    </picture>
                   ) : (
                     <span className="category-placeholder">{group.category}</span>
                   )}
@@ -167,43 +196,36 @@ export default function HomeCategories() {
 
                     {/* LINE 2 - VARIANT CHIPS (FIXED ROW) */}
                     <div className={styles.variantRow}>
-                      {[...variantSet].map((variant: string) => {
-                        const key = variant.toLowerCase();
-
-                        if (key.includes("plain")) {
+                      {VARIANT_ORDER.map((k) => {
+                        if (!variantFlags[k]) return null;
+                        if (k === "plain") {
                           return (
                             <span
-                              key={variant}
+                              key="plain"
                               className={`${styles.variantChip} ${styles.variantPlain}`}
                             >
                               Plain
                             </span>
                           );
                         }
-
-                        if (key.includes("printed")) {
+                        if (k === "printed") {
                           return (
                             <span
-                              key={variant}
+                              key="printed"
                               className={`${styles.variantChip} ${styles.variantPrinted}`}
                             >
                               Printed (1C)
                             </span>
                           );
                         }
-
-                        if (key.includes("multi")) {
-                          return (
-                            <span
-                              key={variant}
-                              className={`${styles.variantChip} ${styles.variantMulti}`}
-                            >
-                              Multicolor
-                            </span>
-                          );
-                        }
-
-                        return null;
+                        return (
+                          <span
+                            key="multicolor"
+                            className={`${styles.variantChip} ${styles.variantMulti}`}
+                          >
+                            Multicolor
+                          </span>
+                        );
                       })}
                     </div>
 

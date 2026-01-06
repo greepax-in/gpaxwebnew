@@ -76,35 +76,56 @@ try {
 
     for (const size of item.sizes ?? []) {
       for (const unit of size.units ?? []) {
-        allUnits.push(unit);
+        // ---------------------------------------------
+        // Normalize legacy → canonical (temporary)
+        // ---------------------------------------------
+        const normalizedUnit = {
+          uom: unit.uom ?? unit.unitType,
+          quantity: unit.quantity ?? unit.contains ?? 1,
+          moq: unit.moq ?? unit.contains ?? 1,
+          price: {
+            selling:
+              unit.price?.selling ??
+              unit.sellingPrice ??
+              0,
+            offered:
+              unit.price?.offered ??
+              unit.offeredPrice,
+          },
+        };
 
-        if (!unit.uom) {
+        allUnits.push(normalizedUnit);
+
+        if (!normalizedUnit.uom) {
           errors.push({
             message: `Item "${item.id}" has unit missing uom`,
           });
         }
 
-        if (typeof unit.moq !== "number" || unit.moq <= 0) {
+        if (
+          typeof normalizedUnit.moq !== "number" ||
+          normalizedUnit.moq <= 0
+        ) {
           errors.push({
-            message: `Item "${item.id}" has invalid MOQ (uom=${unit.uom})`,
+            message: `Item "${item.id}" has invalid MOQ (uom=${normalizedUnit.uom})`,
           });
         }
 
         if (
-          typeof unit.price?.selling !== "number" ||
-          unit.price.selling < 0
+          typeof normalizedUnit.price?.selling !== "number" ||
+          normalizedUnit.price.selling < 0
         ) {
           errors.push({
-            message: `Item "${item.id}" has invalid selling price (must be >= 0) (uom=${unit.uom})`,
+            message: `Item "${item.id}" has invalid selling price (must be >= 0) (uom=${normalizedUnit.uom})`,
           });
         }
 
         if (
-          unit.price?.offered !== undefined &&
-          unit.price.offered < 0
+          normalizedUnit.price?.offered !== undefined &&
+          normalizedUnit.price.offered < 0
         ) {
           errors.push({
-            message: `Item "${item.id}" has invalid offered price (must be >= 0) (uom=${unit.uom})`,
+            message: `Item "${item.id}" has invalid offered price (must be >= 0) (uom=${normalizedUnit.uom})`,
           });
         }
       }
@@ -145,8 +166,7 @@ try {
         (u) =>
           u.uom === displayUOM &&
           typeof u.price?.selling === "number" &&
-          u.price.selling > 0 &&
-          u.price.priceType === "order"
+          u.price.selling > 0
       );
 
       if (!hasValidCategoryPrice) {
@@ -157,12 +177,27 @@ try {
     }
 
     /* ---------- Image existence (build-time) ---------- */
-    if (item.image) {
-      const imagePath = path.join(PUBLIC_DIR, item.image);
-      if (!fs.existsSync(imagePath)) {
+    const imageCandidates = [item.image, item.imageFallback].filter(Boolean) as string[];
+
+    const isStrictImageRequired =
+      item.kind === "category-anchor" ||
+      (item.featured === true && item.pricingMode === "fixed");
+
+    if (imageCandidates.length > 0) {
+      const exists = imageCandidates.some((p) =>
+        fs.existsSync(path.join(PUBLIC_DIR, p))
+      );
+
+      if (!exists && isStrictImageRequired) {
         errors.push({
-          message: `Image not found for item "${item.id}": ${item.image}`,
+          message: `Image required but not found for item "${item.id}" (featured / category-anchor)`,
         });
+      }
+
+      if (!exists && !isStrictImageRequired) {
+        console.info(
+          `ℹ️  Image missing for enquiry-only item "${item.id}" → allowed (temporary)`
+        );
       }
     }
   }

@@ -11,12 +11,12 @@
         "chips": {
           "line1": "Food Delivery",
           "line2": [
-            "Printed",
-            "Plain"
+            "Plain",
+            "Printed"
           ],
           "line3": {
             "moq": "500+",
-            "price": "From ₹6",
+            "price": "",
             "uom": "pcs",
             "secondaryUOMs": [
               "kg"
@@ -112,7 +112,7 @@
           ],
           "line3": {
             "moq": "50+",
-            "price": "From ₹420",
+            "price": "",
             "uom": "kg"
           }
         }
@@ -172,7 +172,7 @@
           ],
           "line3": {
             "moq": "100+",
-            "price": "From ₹1800",
+            "price": "",
             "uom": "pcs"
           }
         }

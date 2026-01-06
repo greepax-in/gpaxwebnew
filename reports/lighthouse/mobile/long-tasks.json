@@ -1,44 +1,30 @@
 {
   "topBeforeLcp": [
     {
-      "startMs": 684,
-      "durationMs": 276,
-      "endMs": 960,
+      "startMs": 1008,
+      "durationMs": 239,
+      "endMs": 1247,
       "name": null,
       "attribution": null
     },
     {
-      "startMs": 1218,
-      "durationMs": 260,
-      "endMs": 1478,
+      "startMs": 689,
+      "durationMs": 220,
+      "endMs": 909,
       "name": null,
       "attribution": null
     },
     {
-      "startMs": 1099,
-      "durationMs": 119,
-      "endMs": 1218,
-      "name": null,
-      "attribution": null
-    },
-    {
-      "startMs": 1047,
-      "durationMs": 52,
-      "endMs": 1099,
-      "name": null,
-      "attribution": null
-    },
-    {
-      "startMs": 612,
-      "durationMs": 50,
-      "endMs": 662,
+      "startMs": 953,
+      "durationMs": 55,
+      "endMs": 1008,
       "name": null,
       "attribution": null
     }
   ],
   "totals": {
-    "countBeforeLcp": 5,
-    "sumDurationMsBeforeLcp": 757,
-    "maxTaskMsBeforeLcp": 276
+    "countBeforeLcp": 3,
+    "sumDurationMsBeforeLcp": 514,
+    "maxTaskMsBeforeLcp": 239
   }
 }

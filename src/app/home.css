@@ -1,0 +1,66 @@
+.home {
+  background: #f6f5f0;
+  overflow-x: hidden;
+
+  /* Prevent hero → section collision */
+  padding-bottom: clamp(24px, 4vh, 48px);
+
+  /* --------------------------------------------------
+     Apple-style page rhythm
+     -------------------------------------------------- */
+
+  padding-top: var(--page-top-safe);
+}
+
+/* --------------------------------------------
+   HERO BACKGROUND LAYER (APPLE-STYLE)
+--------------------------------------------- */
+.home-hero {
+  position: relative;
+  background:
+    radial-gradient(
+      900px 480px at 85% -10%,
+      rgba(31, 122, 82, 0.18) 0%,
+      rgba(31, 122, 82, 0) 58%
+    ),
+    radial-gradient(
+      700px 400px at 10% 12%,
+      rgba(247, 236, 214, 0.65) 0%,
+      rgba(247, 236, 214, 0) 60%
+    );
+}
+
+/* --------------------------------------------
+   HERO → SECTION TRANSITION (CRITICAL)
+--------------------------------------------- */
+.home-hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: clamp(24px, 4vw, 48px);
+  background: linear-gradient(
+    to bottom,
+    rgba(246, 245, 240, 0),
+    #f6f5f0
+  );
+  pointer-events: none;
+}
+
+/* --------------------------------------------
+   SECTION RHYTHM TOKENS (GLOBAL)
+--------------------------------------------- */
+:root {
+  --section-gap-sm: clamp(48px, 6vw, 64px);
+  --section-gap-md: clamp(72px, 8vw, 96px);
+  --section-gap-lg: clamp(96px, 12vw, 128px);
+}
+
+/* --------------------------------------------
+   FIRST SECTION AFTER HERO
+--------------------------------------------- */
+.section--capabilities {
+  padding-top: var(--section-gap-sm);
+}
+

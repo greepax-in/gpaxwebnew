@@ -1,0 +1,80 @@
+/* --------------------------------------------------
+   Apple-style Section Rhythm System (Global)
+   Applies to ALL sections (non-hero)
+-------------------------------------------------- */
+
+:root {
+  /* Vertical rhythm tokens */
+  --section-gap-sm: clamp(56px, 8vh, 72px);
+  --section-gap-md: clamp(72px, 10vh, 96px);
+  --section-gap-lg: clamp(96px, 14vh, 128px);
+
+  /* Optical typography tuning */
+  --section-h2-optical-shift: -0.12em;
+  --section-h2-bottom-space: 0.6em;
+
+  /* CTA rhythm */
+  --section-cta-top: clamp(18px, 3vh, 28px);
+}
+
+/* --------------------------------------------------
+   Section container normalization
+   (Hero excluded by design)
+-------------------------------------------------- */
+
+.home section {
+  padding-top: var(--section-gap-md);
+  padding-bottom: var(--section-gap-md);
+}
+
+/* First section after hero:
+   hero owns exit spacing → section does NOT double it */
+.home section:first-of-type {
+  padding-top: var(--section-gap-sm);
+}
+
+/* --------------------------------------------------
+   Section header rhythm (Apple optical alignment)
+-------------------------------------------------- */
+
+.home .section-header {
+  margin-bottom: clamp(28px, 4vh, 36px);
+}
+
+.home .section-header h2 {
+  margin-top: var(--section-h2-optical-shift);
+  margin-bottom: var(--section-h2-bottom-space);
+  letter-spacing: -0.01em;
+}
+
+/* Supporting copy under H2 */
+.home .section-header p {
+  margin-top: 0;
+  max-width: 60ch;
+}
+
+/* --------------------------------------------------
+   CTA vertical rhythm (shadow-safe)
+-------------------------------------------------- */
+
+.home section .primary-cta,
+.home section .secondary-cta,
+.home section .ghost-cta,
+.home section .text-cta {
+  margin-top: var(--section-cta-top);
+}
+
+/* --------------------------------------------------
+   Mobile tightening (Apple-style)
+-------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .home section {
+    padding-top: var(--section-gap-sm);
+    padding-bottom: var(--section-gap-sm);
+  }
+
+  .home .section-header {
+    margin-bottom: 24px;
+  }
+}

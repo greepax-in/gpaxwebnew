@@ -39,7 +39,17 @@ function capitalize(v: string) {
   return v.charAt(0).toUpperCase() + v.slice(1);
 }
 
+// Preferred canonical ordering for variant chips
+const VARIANT_ORDER = ["Plain", "Printed", "Multicolor"];
+
 for (const item of items as any[]) {
+  // --------------------------------------------------
+  // Skip category-anchor items (navigation only)
+  // --------------------------------------------------
+  if (item.kind === "category-anchor") {
+    continue;
+  }
+
   const {
     id,
     category,
@@ -84,6 +94,9 @@ for (const item of items as any[]) {
     if (!sub.chips.line2.includes(label)) {
       sub.chips.line2.push(label);
     }
+
+    // 🔹 OPTIONAL: enforce canonical variant order
+    sub.chips.line2.sort((a, b) => VARIANT_ORDER.indexOf(a) - VARIANT_ORDER.indexOf(b));
   }
 
   // ---- aggregate MOQ & price using categoryDisplayUOM

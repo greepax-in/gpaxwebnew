@@ -16,19 +16,19 @@
 }
 
 .imageWrap {
-  padding: 16px;
-  background-color: #f7f8f2;
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  /* ? Kill the "dead space" under some images by letting the image own the box */
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border-radius: 18px;
+  background: rgba(0,0,0,0.02);
 }
 
 .categoryImage {
   width: 100%;
-  height: auto;
-  max-height: 200px;
-  object-fit: contain;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 18px;
 }
 
 .cardBody {
@@ -42,62 +42,71 @@
   margin: 0;
   font-size: 1.1rem;
   font-weight: 600;
-  color: var(--ink);
+  border-radius: 18px;
 }
 
 .categorySummary {
   margin: 0;
   color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.metaBlock {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }
 
 .subcategoryChips {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  min-height: 56px;
-  max-height: 56px;
-  overflow: hidden;
   align-content: flex-start;
 }
 
 .subcategoryChip {
   display: inline-flex;
   align-items: center;
-  height: 26px;
-  padding: 6px 10px;
+  padding: 6px 12px;
   border-radius: 12px;
   border: 1px solid #dcded6;
   background-color: #f7f7f2;
   color: #2f3a45;
   font-size: 0.82rem;
   font-weight: 500;
+  white-space: nowrap;
+  line-height: 1.15;
 }
 
 .variantRow {
-  min-height: 32px;
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ? Printed chip is the most "dense" label - reduce font slightly */
+.variantPrinted {
+  font-size: 0.92rem;
+}
+
+/* ? Make the chip rows "layout-stable" so nothing can visually collide */
+.metaBlock {
+  display: grid;
+  gap: 12px;
 }
 
 .variantChip {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  height: 26px;
-  min-width: 80px;
-  padding: 0 12px;
-  border-radius: 14px;
+  white-space: nowrap;       /* prevents "Printed (1C)" wrapping to 2 lines */
+  line-height: 1;            /* keeps chip height consistent across cards */
+  padding: 8px 14px;         /* slightly wider so labels don't collide */
+  border-radius: 999px;
   font-weight: 600;
   font-size: 12px;
   letter-spacing: 0.2px;
+}
+
+.picture {
+  width: 100%;
+  height: 100%;
+  display: block;
 }
 
 .variantPlain {
@@ -199,4 +208,29 @@
   color: #ffffff;
   flex-shrink: 0;
   margin-left: -6px;
+}
+
+@media (max-width: 768px) {
+  .categoryGrid {
+    gap: 16px;
+  }
+
+  .card {
+    /* Lighter shadow = lower paint cost on mobile GPUs */
+    box-shadow: 0 10px 24px rgba(15, 23, 42, 0.05);
+  }
+
+  .cardBody {
+    padding: 16px 16px 18px;
+    gap: 10px;
+  }
+
+  .categorySummary {
+    line-height: 1.55;
+    max-width: 62ch;
+  }
+
+  .subcategoryChips {
+    gap: 6px;
+  }
 }

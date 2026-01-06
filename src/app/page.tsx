@@ -3,7 +3,7 @@
 
 import type { Metadata } from "next";
 import type { JSX } from "react";
-
+import "./home.css";
 import HomeHero from "@/components/Home/HomeHero";
 import HomeCategories from "@/components/Home/HomeCategories";
 import HomeFeatured from "@/components/Home/HomeFeatured";

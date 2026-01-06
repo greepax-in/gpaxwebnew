@@ -4,34 +4,37 @@ import styles from "./HomeHero.module.css";
 export default function HomeHeroServer({ children }: { children?: React.ReactNode }) {
   return (
     <section className={`home-hero hero-fold-safe ${styles.heroContainer}`}>
-      <div className={`hero-content ${styles.heroContent}`}>
+      <div className={styles.heroContent}>
         <h1 className={styles.heroTitle}>Eco-Friendly Paper Packaging Manufacturer</h1>
 
-        {/* Primary CTA placed immediately after heading to ensure above-fold placement on mobile */}
         <div className={styles.heroCTAContainer}>
           {children}
         </div>
 
         <p className={styles.heroLead}>
-          Bulk paper bags, covers, and boxes manufactured in India with
-          MOQ-based production.
+          <span className={styles.heroLeadLine}>
+            Bulk paper bags, covers, and boxes.
+          </span>
+          <span className={styles.heroLeadLine}>
+            Manufactured in India with MOQ-based production.
+          </span>
         </p>
-
-        <figure className={styles.heroVisualDesktop}>
-          <Image
-            src="/images/home/hero/gpax-hero-final-400x500.webp"
-            alt="Eco-friendly paper packaging manufacturer in India"
-            width={400}
-            height={500}
-            priority
-            fetchPriority="high"
-            sizes="(max-width: 480px) 320px, 400px"
-            className={styles.heroImage}
-            data-hero="true"
-          />
-        </figure>
       </div>
-      {/* CTA is now rendered inside `.hero-content` */}
+
+      {/* Desktop-only visual (separate column) */}
+      <figure className={styles.heroVisualDesktop} data-hero-surface>
+        <Image
+          src="/images/home/hero/printed-kraft-square-bottom-paper-bags.avif"
+          alt="Eco-friendly paper packaging manufacturer in India"
+          width={400}
+          height={500}
+          priority
+          fetchPriority="high"
+          sizes="(min-width: 900px) 400px"
+          className={styles.heroImage}
+          data-hero="true"
+        />
+      </figure>
     </section>
   );
 }

@@ -1,16 +1,23 @@
 {
   "topBeforeLcp": [
     {
-      "startMs": 202,
-      "durationMs": 88,
-      "endMs": 290,
+      "startMs": 195,
+      "durationMs": 63,
+      "endMs": 258,
+      "name": null,
+      "attribution": null
+    },
+    {
+      "startMs": 310,
+      "durationMs": 54,
+      "endMs": 364,
       "name": null,
       "attribution": null
     }
   ],
   "totals": {
-    "countBeforeLcp": 1,
-    "sumDurationMsBeforeLcp": 88,
-    "maxTaskMsBeforeLcp": 88
+    "countBeforeLcp": 2,
+    "sumDurationMsBeforeLcp": 117,
+    "maxTaskMsBeforeLcp": 63
   }
 }

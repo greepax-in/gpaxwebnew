@@ -3,33 +3,23 @@
 /* --- MOBILE-FIRST LCP OPTIMIZATION --- */
 
 .heroContainer {
+  /* Single source of truth — hero spacing is governed globally */
   min-height: auto; /* remove layout delay for LCP */
   justify-content: flex-start; /* allow image to paint first */
-  padding-top: clamp(20px, 6vw, 40px);
   display: flex;
   flex-direction: column;
   gap: clamp(14px, 4vw, 18px);
+  padding-top: 0;
 }
 
 .heroContent {
   width: 100%;
 }
 
-.heroTitle {
-  margin-bottom: 8px;
-  /* LCP text lock - prevent font resolution delays */
-  /* LCP text lock - avoid font swap before paint */
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
 
-html[data-lcp-painted="true"] .heroTitle {
-  font-family: var(--font-display), var(--font-body), sans-serif;
-}
-
-.heroLead {
-  margin: 0;
-  color: var(--muted);
-  max-width: 52ch;
+/* Split supporting text into two readable lines */
+.heroLeadLine {
+  display: block;
 }
 
 /* Ensure image paints immediately */
@@ -45,58 +35,124 @@ html[data-lcp-painted="true"] .heroTitle {
   justify-content: flex-start;
 }
 
+/* === CTA OPTICAL RHYTHM NORMALIZATION === */
+.heroCTAContainer {
+  /* Visually separate CTA shadow from supporting text */
+  margin-bottom: 18px;
+}
+
+/* === MOBILE CTA / TEXT SEPARATION (OPTICAL FIX) === */
+@media (max-width: 768px) {
+  .heroCTAContainer {
+    margin-bottom: 16px; /* Slightly tighter on mobile */
+  }
+}
+
 .heroVisualDesktop {
   display: none;
 }
 
 @media (min-width: 900px) {
   .heroVisualDesktop {
-    display: block;
     contain: layout paint;
-    isolation: isolate;
     contain-intrinsic-size: 400px 500px;
     aspect-ratio: 4 / 5;
     margin: 0;
   }
 }
-/* --- DESKTOP LAYOUT (UNCHANGED VISUALLY) --- */
 @media (min-width: 900px) {
+  /* === DESKTOP HERO CONTRACT (APPLE STYLE) === */
   .heroContainer {
-    min-height: 85vh;
-    flex-direction: row;
-    gap: clamp(32px, 5vw, 48px);
-    align-items: center;
-    justify-content: center; /* restore desktop centering */
+    display: grid;
+    grid-template-columns: minmax(520px, 1fr) minmax(360px, 420px);
+    gap: clamp(48px, 6vw, 80px);
+
+    /* Apple-style: content starts from top, not vertically centered */
+    align-items: start;
+
+    /* Remove fake header reservation */
+    min-height: auto;
+
+    /* Balanced horizontal gutters */
+    padding-inline: clamp(32px, 6vw, 96px);
+
+    /* Controlled top rhythm (not nav space) */
+    /* Apple-style: hero starts AFTER header rhythm */
+    padding-top: calc(var(--site-header-height) + clamp(16px, 2vh, 28px));
+    padding-bottom: clamp(32px, 6vh, 64px);
+
+    /* Apple-style content centering */
+    max-width: 1280px;
+    margin-inline: auto;
   }
 
-  .heroCopy {
-    order: 1;
+  /* Text column */
+  .heroContent {
+    max-width: 640px;
   }
 
-  .heroVisual {
-    order: 2;
-    max-width: none;
-    margin: 0;
-    contain-intrinsic-size: 400px 500px;
+  /* Image column */
+  .heroVisualDesktop {
+    display: block;
+    justify-self: start;
+  }
+}
+
+/* === DESKTOP CTA / TEXT SEPARATION (SHADOW SAFE) === */
+@media (min-width: 900px) {
+  .heroCTAContainer {
+    margin-bottom: 22px; /* Desktop optical balance (Apple-style) */
+  }
+
+  .heroLead {
+    padding-top: 2px; /* optical baseline fix */
   }
 }
 
 /* --- MOBILE-FIRST TEXT DOMINANCE --- */
 @media (max-width: 780px) {
   .heroTitle {
+    /* Apple-style optical margin:
+       Large H1 needs tighter visual spacing */
+    margin-bottom: 6px;
     font-size: clamp(2.6rem, 6.8vw, 3.1rem);
     line-height: 1.04;
   }
+}
 
+/* ==================================================
+   HERO EXIT RHYTHM (APPLE STYLE)
+   --------------------------------------------------
+   Purpose:
+   - Create intentional pause AFTER hero
+   - Must feel larger than internal hero spacing
+================================================== */
+
+.heroContainer {
+  /* existing rules untouched */
+
+  padding-bottom: var(--hero-exit-space);
+}
+
+.heroLead {
+  font-size: 1.05rem;
+  max-width: 44ch;
+}
+
+/* Android-first mobile tuning (denser vertical rhythm) */
+@media (max-width: 768px) {
   .heroLead {
-    font-size: 1.05rem;
-    line-height: 1.6;
-    max-width: 44ch;
+    line-height: 1.55; /* slightly tighter than default */
   }
 
-  .heroVisual {
-    max-width: min(56vw, 170px);
-    contain-intrinsic-size: 200px 260px;
+  .heroLeadLine + .heroLeadLine {
+    margin-top: 4px;
+  }
+}
+
+/* Optional: tighten CTA spacing on very small Android screens */
+@media (max-width: 480px) {
+  .heroCTAContainer {
     margin-top: 12px;
   }
 }
@@ -106,7 +162,111 @@ html[data-lcp-painted="true"] .heroTitle {
    Image must NOT participate in LCP on mobile
 -------------------------------------------------- */
 @media (max-width: 768px) {
-  .heroVisual {
+  .heroVisualDesktop {
     display: none;
+  }
+}
+
+/* --------------------------------------------------
+   HEADER ↔ HERO SEAM MICRO-FIX (Apple-style)
+   Scope: HERO ONLY
+-------------------------------------------------- */
+
+.heroContainer {
+  position: relative;
+}
+
+/* Seam softener: blends header into hero */
+.heroContainer::before {
+  content: "";
+  position: absolute;
+  top: calc(-1 * var(--site-header-height, 64px));
+  left: 0;
+  right: 0;
+
+  /* Optical seam height */
+  height: calc(var(--site-header-height, 64px) + 24px);
+
+  /* Apple-style fade, not shadow */
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(246, 245, 240, 1) 0%,
+      rgba(246, 245, 240, 0.92) 35%,
+      rgba(246, 245, 240, 0.6) 65%,
+      rgba(246, 245, 240, 0) 100%
+    );
+
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Ensure hero content stays above seam layer */
+.heroContent,
+.heroVisualDesktop {
+  position: relative;
+  z-index: 1;
+}
+
+/* --------------------------------------------------
+   MOBILE HERO GUTTER NORMALIZATION (Apple-style)
+-------------------------------------------------- */
+
+@media (max-width: 768px) {
+  .heroContainer {
+    padding-inline: clamp(20px, 5vw, 28px);
+  }
+
+  .heroContent {
+    padding-inline: 0; /* prevent double padding */
+  }
+}
+
+
+
+/* --------------------------------------------------
+   HERO OPTICAL NORMALIZATION (Apple-style)
+   Scope: HERO ONLY
+-------------------------------------------------- */
+
+/* ---------------------------------
+   H1 optical alignment
+---------------------------------- */
+
+.heroTitle {
+  /* Apple-style optical lift:
+     compensates for heavy glyphs + tight line-height */
+  margin-top: -0.14em;
+  margin-bottom: 0.42em;
+
+  /* Slight negative tracking improves large headline balance */
+  letter-spacing: -0.015em;
+}
+
+/* Mobile needs slightly less lift */
+@media (max-width: 768px) {
+  .heroTitle {
+    margin-top: -0.1em;
+    margin-bottom: 0.48em;
+  }
+}
+
+/* ---------------------------------
+   CTA vertical rhythm (shadow-safe)
+---------------------------------- */
+
+.heroCTAContainer {
+  /* Decouple CTA from headline optically */
+  margin-top: clamp(14px, 2.6vh, 22px);
+
+  /* Prevent shadow from visually colliding upward */
+  padding-top: 2px;
+}
+
+/* Mobile CTA needs tighter rhythm */
+@media (max-width: 768px) {
+  .heroCTAContainer {
+    margin-top: 16px;
+    padding-top: 0;
   }
 }

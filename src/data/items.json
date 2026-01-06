@@ -2,6 +2,10 @@
   {
     "id": "paper-bags_food-delivery_kraft-printed_001",
     "name": "Kraft Food Delivery Paper Bags",
+    "kind": "product",
+    "pricingMode": "fixed",
+    "baseUOMs": ["pcs","kg"],
+    "categoryDisplayUOM": "pcs",
     "category": "Paper Bags",
     "subcategory": "Food Delivery Paper Bags",
     "productType": "bag",
@@ -30,20 +34,16 @@
         "sizeCm": "15.2x15.5x20.3cm",
         "units": [
           {
-            "unitType": "500 Bags",
-            "offeredPrice": 4000,
-            "sellingPrice": 7000,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": { "selling": 7000, "offered": 4000 }
           },
           {
-            "unitType": "1000 Bags",
-            "offeredPrice": 7500,
-            "sellingPrice": 10000,
+            "uom": "pcs",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "bag"
+            "price": { "selling": 10000, "offered": 7500 }
           }
         ]
       },
@@ -52,20 +52,16 @@
         "sizeCm": "15.2x15.5x20.3cm",
         "units": [
           {
-            "unitType": "500 Bags",
-            "offeredPrice": 2000,
-            "sellingPrice": 3000,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": { "selling": 3000, "offered": 2000 }
           },
           {
-            "unitType": "2000 Bags",
-            "offeredPrice": 7500,
-            "sellingPrice": 10000,
+            "uom": "pcs",
+            "quantity": 2000,
             "moq": 50,
-            "contains": 2000,
-            "containsLabel": "bag"
+            "price": { "selling": 10000, "offered": 7500 }
           }
         ]
       },
@@ -74,20 +70,16 @@
         "sizeCm": "15.2x15.5x20.3cm",
         "units": [
           {
-            "unitType": "500 Bags",
-            "offeredPrice": 4000,
-            "sellingPrice": 7000,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": { "selling": 7000, "offered": 4000 }
           },
           {
-            "unitType": "1000 Bags",
-            "offeredPrice": 7500,
-            "sellingPrice": 10000,
+            "uom": "pcs",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "bag"
+            "price": { "selling": 10000, "offered": 7500 }
           }
         ]
       },
@@ -96,12 +88,10 @@
         "sizeCm": "20.3x25.4x30.5cm",
         "units": [
           {
-            "unitType": "1 Bag",
-            "offeredPrice": 4,
-            "sellingPrice": 6,
+            "uom": "pcs",
+            "quantity": 1,
             "moq": 500,
-            "contains": 1,
-            "containsLabel": "bag"
+            "price": { "selling": 6, "offered": 4 }
           }
         ]
       },
@@ -110,12 +100,10 @@
         "sizeCm": "25.4x30.5cm",
         "units": [
           {
-            "unitType": "Kg",
-            "offeredPrice": 350,
-            "sellingPrice": 420,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "cover"
+            "price": { "selling": 420, "offered": 350 }
           }
         ]
       }
@@ -133,6 +121,10 @@
   {
     "id": "paper-covers_grocery_kraft-plain_001",
     "name": "Kraft Grocery Paper Covers",
+    "kind": "product",
+    "pricingMode": "fixed",
+    "baseUOMs": ["kg"],
+    "categoryDisplayUOM": "kg",
     "category": "Paper Covers",
     "categorySlug": "paper-covers",
     "subcategory": "Grocery Paper Covers",
@@ -160,12 +152,10 @@
         "sizeCm": "15.2x25.4cm",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 350,
-            "sellingPrice": 420,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "covers"
+            "price": { "selling": 420, "offered": 350 }
           }
         ]
       },
@@ -174,12 +164,10 @@
         "sizeCm": "20.3x30.5cm",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 400,
-            "sellingPrice": 480,
+            "uom": "kg",
+            "quantity": 800,
             "moq": 50,
-            "contains": 800,
-            "containsLabel": "covers"
+            "price": { "selling": 480, "offered": 400 }
           }
         ]
       }
@@ -197,6 +185,10 @@
   {
     "id": "paper-boxes_cake_kraft-printed_001",
     "name": "Kraft Cake Box",
+    "kind": "product",
+    "pricingMode": "fixed",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "category": "Paper Boxes",
     "categorySlug": "paper-boxes",
     "subcategory": "Cake Boxes",
@@ -225,12 +217,10 @@
         "sizeCm": "15.2x15.2x7.6cm",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 1500,
-            "sellingPrice": 1800,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": { "selling": 1800, "offered": 1500 }
           }
         ]
       },
@@ -239,12 +229,10 @@
         "sizeCm": "20.3x15.2x10.2cm",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 1800,
-            "sellingPrice": 2200,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": { "selling": 2200, "offered": 1800 }
           }
         ]
       }
@@ -262,6 +250,10 @@
   {
     "id": "paper-bags_promotion_kraft-printed_001",
     "name": "Kraft Promotion Paper Bags",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "category": "Paper Bags",
     "categorySlug": "paper-bags",
     "subcategory": "Promotion Paper Bags",
@@ -297,12 +289,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "unit"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -311,6 +301,10 @@
   {
     "id": "paper-bags_promotion_multicolor_001",
     "name": "Promotion Paper Bags",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "category": "Paper Bags",
     "categorySlug": "paper-bags",
     "subcategory": "Promotion Paper Bags",
@@ -346,12 +340,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "unit"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -361,6 +353,10 @@
     "id": "paper-bags_food-delivery_plain_001",
     "image": "/images/products/paperbags/food-delivery-plain.svg",
     "name": "Kraft Plain Food Delivery Paper Bags",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "bag",
     "category": "Paper Bags",
     "categorySlug": "paper-bags",
@@ -395,12 +391,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 500,
             "moq": 500,
-            "contains": 500,
-            "containsLabel": "bag"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -411,6 +405,10 @@
     "id": "paper-bags_cake-box_plain_001",
     "image": "/images/products/paperbags/cake-box-plain.svg",
     "name": "Kraft Plain Cake Box Paper Bags",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "bag",
     "category": "Paper Bags",
     "categorySlug": "paper-bags",
@@ -443,12 +441,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 300,
             "moq": 300,
-            "contains": 300,
-            "containsLabel": "bag"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -458,6 +454,10 @@
     "id": "paper-bags_cake-box_printed_001",
     "image": "/images/products/paperbags/cake-box-printed.svg",
     "name": "Kraft Printed Cake Box Paper Bags",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "bag",
     "category": "Paper Bags",
     "categorySlug": "paper-bags",
@@ -492,12 +492,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 300,
             "moq": 300,
-            "contains": 300,
-            "containsLabel": "bag"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -507,6 +505,10 @@
     "id": "paper-bags_gift_printed_001",
     "image": "/images/products/paperbags/gift-printed.svg",
     "name": "Kraft Printed Gift Paper Bags",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "bag",
     "category": "Paper Bags",
     "categorySlug": "paper-bags",
@@ -541,12 +543,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 200,
             "moq": 200,
-            "contains": 200,
-            "containsLabel": "bag"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -556,6 +556,10 @@
     "id": "paper-bags_garment_multicolor_001",
     "image": "/images/products/paperbags/garment-multicolor.svg",
     "name": "Multicolor Garment Paper Bags",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "bag",
     "category": "Paper Bags",
     "categorySlug": "paper-bags",
@@ -590,12 +594,10 @@
         "sizeIn": "Large",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 200,
             "moq": 200,
-            "contains": 200,
-            "containsLabel": "bag"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -605,6 +607,10 @@
     "id": "paper-covers_medical_plain_001",
     "image": "/images/products/papercovers/medical-plain.svg",
     "name": "Kraft Plain Medical Paper Covers",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["kg"],
+    "categoryDisplayUOM": "kg",
     "productType": "cover",
     "category": "Paper Covers",
     "categorySlug": "paper-covers",
@@ -639,12 +645,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "covers"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -654,6 +658,10 @@
     "id": "paper-covers_medical_printed_001",
     "image": "/images/products/papercovers/medical-printed.svg",
     "name": "Kraft Printed Medical Paper Covers",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["kg"],
+    "categoryDisplayUOM": "kg",
     "productType": "cover",
     "category": "Paper Covers",
     "categorySlug": "paper-covers",
@@ -689,12 +697,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 1000,
             "moq": 50,
-            "contains": 1000,
-            "containsLabel": "covers"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -704,6 +710,10 @@
     "id": "paper-covers_bakery_plain_001",
     "image": "/images/products/papercovers/bakery-plain.svg",
     "name": "Bakery Plain Paper Covers",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["kg"],
+    "categoryDisplayUOM": "kg",
     "productType": "cover",
     "category": "Paper Covers",
     "categorySlug": "paper-covers",
@@ -736,12 +746,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 900,
             "moq": 50,
-            "contains": 900,
-            "containsLabel": "covers"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -751,6 +759,10 @@
     "id": "paper-covers_bakery_printed_001",
     "image": "/images/products/papercovers/bakery-printed.svg",
     "name": "Bakery Printed Paper Covers",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["kg"],
+    "categoryDisplayUOM": "kg",
     "productType": "cover",
     "category": "Paper Covers",
     "categorySlug": "paper-covers",
@@ -785,12 +797,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "1kg",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "kg",
+            "quantity": 900,
             "moq": 50,
-            "contains": 900,
-            "containsLabel": "covers"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -800,6 +810,10 @@
     "id": "paper-boxes_burger_plain_001",
     "image": "/images/products/paperboxes/burger-plain.svg",
     "name": "Kraft Plain Burger Box",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "box",
     "category": "Paper Boxes",
     "categorySlug": "paper-boxes",
@@ -833,12 +847,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -848,6 +860,10 @@
     "id": "paper-boxes_burger_printed_001",
     "image": "/images/products/paperboxes/burger-printed.svg",
     "name": "Kraft Printed Burger Box",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "box",
     "category": "Paper Boxes",
     "categorySlug": "paper-boxes",
@@ -883,12 +899,10 @@
         "sizeIn": "Standard",
         "units": [
           {
-            "unitType": "100 Boxes",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": { "selling": 0 }
           }
         ]
       }
@@ -898,6 +912,10 @@
     "id": "paper-boxes_custom_plain_001",
     "image": "/images/products/paperboxes/custom-plain.svg",
     "name": "Custom Plain Paper Boxes",
+    "kind": "product",
+    "pricingMode": "enquiry",
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
     "productType": "box",
     "category": "Paper Boxes",
     "categorySlug": "paper-boxes",
@@ -931,15 +949,169 @@
         "sizeIn": "Custom",
         "units": [
           {
-            "unitType": "Bulk",
-            "offeredPrice": 0,
-            "sellingPrice": 0,
+            "uom": "pcs",
+            "quantity": 100,
             "moq": 100,
-            "contains": 100,
-            "containsLabel": "box"
+            "price": { "selling": 0 }
           }
         ]
       }
     ]
+  },
+  {
+    "id": "paper-bags_category_anchor",
+    "name": "Custom Paper Bags",
+    "kind": "category-anchor",
+    "productType": "bag",
+
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry",
+
+    "category": "Paper Bags",
+    "categorySlug": "paper-bags",
+    "subcategory": "Custom Manufacturing",
+    "subcategorySlug": "custom",
+
+    "image": "/images/home/productcategories/paper-bags/paper-bags.avif",
+    "imageFallback": "/images/home/productcategories/paper-bags/paper-bags.webp",
+
+    "baseSlug": "paper-bags-custom",
+    "slug": "custom-paper-bags",
+    "pageLink": "/paper-bags/custom",
+
+    "variant": { "type": "plain" },
+
+    "material": {
+      "paperType": ["Kraft"],
+      "gsmRange": "60-200 GSM",
+      "foodSafe": true
+    },
+
+    "taxonomy": {
+      "industries": ["food", "retail", "logistics"],
+      "useCases": ["packaging", "carry"],
+      "foodSafe": true
+    },
+
+    "sizes": [
+      {
+        "sizeIn": "Custom",
+        "units": [
+          {
+            "uom": "pcs",
+            "quantity": 1,
+            "moq": 500,
+            "price": { "selling": 0 }
+          }
+        ]
+      }
+    ],
+
+    "featured": true
+  },
+  {
+    "id": "paper-covers_category_anchor",
+    "name": "Custom Paper Covers",
+    "kind": "category-anchor",
+    "productType": "cover",
+
+    "baseUOMs": ["kg"],
+    "categoryDisplayUOM": "kg",
+    "pricingMode": "enquiry",
+
+    "category": "Paper Covers",
+    "categorySlug": "paper-covers",
+    "subcategory": "Custom Manufacturing",
+    "subcategorySlug": "custom",
+
+    "image": "/images/home/productcategories/paper-covers/paper-covers.avif",
+    "imageFallback": "/images/home/productcategories/paper-covers/paper-covers.webp",
+
+    "baseSlug": "paper-covers-custom",
+    "slug": "custom-paper-covers",
+    "pageLink": "/paper-covers/custom",
+
+    "variant": { "type": "plain" },
+
+    "material": {
+      "paperType": ["Kraft"],
+      "gsmRange": "60-120 GSM",
+      "foodSafe": true
+    },
+
+    "taxonomy": {
+      "industries": ["food", "medical", "retail"],
+      "useCases": ["wrapping", "packaging"],
+      "foodSafe": true
+    },
+
+    "sizes": [
+      {
+        "sizeIn": "Custom",
+        "units": [
+          {
+            "uom": "kg",
+            "quantity": 1,
+            "moq": 50,
+            "price": { "selling": 0 }
+          }
+        ]
+      }
+    ],
+
+    "featured": true
+  },
+  {
+    "id": "paper-boxes_category_anchor",
+    "name": "Custom Paper Boxes",
+    "kind": "category-anchor",
+    "productType": "box",
+
+    "baseUOMs": ["pcs"],
+    "categoryDisplayUOM": "pcs",
+    "pricingMode": "enquiry",
+
+    "category": "Paper Boxes",
+    "categorySlug": "paper-boxes",
+    "subcategory": "Custom Manufacturing",
+    "subcategorySlug": "custom",
+
+    "image": "/images/home/productcategories/paper-boxes/paper-boxes.avif",
+    "imageFallback": "/images/home/productcategories/paper-boxes/paper-boxes.webp",
+
+    "baseSlug": "paper-boxes-custom",
+    "slug": "custom-paper-boxes",
+    "pageLink": "/paper-boxes/custom",
+
+    "variant": { "type": "plain" },
+
+    "material": {
+      "paperType": ["Kraft", "White"],
+      "gsmRange": "200-350 GSM",
+      "foodSafe": false
+    },
+
+    "taxonomy": {
+      "industries": ["food", "retail"],
+      "useCases": ["packaging", "custom-packaging"],
+      "foodSafe": false
+    },
+
+    "sizes": [
+      {
+        "sizeIn": "Custom",
+        "units": [
+          {
+            "uom": "pcs",
+            "quantity": 1,
+            "moq": 100,
+            "price": { "selling": 0 }
+          }
+        ]
+      }
+    ],
+
+    "featured": true
   }
 ]

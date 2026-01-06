@@ -27,7 +27,7 @@ export default function HomeFeatured() {
   const featuredItems = selectHomeFeaturedItems(items);
 
   if (process.env.NODE_ENV !== "production") {
-    validateHomeFeatured(items);
+    validateHomeFeatured(featuredItems);
   }
 
   return (
